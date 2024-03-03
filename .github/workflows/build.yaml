@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**.tex'
+      - '.github/workflows/build.yaml'
 
 jobs:
   Build:
