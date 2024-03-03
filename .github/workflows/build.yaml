@@ -21,13 +21,13 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Upload
+          name: am2
           path: main.pdf
 
       - name: Download PDF artifact
         uses: actions/download-artifact@v2
         with:
-          name: Upload
+          name: am2
           path: ${{ github.workspace }}/pdf
 
       - name: Move PDF to repository
