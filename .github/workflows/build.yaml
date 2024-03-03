@@ -2,8 +2,8 @@ name: Build, Upload, and Push LaTeX Document
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - '**.tex'
 
 jobs:
   Build:
