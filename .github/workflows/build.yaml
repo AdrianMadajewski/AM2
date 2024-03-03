@@ -1,12 +1,24 @@
-name: Build LaTeX document
-on: [push]
+name: Build and Upload LaTeX Document
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
-  build_latex:
+  build_and_upload:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@latest
         with:
           root_file: main.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Analiza-Matematyczna-2.pdf
+          path: main.pdf
