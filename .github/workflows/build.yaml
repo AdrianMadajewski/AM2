@@ -1,4 +1,4 @@
-name: Build and Upload LaTeX Document
+name: Build LaTeX Document
 
 on:
   push:
@@ -20,5 +20,13 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Analiza-Matematyczna-2.pdf
+          name: Analiza_Matematyczna_2
           path: main.pdf
+
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Analiza_Matematyczna_2
+
+      - name: Extract PDF artifact
+        run: unzip Analiza_Matematyczna_2.zip -d pdf
