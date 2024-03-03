@@ -1,0 +1,26 @@
+name: Build LaTeX Document
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install LaTeX
+      run: sudo apt-get install texlive
+
+    - name: Build LaTeX document
+      run: pdflatex main.tex
+
+    - name: Rename generated PDF
+      run: mv main.pdf "Analiza_Matematyczna_$(date +%Y-%m-%d).pdf"
+
+    - name: Move PDF to pdf directory
+      run: mkdir -p pdf && mv "Analiza_Matematyczna_$(date +%Y-%m-%d).pdf" pdf/
