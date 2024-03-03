@@ -43,7 +43,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add -f am2.pdf
+          git add -f ./pdf/am2.pdf
           git commit -m "Update PDF artifact"
 
       - name: Push changes to GitHub
