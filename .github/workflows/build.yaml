@@ -13,13 +13,8 @@ jobs:
     - name: Set up Git repository
       uses: actions/checkout@v2
 
-    - name: Set up MiKTeX
-      uses: miyakogi/setup-msys2@v2
-      with:
-        msystem: Mingw64
-
-    - name: Install LaTeX packages
-      run: mpm --verbose --yes --repository=http://mirrors.ctan.org/systems/win32/miktex/tm/packages/ install latex-bin
+    - name: Install MiKTeX
+      run: sudo apt-get install -y texlive texlive-lang-polish
 
     - name: Build LaTeX document
       run: pdflatex -interaction=nonstopmode -halt-on-error document.tex
