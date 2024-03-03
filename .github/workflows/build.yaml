@@ -30,7 +30,7 @@ jobs:
           path: ${{ github.workspace }}/pdf
 
       - name: Move PDF to repository
-        run: mv ${{ github.workspace }}/pdf/main.pdf .
+        run: mv ${{ github.workspace }}/pdf/main.pdf ${{ github.workspace }}/pdf/am2.pdf
 
       - name: Configure Git
         run: |
@@ -39,7 +39,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add -f main.pdf
+          git add -f am2.pdf
           git commit -m "Update PDF artifact"
 
       - name: Push changes to GitHub
