@@ -36,21 +36,14 @@ jobs:
       - name: Verify PDF directory
         run: ls -l ${{ github.workspace }}/pdf
 
-      - name: Navigate to PDF directory
-        run: cd ${{ github.workspace }}/pdf
-
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Check directory
-        run: |
-          pwd
-          ls -l ${{ github.workspace }}/pdf
-
       - name: Commit and push changes
         run: |
+          cd ${{ github.workspace }}/pdf
           git add -f am2.pdf
           git commit -m "Update PDF artifact"
 
