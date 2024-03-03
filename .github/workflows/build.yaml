@@ -13,14 +13,19 @@ jobs:
     - name: Set up Git repository
       uses: actions/checkout@v2
 
-    - name: Set up LaTeX environment
-      run: sudo apt-get install texlive texlive-lang-polish
+    - name: Set up MiKTeX
+      uses: miyakogi/setup-msys2@v2
+      with:
+        msystem: Mingw64
+
+    - name: Install LaTeX packages
+      run: mpm --verbose --yes --repository=http://mirrors.ctan.org/systems/win32/miktex/tm/packages/ install latex-bin
 
     - name: Build LaTeX document
-      run: pdflatex -interaction=nonstopmode -halt-on-error main.tex
+      run: pdflatex -interaction=nonstopmode -halt-on-error document.tex
 
     - name: Rename generated PDF
-      run: mv main.pdf "Analiza_Matematyczna_$(date +%Y-%m-%d).pdf"
+      run: mv document.pdf "Analiza_Matematyczna.pdf"
 
     - name: Move PDF to pdf directory
-      run: mkdir -p pdf && mv "Analiza_Matematyczna_$(date +%Y-%m-%d).pdf" pdf/
+      run: mkdir -p pdf && mv "Analiza_Matematyczna.pdf" pdf/
