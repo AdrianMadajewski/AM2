@@ -24,18 +24,9 @@ jobs:
           name: am2
           path: main.pdf
 
-      - name: Download PDF artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: am2
-          path: ${{ github.workspace }}
-
-      - name: Move PDF to directory
+      - name: Rename PDF
         run: mv ${{ github.workspace }}/main.pdf ${{ github.workspace }}/am2.pdf
       
-      - name: Verify PDF directory
-        run: ls -l ${{ github.workspace }}/pdf
-
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
