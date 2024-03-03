@@ -27,3 +27,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Analiza_Matematyczna_2
+          path: ${{ github.workspace }}/pdf
+
+      - name: List downloaded files
+        run: ls ${{ github.workspace }}/pdf
