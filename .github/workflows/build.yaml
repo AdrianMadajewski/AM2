@@ -1,4 +1,4 @@
-name: Build LaTeX Document
+name: Download and Commit Artifact
 
 on:
   push:
@@ -6,28 +6,29 @@ on:
       - master
 
 jobs:
-  build_and_upload:
+  download_and_commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-
-      - name: Compile LaTeX document
-        uses: dante-ev/latex-action@latest
-        with:
-          root_file: main.tex
-
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Analiza_Matematyczna_2
-          path: main.pdf
-
       - name: Download PDF artifact
         uses: actions/download-artifact@v2
         with:
           name: Analiza_Matematyczna_2
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/pdf
 
-      - name: List downloaded files
-        run: ls ${{ github.workspace }}
+      - name: Move PDF to repository
+        run: mv ${{ github.workspace }}/pdf/main.pdf .
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "AdrianMadajewski"
+          git config --global user.email "madajewski.adrian@gmail.com"
+
+      - name: Commit changes
+        run: |
+          git add main.pdf
+          git commit -m "Add PDF artifact"
+        
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
