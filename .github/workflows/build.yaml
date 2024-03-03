@@ -21,17 +21,20 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Analiza_Matematyczna_2
+          name: Upload
           path: main.pdf
 
       - name: Download PDF artifact
         uses: actions/download-artifact@v2
         with:
-          name: Analiza_Matematyczna_2
+          name: Upload
           path: ${{ github.workspace }}/pdf
 
       - name: Move PDF to repository
         run: mv ${{ github.workspace }}/pdf/main.pdf ${{ github.workspace }}/pdf/am2.pdf
+      
+      - name: Verify PDF directory
+        run: ls -l ${{ github.workspace }}/pdf
 
       - name: Configure Git
         run: |
