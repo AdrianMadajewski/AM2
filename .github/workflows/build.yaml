@@ -41,4 +41,9 @@ jobs:
         run: |
           git add main.pdf
           git commit -m "Update PDF artifact"
-          git push
+          
+       # Example of using secrets.GITHUB_TOKEN
+      - name: Push changes to GitHub
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
