@@ -28,10 +28,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: am2
-          path: ${{ github.workspace }}/pdf
+          path: ${{ github.workspace }}
 
-      - name: Move PDF to repository
-        run: mv ${{ github.workspace }}/pdf/main.pdf ${{ github.workspace }}/pdf/am2.pdf
+      - name: Move PDF to directory
+        run: mv ${{ github.workspace }}/main.pdf ${{ github.workspace }}/am2.pdf
       
       - name: Verify PDF directory
         run: ls -l ${{ github.workspace }}/pdf
@@ -41,13 +41,12 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
-          cd ${{ github.workspace }}/pdf
           git add -f am2.pdf
           git commit -m "Update PDF artifact"
 
-      - name: Push changes to GitHub
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
