@@ -2,4 +2,6 @@
 
 Repozytorium dotyczące wykładów z Analizy Matematycznej 2 (UAM/2024).
 
+Aby uzyskać dostęp do wygenerowanego dokumentu PDF, kliknij [tutaj](main.pdf).
+
 W razie napotkania jakichkolwiek błędów w treści zapraszam do otwarcia Issues.
