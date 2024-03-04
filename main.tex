@@ -7,7 +7,8 @@
 \usepackage{amssymb} % Load before mathrsfs
 \usepackage{mathrsfs} % Pakiet mathrsfs dostarcza komendę \mathscr
 \usepackage{hyperref} % for clickable links
-\usepackage{amsmath} % Load after amssymb
+\usepackage{amsmath} % Load after amssym
+\usepackage{lmodern}
 \usepackage{fancyhdr} % For custom headers and footers
 
 \pagestyle{fancy}
@@ -27,6 +28,22 @@
 \author{Adrian Madajewski}
 \date{Semestr II}
 
+
+% Twierdzenie
+\newcounter{thcounter}
+\setcounter{thcounter}{73}
+\newcommand{\theorem}[1]{\noindent\refstepcounter{thcounter}\textbf{Twierdzenie \thethcounter. }\textit{#1}\label{theorem:\thethcounter}}
+
+% Lemat
+\newcounter{lematcounter}
+\setcounter{lematcounter}{1}
+\newcommand{\lemat}[1]{\noindent\refstepcounter{lematcounter}\textbf{Lemat \thelematcounter. }\textit{#1}\label{theorem:\thelematcounter}}
+
+% Wniosek
+\newcounter{wniosekcounter}
+\setcounter{wniosekcounter}{17}
+\newcommand{\wniosek}[1]{\noindent\refstepcounter{wniosekcounter}\textbf{Wniosek \thewniosekcounter. }\textit{#1}\label{wniosek:\thewniosekcounter}}
+
 % Definicja
 \newcounter{defcounter}
 \setcounter{defcounter}{67}
@@ -41,11 +58,6 @@
 \newcounter{excounter}
 \setcounter{excounter}{24}
 \newcommand{\ex}{\noindent\refstepcounter{excounter}\textbf{Przykład \theexcounter. }\label{ex:\theexcounter}}
-
-% Twierdzenie
-\newcounter{thcounter}
-\setcounter{thcounter}{73}
-\newcommand{\theorem}[1]{\noindent\refstepcounter{thcounter}\textbf{Twierdzenie \thethcounter. }\textit{#1}\label{theorem:\thethcounter}}
 
 % Dowód
 \newcommand{\proof}{\noindent\textbf{Dowód. }}
@@ -68,7 +80,7 @@
 \[
 a = x_0 < x_1 < \cdots < x_n = b
 \]
-Będziemy pisać $\Delta x_i = x_i - x_{i-1}$ $(i = 1, \ldots , n)$. Długość największego z odcinków $[x_{i-1}, x_i]$ nazywać będziemy średnicą podziału $P$ i oznaczamy ją symbolem $\delta (P)$. $\delta (P)= \max\limits_{1 \leq i \leq n} \Delta x_i$. Niech $f$ będzie ograniczoną funkcją rzeczywistą określoną na $[a,b]$. W każdym z przedziałów $[x_{i-1}, x_i]$ wybierzmy dowolny punkt $\xi_{i}$ $(i=1, \ldots n)$ i utwórzmy sumę $R = \sum_{i=1}^{n} f(\xi_{i})\Delta x_{i}$. Sumę te nazywamy sumą Riemanna odpowiadającą podziałowi $P$, przy ustalonym wyborze punktów $\xi_i$. Przez $\mathfrak{R}(f,P)$ oznaczać będziemy zbiór wszystkich możliwych sum Riemanna odpowiadających podziałowi $P$. Utwórzmy teraz ciąg $(P_k)$ podziałów przedziału $[a, b]$:
+Będziemy pisać $\Delta x_i = x_i - x_{i-1}$ $(i = 1, \ldots , n)$. Długość największego z odcinków $[x_{i-1}, x_i]$ nazywać będziemy średnicą podziału $P$ i oznaczamy ją symbolem $\delta (P)$. $\delta (P)= \max\limits_{1 \leqslant i \leqslant n} \Delta x_i$. Niech $f$ będzie ograniczoną funkcją rzeczywistą określoną na $[a,b]$. W każdym z przedziałów $[x_{i-1}, x_i]$ wybierzmy dowolny punkt $\xi_{i}$ $(i=1, \ldots n)$ i utwórzmy sumę $R = \sum_{i=1}^{n} f(\xi_{i})\Delta x_{i}$. Sumę te nazywamy sumą Riemanna odpowiadającą podziałowi $P$, przy ustalonym wyborze punktów $\xi_i$. Przez $\mathfrak{R}(f,P)$ oznaczać będziemy zbiór wszystkich możliwych sum Riemanna odpowiadających podziałowi $P$. Utwórzmy teraz ciąg $(P_k)$ podziałów przedziału $[a, b]$:
 \[
 a = x_0^{(k)} < x_1^{(k)} < \cdots < x_{n(k)}^{(k)} = b;
 \]
@@ -76,7 +88,7 @@ a = x_0^{(k)} < x_1^{(k)} < \cdots < x_{n(k)}^{(k)} = b;
 \Delta_i^{(k)}=x_i^{(k)}-x_{i-1}^{(k)};
 \]
 \[
-\delta (P_k)=\max_{1 \leq i \leq n(k)} \Delta x_i^{(k)}, k = 1,2, \ldots
+\delta (P_k)=\max_{1 \leqslant i \leqslant n(k)} \Delta x_i^{(k)}, k = 1,2, \ldots
 \]
 Ciąg $(P_k)$ nazywamy ciągiem normalnym podziałów, jeśli $\delta(P_k)\rightarrow 0$  przy $k \rightarrow \infty$. Oznaczmy przez $\mathfrak{R}(f,P_k)$ zbiór wszystkich sum Riemanna odpowiadających podziałowi $P_k$.
 
@@ -118,7 +130,7 @@ Stąd wynika, że $\int_{a}^{b} f(x)dx = c(b-a)$.
 
 \defn{}\label{def:sumy_dolne_gorne} Niech $f$ będzie ograniczoną funkcją rzeczywistą określona na $[a,b]$. Każdemu podziałowi $P$ przedziału $[a,b]$ odpowiadają liczby:
 \[
-M_i = \sup\limits_{x_{i-1} \leq x \leq x_i} f(x) \quad m_i = \inf\limits_{x_{i-1} \leq x \leq x_i} f(x)
+M_i = \sup\limits_{x_{i-1} \leqslant x \leqslant x_i} f(x) \quad m_i = \inf\limits_{x_{i-1} \leqslant x \leqslant x_i} f(x)
 \]
 \[
 U(f, P) = \sum_{i=1}^{n}M_i\Delta x_i \quad L(f, P) = \sum_{i=1}^{n}m_i\Delta x_i
@@ -136,11 +148,11 @@ gdzie kres górny i dolny są brane ze względu na wszystkie podziały $P$ przed
 
 Ponieważ funkcja $f$ jest ograniczona, więc istnieją liczby rzeczywistę $m$ i $M$ takie, że
 \[
-m \leq f(x) \leq M \quad \text{dla} \quad x \in [a,b] 
+m \leqslant f(x) \leqslant M \quad \text{dla} \quad x \in [a,b] 
 \]
 Oznacza to, że przy dowolnym podziale $P$ przedziału $[a,b]$ mamy
 \[
-m(b-a) \leq L(f, P) \leq U(f, P) \leq M(b-a)
+m(b-a) \leqslant L(f, P) \leqslant U(f, P) \leqslant M(b-a)
 \]
 a zatem zbiory $\{L(f,P) : P\}$ i $\{U(f,P) : P\}$ są ograniczone. Wynika stąd, że całki górna i dolna są określone przy dowolnej funkcji ograniczonej $f$. 
 
@@ -148,32 +160,32 @@ a zatem zbiory $\{L(f,P) : P\}$ i $\{U(f,P) : P\}$ są ograniczone. Wynika stąd
 
 \theorem{Jeśli $P^*$ jest rozdrobnieniem podziału $P$, to}
 \[
-L(f,P) \leq L(f,P^*) \quad U(f,P) \leq U(f,P^*)
+L(f,P) \leqslant L(f,P^*) \quad U(f,P) \leqslant U(f,P^*)
 \]
 \proof{}Załóżmy wpierw, że $P^*$ zawiera tylko o jeden punkt więcej niż $P$. Niech tym dodatkowym punktem będzie $x^*$ i niech $x_{i-1} < x^* < x_i$, gdzie $x_{i-1}, x_i$ są dwoma kolejnymi punktami przedziału $P$. Przyjmijmy
 \[
-\omega_1 = \inf\limits_{x_{i-1} \leq x \leq x^*} f(x) \text{,} \quad \omega_2 = \inf\limits_{x^* \leq x \leq x_i} f(x) 
+\omega_1 = \inf\limits_{x_{i-1} \leqslant x \leqslant x^*} f(x) \text{,} \quad \omega_2 = \inf\limits_{x^* \leqslant x \leqslant x_i} f(x) 
 \]
-Wtedy $\omega_1 \geq m_i$ i $\omega_2 \geq m_i$, gdzie $m_i = \inf\limits_{x_{i-1} \leq x \leq x_i} f(x)$. Mamy więc
+Wtedy $\omega_1 \geqslant m_i$ i $\omega_2 \geqslant m_i$, gdzie $m_i = \inf\limits_{x_{i-1} \leqslant x \leqslant x_i} f(x)$. Mamy więc
 \begin{equation*}
 \begin{gathered}
     L(f,P^*)-L(f,P) = \omega_1(x^* - x_{i-1}) + \omega_2(x_i - x^*) - m_i(x_i - x_{i-1}) \\
-    = (\omega_1-m_i)(x^*-x_{i-1})+(\omega_2-m_i)(x_i-x^*) \geq 0
+    = (\omega_1-m_i)(x^*-x_{i-1})+(\omega_2-m_i)(x_i-x^*) \geqslant 0
 \end{gathered}
 \end{equation*}
 Jeśli $P^*$ zawiera o $k$ punktów więcej niż $P$, to powtarzając powyższe rozumowanie $k$ razy otrzymamy pierwszą nierówność tezy. Dowód drugiej przebiega analogicznie.
 
 \theorem{Jeśli $f$ jest funkcją ograniczoną na przedziale $[a,b]$, to}
 \[
-\underline{\int_{a}^{b} f(x)dx} \leq \overline{\int_{a}^{b} f(x)dx}
+\underline{\int_{a}^{b} f(x)dx} \leqslant \overline{\int_{a}^{b} f(x)dx}
 \]
 \proof{}Niech $P^*$ będzie wspólnym rozdrobnieniem podziałów $P_1$ i $P_2$ przedziału $[a,b]$. Z Twierdzenia $\ref{theorem:75}$ wynika, że
 \[
-L(f, P_1) \leq L(f, P^*) \leq U(f, P^*) \leq U(f, P_2)
+L(f, P_1) \leqslant L(f, P^*) \leqslant U(f, P^*) \leqslant U(f, P_2)
 \]
-Stąd $L(f, P_1) \leq U(f, P_2)$. Traktując $P_2$ jako ustalone i obliczając kres górny ze względu na wszystkie podziały $P_1$, wobec poprzedniej nierówności otrzymujemy
+Stąd $L(f, P_1) \leqslant U(f, P_2)$. Traktując $P_2$ jako ustalone i obliczając kres górny ze względu na wszystkie podziały $P_1$, wobec poprzedniej nierówności otrzymujemy
 \[
-\underline{\int_{a}^{b} f(x)dx} \leq U(f, P_2)
+\underline{\int_{a}^{b} f(x)dx} \leqslant U(f, P_2)
 \]
 Przechodząc do kresu dolnego ze względu na wszystkie podziały $P_2$ otrzymujemy tezę dowodzonego twierdzenia.
 
@@ -181,7 +193,7 @@ Udowodnimy teraz dwa kryteria całkowalności funkcji w sensie Riemanna. W oparc
 
 \theorem{Na to, aby ograniczona funkcja $f$ była całkowalna w sensie Riemanna na przedziale $[a,b]$ potrzeba i wystarcza, aby dla dowolnego $\varepsilon > 0$ istniał taki podział $P$ przedziału $[a,b]$, że}
 \begin{equation}\label{eq:38}
-U(f, P) - L(f, P) \leq \varepsilon
+U(f, P) - L(f, P) \leqslant \varepsilon
 \end{equation}
 \proof{}Załóżmy wpierw, że funkcja $f$ jest całkowalna w sensie Riemanna na przedziale $[a,b]$. Wówczas dla każdego danego $\varepsilon > 0$ istnieje taki podział $P$ przedziału $[a,b]$, że nierówność
 \begin{equation*}
@@ -192,25 +204,25 @@ U(f, P) - L(f, P) \leq \varepsilon
 \end{equation*}
 jest spełniona przy dowolnym wyborze punktów $\xi_i$ w każdym z przedziałów podziału. Ponieważ sumy Darboux są --- przy danym podziale przedziału --- odpowiednio kresem górnym i dolnym sum całkowych, zatem spełniają one nierówności
 \[
-\int_{a}^{b}f(x)dx - \frac{\varepsilon}{2} \leq L(f,P) \leq U(f, P) \leq \int_{a}^{b}f(x)dx + \frac{\varepsilon}{2}
+\int_{a}^{b}f(x)dx - \frac{\varepsilon}{2} \leqslant L(f,P) \leqslant U(f, P) \leqslant \int_{a}^{b}f(x)dx + \frac{\varepsilon}{2}
 \]
 a więc $U(f, P) - L(f, P) < \varepsilon$.
 Załóżmy teraz, że (\ref{eq:38}) zachodzi. Dla dowolnego podziału $P$ mamy
 \[
-L(f, P) \leq \underline{\int_{a}^{b}f(x)dx} \leq \overline{\int_{a}^{b}f(x)dx} \leq U(f, P)
+L(f, P) \leqslant \underline{\int_{a}^{b}f(x)dx} \leqslant \overline{\int_{a}^{b}f(x)dx} \leqslant U(f, P)
 \]
 Jeśli $U(f, P) - L(f, P) < \varepsilon$, to wówczas
 \[
-0 \leq \overline{\int_{a}^{b}f(x)dx} - \underline{\int_{a}^{b}f(x)dx} < \varepsilon
+0 \leqslant \overline{\int_{a}^{b}f(x)dx} - \underline{\int_{a}^{b}f(x)dx} < \varepsilon
 \]
-Z dowolności $\varepsilon > 0$ wynika, że $\underline{\int_{a}^{b}f(x)dx} = \overline{\int_{a}^{b}f(x)dx}$. Oznaczając ponadto $\underline{\int_{a}^{b}f(x)dx} = \overline{\int_{a}^{b}f(x)dx} = I$ mamy $L(f, P) \leq I \leq U(f, P)$.
+Z dowolności $\varepsilon > 0$ wynika, że $\underline{\int_{a}^{b}f(x)dx} = \overline{\int_{a}^{b}f(x)dx}$. Oznaczając ponadto $\underline{\int_{a}^{b}f(x)dx} = \overline{\int_{a}^{b}f(x)dx} = I$ mamy $L(f, P) \leqslant I \leqslant U(f, P)$.
 Ustalmy $\varepsilon > 0$ i niech $P$ bedzie danym podziałem przedziału $[a,b]$, dla którego (\ref{eq:38}) zachodzi. Jeśli przez $R$ oznaczymy jedną z wartości sum Riemanna odpowiadającej podziałowi $P$, to
 \[
-L(f,P) \leq R \leq U(f, P)
+L(f,P) \leqslant R \leqslant U(f, P)
 \]
 Ponieważ liczby $R$ oraz $I$ znajdują się w przedziale $[L(f, P), U(f, P)]$, zatem
 \[
-|R - I| \leq \varepsilon
+|R - I| \leqslant \varepsilon
 \]
 Wobec Twierdzenia $\ref{theorem:74}$ oraz Definicji $\ref{def:70}$ wnioskujemy, że $I = \int_{a}^{b}f(x)dx$
 
@@ -227,9 +239,9 @@ Jako wniosek z powyższego twierdzenia otrzymujemy następujące
 \]
 Jeśli podział $P$ jest wspólnym rozdrobniemiem podziałów $P_{1}$ i $P_{2}$, to na mocy Twierdzenia $\ref{theorem:74}$ otrzymujemy
 \[
-    U(f, P) \leq U(f, P_2) < \overline{\int_{a}^{b}fdx} + \frac{\varepsilon}{2} = \underline{\int_{a}^{b}fdx} + \frac{\varepsilon}{2} < L(f, P_1) + \varepsilon \leq L(f, P) + \varepsilon
+    U(f, P) \leqslant U(f, P_2) < \overline{\int_{a}^{b}fdx} + \frac{\varepsilon}{2} = \underline{\int_{a}^{b}fdx} + \frac{\varepsilon}{2} < L(f, P_1) + \varepsilon \leqslant L(f, P) + \varepsilon
 \]
-Stąd $U(f, P) - L(f, P) \leq \varepsilon$, a zatem warunek (\ref{eq:38}) jest spełniony. Wobec Twierdzenia $\ref{theorem:76}$ dowód jest zakończony.
+Stąd $U(f, P) - L(f, P) \leqslant \varepsilon$, a zatem warunek (\ref{eq:38}) jest spełniony. Wobec Twierdzenia $\ref{theorem:76}$ dowód jest zakończony.
 
 \defn{} Mówimy, że ograniczona funkcja $f$ jest całkowalna w sensie Riemanna, jeśli
 \[
@@ -243,9 +255,9 @@ Zbadamy teraz całkowalność w sensie Riemanna pewnych klas funkcji.
 
 \proof{}Funkcja $f$ jest jednostajnie ciągła na $[a,b]$ (por. Tw. 51), a zatem dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$ taka, 
 że $|f(x) - f(t)| < \frac{\varepsilon}{b - a}$ dla wszystkich $x, t \in [a, b]$, dla których $|x - t| < \delta$. Niech $P$ będzie podziałem przedziału $[a,b]$,
-dla którego $\delta(P) < \delta$. Wtedy mamy $M_i - m_i \leq \frac{\varepsilon}{b-a}$ dla $i = 1,\ldots,n$ i wobec tego
+dla którego $\delta(P) < \delta$. Wtedy mamy $M_i - m_i \leqslant \frac{\varepsilon}{b-a}$ dla $i = 1,\ldots,n$ i wobec tego
 \[
-    U(f, P) - L(f, P) = \sum_{i=1}^{n}(M_i - m_i)\Delta x_i \leq \frac{\varepsilon}{b-a}\sum_{i=1}^{n}\Delta x_i = \varepsilon
+    U(f, P) - L(f, P) = \sum_{i=1}^{n}(M_i - m_i)\Delta x_i \leqslant \frac{\varepsilon}{b-a}\sum_{i=1}^{n}\Delta x_i = \varepsilon
 \]
 Na mocy Twierdzenia $\ref{theorem:76}$ funkcja $f$ jest całkowalna w sensie Riemanna na $[a,b]$.
 
@@ -256,7 +268,7 @@ Udowodnimy teraz następujące uogólnienie powyższego twierdzenia.
 \end{theorem}
 
 \begin{proof}
-    Ponieważ funkcja $f$ jest ograniczona, więc istnieją liczby rzeczywiste $m, M$ takie, że $m \leq f(x) \leq M$
+    Ponieważ funkcja $f$ jest ograniczona, więc istnieją liczby rzeczywiste $m, M$ takie, że $m \leqslant f(x) \leqslant M$
     dla wszystkich $x \in [a,b]$. Załóżmy, że $f$ ma $k$ punktów nieciągłości na przedziale $[a,b]$. 
     Weźmy dowolne $\varepsilon > 0$ i $\delta_1 < \frac{\varepsilon}{8(M-m)k}$ (oczywiście $M \neq m$).
     Rozważmy przedziały otwarte $(x_l - \delta_1, x_l + \delta_1)$, $l = 1, \ldots, k$, gdzie $x_l$ są punktami
@@ -274,7 +286,7 @@ Udowodnimy teraz następujące uogólnienie powyższego twierdzenia.
     \]
     Ponadto
     \[
-        \sum_{i \in A}(M_i - m_i)\Delta x_i \leq \frac{\varepsilon}{2(b-a)}\sum_{i \in A}\Delta x_i \leq \frac{\varepsilon}{2(b-a)}(b-a)=\frac{\varepsilon}{2}
+        \sum_{i \in A}(M_i - m_i)\Delta x_i \leqslant \frac{\varepsilon}{2(b-a)}\sum_{i \in A}\Delta x_i \leqslant \frac{\varepsilon}{2(b-a)}(b-a)=\frac{\varepsilon}{2}
     \]
     Suma długości podprzedziałów przedziału $[a,b]$ indeksowanych przez liczby ze zbioru $B$ jest nie większa niż
     \[
@@ -282,7 +294,7 @@ Udowodnimy teraz następujące uogólnienie powyższego twierdzenia.
     \]
     Dlatego
     \[
-        \sum_{i \in B}(M_i - m_i)\Delta x_i \leq (M-m)\sum_{i \in B}\Delta x_i < (M-m)\frac{\varepsilon}{2(M-m)}=\frac{\varepsilon}{2}
+        \sum_{i \in B}(M_i - m_i)\Delta x_i \leqslant (M-m)\sum_{i \in B}\Delta x_i < (M-m)\frac{\varepsilon}{2(M-m)}=\frac{\varepsilon}{2}
     \]
     Dla podziału $P$ o średnicy mniejszej niż $\delta$ otrzymujemy zatem
     \[
@@ -311,7 +323,7 @@ Biorąc $n$ tak duże, aby $(f(b) - f(a))\frac{b-a}{n} < \varepsilon$ i stosują
 W przypadku funkcji nierosnącej dowód jest analogiczny.
 
 \begin{theorem}
-    {Jeśli $f$ jest całkowalna w sensie Riemanna na przedziale $[a,b]$, $m \leq f(x) \leq M$ dla $x \in [a,b]$ oraz $\phi$ jest funkcją ciągłą
+    {Jeśli $f$ jest całkowalna w sensie Riemanna na przedziale $[a,b]$, $m \leqslant f(x) \leqslant M$ dla $x \in [a,b]$ oraz $\phi$ jest funkcją ciągłą
     na $[m, M]$, to funkcja złożona $h = \phi \circ f$ jest R-całkowalna na $[a,b]$.}
 \end{theorem}
 
@@ -321,17 +333,17 @@ W przypadku funkcji nierosnącej dowód jest analogiczny.
     Ponieważ $f$ jest R-całkowalna na $[a,b]$, więc istnieje podział $P = \{x_0, \ldots, x_n\}$
     przedziału $[a,b]$ taki, że $U(f, P) - L(f, P) < \delta^2$. Niech
     \[
-        M_i=\sup\limits_{x_{i-1}\leq x \leq x_i}f(x), \quad m_i=\inf\limits_{x_{i-1}\leq x \leq x_i}f(x),
+        M_i=\sup\limits_{x_{i-1}\leqslant x \leqslant x_i}f(x), \quad m_i=\inf\limits_{x_{i-1}\leqslant x \leqslant x_i}f(x),
     \]
     \[
-        M_i^*=\sup\limits_{x_{i-1}\leq x \leq x_i}h(x), \quad m_i^*=\inf\limits_{x_{i-1}\leq x \leq x_i}h(x)
+        M_i^*=\sup\limits_{x_{i-1}\leqslant x \leqslant x_i}h(x), \quad m_i^*=\inf\limits_{x_{i-1}\leqslant x \leqslant x_i}h(x)
     \]
     dla $i = 1, \ldots, n$. Podzielmy zbiór $\{1, \ldots, n\}$ na dwa rozłącznę zbiory $A$ i $B$ w taki sposób, że
     $i \in A$, jeśli $M_i - m_i < \delta$ oraz $i \in B$ w przypadku przeciwnym. Wówczas wobec powyższego wyboru $\delta$ mamy
-    $M_i^* - m_i^* < \varepsilon$ dla $i \in A$. Natomiast dla $i \in B$ mamy $M_i^* - m_i^* \leq 2K$, gdzie $K=\sup{\{|\phi(t)|:m \leq t \leq M\}}$.
+    $M_i^* - m_i^* < \varepsilon$ dla $i \in A$. Natomiast dla $i \in B$ mamy $M_i^* - m_i^* \leqslant 2K$, gdzie $K=\sup{\{|\phi(t)|:m \leqslant t \leqslant M\}}$.
     Stąd otrzymujemy
     \[
-        \delta \sum_{i \in B}(x_i - x_{i-1}) \leq \sum_{i \in B}(M_i - m_i)(x_i - x_{i-1}) < \delta^2, \quad \text{zatem} \sum_{i \in B}(x_i - x_{i-1}) < \delta
+        \delta \sum_{i \in B}(x_i - x_{i-1}) \leqslant \sum_{i \in B}(M_i - m_i)(x_i - x_{i-1}) < \delta^2, \quad \text{zatem} \sum_{i \in B}(x_i - x_{i-1}) < \delta
     \]
     Mamy więc
     \[
@@ -339,7 +351,7 @@ W przypadku funkcji nierosnącej dowód jest analogiczny.
     \]
     a zatem
     \[
-        U(h, P) - L(h, P) \leq \varepsilon(a + b + 2K)
+        U(h, P) - L(h, P) \leqslant \varepsilon(a + b + 2K)
     \]
     Ponieważ $\varepsilon$ było dowolne, zatem na mocy twierdzenia $\ref{theorem:76}$ funkcja $h$ jest R-całkowalna.
 \end{proof}
@@ -370,7 +382,7 @@ Niech $I_1 = \int_{a}^{b}f(x)dx$, $I_2 = \int_{a}^{b}f(x)dx$ oraz $I = I_1 + I_2
     \forall_{\varepsilon > 0} \exists_{\delta > 0} \forall_P \forall_{R_g \in \mathfrak{R}(g, P)} \delta(P) < \delta \implies |R_g - I_2| < \frac{\varepsilon}{2} \quad \text{Stąd}
 \]
 \[
-    \forall_{\varepsilon > 0} \exists_{\delta > 0} \forall_P \forall_{R \in \mathfrak{R}(f+g, P)} \delta(P) < \delta \implies |R - I| \leq |R_f - I_1| + |R_g - I_2| < \varepsilon
+    \forall_{\varepsilon > 0} \exists_{\delta > 0} \forall_P \forall_{R \in \mathfrak{R}(f+g, P)} \delta(P) < \delta \implies |R - I| \leqslant |R_f - I_1| + |R_g - I_2| < \varepsilon
 \]
 Wobec powyższego jest jasne, że funkcja $f + g$ jest R-całkowalna na przedziale $[a,b]$ oraz, że spełniony jest wzór $\ref{eq:40}$.
 Dowód wzoru $\ref{eq:41}$ jest analogiczny.
@@ -387,31 +399,31 @@ R-całkowalność iloczynu funkcji $fg$ wynika z tożsamości
 
 \begin{theorem} 
 {
-    (a) Jeśli funkcje $f$ i $g$ są R-całkowalne na przedziale $[a,b]$ oraz $f(x) \leq g(x)$ dla każdego $x \in [a,b]$, to
+    (a) Jeśli funkcje $f$ i $g$ są R-całkowalne na przedziale $[a,b]$ oraz $f(x) \leqslant g(x)$ dla każdego $x \in [a,b]$, to
     \[
-        \int_{a}^{b}f(x)dx \leq \int_{a}^{b}g(x)dx
+        \int_{a}^{b}f(x)dx \leqslant \int_{a}^{b}g(x)dx
     \]
     (b) Jeśli funkcja $f$ jest R-całkowalna na przedziale $[a,b]$, to funkcja $|f|$ jest również
     R-całkowalna na tym przedziale oraz:
     \[
-        \left\vert\int_{a}^{b}f(x)dx\right\vert \leq \int_{a}^{b}|f(x)|dx
+        \left\vert\int_{a}^{b}f(x)dx\right\vert \leqslant \int_{a}^{b}|f(x)|dx
     \]
 }
 \end{theorem}
 \begin{proof}
-    (a) Jeśli $m \leq f(x) \leq M$ dla $x \in [a,b]$, to
+    (a) Jeśli $m \leqslant f(x) \leqslant M$ dla $x \in [a,b]$, to
     \[
-        m(b-a) \leq \int_{a}^{b}f(x)dx \leq M(b-a)
+        m(b-a) \leqslant \int_{a}^{b}f(x)dx \leqslant M(b-a)
     \]
-    Stąd, jeśli $f(x) \geq 0$ dla $x \in [a,b]$, to $\int_{a}^{b}f(x)dx \geq 0$.
-    Wobec tego nierówność $f(x) \leq g(x)$ dla $x \in [a,b]$ implikuje
+    Stąd, jeśli $f(x) \geqslant 0$ dla $x \in [a,b]$, to $\int_{a}^{b}f(x)dx \geqslant 0$.
+    Wobec tego nierówność $f(x) \leqslant g(x)$ dla $x \in [a,b]$ implikuje
     \[
-        \int_{a}^{b}f(x)dx \leq \int_{a}^{b}g(x)dx
+        \int_{a}^{b}f(x)dx \leqslant \int_{a}^{b}g(x)dx
     \]
     (b) Biorąc $\phi(t) = |t|$ w Twierdzeniu $\ref{theorem:81}$ otrzymujemy całkowalność funkcji $|f|$.
-    Ponieważ $-|f(x)| \leq f(x) \leq |f(x)|$ dla $x \in [a,b]$, zatem na mocy (a) otrzymujemy
+    Ponieważ $-|f(x)| \leqslant f(x) \leqslant |f(x)|$ dla $x \in [a,b]$, zatem na mocy (a) otrzymujemy
     \[
-        \left\vert\int_{a}^{b}f(x)dx\right\vert \leq \int_{a}^{b}|f(x)|dx
+        \left\vert\int_{a}^{b}f(x)dx\right\vert \leqslant \int_{a}^{b}|f(x)|dx
     \]
 \end{proof}
 \begin{uwaga}
@@ -432,12 +444,119 @@ R-całkowalność iloczynu funkcji $fg$ wynika z tożsamości
 \end{uwaga}
 
 \begin{theorem}
-    Jeśli dwie funkcje $f$ i $g$ są równe na przedziale $[a,b]$ z wyjątkiem skończonego zbioru punktów ${\{x_1, \ldots, x_k\}}$
+    {Jeśli dwie funkcje $f$ i $g$ są równe na przedziale $[a,b]$ z wyjątkiem skończonego zbioru punktów ${\{x_1, \ldots, x_k\}}$
     i jedna z nich, na przykład $g$ jest R-całkowalna na tym przedziale, to druga też jest na nim R-całkowalna i zachodzi równość
     \[
         \int_{a}^{b}f(x)dx = \int_{a}^{b}g(x)dx.
-    \]
+    \]}
 \end{theorem}
+\begin{proof}
+    Ponieważ $f = g + (f-g)$, więc wystarczy udowodnić, że funkcja $\phi = f - g$ jest R-całkowalna na $[a,b]$ i $\int_{a}^{b}\phi(x)dx = 0$.
+    Oznaczmy $N = \max\{|\phi(x_1), \ldots, \phi(x_k)\}$. Niech $P$ będzie podziałem przedziału $[a,b]$ o średnicy $\delta$.
+    Funkcja $\phi$ na co najwyżej $2k$ przedziałach podziału $P$ nie jest tożsamościowo równa zeru.
+    Dlatego mamy $U(\phi, P) \leqslant 2Nk\delta$ i $L(\phi, P) = 0$, zatem $U(\phi, P) - L(\phi, P) \leqslant 2Nk\delta$. 
+    Biorąc $\phi$ odpowiednio małe możemy uczynić różnicę $U(\phi, P) - L(\phi, P)$ dowolnie małą. To oznacza, że funkcja $\phi$ jest
+    R-całkowalna. Ponadto jasne jest, że $\int_{a}^{b}\phi(x)dx = 0$.
+\end{proof}
+
+\begin{wniosek}
+{Niech funkcja $f$ będzie określona i ograniczona na przedziale otwartym $(a,b)$. Jeśli po nadaniu jej pewnych wartości
+$f(a)$ i $f(b)$ stanie się ona R-całkowalna na przedziale domkniętym $[a,b]$ --- to taką pozostanie --- gdy liczby $f(a)$ i $f(b)$ zmienimy
+w sposób dowolny. Wartość całki nie ulegnie przy tym zmianie.}
+\end{wniosek}
+
+Następujący lemat pozwala przy przybliżaniu całki Riemanna sumami całkowymi ograniczyć się tylko do podziałów zawierających z góry ustalony punkt.
+
+\begin{lemat}
+{
+    Niech $c \in [a,b]$ i niech $\Pi^*$ oznacza zbiór wszystkich podziałów przedziału $[a,b]$ spełniających warunek:
+    \[
+        P = \{x_0, \ldots, x_n\} \in \Pi^* \text{ wtedy i tylko wtedy $x_j = c$ dla pewnego $j$.} 
+    \]
+    Wówczas dla dowolnej funkcji $f$, ograniczonej na $[a,b]$ zachodzą równości:
+    \[
+        \sup_{P \in \Pi^*}L(f, P) = \sup_{P}L(f, P), \quad  \inf_{P \in \Pi^*}U(f, P) = \inf_{P}U(f, P)
+    \]
+}
+\end{lemat}
+\begin{proof}
+    Ponieważ $\Pi^*$ jest podzbiorem zbioru wszystkich podziałów przedziału $[a,b]$, więc
+    \begin{equation}\label{eq:42}
+        \sup_{P \in \Pi^*}L(f, P) \leqslant \sup_{P}L(f, P), \quad  \inf_{P \in \Pi^*}U(f, P) \geqslant \inf_{P}U(f, P)
+    \end{equation}
+    Zauważmy, że dla dowolnego podziału $P$ przedziału $[a,b]$ istnieje podział od niego drobniejszy
+    $P^* \in \Pi^*$. Istotnie, jeśli $P \in \Pi^*$, to przyjmujemy $P^* = P$. Jeśli natomiast $P \notin \Pi^*$,
+    to przez dołączenie punktu $c$ do układu punktów wyznaczających $P$ otrzymujemy podział $P^*$ o żądanych własnościach.
+    Mamy więc
+    \[
+        L(f, P) \leqslant L(f, P^*), \quad U(f, P) \geqslant U(f, P^*),
+    \]
+    skąd otrzymujemy
+    \[
+        L(f, P) \leqslant \sup_{P^* \in \Pi^*}L(f, P^*), \quad U(f, P) \geqslant \inf_{P^* \in \Pi^*}U(f, P^*).
+    \]
+    Wobec dowolności podziału $P$ mamy
+    \[
+        \sup_{P}L(f, P) \leqslant \sup_{P^* \in \Pi^*}L(f, P), \quad  \inf_{P}U(f, P) \geqslant \inf_{P^* \in \Pi^*}U(f, P)
+    \]
+    Z powyższych nierówności i z (\ref{eq:42}) otrzymujemy tezę.
+\end{proof}
+
+\begin{theorem}
+{
+    Niech $a < c < b$. Funkcja $f$ jest R-całkowalna na przedziale $[a,b]$ wtedy i tylko wtedy, gdy
+    jest ona R-całkowalna na przedziałach $[a,c]$ i $[c,b]$. Zachodzi przy tym równość
+    \[
+        \int_{a}^{b}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx
+    \]
+    (addytywność całki ze względu na przedział)
+}
+\end{theorem}
+
+\begin{proof}
+    Załóżmy, że funkcja $f$ jest R-całkowalna na przedziale $[a,b]$. Na mocy powyższego lematu
+    możemy ograniczyć się do podziałów przedziału $[a,b]$ zawierających punkt $c$. 
+    Jeśli $P$ jest takim podziałem, to wówczas $P = P_1 \cup P_2$, gdzie $P_1$ jest podziałem
+    przedziału $[a,c]$, a $P_2$ --- podziałem przedziału $[c,b]$ oraz mamy
+    \[
+        U(f, P) = U(f, P_1) + U(f, P_2), \quad L(f, P) = L(f, P_1) + L(f, P_2).
+    \]
+    Niech będzie dane dowolne $\varepsilon > 0$ i niech
+    \[
+        U(f, P) - L(f, P) < \frac{\varepsilon}{2}.
+    \]
+    Stąd $U(f, P_1) - L(f, P_1) < \frac{\varepsilon}{2}$ i $U(f, P_2) - L(f, P_2) < \frac{\varepsilon}{2}$. 
+    Funkcja $f$ jest więc całkowalna na przedziałach $[a,c]$ i $[c, b]$ oraz zachodzą nierówności
+    \[
+        U(f, P_1) < \int_{a}^{c}f(x)dx + \frac{\varepsilon}{2}, \quad \int_{a}^{c}f(x)dx < L(f, P_1) + \frac{\varepsilon}{2},
+    \]
+    \[
+        U(f, P_2) < \int_{c}^{b}f(x)dx + \frac{\varepsilon}{2}, \quad \int_{c}^{b}f(x)dx < L(f, P_2) + \frac{\varepsilon}{2},
+    \]
+    Wobec powyższego otrzymujemy $U(L, P) < \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx + \varepsilon$
+    i w konsekwencji $\int_{a}^{b}f(x)dx < \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx + \varepsilon$.
+    Ponieważ $\varepsilon > 0$ było dowolne, zatem
+    \begin{equation}\label{eq:43}
+        \int_{a}^{b}f(x)dx \leqslant \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx.
+    \end{equation}
+    Analogicznie $\int_{a}^{c}f(x) + \int_{c}^{b}f(x)dx < L(f, P) + \varepsilon$, skąd
+    \begin{equation}\label{eq:44}
+        \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx \leqslant \int_{a}^{b}f(x)dx,
+    \end{equation}
+    bowiem $\varepsilon > 0$ jest dowolne. Z nierówności (\ref{eq:43}) i (\ref{eq:44}) otrzymujemy żądaną równość.
+    Uzasadnienie implikacji odwrotnej jest analogiczne.
+\end{proof}
+
+Rozszerzymy teraz zasięg Definicji $\ref{def:69}$.
+
+\begin{defn}
+    W przypadku gdy $b < a$ lub $b = a$, to całkę Riemanna z funkcji $f$ określamy wzorami
+    \[
+        \int_{a}^{b}f(x)dx = -\int_{b}^{a}f(x)dx \quad \text{lub odpowiednio} \int_{a}^{b}f(x)dx = 0.
+    \]
+    W całce $\int_{a}^{b}f(x)dx$ liczbę $a$ nazywamy dolną granicą całkowania, liczbę $b$ -- górną granicą całkowania,
+    bez względu na to, czy $b \geqslant a$, czy też $b < a$. 
+\end{defn}
 
 \end{justify}
 \end{document}
