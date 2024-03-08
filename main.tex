@@ -70,7 +70,7 @@
 \begin{center}
     Niniejszy plik jest w całości bazowany na wykładach \\
     \vspace{10pt}
-    prof. UAM dr hab. Dariusza Bugajewskiego \\
+    prof. dr hab. Dariusza Bugajewskiego \\
     \vspace{10pt}
     z przedmiotu \\
     \vspace{10pt}
@@ -567,6 +567,119 @@ Rozszerzymy teraz zasięg Definicji $\ref{def:69}$.
     W całce $\int_{a}^{b}f(x)dx$ liczbę $a$ nazywamy dolną granicą całkowania, liczbę $b$ -- górną granicą całkowania,
     bez względu na to, czy $b \geqslant a$, czy też $b < a$. 
 \end{defn}
+
+\begin{wniosek}
+{
+(a) Niech $a,b,c \in \mathbb{R}$ i niech $f$ będzie funkcją R-całkowalna na najwiekszym z przedziałów
+domkniętych o końcach we wskazanych punktach. Wówczas obcięcie funkcji $f$ do każdego z dwóch pozostałych przedziałów domkniętych jest
+funkcja R-całkowalną na odpowiednim przedziale oraz zachodzi równość
+\begin{equation}\label{eq:45}
+    \int_{a}^{b}f(x)dx + \int_{b}^{c}f(x)dx + \int_{c}^{a}f(x)dx = 0.
+\end{equation}
+}
+\end{wniosek}
+\begin{proof}
+    Wobec symetrii równość (\ref{eq:45}) względem $a, b, c$ możemy bez straty ogólności założyć, że
+    $a = \min{\{a,b,c\}}$. Jeśli $\max{\{a,b,c\} = c}$ oraz $a < b < c$, to na mocy
+    Twierdzenia $\ref{theorem:85}$ mamy
+    \[
+        \int_{a}^{b}f(x)dx + \int_{c}^{b}f(x)dx - \int_{a}^{c}f(x)dx = 0,
+    \]
+    zatem wobec Definicji $\ref{def:74}$ otrzymujemy równość (\ref{eq:45}). \\
+    Jeśli $\max{\{a,b,c\} = b}$ oraz $a < c < b$, to ponownie na mocy Twierdzenia
+    $\ref{theorem:85}$ mamy
+    \[
+        \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx - \int_{a}^{b}f(x)dx = 0,
+    \]
+    stąd wobec Definicji $\ref{def:74}$ wynika równość (\ref{eq:45}). \\
+    W końcu, jeśli jakiekolwiek dwa z punktów $a,b,c$ lub wszystkie trzy pokrywają się,
+    to (\ref{eq:45}) jest bezpośrednią konsekwencją Definicji $\ref{def:74}$.
+\end{proof}
+
+\noindent
+\textit
+{
+(b) Jeśli funkcja $f$ jest R-całkowalna na przedziale $[a,b]$ i $a \leqslant c < d \leqslant d$, to jest
+ona również R-całkowalna na przedziale $[c,d]$.
+}
+
+\begin{defn}
+    Niech każdej uporządkowanej parze $(\alpha, \beta)$ punktów $\alpha$, $\beta$ przedziału
+    $[a,b]$ odpowiada dokładnie jedna liczba $I(\alpha, \beta)$, przy czym dla dowolnej trójki punktów
+    $\alpha, \beta, \gamma \in [a,b]$ zachodzi równość
+    \[
+        I(\alpha, \gamma) = I(\alpha, \beta) + I(\beta, \gamma).
+    \]
+    Wówczas funkcja $I(\alpha, \beta)$ nazywa się addytywną funkcją przedziału zorientowanego
+    (dla $\alpha = \gamma$ wobec powyższej równości otrzymujemy $I(\alpha, \beta) = -I(\beta, \alpha)$), 
+    określoną na odcinkach zawartych w przedziale $[a,b]$. 
+\end{defn}
+
+\begin{wniosek}
+{
+    Jeśli funckja $f$ jest R-całkowalna na przedziale $[a,b]$ oraz $\alpha, \beta, \gamma \in [a,b]$, to
+    kładąc $I(\alpha, \beta) = \int_{\alpha}^{\beta}f(x)dx$, na mocy równości $\ref{eq:45}$ otrzymujemy
+    \[
+        \int_{\alpha}^{\gamma}f(x)dx = \int_{\alpha}^{\beta}f(x)dx + \int_{\beta}^{\gamma}f(x)dx,
+        \quad \text{czyli} \quad I(\alpha, \gamma) = I(\alpha, \beta) + I(\beta, \gamma),
+    \]
+    czyli całka Riemanna jest adytywną funkcją przedziału zorientowanego.
+}
+\end{wniosek}
+
+Udowodnimy teraz ważne twierdzenie o funkcji górnej granicy całkowania.
+
+\begin{theorem}
+{
+    Niech $f$ będzie funkcja R-całkowalną na przedziale $[a,b]$. Dla dowolnego punktu
+    $x \in [a,b]$ określamy
+    \[
+        F(x) = \int_{a}^{x}f(t)dt.
+    \]
+    Wówczas funkcja $F$ jest ciągła na przedziale $[a,b]$. Ponadto, jesli funkcja $f$ jest ciągła w
+    punkcie $x_0 \in [a,b]$, to funkcja $F$ jest różniczkowalna w tym punkcie oraz
+    $F'(x_0) = f(x_0)$.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $M$ będzie takie, że $|f(t)| \leqslant M$ dla $t \in [a,b]$. 
+    Wówczas, jeśli $a \leqslant x \leqslant y \leqslant b$, to
+    \[
+        |F(y) - F(x)| = \left|\int_{x}^{y}f(t)dt\right| \leqslant M(y - x).
+    \]
+    Stąd wynika natychmiast, że dla dowolnego $\varepsilon > 0$ mamy
+    $|F(y) - F(x)|< \varepsilon$, jeśli tylko $|y-x| < \frac{\varepsilon}{M}$, 
+    a zatem funkcja F jest ciągła. \\
+    Załóżmy, że $f$ jest ciągła w punkcie $x_0$. Dla danego $\varepsilon > 0$ wybierzmy 
+    $\delta > 0$ tak, aby $|f(t)-f(x_0)| < \varepsilon$ jeśli tylko $|t-x_0| < \delta$ i $a \leqslant t \leqslant b$.
+    Wówczas dla $s,t \in (x_0 - \delta, x_0 + \delta)$, $s,t \in [a,b]$, $s \neq t$ mamy
+    \[
+        \left|\frac{F(t)-F(s)}{t-s} - f(x_0)\right| = \left|\frac{1}{t-s}\int_{s}^{t}(f(u)-f(x_0))du \right| < \varepsilon,
+    \]
+    Stąd wynika, że $F'(x_0) = f(x_0)$, co kończy dowód.
+\end{proof}
+
+Oznaczmy $F(x) = I(a, x)$ dla $x \in [a,b]$, gdzie $I$ oznacza addytywną funkcję przedziału zorientowanego. Mamy
+\[
+    I(\alpha, \beta) = I(a, \beta) - I(a, \alpha) = F(\beta) - F(\alpha)
+\]
+dla każdej uporządkowanej pary punktów $(\alpha, \beta)$ z przedzialu $[a,b]$.
+W ten sposób każda addytywna funkcja przedziału zorientowanego ma postać
+\begin{equation}\label{eq:46}
+    I(\alpha, \beta) = F(\beta) - F(\alpha),
+\end{equation}
+gdzie $x \mapsto F(x)$ jest funkcją określoną na przedziale $[a,b]$. 
+Można łatwo sprawdzić, że jest również na odwrót, to znaczy, że z dowolnej funkcji $x \mapsto F(x)$ określonej na przedziale $[a,b]$
+można przy pomocy (\ref{eq:46}) otrzymać addytywną funkcję przedziału zorientowanego.
+
+\begin{wniosek}
+    Jeśli $f$ jest funkcją R-całkowalną na przedziale $[a,b]$, to na mocy (\ref{eq:46})
+    funkcja $F(x) = \int_{a}^{x}f(t)dt$ generuje addytywną funkcję 
+    \[
+        I(\alpha, \beta) = \int_{\alpha}^{\beta}f(t)dt.
+    \]
+\end{wniosek}
 
 \end{justify}
 \end{document}
