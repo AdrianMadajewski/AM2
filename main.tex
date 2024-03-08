@@ -709,5 +709,72 @@ można przy pomocy (\ref{eq:46}) otrzymać addytywną funkcję przedziału zorie
 
 \end{uwaga}
 
+Bezpośrednio z Twierdzenia $\ref{theorem:86}$ otrzymujemy następujący
+
+\begin{wniosek}
+{
+    Każda funkcja ciągła $f$ na przedziale $[a,b]$ ma na nim funkcję pierwotną.
+}
+\end{wniosek}
+
+Dowód wniosku $\ref{wniosek:22}$ można uzyskać bez pojęcia całki Riemanna. Jest on jednak
+dość długi. \\
+Istnieją również funkcję nieciągłe, które posiadają funkcje pierwotne.
+
+\begin{ex}
+Niech
+\[
+f(x) =
+\begin{cases}
+    \begin{aligned}
+        &2x\sin\frac{1}{x}-\cos{\frac{1}{x}} & &\text{dla } x \neq 0 \\
+        &0                                   & &\text{dla } x = 0.
+    \end{aligned}
+\end{cases}
+\]
+Ponieważ nie istnieje granica funkcji $f$ w zerze, zatem $f$ nie jest funkcją ciągłą. Można łatwo sprawdzić, że funkcja 
+\[
+F(x) =
+\begin{cases}
+    \begin{aligned}
+        &x^2\sin{\frac{1}{x}} & &\text{dla } x \neq 0 \\
+        &0                                   & &\text{dla } x = 0,
+    \end{aligned}
+\end{cases}
+\]
+jest funkcją pierwotną funkcji $f$ (por. [7], s. 90-91).
+\end{ex}
+
+Podamy teraz przykłady funkcji całkowalnej w sensie Riemanna, która nie posiada funkcji pierwotnej.
+
+\begin{ex}
+    Niech $f : (1,3) \mapsto \mathbb{R}$ będzie określona wzorem $f(x) = [x]$.
+    Jest jasne, że dla $f(x) = F'(x)$ dla $x \in (1,2) \cup (2,3)$, gdzie
+    \[
+    F(x) =
+        \begin{cases}
+            \begin{aligned}
+                &x + c_1 & &\text{dla } x \in (1,2) \\
+                &2x + c_2                                 & &\text{dla } x \in (2,3),
+            \end{aligned}
+        \end{cases}
+    \]
+    gdzie, $c_1, c_2 \in \mathbb{R}$. Funkcja pierwotna funkcji $f$ na przedziale $(1,3)$ 
+    (z dokładnościa do stałej musiałaby mieć postać)
+    \[
+    F(x) =
+        \begin{cases}
+            \begin{aligned}
+                &x + c_1 & &\text{dla } x \in (1,2] \\
+                &2x + c_1 - 2 & &\text{dla } x \in (2,3),
+            \end{aligned}
+        \end{cases}
+    \]
+    gdzie $c_1 \in \mathbb{R}$. Istotnie, aby funkcja $F$ była ciągła dla $x = 2$, to 
+    $\lim\limits_{x\to2^-}F(x) = \lim\limits_{x\to2^+}F(x)$, czyli $2 + c_1 = 4 + c_2$, zatem $c_2 = c_1 - 2$. 
+    Można łatwo sprawdzić, że $F_{-}'(2) = 1$ oraz $F_{+}'(2) = 2$, czyli $F$ nie jest
+    funkcją pierwotną funkcji $f$ na przedziale $(1,3)$.
+\end{ex}
+
 \end{justify}
 \end{document}
