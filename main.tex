@@ -813,7 +813,31 @@ Podamy teraz przykłady funkcji całkowalnej w sensie Riemanna, która nie posia
     \hline
     $\frac{1}{\sqrt{1 - x^2}}$ & \makecell{$\arcsin{x} + c$ \\ $-\arccos{x} + \hat{c}$} & $|x| < 1$ \\
     \hline
-    \end{tabular}
+\end{tabular}
+
+\begin{uwaga}
+    (a) Wzory zawarte w Tablicy 2 otrzymujemy przez bezpośrednie różniczkowanie funkcji $F(x)$ (zob. Tablica 1).
+
+    \noindent
+    (b) Jeżeli zakres argumentów, dla których spełniona jest równość $F(x) = f'(x)$ nie jest przedziałem
+    (skończonym lub nieskończonym), to nie można twierdzić, że wyrażenie $F(x) + c$ obejmuje wszystkie funkcje pierwotne funkcji $f$
+    w tym zakresie argumentów. Dla przykładu funkcja
+
+    \[
+        G(x) =
+            \begin{cases}
+                \begin{aligned}
+                    &\ln(-x) & &\text{dla } x < 0 \\
+                    &\ln{x} & &\text{dla } x > 0,
+                \end{aligned}
+            \end{cases}
+    \]
+    jest funkcją pierwotną funkcji $x \mapsto \frac{1}{x}$ $(x \neq 0)$, mimo, że nie podpada pod
+    wzór $\ln|x| + c$. 
+\end{uwaga}
+
+Następujące twierdzenie podaje reguły obliczani całek nieoznaczonych.
+
 
 \end{justify}
 \end{document}
