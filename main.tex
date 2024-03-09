@@ -838,6 +838,72 @@ Podamy teraz przykłady funkcji całkowalnej w sensie Riemanna, która nie posia
 
 Następujące twierdzenie podaje reguły obliczani całek nieoznaczonych.
 
+\begin{theorem}
+{   (a) Jeśli istnieją całki nieoznaczone funkcji $u, v : P \mapsto \mathbb{R}$, gdzie $P$ jest przedziałem
+    oraz $\alpha, \beta \in \mathbb{R}$, to istnieje całka nieoznnaczona funkcji
+    $\alpha u + \beta v$ oraz zachodzi wzór
+    \begin{equation}\label{eq:47}
+        \int (\alpha u(x) + \beta v(x))dx = \alpha \int u(x)dx + \beta \int v(x)dx + c \text{ dla } x \in P.
+    \end{equation}
+    (b) Przy założeniach punktu (a) oraz przy założeniu, że funkcje $u, v$ są różniczkowalne oraz jedna z całek występujących
+    w poniższym wzorze istnieje, prawdziwy jest następujący wzór zwany wzorem na całkowanie przez części:
+    \begin{equation}\label{eq:48}
+        \int u(x)v'(x)dx = u(x)v(x) - \int u'(x)v(x)dx + c \text{ dla } x \in P.
+    \end{equation}
+    (c) Jeśli na przedziale $I$, $\int f(x)dx = F(x) + c$ oraz $\phi : P \mapsto I$ jest odwzorowaniem klasy $C^1$, to
+    \begin{equation}\label{eq:49}
+        \int f(\phi(t))\phi'(t)dt = F(\phi(t)) + c \text{ dla } t \in P.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    (a) Wzór (\ref{eq:47}) sprawdza się bezpośrednio przez różniczkowanie lewej i prawej strony z wykorzystaniem liniowości różniczkowania (zob. Tw. 54 (a), (b)).
+    
+    \noindent
+    (b) Załóżmy, że $\int u(x)v'(x)dx = \Phi(x)$ dla $x \in P$. Ponieważ $(u(x)v(x))'=u'(x)v(x) + u(x)v'(x)$,
+    $(u(x)v(x)-\Phi(x))' = u'(x)v(x)$ dla $x \in P$, a więc $uv - \Phi$ jest funkcją pierwotną funkcji $u'v$ na przedziale $P$.
+    Ponadto mamy
+    \[
+        \int u(x)v'(x)dx = \int (u(x)v(x))'dx - \int u'(x)v(x)dx, \text{ a więc}
+    \]
+    \[
+        \int u(x)v'(x)dx = u(x)v(x) - \int u'(x)v(x)dx + c.
+    \]
+
+    \noindent
+    (c) Wzór (\ref{eq:49}) jest bezpośrednią konsekwencją reguły różniczkowania funkcji złożonej
+    (zob. Tw. 55).
+
+\end{proof}
+
+\begin{uwaga}
+    (a) Wzór (\ref{eq:49}) pokazuje, że chcąc uzyskać funkcję pierwotną funkcji $t \mapsto f(\phi(t))\phi'(t)$ można postąpić w następujacy sposób:
+    \[
+        \int f(\phi(t))\phi'(t)dt = \int f(x)dx = F(x) + c = F(\phi(t)) + c,
+    \]
+    to znaczy najpierw dokonać zmiany $\phi(t) = x$ i przejść do nowej zmiennej $x$, a następnie
+    przejść do poprzedniej zmiennej podstawiając $x = \phi(t)$. Wzór ten nazywa się
+    wzorem na całkowanie przez podstawienie.
+
+    \noindent
+    (b) Jesli $\phi : P \mapsto I$ jest bijekcją, to aby obliczyć całkę nieoznaczoną $\int f(x)dx$ można obliczyć całke nieoznaczoną
+    $\int f(\phi(t))\phi'(t)dt$, a następnie dokonać podstawienia $t = \phi^{-1}(x)$.
+
+    \noindent
+    (c) W szczególności wzór (\ref{eq:48}) jest prawdziwy jeśli $u,v \in C^1$.
+\end{uwaga}
+
+\begin{ex}
+    (a) Obliczmy $\int \arcsin x dx$. Najpierw zastosujmy wzór (\ref{eq:48}) przyjmując $u(x) = \arcsin x$ i $v'(x) = 1$.
+    Wówczas $u'(x) = \frac{1}{\sqrt{1 - x^2}}$ (dla $x \in (-1, 1)$) i $v(x) = x$ oraz
+    $\int \arcsin x dx = x \arcsin x - \int \frac{x}{\sqrt{1 - x^2}}dx$. Aby
+    obliczyć tę ostatnią całkę zastosujmy podstawienie $\sqrt{1 - x^2} = t$. Mamy wówczas
+    $\frac{-xdx}{\sqrt{1-x^2}}=dt$ i stąd $\int \frac{x}{\sqrt{1 - x^2}}dx = -\int dt = -t + c = -\sqrt{1 - x^2} + c$, a zatem
+    \[
+        \int \arcsin x dx = x \arcsin x + \sqrt{1 - x^2} + c.
+    \]
+\end{ex}
 
 \end{justify}
 \end{document}
