@@ -638,7 +638,7 @@ Udowodnimy teraz ważne twierdzenie o funkcji górnej granicy całkowania.
     \[
         F(x) = \int_{a}^{x}f(t)dt.
     \]
-    Wówczas funkcja $F$ jest ciągła na przedziale $[a,b]$. Ponadto, jesli funkcja $f$ jest ciągła w
+    Wówczas funkcja $F$ jest ciągła na przedziale $[a,b]$. Ponadto, jeśli funkcja $f$ jest ciągła w
     punkcie $x_0 \in [a,b]$, to funkcja $F$ jest różniczkowalna w tym punkcie oraz
     $F'(x_0) = f(x_0)$.
 }
@@ -884,7 +884,7 @@ Następujące twierdzenie podaje reguły obliczani całek nieoznaczonych.
     wzorem na całkowanie przez podstawienie.
 
     \noindent
-    (b) Jesli $\phi : P \mapsto I$ jest bijekcją, to aby obliczyć całkę nieoznaczoną $\int f(x)dx$ można obliczyć całke nieoznaczoną
+    (b) Jeśli $\phi : P \mapsto I$ jest bijekcją, to aby obliczyć całkę nieoznaczoną $\int f(x)dx$ można obliczyć całke nieoznaczoną
     $\int f(\phi(t))\phi'(t)dt$, a następnie dokonać podstawienia $t = \phi^{-1}(x)$.
 
     \noindent
@@ -900,7 +900,200 @@ Następujące twierdzenie podaje reguły obliczani całek nieoznaczonych.
     \[
         \int \arcsin x dx = x \arcsin x + \sqrt{1 - x^2} + c.
     \]
+
+    \noindent
+    (b) Obliczmy $\int \tg t dt$. Niech np. $P = (-\frac{\pi}{2}, \frac{\pi}{2})$, $I = (0,1]$, $\phi : P \mapsto I$
+    będzie określone wzorem $\phi(t) = cost$, natomiast $f(x) = \frac{1}{x}$ dla $x \in (0, 1]$. Mamy
+    \[
+        \int \tg t dt = \int \frac{1}{\cos t}\sin t dt = -\int \frac{1}{x}dx = -\ln x + c = \ln \cos t + c.
+    \]
+    W ogólności podstawiamy $\cos t = x$. Wówczas $-\sin t dt = dx$ oraz
+    \[
+        \int \tg t dt = -\int \frac{dx}{x} = -\ln |x| + c = -\ln |\cos t| + c.
+    \]
+    Wobec Uwagi $\ref{uwaga:41}$ (b) powyższy wzór nie objemuje wszystkich funkcji pierwotnych funkcji
+    $t \mapsto \tg t$, gdzie $t \neq \frac{\pi}{2} + k\pi$, $k \in \mathbb{Z}$.
+
+    \noindent
+    (c) Obliczmy $\sqrt{1 - x^2}$. Niech $I = (-1, 1)$, $P = (-\frac{\pi}{2}, \frac{\pi}{2})$,
+    $f(x) = \sqrt{1 - x^2}$ dla $x \in I$ oraz $\phi(t) = sint$ dla $t \in P$. Oczywiście $\phi : P \mapsto I$
+    jest bijekcją oraz $\phi^{-1}(x) = \arcsin{x}$ dla $x \in I$. Mamy
+    \begin{equation*}
+        \begin{split}
+            \int \sqrt{1-x^2}dx &= \int \sqrt{1-\sin^2{t}}\cos tdt  = \int \cos^{2}{t}dt
+            \int \frac{dt}{2} + \frac{1}{2}\int \cos{2t}dt \\
+            &= \frac{1}{2}t + \frac{1}{4}\sin{2t} + c = \frac{1}{2}\arcsin{x} + \frac{1}{4}\sin(2\arcsin{x}) + c \\
+            &= \frac{1}{2}\arcsin x + \frac{1}{2} \sin(\arcsin x)\cos( \arcsin x) + c \\
+            &= \frac{1}{2}\arcsin{x} + \frac{1}{2}x\sqrt{1 - \sin^{2} (\arcsin x)} + c \\
+            &= \frac{1}{2}\arcsin{x} + \frac{1}{2}x\sqrt{1 - x^2} + c.
+        \end{split}
+    \end{equation*}
+  
 \end{ex}
 
+\begin{uwaga}
+    Funkcjami elementarnymi nazywamy funkcje potęgowe, wykładnicze, trygonometryczne, funkcje odwrotne do nich, ich superpozycje oraz funkcje
+    powstałe przez wykonanie skończonej ilości działań na nich: dodawanie, odejmowanie, mnożenie,
+    dzielenie oraz składanie. 
+    Podstawowe metody całkowania funkcji elementarnych oraz pewne tzw. wzory rekurencyjne można znaleźć np.
+    w książce [5], s. 260-273. 
+\end{uwaga}
+
+\subsection{Rachunek całek (oznaczonych) w sensie Riemanna}
+Udowodnimy wpierw następujące twierdzenie nazywane podstawowym twierdzeniem rachunku całkowego
+lub wzorem Newtona-Leibniza.
+
+\begin{theorem}
+{
+    Jeśli funkcja $f$ jest R-całkowalna na przedziale $[a,b]$ oraz $F$ jest funkcją pierwotną funkcji $f$ na tym przedziale, to
+    \begin{equation*}
+        \int_{a}^{b}f(x)dx = F(b) - F(a).
+    \end{equation*}
+}
+\end{theorem}
+
+\begin{proof}
+    Wybierzmy dowolne $\varepsilon > 0$. Istnieje wówczas taki podział $P$ przedziału $[a,b]$, że
+    $U(f, P) - L(f, P) < \varepsilon$. Wówczas
+    \begin{equation*}
+        U(f, P) < \varepsilon + \int_{a}^{b}f(x)dx, \quad \int_{a}^{b}f(x)dx < \varepsilon + L(f, P).
+    \end{equation*}
+    Na mocy Twierdzenie Lagrange'a o Wartości Średniej istnieją punkty $\xi_{j}$ ($j = 1,\ldots, n$) takie, że
+    $x_{j-1} < \xi_{j} < x_{j}$ ($P = \{ x_0, x_1, \ldots, x_n\}$) oraz $F(x_j) - F(x_{j-1}) =
+    f(\xi_j)(x_j - x_{j-1})$, a zatem
+    \begin{equation*}
+        \begin{split}
+            F(b) - F(a) &= \sum_{j=1}^{n}(F(x_j) - F(x_{j-1})) \\
+                        &= \sum_{j=1}^{n}f(\xi_j)(x_j - x_{j-1}) \leq U(f, P) < \varepsilon + \int_{a}^{b}f(x)dx, \\
+            F(b) - F(a) &\geq L(f, P) > -\varepsilon + \int_{a}^{b}f(x)dx.            
+        \end{split}
+    \end{equation*}
+    Stąd
+    \begin{equation*}
+        \left|F(b) - F(a) - \int_{a}^{b}f(x)dx \right| < \varepsilon
+    \end{equation*}
+    i wobec dowolności $\varepsilon > 0$ otrzymujemy żądany wzór.
+\end{proof}
+
+\begin{ex}
+    Istnieją funkcje, które nie są całkowalne w sensie Riemanna, ale posiadają funkcje pierwotne. Niech
+    \begin{equation*}
+        f(x) = 
+            \begin{cases}
+                \begin{aligned}
+                    &2x\cos \frac{\pi}{x^2} - \frac{2\pi}{x}\sin \frac{\pi}{x^2} &\text{ dla } x \neq 0&, \\
+                    &0 &\text{ dla } x = 0&
+                \end{aligned}
+            \end{cases}
+    \end{equation*}
+    oraz
+    \begin{equation*}
+        F(x) = 
+            \begin{cases}
+                \begin{aligned}
+                    &x^2 \cos \frac{\pi}{x^2} &\text{ dla } x \neq 0&, \\
+                    &0 &\text{ dla } x = 0&
+                \end{aligned}
+            \end{cases}
+    \end{equation*}
+    Można łatwo sprawdzić, że $F'(x) = f(x)$ dla każdego $x \in [0,1]$. Funkcja $f$ nie jest jednak
+    R-całkowalna na przedziale $[0,1]$, ponieważ nie jest na nim ograniczona. Niech bowiem
+    $x_k = \frac{1}{\sqrt{\frac{1}{2}+2k}}$, $k \in \mathbb{N}$. Mamy
+    \begin{equation*}
+        \begin{split}
+        \lim\limits_{k \to \infty}\frac{2\pi}{x_k} \sin \frac{\pi}{x^2_k} = \lim\limits_{k \to \infty}\frac{2\pi}{\frac{1}{\sqrt{\frac{1}{2}+2k}}} \sin \frac{\pi}{\frac{1}{\frac{1}{2} + 2k}} \\ 
+        = \lim\limits_{k \to \infty}2\pi \sqrt{\frac{1}{2} + 2k}\sin(\frac{\pi}{2} + 2k\pi) = +\infty.
+        \end{split}
+    \end{equation*}
+\end{ex}
+
+Udowodnimy teraz reguły obliczania całek oznaczonych.
+
+\begin{theorem}
+{
+    (o całkowaniu przez części). Niech pochodne funkcji $u$ i $v$ będą R-całkowalne
+    na przedziale $[a,b]$. Wówczas zachodzi wzór (zwany wzorem na całkowanie przez części.)
+    \[
+        \int_{a}^{b}u(x)v'(x)dx = u(x)v(x) \big|_a^b - \int_{a}^{b}u'(x)v(x)dx,
+    \]
+    gdzie $u(x)v(x) \big|_a^b = u(b)v(b) - u(a)v(a)$.
+}
+\end{theorem}
+
+\begin{proof}
+    Istotnie, ponieważ $(uv)'(x) = u(x)v'(x) + u'(x)v(x)$, więc
+    \[
+        \int_{a}^{b}(uv)'(x)dx = \int_{a}^{b}u(x)v'(x)dx + \int_{a}^{b}u'(x)v(x)dx,
+    \]
+    a zatem na mocy wzoru Newtona-Leibniza otrzymujemy 
+    \[
+        u(x)v(x) \big|_a^b = \int_{a}^{b}u(x)v'(x)dx + \int_{a}^{b}u'(x)v(x).
+    \]
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeśli funkcja $f$ ma na przedziale o końcach $x_0$ i $x$ ciągłe pochodne do rzędu $n+1$ włącznie to
+    \begin{equation*}
+        f(x) = f(x_0) + \frac{f'(x_0)}{1!}(x-x_0) + \frac{f''(x_0)}{2!}{(x-x_0)}^2 + \ldots \frac{f^{(n)}(x_0)}{n!}{(x-x_0)}^n + r_n(x_0, x),
+    \end{equation*}
+    gdzie $r_n(x_0, x) = \frac{1}{n!}\int_{x_0}^{x}f^{(n+1)}(t){(x-t)}^n dt$. \\
+    (Wzór Taylora dla funkcji $f$ z resztą w postaci całkowej).
+}
+\end{wniosek}
+
+\begin{proof}
+    Stosując Wzór Newtona-Leibniza i wzór na całkowanie przez częsci wykonujemy następujący ciąg przekształceń, w którym wszystkie różniczkowania i podstawienia
+    wykonywane są względem $t$: 
+
+    \begin{equation*}
+        \begin{split}
+            f(x) - f(x_0) = TODO
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+{
+    (o całkowaniu przez podstawienie). Jeśli funkcja $f : [a,b] \mapsto \mathbb{R}$ jest ciągła, a $\phi : [\alpha, \beta] \mapsto [a,b]$ ma ciągłą
+    pochodną na przedziale $[\alpha, \beta]$ oraz $\phi(\alpha) = a$, $\phi(\beta) = b$, to
+    \[
+        \int_{a}^{b}f(x)dx = \int_{\alpha}^{\beta}f(\phi(t))\phi'(t)dt.
+    \]
+}
+\end{theorem}
+\begin{proof}
+    Ponieważ funkcje podcałkowe są ciągłe, zatem całki bo obu stronach powyższej równości istnieją.
+    Jeśli $F$ jest funkcją pierwotną funkcji $f$ na przedziale $[a,b]$, to $\Phi = F \circ \phi$ jest funkcją pierwotną funkcji
+    $(f \circ \phi)\phi'$ na przedziale $[\alpha, \beta]$. Na mocy Wzoru Newtona-Leibniza mamy zatem
+    \[
+        \int_{a}^{b}f(x)dx = F(b) - F(a) 
+    \]
+    oraz
+    \[
+        \int_{\alpha}^{\beta}f(\phi(t))\phi'(t)dt = F(\phi(\beta)) - F(\phi(\alpha)) = F(b) - F(a),
+    \]
+    co kończy dowód twierdzenia.
+\end{proof}
+
+Powyższe twierdzenie jest wystarczające dla wielu zastosowań. Można udowodnić następujące jego uogólnienie:
+
+\begin{theorem}
+{
+    Niech $\phi : [\alpha, \beta] \mapsto [a,b]$ będzie ściśle monotinicznym przekształceniem przedziału
+    $[\alpha, \beta]$ na przedział $[a,b]$ i niech pochodna $\phi'$ będzie R-całkowalna na $[a,b]$. Wówczas dla dowolnej funkcji $f$ R-całkowalnej
+    na przedziale $[a,b]$ funkcja $(f \circ \phi)\phi'$ jest R-całkowalna na $[\alpha, \beta]$ oraz zachodzi równość
+    \[
+        \int_{\phi(\alpha)}^{\phi(\beta)}f(x)dx = \int_{\alpha}^{\beta}f(\phi(t))\phi'(t)dt.
+    \]
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia można znaleźć w książce [9].
+
+\begin{ex}
+    Obliczmy $\int_{\frac{1}{\pi}}^{\frac{2}{\pi}}\frac{1}{x^2}\sin \frac{1}{x}dx$. Niech $f(x) = \frac{1}{x^2}\sin \frac{1}{x}$, $x \in [\frac{1}{\pi}, \frac{2}{\pi}]$
+    oraz niech $\phi(t) = \frac{1}{t}$, $t \in [\frac{\pi}{2}, \pi]$. Na mocy twierdzenia $\ref{theorem:90}$ otrzymujemy
+\end{ex}
 \end{justify}
 \end{document}
