@@ -964,8 +964,8 @@ lub wzorem Newtona-Leibniza.
     \begin{equation*}
         \begin{split}
             F(b) - F(a) &= \sum_{j=1}^{n}(F(x_j) - F(x_{j-1})) \\
-                        &= \sum_{j=1}^{n}f(\xi_j)(x_j - x_{j-1}) \leq U(f, P) < \varepsilon + \int_{a}^{b}f(x)dx, \\
-            F(b) - F(a) &\geq L(f, P) > -\varepsilon + \int_{a}^{b}f(x)dx.            
+                        &= \sum_{j=1}^{n}f(\xi_j)(x_j - x_{j-1}) \leqslant U(f, P) < \varepsilon + \int_{a}^{b}f(x)dx, \\
+            F(b) - F(a) &\geqslant L(f, P) > -\varepsilon + \int_{a}^{b}f(x)dx.            
         \end{split}
     \end{equation*}
     Stąd
@@ -1043,7 +1043,7 @@ Udowodnimy teraz reguły obliczania całek oznaczonych.
 \end{wniosek}
 
 \begin{proof}
-    Stosując Wzór Newtona-Leibniza i wzór na całkowanie przez częsci wykonujemy następujący ciąg przekształceń, w którym wszystkie różniczkowania i podstawienia
+    Stosując Wzór Newtona-Leibniza i wzór na całkowanie przez części wykonujemy następujący ciąg przekształceń, w którym wszystkie różniczkowania i podstawienia
     wykonywane są względem $t$: 
     \begin{multline*}
         f(x) - f(x_0) = \int_{x_0}^{x}f'(t)dt = -\int_{x_0}^{x}f'(t)(x-t)'dt \\
@@ -1096,6 +1096,220 @@ Dowód powyższego twierdzenia można znaleźć w książce [9].
 \begin{ex}
     Obliczmy $\int_{\frac{1}{\pi}}^{\frac{2}{\pi}}\frac{1}{x^2}\sin \frac{1}{x}dx$. Niech $f(x) = \frac{1}{x^2}\sin \frac{1}{x}$, $x \in [\frac{1}{\pi}, \frac{2}{\pi}]$
     oraz niech $\phi(t) = \frac{1}{t}$, $t \in [\frac{\pi}{2}, \pi]$. Na mocy twierdzenia $\ref{theorem:90}$ otrzymujemy
+    \[
+        \int_{\frac{1}{\pi}}^{\frac{2}{\pi}}\frac{1}{x^2}\sin \frac{1}{x}dx = 
+        \int_{\pi}^{\frac{\pi}{2}}t^2 \sin t(-\frac{1}{t^2})dt = 
+        \int_{\frac{\pi}{2}}^{\pi}\sin t dt = -\cos t \big|_{\frac{\pi}{2}}^{\pi} = 1.
+    \]
 \end{ex}
+
+Udowodnimy teraz dwa twierdzenia całkowe o wartości średniej.
+
+\begin{theorem}
+{
+    (I Twierdzenie Całkowe o Wartości Średniej). Niech funkcje $f$, $g$ będą R-całkowalne na przedziale
+    $[a,b]$ oraz niech $m = \inf\{f(x) : x \in [a,b]\}$, $ M = \sup\{f(x) : x \in [a,b]\}$. Jeśli funkcja $g$
+    jest nieujemna lub niedodatnia na $[a,b]$, to
+    \begin{equation}\label{eq:50}
+        \int_{a}^{b}(fg)(x)dx = \mu \int_{a}^{b}g(x)dx,
+    \end{equation}
+    gdzie $\mu \in [m, M]$. Jeśli ponadto funkcja $f$ jest ciągła na przedziale $[a,b]$, to istnieje punkt 
+    $\xi \in [a,b]$ taki, że 
+    \begin{equation}\label{eq:51}
+        \int_{a}^{b}(fg)(x)dx = f(\xi)\int_{a}^{b}g(x)dx.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Dla ustalenia uwagi załóżmy, że $g(x) \geqslant 0$ dla $x \in [a,b]$. Wówczas $mg(x) \leqslant f(x)g(x) \leqslant Mg(x)$ dla $x \in [a,b]$, a zatem
+    \begin{equation}\label{eq:52}
+        m\int_{a}^{b}g(x)dx \leqslant \int_{a}^{b}(fg)(x)dx \leqslant M\int_{a}^{b}g(x)dx.
+    \end{equation}
+    Jeśli $\int_{a}^{b}g(x) = 0$, to z (\ref{eq:52}) wynika natychmiast (\ref{eq:50}).
+    Natomiast gdy $\int_{a}^{b}g(x) \neq 0$, to biorąc
+    $\mu = (\int_{a}^{b}g(x)dx)^{-1} \int_{a}^{b}(fg)dx$ i uwzględniając (\ref{eq:52}) otrzymujemy
+    $m \leqslant \mu \leqslant M$. 
+    Równość (\ref{eq:51}) wynika z (\ref{eq:50}) i z tego, że funkcja ciągła na przedziale domkniętym osiąga swoje kresy i ma Właśność Darboux.
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeśli $g(x) = 1$ dla $x \in [a,b]$, to wzór (\ref{eq:51}) przyjmuje postać
+    \[
+        \int_{a}^{b}f(x)dx = f(\xi)(b-a).
+    \]
+}
+\end{wniosek}
+
+\begin{theorem}
+{
+    (II Twierdzenie Całkowe o Wartości Średniej). Jeśli funkcje $f$ i $g$ są R-całkowalne na przedziale $[a,b]$ i ponadto funkcja $g$ jest monotoniczna,
+    to istnieje punkt $\xi \in [a,b]$ taki, że
+    \begin{equation}\label{eq:53}
+        \int_{a}^{b}(fg)(x)dx = g(a)\int_{a}^{\xi}f(x)dx + g(b)\int_{\xi}^{b}f(x)dx.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Dowód przeprowadzimy w szczęgolnym przypadku, gdy funkcja $f$ jest ciągła, a funkcja $g$ jest klasy $C^1$. Dowód w przypadku ogólnym można znależć np. w [2], t. II, s. 101-102 lub w [11], s. 359-363. \\
+    Niech $F$ będzie dowolną funkcją pierwotną funkcji $f$, czyli $F'=f$. Całkując przez części otrzymujemy
+    \[
+        \int_{a}^{b}f(x)g(x)dx = \int_{a}^{b}F'(x)g(x)dx - F(x)g(x) \big|_a^b - \int_{a}^{b}F(x)g'(x)dx.
+    \]
+    Ponieważ funkcja $g$ jest monotoniczna, zatem jej pochodna na przedziale $[a,b]$ ma stały znak, zatem na mocy
+    Twierdzenia \ref{theorem:92} mamy
+    \[
+        \int_{a}^{b}F(x)g'(x) = F(\xi)\int_{a}^{b}g'(x)dx
+    \]
+    dla pewnego $\xi \in [a,b]$. Stąd
+    \begin{align*}
+        \int_{a}^{b}f(x)g(x)dx &= F(b)g(b) - F(a)g(a) - F(\xi)g(b) + F(\xi)g(a) \\
+                               &= g(a)(F(\xi) - F(a)) + g(b)(F(b) - F(\xi)) \\
+                               &= g(a)\int_{a}^{\xi}f(x)dx + g(b)\int_{\xi}^{b}f(x)dx.
+    \end{align*}
+\end{proof}
+
+\begin{uwaga}
+    II Twierdzenie Całkowe o Wartości Średniej bywa podawane w różnych postaciach.
+    \begin{enumerate}
+        \item[(a)] 
+            Jeśli w przedziale $[a,b]$ funkcja $g$ jest nierosnąca i nieujemna, a funckja $f$ jest R-całkowalna to
+            \begin{equation}\label{eq:54}
+                \int_{a}^{b}(fg)(x)dx = g(a)\int_{a}^{\xi}f(x)dx,
+            \end{equation}
+            gdzie $\xi$ jest pewnym punktem z przedziału $[a,b]$. 
+        \item[(b)] 
+            Analogicznie, jeśli funkcja $g$ jest niemalejąca i nieujemna, to zachodzi wzór
+            \begin{equation}\label{eq:55}
+                \int_{a}^{b}(fg)(x)dx = g(b)\int_{\xi}^{b}f(x)dx,
+            \end{equation}
+            gdzie $\xi \in [a,b]$.
+    \end{enumerate}
+    Wzory (\ref{eq:53}), (\ref{eq:54}), (\ref{eq:55}) nazywają się wzorami Bonneta.
+\end{uwaga}
+
+\subsection{Całka z funkcji o wartościach zespolonych}
+\begin{defn}
+    Niech $f_1$, $f_2$ będą funkcjami rzeczywistymi określonymi na przedziale $[a,b]$ i niech $f = (f_1, f_2)$ będzie odwzorowaniem przedziału $[a,b]$ w zbiór $\mathbb{C}$.
+    Mówimy, że $f$ jest całkowalna w sensie Riemanna na przedziale $[a,b]$, jeśli funkcje $f_1$, $f_2$ są R-całkowalne na tym przedziale.
+    W tym wypadku określamy
+    \[
+        \int_{a}^{b}f(x)dx = \Bigg(\int_{a}^{b}f_1(x)dx, \int_{a}^{b}f_2(x)dx\Bigg),
+    \]
+    lub równoważnie
+    \[
+        \int_{a}^{b}f(x)dx = \int_{a}^{b}\text{Re} f(x)dx + i \int_{a}^{b} \text{Im} f(x)dx.
+    \]
+\end{defn}
+
+Jest oczywiste, że Twierdzenie \ref{theorem:82} (dla sumy oraz iloczynu przez liczbę rzeczywistą funkcji R-całkowalnych)
+jest prawdziwe także dla funkcji o wartościach w $\mathbb{C}$. To samo dotyczy twierdzeń 
+\ref{theorem:85}, \ref{theorem:86}, \ref{theorem:88}, \ref{theorem:90} (por. [1], s. 272-273).
+Aby się o tym przekonać, należy jedynie zastosować poprzednie rezultaty do poszczególnych współrzędnych.
+Dla przykłady sformułujemy Podstawowe Twierdzenie Rachunku Całkowego.
+
+\begin{theorem}
+{
+    Niech $f$ i $F$ będą funkcjami określonymi na przedziale $[a,b]$ o wartościach w $\mathbb{C}$. Jeśli odwzorowanie $f$ jest R-całkowalne na tym przedziale
+    oraz $F'(x) = f(x)$ dla $x \in [a,b]$, to
+    \[
+        \int_{a}^{b}f(x)dx = F(b) - F(a).
+    \]
+}
+\end{theorem}
+
+Prawdziwy jest również analog Twierdzenia \ref{theorem:83} (b), jednakże jego dowód jest bardziej subtelny.
+
+\begin{theorem}
+{
+    Jeśli odwzorowanie $f : [a,b] \mapsto \mathbb{C}$ jest R-całkowalne, to funkcja $|f|$ jest również R-całkowalna oraz
+    \[
+        \Big| \int_{a}^{b}f(x)dx \Big| \leqslant \int_{a}^{b} |f(x)|dx.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $f_1$, $f_2$ będą składowymi odwzorowania $f$ (to znaczy $f = (f_1, f_2)$).
+    Wówczas $|f| = \sqrt{f_1^2+f_2^2}$. Każda z funkcji $f_1^2$, $f_2^2$ jest R-całkowalna, więc z ciągłości
+    pierwiastka i Twierdzenia \ref{theorem:81} wynika, że funkcja $|f|$ jest również całkowalna.
+    Niech $y = (y_1, y_2)$, gdzie $y_i = \int_{a}^{b}f_i(x)dx$ dla $i = 1,2$. Wówczas
+    $y = \int_{a}^{b}f(x)dx$ oraz
+    \[
+        |y|^2 = y_1^2 + y_2^2 = y_1 \int_{a}^{b}f_1(x)dx + y_2\int_{a}^{b}f_2(x)dx = 
+        \int_{a}^{b}(y_1f_1(x) + y_2f_2(x))dx.
+    \]
+    Na podstawie nierówności Schwarza mamy 
+    \[
+        y_1f_1(x) + y_2f_2(x) \leqslant |y||f(x)| \text{ dla } x \in [a,b],
+    \]
+    a zatem
+    \[
+        |y|^2 \leqslant |y|\int_{a}^{b}|f(x)|dx.
+    \]
+    Dzieląc ostatnią nierówność przez $|y| \neq 0$, otrzymujemy tezę (dla $y = 0$ twierdzenie jest oczywiste).
+\end{proof}
+
+W przypadku funkcji R-całkowalnych określonych na przedziale $[a,b]$ o wartościach w $\mathbb{C}$, Wniosek \ref{wniosek:24}
+nie zachodzi (por. Rozdział 7.6). Prawdziwe jest natomiast następujące
+
+\begin{theorem}
+{
+    Jeśli $f : [a,b] \mapsto \mathbb{C}$ jest funkcja R-całkowalną oraz $f([a,b]) \subset B(x^0, r)$,
+    gdzie $B(x^0, r)$ oznacza kule domkniętą o środku w punkcie $x^0 \in \mathbb{C}$ i promieniu $r$, to
+    \begin{equation}\label{eq:56}
+        \frac{1}{b-a}\int_{a}^{b}f(x)dx \in B(x^0, r).
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+Rozważmy funkcję $g(t) = f(t) - x^0$, $t \in [a,b]$. Mamy
+\begin{align*}
+    \Bigg|\frac{1}{b-a}\int_{a}^{b}f(t)dt - x^0\Bigg| &= \frac{1}{b-a}\Bigg|\int_{a}^{b}(f(t)-x^0)dt\Bigg| \\
+    &\leqslant \frac{1}{b-a}\int_{a}^{b}|f(t)-x^0|dt \leqslant \frac{1}{b-a}(b-a)r = r,
+\end{align*}
+a zatem (\ref{eq:56}) zachodzi.
+\end{proof}
+
+\subsection{Zastosowania całki Riemanna}
+Wiele zastosowań całki Riemanna opiera się na następującym twierdzeniu, które podaje warunek na to, aby
+addytywna funkcja przedziału była generowana przez całkę. 
+
+\begin{theorem}
+{
+    Jeśli dla addytywnej funkcji $J(\alpha, \beta)$ określonej dla punktów $\alpha, \beta \in [a,b]$ istnieje
+    funkcja R-całkowalna na $[a,b]$ i taka, że 
+    \[
+        \inf_{x \in [\alpha, \beta]} f(x)(\beta - \alpha) \leqslant J(\alpha, \beta) \leqslant \sup_{x \in [\alpha, \beta]} f(x)(\beta - \alpha)
+    \]
+    dla dowolnych $a \leqslant \alpha < \beta \leqslant b$, to
+    \[
+        J(a,b) = \int_{a}^{b}f(x)dx.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $ P = \{x_0, \ldots, x_n\}$ będzie dowolnym podziałem przedziału $[a,b]$ i niech
+    $m_i = \inf\{f(x) : x \in [x_{i-1}, x_i]\}$ oraz $M_i = \sup\{f(x) : x \in [x_{i-1}, x_i]\}$ ($i = 1, \ldots, n$).
+    Dla dowolnego przedziału $[x_{i-1}, x_i]$ mamy 
+    \[
+        m_i \Delta x_i \leqslant J(x_{i-1}, x_i) \leqslant M_i \Delta x_i.
+    \]
+    Sumując powyższe nierówności i korzystając z addytywności funkcji $J(\alpha, \beta)$ otrzymujemy
+    \[
+        L(f, P) = \sum_{i=1}^{n}m_i \Delta x_i \leqslant J(a,b) \leqslant \sum_{i = 1}^{n}M_i \Delta x_i = U(f, P).
+    \]
+    Niech będzie dane dowolne $\varepsilon > 0$. Wówczas istnieje taki podział $P$ przedziału $[a,b]$, że
+    $U(f, P) - L(f, P) < \varepsilon$. Mamy zatem
+    \[
+        \int_{a}^{b}f(x)dx - \varepsilon < L(f, P) \leqslant J(a,b) \leqslant U(f, P) < \int_{a}^{b}f(x)dx + \varepsilon,
+    \]
+    czyli $\big|J(a,b) - \int_{a}^{b}f(x)dx \big| < \varepsilon$, a zatem wobec dowolności $\varepsilon > 0$ otrzymujemy tezę.
+\end{proof}
+
 \end{justify}
 \end{document}
