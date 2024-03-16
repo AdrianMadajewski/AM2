@@ -1355,7 +1355,79 @@ Krzywa $\gamma : [a,b] \mapsto \mathbb{R}$ (lub $\mathbb{C})$ nazywa się krzyw�
 jeśli funkcja $\gamma$ należy do tej klasy (to znaczy do klasy $C^{(n)}$ przy pewnym $n$).
 Krzywą klasy $C^1$ nazywamy krzywą gładką. Natomiast mówimy, że krzywa jest kawałkami gładka, jeśli przedzial $[a,b]$ można 
 podzielić na skończoną liczbę przedziałów tak, że na każdym z nich funkcja $\gamma$ jest klasy $C^1$.
+\end{defn}
 
+\begin{theorem}
+{
+    Jeśli krzywa $\gamma : [a,b] \mapsto \mathbb{R}$ (lub $\mathbb{C}$) jest gładka, to $\gamma$ jest prostowalna oraz
+    \begin{equation}\label{eq:57}
+        L(\gamma) = \int_{a}^{b}|\gamma'(t)|dt.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Jest jasne, że dla $a \leqslant \alpha < \beta \leqslant b$ zachodzi równość $L(\alpha, \gamma) = L(\alpha, \beta) + L(\beta, \gamma)$.
+    Ponadto wobec Twierdzenia Lagrange'a (Tw. 62) mamy
+    \[
+        \inf_{t \in [\alpha, \beta]} |\gamma'(t)|(\beta - \alpha) \leqslant L(\alpha, \beta) \leqslant \sup_{t \in [\alpha, \beta]} |\gamma'(t)|(\beta - \alpha).
+    \]
+    Wzór (\ref{eq:57}) jest więc konsekwencją Twierdzenia \ref{theorem:97} (to, że krzywa $\gamma$ jest prostowalna wynika z Twierdzenia Lagrange'a i założenia, że
+    $\gamma \in C^1$; mamy bowiem $L(\gamma) \leqslant \sup\limits_{t \in [a,b]} \gamma'(t)(b-a) < +\infty)$.
+\end{proof}
+
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)] 
+            Niech będzie dana krzywa na płaszczyźnie (w $\mathbb{C}$) o równaniach
+            $x = x(t)$, $y = y(t)$ ($\gamma(t) = (x(t), y(t))), t \in [a,b]$. Jeśli krzywa $\gamma$ jest gładka, to na mocy
+            \ref{eq:57} jej długość wyrażą się wzorem
+            \begin{equation}\label{eq:58}
+                L(\gamma) = \int_{a}^{b}\sqrt{x'(t)^2 + y'(t)^2}dt.
+            \end{equation}
+        \item [(b)] 
+            Długość wykresu funkcji $y = f(x)$, $x \in [a,b]$, klasy $C^1$ wyraża się wzorem
+            \[
+                L(a,b) = \int_{a}^{b}\sqrt{1 + f'(x)^2}dx.
+            \]
+            Wynika to ze wzoru (\ref{eq:58}) bowiem $\{(x, f(x)) : x \in [a,b]\} = \gamma([a,b])$, gdzie
+            $\gamma(t)=(t, f(t))$ dla $t \in [a,b]$. 
+        \item [(c)]
+            \textbf{Współrzędne biegunowe} \\
+            Przez dowolny punkt $O$ zwany biegunem poprowadzimy oś $S$, mającą początek w tym punkcie.
+            Współrzędnymi biegunowymi punktu $P$ nazywamy liczbe $r$ będącą długościa wektora $\overrightarrow{OP}$ i liczbę
+            $\phi \in [0, 2\pi)$ będącą miarą łukową kąta skierowanego $\angle{(S, \overrightarrow{OP})}$. Liczbę $\phi$ nazywamy amplitudą
+            punktu $P$ (biegunowi, to znaczy punktowi $O$, można przyporządkować dowolną amplitudę), natomiast $r$ - promieniem wodzącym punktu $P$. \\
+            Obierzmy układ kartezjański prostokątny i układ biegunowy tak, by biegun leżał w początku układu kartezjańskiego, a oś biegunowa pokrywała się z osią odciętych.
+            Oznaczmy przez $(x, y)$ współrzędne prostokątne oraz przez $(r, \phi)$ - współrzędne biegunowe tego samego punktu w obu układach. Wówczas zachodzą następujące związki:
+            \begin{align*}
+                x &= r\cos \phi \\
+                y &= r \sin \phi \\
+                r &= \sqrt{x^2+y^2} \text{ dla } x^2 + y^2 > 0 \\
+                & \cos \phi = \frac{x}{sqrt{x^2+y^2}}, & \sin \phi = \frac{y}{\sqrt{x^2+y^2}}.
+            \end{align*}
+            Załóżmy, że funkcja $g$ klasy $C^1$ jest określona we współrzędnych biegunowych, to znaczy $r = g(\phi)$, gdzie $\phi_1 \leqslant \phi \leqslant \phi_2$. 
+            Za pomocą wzorów $x = r\cos \phi = g(\phi)\cos \phi$, $y = r\sin \phi = g(\phi)\sin \phi$ otrzymujemy przedstawienie parametryczne funkcji $g$, zatem
+            \[
+                L(\phi_1, \phi_2) = \int_{\phi_1}^{\phi_2} \sqrt{g(\phi)^2 + g'(\phi)^2}d\phi
+            \]
+        \item [(d)]
+            Gdy krzywa jest kawałkami gładka, to aby obliczyć jej długość dzielimy ją na skończoną liczbę krzywych gładkich i do każdej z nich stosujemy wzór (\ref{eq:57}), a następnie dodajemy otrzymane liczby.
+    \end{itemize}
+\end{uwaga}
+
+Zajmiemy się teraz zastosowaniem całek Riemanna do obliczania pola powierzchni.
+
+\begin{defn}
+    Rozpatrzmy na płaszczyźnie dowolną figurę $P$, która jest obszarem ograniczonym. 
+    Załóżmy, że brzeg figury $P$ jest obrazem gładkiej krzywej zamkniętej $\gamma : [a,b] \mapsto \mathbb{C}$ (lub składa się z obrazów kilku takich krzywych).
+    Zakładamy, że $\gamma'(t) \neq 0$ dla każdego $t \in [a,b]$. Jordan udowodnił, że rozważana krzywa zamknięta rozcina płaszczyznę na dwa obszary,
+    wewnętrzny i zewnętrzny, dla których jest ona wspólnym brzegiem. Rozważmy wszystkie możliwe wielokąty $A$, całkowicie zawarte w $P$ i wielokąty $B$, całkowicie zawierające obszar $P$.
+    Jeśli $|A|$ i $|B|$ oznaczają pola tych wielokątów, to $|A| \leqslant |B|$. Zbiór $\{|A| : A \subset P\}$ jest ograniczony z góry przez którąkolwiek z liczb $|B|$, a zatem na mocy
+    Aksjomatu Dedekinda posiada on kres górny $|P_*|$. Natomiast zbiór $\{|B| : P \subset B\}$ jest ograniczony z dołu przez liczbę $|P_*|$ i posiada kres dolny $|P^*|$. Kres
+    górny $|P_*|$ nazywamy wewnętrzną, a kres dolny $|P^*|$ --- zewnętrzną miarą Jordana figury $P$. \\
+    Jeśli $|P_*| = |P^*|$, to mówimy, że figura $P$ jest mierzalna w sensie Jordana, a wspólną wartość tych kresów nazywamy miarą Jordana lub polem figury $P$ i oznaczamy symbolem $|P|$. \\
+    Będziemy mówili, że figura ma pole równe zeru, jeśli można pokryć ją obszarem wielokątnym o dowolnie małym polu. 
 \end{defn}
 
 \end{justify}
