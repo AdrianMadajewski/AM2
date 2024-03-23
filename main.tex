@@ -1430,5 +1430,148 @@ Zajmiemy się teraz zastosowaniem całek Riemanna do obliczania pola powierzchni
     Będziemy mówili, że figura ma pole równe zeru, jeśli można pokryć ją obszarem wielokątnym o dowolnie małym polu. 
 \end{defn}
 
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)] 
+            Umieścmy rozpatrywaną figurę $P$ wewnątrz prostokąta $R$ o bokach równoległych do osi układu współrzędnych.
+            Prostokąt ten rozbijamy na części za pomocą pewnej liczby prostych równoległych do jego boków.
+            Oznaczmy przez $\tilde{A}$ figurę złożoną z prostokątów całkowicie zawartych w $P$, natomiast
+            przez $\tilde{B}$ --- figurę złożoną z prostokątów mających punkty wspólne z $P$. Przez $d$ oznaczmy długość najdłuższej z przekątnych
+            prostokątów. Można udowodnić, że figura $P$ jest mierzalna w sensie Jordana wtedy i tylko wtedy, gdy
+            przy $d \rightarrow 0$ obydwa pola $|\tilde{A}|$ i $|\tilde{B}|$ dążą do wspólnej granicy $|P|$; jeśli 
+            ten warunek jest spełniony, to wspólna granica $|P|$ jest równa polu figury $P$ ([2], t. II, s. 163 --- 164).
+        \item [(b)]
+            Załóżmy, że figura $P$ jest rozcięta na dwie figury $P_1$ i $P_2$ (to znaczy figury $P_1$ i $P_2$ nie mają punktów
+            wewnętrznych wspólnych). Można udowodnić, że mierzalność dwóch pośród trzech figur $P$, $P_1$, $P_2$, pociąga za sobą mierzalność trzeciej, 
+            przy czym $|P| = |P_1| + |P_2|$, to znaczy pole figury ma własność addytywności. 
+            ([2], t. II, s. 162).    
+    \end{itemize}
+    Można nietrudno udowonić ([2], t. II, s. 161, 164 --- 165) następujące kryteria mierzalności figur w sensie Jordana.
+\end{uwaga}
+
+\begin{theorem}
+{
+    \begin{itemize}
+        \item [(a)] 
+            Na to, by figura $P$ była mierzalna w sensie Jordana, potrzeba i wystarcza, żeby
+            dla każdego $\varepsilon > 0$ można było znaleźć takie dwa wielokąty $A \subset P$ i $P \subset B$, że $|B| - |A| < \varepsilon$.
+        \item [(b)]
+            Na to, żeby figura $P$ była mierzalna w sensie Jordana potrzeba i wystarcza, żeby jej brzeg miał pole równe zeru.
+        \item [(c)]
+            Jeśli figura $P$ jest ograniczona wykresami kilku funkcji ciągłych, z których każda jest w postaci $y = f(x)$, $x \in [a,b]$ lub $x = g(y)$, $y \in [c,d]$, to
+            figura jest mierzalna w sensie Jordana.
+    \end{itemize}
+}
+\end{theorem}
+
+Niech $f$ będzie nieujemną funkcją ciągłą określoną na przedziale $[a,b]$. 
+Niech $A = f(a)$, $B = f(b)$. Rozważmy figurę $aABb$ zwaną trapezem krzywolinowym. 
+Jest ona ograniczona pionowymi odcinkami $aA$, $bB$, odcinkiem $[a,b]$ na osi $OX$ oraz wykresem funkcji $f$.
+Dla $a \leqslant \alpha < \beta \leqslant b$ oznaczmy przez $S(\alpha, \beta)$ pole trapezu krzywolinowego
+$\alpha f(\alpha) f(\beta) \beta$. Ponadto przyjmijmy $S(\beta, \alpha) = -S(\alpha, \beta)$. Wiemy, że pole jest funkcją 
+addytywną, to znaczy jeśli $a \leqslant \alpha < \beta < \gamma \leqslant b$, to
+\[
+    S(\alpha, \beta)  + S(\beta, \gamma) = S(\alpha, \gamma).
+\]
+Stąd wynika, że $S(\alpha, \beta)$ jest addytywną funkcją przedziału zorientowanego.
+Ponieważ pole figury zawartej w innej figurze nie może być większe od pola tej ,,obejmującej'' figury, więc
+\[
+    \inf\limits_{x \in [\alpha, \beta]} f(x)(\beta - \alpha) \leqslant S(\alpha, \beta) \leqslant \sup\limits_{x \in [\alpha, \beta]} f(x)(\beta - \alpha).
+\]
+Na mocy Twierdzenia \ref{theorem:97} otrzymujemy następujący wzór na pole trapezu krzywolinowego
+\begin{equation}\label{eq:59}
+    S(a, b) = \int_{a}^{b} f(x)dx.
+\end{equation}
+Jest jasne, że jeśli $f(x) \leqslant 0$ dla $x \in [a,b]$, to $S(a,b) = -\int_{a}^{b}f(x)dx$. 
+Ponadto, jeśli trapez krzywolinowy $CABD$ jest ograniczony z góry i z dołu wykresami krzywych o równaniach $y = f(x)$ i $y = g(x)$ ($a \leqslant x \leqslant b)$, to znaczy
+$f(x) \geqslant g(x)$ dla $x \in [a,b]$, to oznaczając przez $|P|$ pole tego trapezu mamy
+\[
+    |P| = \int_{a}^{b}|f(x) - g(x)|dx.
+\]
+Niech teraz będzie dany wycinek $AOB$ ograniczony promieniami $OA$, $OB$ (każdy z promieni
+$OA$, $OB$ może być punktem) i wykresem funkcji ciągłej o równaniu biegnowym
+$r = g(\phi) > 0$ dla $\phi_1 \leqslant \phi \leqslant \phi_2$ gdzie $\phi_2 - \phi_1 < 2\pi$ ($A = g(\phi_1)$, $B = g(\phi_2)$). Oznaczmy
+przez $S(\phi_1, \phi_2)$ pole wycinka $AOB$. Mamy
+\[
+    \inf\limits_{\phi \in [\phi_\alpha, \phi_\beta]} \frac{1}{2}g^2(\phi)(\phi_\beta - \phi_\alpha)
+    \leqslant S(\phi_\alpha, \phi_\beta) \leqslant
+    \sup\limits_{\phi \in [\phi_\alpha, \phi_\beta]} \frac{1}{2}g^2(\phi)(\phi_\beta - \phi_\alpha)
+\]
+(przypomnijmy, że pole wycinka kołowego o promieniu $r$ i kącie środkowym $\Delta \phi$ wyraża się wzorem
+$\frac{1}{2}r^2\Delta \phi$). Stąd otrzyjmujemy
+\[
+    S(\phi_1, \phi_2) = \frac{1}{2} \int_{\phi_1}^{\phi_2}r^2 d\phi.
+\]
+Roważmy, jeszcze przypadek, gdy mamy krzywą gładką o równaniach $x = x(t)$, $y = y(t)$, $t \in [a,b]$. Jeśli $y(t) \geqslant 0$
+oraz $x'(t) > 0$ w przedziale $[a,b]$, to pole obszaru $D$, zawartego między obrazem tej krzywej, osią $OX$ i rzędnymi w punktach końcowych krzywej,
+wyraża się wzorem
+\[
+    |D| = \int_{a}^{b}y(t)x'(t)dt.
+\]
+Istotnie funkcja $x = x(t)$ jest rosnąca, bowiem $x'(t) > 0$, a zatem posiada funkcję odwrotną $t = t(x)$ w przedziale $[\alpha, \beta]$, gdzie
+$\alpha = x(a)$, $\beta = x(b)$. Obraz danej krzywej możemy więc traktować jako wykres funkcji $y = y(t(x))$, $\alpha < x < \beta$, przy czym na mocy wzoru
+(\ref{eq:59})
+\[
+    |D| = \int_{\alpha}^{\beta} y(t(x))dx.
+\]
+Wykonując w powyższej całce podstawienie $x = x(t), a \leqslant t \leqslant b$, otrzymujemy żądany wzór (por. Tw. 90).
+
+\noindent
+Jeśli natomiast $x'(t) < 0$ w przedziale $[a,b]$, to $|D| = -\int_{a}^{b}y(t)x'(t)dt$.
+
+Całka Riemanna posiada również zastosowania do obliczania objętności pewnych brył oraz pól powierzchni obrotowych.
+Niech będzie dana bryła $V$, to znaczy obszar ograniczony w przestrzeni trójwymiarowej.
+Załóżmy, że brzeg $S$ bryły $V$ jest powierzchnią zamkniętą (lub składa się z kilku takich powierzchni).
+
+\begin{defn}
+    Rozpatrzmy wielościany $X$ o objętości $|X|$, zawarte całkowicie w bryle $V$ oraz wielościany
+    $Y$ o objętości $|Y|$ zawierjące w sobie całą bryłe $V$. Istnieje kres górny
+    $|V_*|$ liczb $|X|$ i kres dolny $|V^*|$ liczb $|Y|$, przy czym $|V_*| \leqslant |V^*|$; kresy te nazywamy
+    odpowiednio wewnętrzną i zewnętrzną objetością bryły $V$. Jeśli oba kresy są równe, to ich wspólną
+    wartość nazywamy objętością bryły $V$. Bryła ma objętość równą zeru, jeśli można umieścić ją w bryle
+    wielościennej o dowolnie małej objętości.
+\end{defn}
+
+Również w tym przypadku są prawdziwe odpowiedniki Uwagi \ref{uwaga:47} i Twierdzenia \ref{theorem:99}, w których odpowiednio
+zastąpimy figury --- bryłami, wielokąty --- wielościanami, prostokąty --- prostopadłościanami, pola --- objętościami, funkcje ciągłe jednej zmiennej
+--- funkcjami ciągłymi dwóch zmiennych. \\
+W szczególności można udowodnić (por. [2], t. II, s. 177 --- 178), że jeśli trape
+krzywolinowy $aABb$ ,,obrócimy'' względem osi $OX$, to otrzymana w ten sposób bryła posiada objętość.
+Istotnie ponieważ wykres funkcji ciągłej $y = f(x)$, $x \in [a,b]$ można pokryć prostokątami o dowolnie małym polu,
+zatem brzeg rozważanej bryły można pokryć bryłami (pierścieniami walcowymi) o dowolnie małej objętości (to znaczy suma objętości tych brył jest dowolnie mała). \\
+Oznaczmy przez $V(\alpha, \beta)$ objętość bryły otrzymanej przez obrót trapezu krzywolinowego $\alpha f(\alpha) f(\beta) \beta$ dookoła osi $OX$. Z właśności objętości brył
+otrzymujemy następujące związki: jeśli $a \leqslant \alpha < \beta < \gamma \leqslant b$, to
+\[
+    V(\alpha, \gamma) = V(\alpha, \beta) + V(\beta, \gamma)
+\]
+\begin{center}
+    oraz
+\end{center}
+\[
+    \pi\Bigg( \inf\limits_{x \in [\alpha, \beta]}f(x)\Bigg)^2(\beta - \alpha)
+    \leqslant V(\alpha, \beta) \leqslant 
+    \pi\Bigg( \sup\limits_{x \in [\alpha, \beta]}f(x)\Bigg)^2(\beta - \alpha),
+\]
+przy czym w powyższych nierównościach zastosowaliśmy wzór na objętość walca,
+łatwo wynikający z Definicji \ref{def:83} (zob. [2], t. II, s. 176). Na mocy Twierdzenia \ref{theorem:97} otrzymujemy
+\[
+    V(a, b) = \pi \int_{a}^{b}f(x)^2dx.
+\]
+Jest jasne, że jeśli trapez krzywoliniowy jest ograniczony z góry i z dołu wykresami funkcji ciągłych
+$y = f_1(x), y = f_2(x)$, $f_1(x) \geqslant f_2(x) \geqslant > 0$ ($x \in [a,b]$), to
+\[
+    V(a, b) = \pi \int_{a}^{b}|f_1(x)^2 - f_2(x)^2|dx.
+\]
+Niniejszy paragraf zakończymy krótką informacją o polu powierzchni obrotowej. Ze względu na niewystarczjacy aparat pojęciowy, nie możemy jeszcze
+zdefiniować pola powierzchni zakrzywionej. \\
+Niech będzie dana krzywa w $\mathbb{C} : \gamma(t) = (x(t), y(t))$, $t \in [a,b]$. Jeśli krzywa $\gamma$ jest gładka,
+to pole powierzchni obrotowej powstałej przez obrót obrazu krzywej $\gamma$ dookoła osi $OX$ istnieje i wyraża się wzorem
+\[
+    |P| = 2\pi \int_{a}^{b} y \sqrt{x'(t)^2 + y'(t)^2}dt.
+\]
+W szczególności jeśli ,,obracamy'' wykres funkcji $y = f(x)$ ($a \leqslant x \leqslant b$) klasy $C^1$ dookoła osi $OX$, to
+\[
+    |P| = 2\pi \int_{a}^{b}f(x)\sqrt{1 + f'(x)^2}dx.
+\]
 \end{justify}
 \end{document}
