@@ -1746,5 +1746,104 @@ Następujące twierdzenie podaje podstawowe własności całek niewłaściwych.
 
 Udowodnimy teraz podstawowe kryteria zbieżności całki niewłaściwej.
 
+\begin{theorem}
+{
+    (Kryterium Cauchy'ego) Niech $b$ będzie jedynym punktem osobliwym funkcji $f$ w przedziale $[a,b]$. Całka niewłaściwa $\int_{a}^{b}f(x)dx$ jest zbieżna wtedy i tylko wtedy, gdy
+    dla każdego $\varepsilon > 0$ istnieje taka liczba $\beta_0 \in (a,b)$, że
+    \[
+        \Bigg|\int_{\beta}^{\beta'}f(x)dx \Bigg| < \varepsilon
+    \]
+    dla dowolnych liczb $\beta$, $\beta'$, spełniających nierówności $\beta_0 < \beta < \beta' < b$.
+}
+\end{theorem}
+
+\begin{proof}
+    Zbieżność całki niewłaściwej funkcji $f$ oznacza, że $\int_{a}^{b}f(x)dx = \lim\limits_{\beta \to b}I(\beta)$, gdzie $I(\beta) = \int_{a}^{\beta}f(x)dx$.
+    Na mocy Twierdzenia 36 jest to równoważne następującemu warunkowi: \\
+    Dla dowolnego $\varepsilon > 0$ istnieje $\beta_0 \in (a,b)$ takie, że $|I(\beta) - I(\beta')| = |\int_{\beta}^{\beta'}f(x)dx| < \varepsilon$ 
+    dla dowolnych $\beta, \beta'$ spełniających nierówności $\beta_0 < \beta < \beta' < b$, co kończy dowód.
+\end{proof}
+
+Odpowiednik Twierdzenia 36 jest prawdziwy również wtedy, gdy $p = +\infty$ lub $p = -\infty$, wtedy
+warunek Cauchy'ego przyjmuje postać: \\ 
+dla dowolnego $\varepsilon > 0$ istnieje $M \in \mathbb{R}$ takie, że dla dowolnych $x', x'' \in E$, jeśli $x' > M$ oraz $x'' > m$, to
+$|f(x')-f(x'')| < \varepsilon$.
+
+\begin{theorem}
+{
+    (Kryterium Porównawcze) Jeśli funkcje $f$ i $F$ spełniają nierówność $|f(x)| \leqslant F(x)$ dla $a \leqslant x < b$ i $b$ jest
+    jedynym punktem osobliwym dla obu funkcji w przedziale $[a,b]$ oraz jeśli funkcja $f$ jest R-całkowalna na każdym przedziale 
+    $[a, \beta], \beta < b$ i istnieje całka niewłaściwa $\int_{a}^{b}F(x)dx$, to istnieje również całka niewłaściwa $\int_{a}^{b}f(x)dx$ i jest ona
+    bezwględnie zbieżna.
+}
+\end{theorem}
+
+\begin{proof}
+Z Kryterium Cauchy'ego wynika, że dla dowolnego $\varepsilon > 0$ istnieje $\beta_0 \in (a,b)$ takie, że
+\[
+    \Bigg| \int_{\beta}^{\beta'}F(x)dx \Bigg| < \varepsilon \text{ dla } \beta_0 < \beta < \beta' < b.
+\]
+Mamy więc
+\[
+    \Bigg| \int_{\beta}^{\beta'}f(x)dx \Bigg| \leqslant \int_{\beta}^{\beta'}\big|f(x)\big|dx \leqslant \int_{\beta}^{\beta'}F(x)dx = \Bigg|\int_{\beta}^{\beta'}F(x)dx\Bigg| < \varepsilon. 
+\]
+Z powyższych równości i z Kryterium Cauchy'ego wynika istnienie całek niewłaściwych
+$\int_{a}^{b}f(x)dx$, $\int_{a}^{b}|f(x)|dx$.
+
+\end{proof}
+
+\begin{wniosek}
+{
+    \begin{itemize}
+        \item [(a)] 
+            Jeśli całka niewłaściwa $\int_{a}^{b}|f(x)|dx$ jest zbieżna, to zbieżna jest również całka niewłaściwa
+            $\int_{a}^{b}f(x)dx$ (czyli bezwględna zbieżność pociąga zbieżność).
+        \item [(b)]
+            Jeśli w przedziale $[a,b)$ funkcje $f$ i $F$ spełniają nierówność $0 \leqslant f(x) \leqslant F(x)$ i całka
+            $\int_{a}^{b}f(x)dx$ nie istnieje, to całka niewłaściwa $\int_{a}^{b}F(x)dx$ jest rozbieżna. 
+    \end{itemize}
+}
+\end{wniosek}
+
+\begin{theorem}
+{
+    (Kryterium Dirichleta) Niech punkt $b$ będzie jedynym punktem osobliwym iloczynu funkcji $f$ i $g$ w przedziale $[a,b]$.
+    Jeśli funkcja $F(x) = \int_{a}^{x}f(t)dt$ istnieje i jest ograniczona na przedziale $[a,b)$, a funkcja $g(x)$ dąży monotonicznie do zera, gdy 
+    $x \to b$, to całka niewłaściwa $\int_{a}^{b}(fg)(x)dx$ jest zbieżna. 
+}
+\end{theorem}
+
+\begin{proof}
+    Na mocy II Twierdzenia Całkowego o Wartości Średniej mamy
+    \[
+        \int_{\beta}^{\beta'}(fg)(x)dx = g(\beta)\int_{\beta}^{\xi}f(x)dx + g(\beta')\int_{\xi}^{\beta'}f(x)dx,
+    \]
+    dla dowolnych $a < \beta < \beta' < b$, gdzie $\xi$ jest pewnym punktem leżącym między $\beta$ i $\beta'$.
+    Wobec przyjętych założeń dla dowolnego $\varepsilon > 0$ istnieje $\beta_0 \in (a,b)$ takie, że
+    \[
+        \Bigg|\int_{\beta}^{\beta'}(fg)(x)dx\Bigg| < \varepsilon \text{ dla } \beta_0 < \beta < \beta' < b.
+    \]
+    Na mocy kryterium Cauchy'ego całka niewłaściwa $\int_{a}^{b}(fg)(x)dx$ jest zbieżna.
+\end{proof}
+
+\begin{theorem}
+{
+    (Kryterium Abela) Niech $b$ będzie jedynym punktem osobliwym dla iloczynu funkcji $f$ i $g$ w przedziale $[a,b]$.
+    Jeśli całka niewłaściwa $\int_{a}^{b}f(x)dx$ jest zbieżna, a funkcja $g$ jest monotoniczna i ograniczona, to całka niewłaściwa
+    $\int_{a}^{b}(fg)(x)dx$ jest zbieżna.
+}
+\end{theorem}
+
+\begin{proof}
+    Analogiczny do dowodu Kryterium Dirichleta.
+\end{proof}
+
+\begin{uwaga}
+    Nietrudno zauważyć, że kryterium Abela wynika z kryterium Dirichleta.
+    Niech funkcje $f$ i $g$ spełniają bowiem założenia kryterium Abela. Wówczas istnieje granica
+    $\lim\limits_{x \to b}g(x) = g(b)$. Mamy $f(x)g(x) = f(x)g(b) + f(x)[g(x) - g(b)]$. Jest jasne, że drugi składnik tej sumy
+    spełnia założenia kryterium Dirichleta. Stąd całka niewłaściwa $\int_{a}^{b}(fg)(x)dx$ jest zbieżna. 
+\end{uwaga}
+
 \end{justify}
 \end{document}
