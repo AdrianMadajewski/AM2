@@ -25,6 +25,9 @@
 \DeclareMathOperator{\arctg}{\text{arctg}}
 \DeclareMathOperator{\arcctg}{\text{arcctg}}
 
+% Define a custom command for fraction without line
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+
 % Twierdzenie
 \newcounter{thcounter}
 \setcounter{thcounter}{73}
@@ -1573,5 +1576,175 @@ W szczególności jeśli ,,obracamy'' wykres funkcji $y = f(x)$ ($a \leqslant x 
 \[
     |P| = 2\pi \int_{a}^{b}f(x)\sqrt{1 + f'(x)^2}dx.
 \]
+
+\subsection{Całki niewłaściwe}
+
+\begin{defn}
+    Niech $f$ będzie funkcją rzeczywistą określoną na przedziale $[a,b)$ i R-całkowalną w każdym przedziale domkniętym $[a, \beta]$, gdzie
+    $a < \beta < b$. Wobec tego dla każdego $a < \beta < b$ istnieje całka
+    \begin{equation}\label{eq:60}
+        J(\beta) = \int_{a}^{\beta} f(x)dx.
+    \end{equation}
+    Punkt $b$ nazywać będziemy punktem osobliwym funkcji $f$, jeśli albo $b = +\infty$, albo funkcja $f$ nie jest ograniczona na przedziale $[a, b)$. \\
+    Jeśli $b$ jest punktem osobliwym funkcji $f$ i całka (\ref{eq:60}) dąży do skończonej granicy, gdy
+    $\beta \to b$, to tę granicę nazywamy całką niewłaściwą z funkcji $f$ na przedziale $[a,b)$ i oznaczamy symbolem
+    \[
+        \int_{a}^{b}f(x)dx.
+    \]
+    O funkcji $f$ mówimy wówczas, że jest całkowalna w sensie niewłaściwym na przedziale $[a,b)$. 
+    Mamy zatem $\int_{a}^{b}f(x)dx = \lim_{\beta \to b}\int_{a}^{\beta}f(x)dx$. Jeśli ta granica nie istnieje, to mówimy, 
+    że całka niewłaściwa jest rozbieżna. Analogicznie określamy całkę niewłaściwą z funkcji rzeczywistej określonej na
+    przedziale $(a,b]$, gdy a jest punktem osobliwym funkcji $f$, to znaczy $a = -\infty$ albo funkcja $f$ nie jest ograniczona w otoczeniu punktu $a$.
+    Zakładąć, że funkcja $f$ jest R-całkowalna na każdym przedziale $[\alpha, b]$, gdzie $a < \alpha < b$, przyjmujemy
+    \[
+        \int_{a}^{b}f(x)dx = \lim_{\alpha \to a}\int_{\alpha}^{b}f(x)dx
+    \]
+    (o ile ta granica istnieje). \\
+    W przypadku, gdy $b < a$ przyjmujemy
+    \[
+        \int_{a}^{b}f(x)dx = -\int_{b}^{a}f(x)dx.
+    \]
+    Jeśli funkcja $f$ ma w przedziale $[a,b]$ skończenie wiele punktów osobliwych,
+    to dzielimy ten przedział na przedziały mające po jednym punkcie osobliwym na początku lub na końcu przedziału i wówczas sumę całek
+    niewłaściwych odpowiadających tym podprzedziałom nazywamy całką niewłaściwą funkcji $f$ na przedziale $[a,b]$. 
+\end{defn}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)]
+            Zbadamy, dla jakich $p > 0$ istnieje całka niewłaściwa $I_p = \int_{a}^{b}\frac{dx}{(b-x)^p}$.
+            Badamy całki
+            \begin{align*}
+                J_p(\beta) &= \int_{a}^{\beta}\frac{dx}{(b-x)^p} = 
+                    \begin{cases}
+                        -\ln(b-x) \big|_a^\beta & \text{dla } p = 1, \\
+                        -\frac{(b-x)^{-p+1}}{-p+1}\big|_a^\beta & \text{dla } p \neq 1.
+                    \end{cases} \\
+                    &= 
+                    \begin{cases}
+                        -\frac{(b-\beta)^{1-p}}{1-p} + \frac{(b-a)^{1-p}}{1-p} & \text{dla } 0 < p < 1, \\
+                        \ln{\frac{b-a}{b-\beta}}& \text{dla } p = 1, \\
+                        -\frac{1}{(1-p)(b-\beta)^{p-1}} + \frac{1}{(1-p)(b-a)^{p-1}} & \text{dla } p >  1.
+                    \end{cases}
+            \end{align*}
+            Stąd $\lim_{\beta \to b}J_p(\beta) = 
+            \begin{cases}
+                (b-a)^{1-p} & \text{dla } 0 < p < 1, \\
+                +\infty & \text{dla } p \geqslant 1,
+            \end{cases}$
+            czyli całka niewłaściwa $I_p = \int_{a}^{b}\frac{dx}{(b-x)^p}$ istnieje dla $0 < p < 1$ i nie istnieje dla $p \geqslant 1$. 
+            W szczególności $\int_{0}^{1}\frac{dx}{\sqrt{x}}$ istnieje, natomiast $\int_{0}^{1}\frac{dx}{x}$ nie istnieje.
+        \item [(b)]
+            Zbadamy teraz, dla jakich $p > 0$ istnieje całka niewłaściwa $K_p = \int_{a}^{\infty} \frac{dx}{x^p}$. Badamy całki
+            \begin{align*}
+                K_p(\beta) = \int_{a}^{\beta}\frac{dx}{x^p} &= 
+                \begin{cases}
+                    \ln x \big|_a^\beta & \text{dla } p = 1, \\
+                    \frac{x^{-p+1}}{-p+1}\big|_a^\beta & \text{dla } p \neq 1,
+                \end{cases} \\
+                &= 
+                \begin{cases}
+                    \frac{\beta^{1-p}}{1-p} - \frac{a^{1-p}}{1-p} & \text{dla } 0 < p < 1, \\
+                    \ln \frac{\beta}{a} & \text{dla } p = 1, \\
+                    \frac{1}{(1-p)\beta^{p-1}} - \frac{1}{(1-p)a^{p-1}} &\text{dla } p > 1.
+                \end{cases}
+            \end{align*}
+            Zatem $\lim\limits_{\beta \to +\infty} K_p(\beta) = 
+                \begin{cases}
+                    +\infty &\text{dla } 0 < p \leqslant 1, \\
+                    \frac{1}{(p-1)a^{p-1}} &\text{dla } p > 1,
+                \end{cases}$ a więc całka niewłaściwa $K_p$ istnieje dla $p > 1$ i nie istnieje, gdy $0 < p \leqslant 1$.
+    \end{itemize}
+\end{ex}
+
+Następujące twierdzenie podaje podstawowe własności całek niewłaściwych.
+
+\begin{theorem}
+{
+    \begin{itemize}
+        \item [(a)]
+            Jeśli funkcja $f$ jest ograniczona na przedziale skończonym $[a,b)$ i jeśli całka $I(\beta) = \int_{a}^{\beta} f(x)dx$ istnieje dla
+            każdego $a < \beta < b$, to granica $\lim\limits_{\beta \to b} \int_{a}^{\beta}f(x)dx$ istnieje.
+        \item [(b)]
+            Jeśli funkcja $f$ jest R-całkowalna na przedziale $[a,b]$, to całka Riemanna i całka niewłaściwa funkcji $f$
+            (na przedziałach $[a,b]$ oraz $[a,b)$, odpowiednio) pokrywają się.
+        \item [(c)]
+            Jeśli funkcje $f, g : [a,b] \mapsto \mathbb{R}$ są całkowalne (w sensie niewłaściwym) na przedziale $[a,b)$, to dla dowolnych
+            $\lambda_1, \lambda_2 \in \mathbb{R}$ funkcja $(\lambda_1f + \lambda_2 g)(x)$ jest całkowalna (w sensie całki niewłaściwej) oraz
+            \[
+                \int_{a}^{b}(\lambda_1 f + \lambda_2 g)(x)dx = \lambda_1 \int_{a}^{b}f(x)dx + \lambda_2 \int_{a}^{b}g(x)dx.
+            \]
+            Ponadto, jeśli $c \in [a,b]$, to $\int_{a}^{b}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx$.
+        \item [(d)]
+            Załóżmy, że funkcja $f$ jest całkowalna w sensie niewłaściwym na przedziale $[a,b)$ oraz $\phi : [\alpha, \gamma) \mapsto [a,b)$ jest ściśle monotoniczną
+            funkcją klasy $C^1$, przy czym $\phi(\alpha) = a$ oraz $\phi(\beta) \to b$ jeśli $\beta \to \gamma$, $\beta \in [\alpha, \gamma)$. 
+            Wówczas całka niewłaściwa funkcji $t \to (f \circ \phi)(t)\phi'(t)$ na przedziale $[\alpha, \gamma)$ istnieje oraz
+            \[
+                \int_{a}^{b}f(x)dx = \int_{a}^{\gamma}(f \circ \phi)(t)\phi'(t)dt
+            \]
+            (zamiana zmiennych w całkach niewłaściwych).
+        \item [(e)]
+            Jeśli $f, g \in C^1[a,b)$, to
+            \[
+                \int_{a}^{b}(fg')(x)dx = (fg)(x)\big|_a^b - \int_{a}^{b}(f'g)(x)dx,
+            \]
+            gdzie $(fg)(x)\big|\fracnoline{b}{a} = \lim\limits_{x \to b}(fg)(x) - (fg)(x)$, o ile dwa spośród trzech występujących w równości wyrażeń mają sens.
+            Stąd już wynika istnienie trzeciego (całkowanie przez części dla całek niewłaściwych). 
+    \end{itemize}    
+}
+\end{theorem}
+
+\newpage
+
+\begin{proof}
+    \begin{itemize}
+        \item [(a)]
+            Istotnie, jeśli $a < \beta < \beta' < b$, to $|I(\beta) - I(\beta')| = |\int_{\beta}^{\beta'}f(x)dx| \leqslant M(\beta' - \beta)$,
+            a zatem jeśli $\varepsilon > 0$, $b - \beta < \frac{\varepsilon}{M}$, $b - \beta' < \frac{\varepsilon}{M}$, to $|I(\beta) - I(\beta')| < \varepsilon$.
+            Na mocy Kryterium Cauchy'ego (Tw. 36) wnioskujemy, że $\lim\limits_{\beta \to b} I(\beta)$ istnieje.
+        \item [(b)]
+            Wynika z ciągłości funkcji $I(\beta) = \int_{a}^{\beta}f(x)dx$, na przedziale $[a,b]$, na którym funkcja $f$ jest R-całkowalna.
+        \item [(c)]
+            Pierwsza część tezy wynika, z tego, że dla $\beta \in [a,b)$ mamy
+            \[
+                \int_{a}^{\beta}(\lambda_1f + \lambda_2g)(x)dx = \lambda_1 \int_{a}^{\beta}f(x)dx + \lambda_2 \int_{a}^{\beta} g(x)dx.
+            \]
+            Druga część tezy wynika z równości
+            \[
+                \int_{a}^{\beta}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{\beta}f(x)dx,
+            \]
+            która zachodzi dla dowlnych $c, \beta \in [a,b)$. 
+        \item [(d)]
+            Na podstawie Twierdzenia (\ref{theorem:91}) otrzymujemy
+            \[
+                \int_{a=\phi(\alpha)}^{\phi(\beta)}f(x)dx = \int_{\alpha}^{\beta}(f \circ \phi)(t)\phi'(t)dt \text{ dla } \beta \in [a,\gamma),
+            \]
+            a następnie przechodzimy do granicy przy $\beta \to \gamma$. 
+    \end{itemize}
+\end{proof}
+
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)]
+            Jeżeli przy założeniach punktu (a) powyższego twierdzenia nadamy funkcji $f$ dowolną wartość, to otrzymamy funkcję R-całkowalną na przedziale $[a,b]$
+            oraz całka Riemanna z tej funkcji na przedziale $[a,b]$ jest równa $\lim\limits_{\beta \to b}\int_{a}^{\beta}f(x)dx$. 
+            Aby to udowodnić, wystarczy dla przykładu wykorzystać Uwagę \ref{uwaga:38}, a następnie własności funkcji górnej granicy całkowania (dla całki Riemanna).
+        \item [(b)]
+            Iloczyn dwóch funkcji $f, g : [a,b] \mapsto \mathbb{R}$ całkowalnych w sensie niewłaściwym nie musi być funkcją całkowalną w sensie niewłaściwym. Dla przykładu
+            $\int_{0}^{1}\frac{dx}{\sqrt{1-x}}$ istnieje natomiat $\int_{0}^{1}\frac{dx}{\sqrt{1-x}\sqrt{1-x}}$ nie istnieje.
+        \item [(c)]
+            Dla przykładu wobec Tw. \ref{theorem:100} (a) całka niewłaściwa $\int_{0}^{1}\frac{\sin x}{x}dx$ istnieje, bowiem funkcja $f(x) = \frac{\sin x}{x}$ jest ograniczona
+            na przedziale $(0, 1]$ oraz R-całkowalna na każdym przedziale $[\alpha, 1]$, $0 < \alpha < 1$. 
+    \end{itemize}
+\end{uwaga}
+
+\begin{defn}
+    Niech funkcja $f$ ma w przedziale $[a,b]$ skończoną liczbę punktów osobliwych. 
+    Jeśli całka niewłaściwa $\int_{a}^{b}f(x)dx$ istnieje, to mówimy, że jest ona zbieżna, natomiast gdy istnieje całka niewłaściwa $\int_{a}^{b}|f(x)|dx$, to o całce
+    $\int_{a}^{b}f(x)dx$ mówimy, że jest zbieżna bezwględnie. Całka niewłaściwa, która jest zbieżna, ale nie jest zbieżna bezwględnie, nazywa się całką warunkowo zbieżną.
+\end{defn}
+
+Udowodnimy teraz podstawowe kryteria zbieżności całki niewłaściwej.
+
 \end{justify}
 \end{document}
