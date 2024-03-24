@@ -1845,5 +1845,116 @@ $\int_{a}^{b}f(x)dx$, $\int_{a}^{b}|f(x)|dx$.
     spełnia założenia kryterium Dirichleta. Stąd całka niewłaściwa $\int_{a}^{b}(fg)(x)dx$ jest zbieżna. 
 \end{uwaga}
 
+\newpage
+
+\begin{ex}
+\begin{itemize}
+    \item [(a)]
+        Rozważmy całkę niewłaściwą $\int_{0}^{1}\frac{\cos x}{x}dx$. Ponieważ $\frac{\cos x}{x} \geqslant \frac{\cos1}{x} \geqslant 0$ dla $x \in (0, 1]$ oraz $\cos 1 \int_{0}^{1}\frac{dx}{x}$ jest całką niewłaściwą rozbieżną, zatem na mocy Kryterium Porównawczego całka niewłaściwa $\int_{0}^{1}\frac{\cos x}{x}dx$ jest rozbieżna. 
+    \item [(b)]
+        Rozważmy całkę niewłaściwą $\int_{0}^{\infty}\frac{\sin x}{x}dx$. Niech $g(x) = \frac{1}{x}$ oraz $f(x) = \sin x$ dla $x > 0$. Mamy $\int_{0}^{\infty}\frac{\sin x}{x}dx = \int_{0}^{1}\frac{\sin x}{x}dx + \int_{1}^{\infty}\frac{\sin x}{x}dx$, zatem wobec Uwagi \ref{uwaga:48} (c) wystarczy zbadać zbieżność całki niewłaściwej $\int_{1}^{\infty}\frac{\sin x}{x}dx$. Ponieważ $\int_{1}^{x}\sin t dt = \cos1 - \cos x$ jest funkcją ograniczoną na przedziale $[1, +\infty)$ oraz $\frac{1}{x} \to 0$ monotonicznie przy $x \to \infty$, zatem na mocy Kryterium Dirichleta całka niewłaściwa $\int_{1}^{\infty}\frac{\sin x}{x}dx$ jest zbieżna. \\
+        Pokażemy teraz, że całka niewłaściwa $\int_{0}^{\infty}\frac{\sin x}{x}dx$ nie jest zbieżna bezwględnie. Mamy
+        \begin{align*}
+            \lim\limits_{N \to \infty}\int_{0}^{N\pi}\Big|\frac{\sin x}{x}\Big|dx &= \lim\limits_{N \to \infty} \sum_{k=1}^{N}\int_{(k-1)\pi}^{k\pi}\frac{|\sin x|}{x}dx \\
+            & \geqslant \lim\limits_{N \to \infty}\sum_{k=1}^{N}\frac{1}{k\pi}\int_{(k-1)\pi} ^{k \pi}|\sin x|dx \\
+            &= \lim\limits_{N \to \infty}\sum_{k=1}^{N}\frac{1}{k\pi}\int_{0}^{\pi}\sin x dx \\
+            &= \frac{2}{\pi}\lim\limits_{N \to \infty}\sum_{k=1}^{N}\frac{1}{k} = +\infty,
+        \end{align*}
+        co kończy dowód.
+\end{itemize}
+\end{ex}
+
+\subsection{Całka Riemanna-Stieltjesa (względem funkcji monotonicznej)}
+Całka Riemanna-Stieltjesa jest bezpośrednim uogólnieniem całki Riemanna.
+
+\begin{defn}
+    Niech $f, g : [a,b] \mapsto \mathbb{R}$ będą funkcjami ograniczonymi. Dla dowolnego podziału 
+    $P = \{x_0, \ldots, x_n\}$ przedziału $[a,b]$ tworzymy następujące sumy
+    \[
+        S = \sum_{i=1}^{n}f(\xi_i)(g(x_i)-g(x_{i-1})), \text{ gdzie } \xi_i \in [x_{i-1}, x_i], i = 1, \ldots, n.
+    \]
+    Sumy te nazywamy sumami Riemanna-Stieltjesa odpowiadąjącymi podziałowi $P$ przy ustalonym wyborze punktów $\xi_i$.
+    Przez $S(f, P)$ oznaczać będziemy zbiór wszystkich możliwych sum Riemanna-Stieltjesa odpowiadących podziałowi $P$. \\
+    Jeśli dla dowolnego ciągu normalnego podziałów $(P_k)$ i dla dowolnych sum Riemanna-Stieltjesa $S_k \in S(f, P_k)$ istnieje
+    skończona granica $I = \lim\limits_{k \to \infty} S_k$, to tę granicę nazywamy całką Riemanna-Stieltjesa funkcji $f$ względem
+    funkcji $g$ na przedziale $[a,b]$. O funkcji $f$ mówimy wówczas, że jest całkowalna w sensie Riemanna-Stieltjesa (lub krótko: (R-S) całkowalna) względem
+    funkcji $g$ na przedziale $[a,b]$. Całkę Riemanna-Stieltjesa oznaczamy symbolem.
+    \[
+        \int_{a}^{b}fdg \text{ lub } \int_{a}^{b}f(x)dg(x).
+    \]
+\end{defn}
+
+\begin{defn}
+    Niech $g$ będzie monotonicznie rosnącą funkcją określoną na przedziale $[a,b]$ (ponieważ $g(a)$ i $g(b)$ są skończone, więc funkcja jest
+    ograniczona na $[a,b]$). Jeśli $P$ jest jakimś podziałem przedziału $[a,b]$, to określamy $\Delta{g_i} = g(x_i) - g(x_{i-1})$ (oczywiście $\Delta{g_i} \geqslant 0$).
+    Dla ograniczonej funkcji $f : [a,b] \mapsto \mathbb{R}$ piszemy
+    \[
+        U(f, g, P) = \sum_{i=1}^{n}M_i\Delta{g_i}, \quad L(f, g, P) = \sum_{i=1}^{n}m_i\Delta{g_i},
+    \]
+    gdzie $m_i$ oraz $M_i$ mają ten sam sens, co w Definicji \ref{def:71}. Liczby $U(f, g, P)$ i $L(f, g, P)$
+    nazywać będziemy górną i dolną sumą Darboux-Stieltjesa. Dalej
+    \[
+        \overline{\int_{a}^{b}fdg} = \inf\limits_{P}U(f, g, P), \quad \underline{\int_{a}^{b}fdg} = \sup\limits_{P}L(f, g, P),
+    \]
+    gdzie kres górny i dolny są wzięte ze względu na wszystkie możliwe podziały przedziału $[a,b]$.
+\end{defn}
+
+Rozumując analogicznie jak w dowodzie Twierdzeń \ref{theorem:76} i \ref{theorem:77} otrzymujemy dwa kryteria całkowalności funkcji
+w sensie Riemanna-Stieltjesa.
+
+\begin{theorem}
+{
+    Na to, by ograniczona funckja $f$ była (R-S)-całkowalna względem funkcji rosnącej $g$ na przedziale $[a,b]$
+    potrzeba i wysarcza, aby był spełniony jeden z następujących warunków:
+    \begin{itemize}
+        \item [(a)]
+            dla dowolnego $\varepsilon > 0$ istnieje taki podział $P$ przedziału $[a,b]$, że
+            \[
+                U(f, g, P) - L(f, g, P) < \varepsilon.
+            \]
+        \item [(b)]
+            \[
+                \overline{\int_{a}^{b}fdg} = \underline{\int_{a}^{b}fdg}.
+            \]
+    \end{itemize}
+}
+\end{theorem}
+
+Zbadamy teraz klasy funkcji (R-S)-całkowalnych. Załóżmy wpierw, że $g$ jest funkcją rosnącą na $[a,b]$.
+Wówczas rozumując podobnie jak w dowodzie Twierdzeń \ref{theorem:78} oraz \ref{theorem:80} wnioskujemy, że
+jeśli $f$ jest funkcją ciągła lub monotoniczną (w tym przypadku zakładamy dodatkowo, że $g$ jest funkcją ciągła na $[a,b]$), to
+jest ona (R-S)-całkowalna względem funkcji $g$ na $[a,b]$.
+
+\begin{theorem}
+{
+    Niech $f : [a,b] \mapsto \mathbb{R}$ będzie funkcją ograniczoną i majacą tylko skończoną ilość punktów nieciągłości
+    na przedziale $[a,b]$ i niech funkcja rosnąca $g$ będzie ciągła w każdym z punktów, w których nieciągła jest funkcja $f$.
+    Wtedy $f$ jest (R-S)-całkowalna względem funkcji $g$.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech będzie dane $\varepsilon > 0$. Ponadto niech $M = \sup\limits_{x \in [a,b]}|f(x)|$ oraz niech $E$
+    oznacza zbiór punktów nieciągłości $f$. Ponieważ $E$ jest zbiorem skończonym i $g$ jest ciągła
+    w każdym z punktów $E$, więc możemy pokryć zbiór $E$ skonczoną liczbą przedziałów rozłącznych $[u_j, v_j] \subset [a,b]$ tak,
+    że suma różnic $g(v_j) - g(u_j) < \varepsilon$. Możemy poza tym tak umieścić te przedziały, aby każdy z punktów zbioru $E \cap (a,b)$
+    leżał we wnętrzu któregoś z przedziałów $[u_j, v_j]$. Usuńmy przedziały $(u_j, v_j)$ z odcinka $[a,b]$. Pozostały zbiór $K$
+    jest skończoną sumą przedziałów domkniętych. Wobec tego na mocy Twierdzenia Cantora funkcja $f$ jest jednostajnie ciągła na $K$,
+    a więc istnieje $\delta > 0$ takie, że $|f(s) - f(t)| < \varepsilon$, jeśli tylko $s, t \in K$ oraz $|s-t| < \delta$. \\
+    Utwórzmy teraz podział $P = \{x_0, \ldots, x_n\}$ przedziału $[a,b]$ tak, aby każdy z punktów $u_j, v_j$ występował w $P$ oraz aby żaden z punktów przedziału $(u_j, v_j)$
+    nie należał do $P$. Dalej jeśli $x_{i-1}$ nie jest żadnym z punktów $u_j$, to ma być $\Delta x_i < \delta$. Zauważmy, że 
+    $M_i - m_i \leqslant 2M$ dla dowolnego $i$ oraz, że $M_i - m_i \leqslant \varepsilon$ o ile $x_{i-1}$ nie jest żadnym z punktów $u_j$. Wobec tego mamy
+    \[
+        U(f, g, P) - L(f, g, P) \sum_{i=1}^{n}(M_i - m_i)\Delta g_i \leqslant [g(b) - g(a)]\varepsilon + 2M\varepsilon.
+    \]
+    Ponieważ $\varepsilon > 0$ było dowolne, zatem na mocy Twierdzenia \ref{theorem:105} (a) dowód jest skończony.
+\end{proof}
+
+\begin{uwaga}
+    Jeśli funkcje $f$ i $g$ posiadają w przedziale $[a,b]$ wspólny punkt nieciągłości to może się zdarzyć, że $f$ nie jest (R-S)-całkowalna względem funkcji $g$ (zob. Przykład \ref{ex:33}).
+\end{uwaga}
+
+Powtarzając rozumowanie z dowodu Twierdzenia \ref{theorem:81} otrzymujemy następujące.
+
 \end{justify}
 \end{document}
