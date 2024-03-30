@@ -1317,7 +1317,7 @@ addytywna funkcja przedziału była generowana przez całkę.
 Omówimy teraz kilka geometrycznych zastosowań całki Riemanna. Zajmiemy się wpierw zagadnieniem długości krzywej.
 
 \begin{defn}
-    Ciągłe odwzorowanie $\gamma$ przedziau $[a,b]$ w zbiór $\mathbb{R}$ lub $\mathbb{C}$ nazywamy krzywą
+    Ciągłe odwzorowanie $\gamma$ przedziału $[a,b]$ w zbiór $\mathbb{R}$ lub $\mathbb{C}$ nazywamy krzywą
     lub drogą w $\mathbb{R}$ lub $\mathbb{C}$. Punkty $A = \gamma(a)$, $B = \gamma(b)$, nazywają się odpowiednio
     początkiem i końcem drogi. Jeśli $\gamma(a) = \gamma(b)$, to powiemy, że $\gamma$ jest krzywą zamkniętą.
     Zbiór $\gamma([a,b])$ nazywamy obrazem krzywej $\gamma$. 
@@ -1356,7 +1356,7 @@ W pewnych przypadkach możemy obliczać $L(\gamma)$ jako całkę Riemanna.
 \begin{defn}
 Krzywa $\gamma : [a,b] \mapsto \mathbb{R}$ (lub $\mathbb{C})$ nazywa się krzywą danej klasy gładkości,
 jeśli funkcja $\gamma$ należy do tej klasy (to znaczy do klasy $C^{(n)}$ przy pewnym $n$).
-Krzywą klasy $C^1$ nazywamy krzywą gładką. Natomiast mówimy, że krzywa jest kawałkami gładka, jeśli przedzial $[a,b]$ można 
+Krzywą klasy $C^1$ nazywamy krzywą gładką. Natomiast mówimy, że krzywa jest kawałkami gładka, jeśli przedział $[a,b]$ można 
 podzielić na skończoną liczbę przedziałów tak, że na każdym z nich funkcja $\gamma$ jest klasy $C^1$.
 \end{defn}
 
@@ -2096,6 +2096,189 @@ Można również udowodnić (zob. [2], t. III, s. 74---75) następujące
     Wobec tego jest on ciągiem zbieżnym $\lim\limits_{n \to \infty}(s_n - I_n) \in [0, a_1]$. 
 
 \end{proof}
+
+\begin{theorem}
+{
+    Niech $g : [a,b] \mapsto \mathbb{R}$ będzie funkcją rosnącą. Wówczas
+    \begin{itemize}
+        \item [(a)]
+            Jeżeli funkcje $f_1, f_2 : [a,b] \mapsto \mathbb{R}$ są (R-S)-całkowalne względem funckji $g$ oraz $f_1(x) < f_2(x)$ dla każdego $x \in [a,b]$, to
+            \[
+                \int_{a}^{b}f_1dg \leqslant \int_{a}^{b}f_2dg.
+            \]
+        \item [(b)]
+            Jeśli $f : [a,b] \mapsto \mathbb{R}$ jest funkcją (R-S)-całkowalną względem funkcji $g$, to $|f|$ jest funkcją (R-S)-całkowalna względem funkcji $g$ oraz
+            \[
+                \Bigg|\int_{a}^{b}fdg\Bigg| \leqslant \int_{a}^{b}|f|dg.
+            \]
+            Ponadto jeśli $|f(x)| \leqslant M$ na $[a,b]$, to $\Big|\int_{a}^{b}fdg\Big| \leqslant M(g(b) - g(a))$.
+        \item [(c)]
+            Jeśli $f,h : [a,b] \mapsto \mathbb{R}$ są funkcjami (R-S)-całkowalnymi względem $g$, to iloczyn $fh$ jest funkcją (R-S)-całkowalną względem funkcji $g$.
+    \end{itemize}
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia jest analogiczny do dowodów twierdzeń \ref{theorem:82} (dla iloczynu funkcji) oraz \ref{theorem:83}. \\
+Udowodnimy teraz twierdzenia o zamianie zmiennych oraz o całkowaniu przez części dla całek Riemanna-Stieltjesa.
+
+\begin{theorem}
+{
+    Niech $\phi$ będzie funkcją ściśle rosnącą odwzorowującą przedział $[\alpha, \beta]$ na przedział $[a,b]$.
+    Niech $g$ będzie również funkcją rosnącą na $[a,b]$ i niech $f$ będzie funkcją (R-S)-całkowalną względem funkcji $g$ na $[a,b]$.
+    Określmy na przedziale $[\alpha, \beta]$ funckje $F$ i $G$ wzorami
+    \[
+        G(y) = g(\phi(y)), \quad F(y) = f(\phi(y)),
+    \]
+    Wówczas $F$ jest funkcją (R-S)-całkowalną względem funkcji $G$ na $[\alpha, \beta]$ oraz
+    \[
+        \int_{\alpha}^{\beta}FdG = \int_{a}^{b}fdg.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Każdemu podziałowi $P = \{x_0, \ldots, x_n \}$ przedziału $[a,b]$ odpowiada podział 
+    $Q = \{y_0, \ldots, y_n \}$ przedziału $[\alpha, \beta]$ taki, że $y_i = \phi(x_i)$, $i = 0, \ldots, n$.
+    Dowolny podział przedziału $[\alpha, \beta]$ możemy otrzymać w ten sposób. Ponieważ wartości przyjmowane przez $f$ na przedziale $[x_{i-1}, x_i]$ są dokładnie takie same,
+    jak wartości przyjmowane przez $F$ na $[y_{i-1}, y_i]$, zatem
+    \begin{equation}\label{eq:61}
+        U(f, g, P) = U(F, G, Q), \quad L(f, G, P) = L(F, G, Q).
+    \end{equation}
+    Ponieważ funkcja $f$ jest (R-S)-całkowalna względem $g$, więc możemy tak wybrać $P$, aby
+    zarówno $U(f, g, P)$ i $L(f, g, P)$ były bliskie $\int_{a}^{b}fdg$. Wówczas (\ref{eq:61}) w
+    połączeniu z Twierdzeniem \ref{theorem:105} (a) pokazuje, że funkcja $F$ jest (R-S)-całkowalna
+    względem funkcji $G$ i że zachodzi wzór z tezy twierdzenia.
+\end{proof}
+
+\begin{theorem}
+{
+    Niech $f, g : [a,b] \mapsto \mathbb{R}$ będą funkcjami ograniczonymi. Wówczas 
+    \begin{equation}\label{eq:62}
+        \int_{a}^{b}fdg = (fg)(x) \big|_a^b - \int_{a}^{b}gdf,
+    \end{equation}
+    przy założeniu, że przynajmniej jedna z tych całek istnieje.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech istnieje całka $\int_{a}^{b}gdf$ i niech $P = \{x_0, \ldots, x_n\}$ będzie podziałem przedziału $[a,b]$.
+    Sumę Riemanna-Stieltjesa odpowiadającą podziałowi $P$ przy ustalonym wyborze punktów $\xi_i$ możemy przedstawić w postaci
+    \begin{align*}
+        &S = \sum_{i=1}^{n}f(x_i)(g(x_i) - g(x_{i-1})) = f(b)g(b) - f(a)g(a) - \\
+        &\Bigg\{ g(a)(f(\xi_1) - f(a)) + \sum_{i=2}^{n}g(x_{i-1})[f(\xi_i) - f(\xi_{i-1})] + g(b)(f(b) - f(\xi_n))   \Bigg\}.
+    \end{align*}
+    Wyrażenie w nawiasach sześciennych przedstawia pewną sumę Riemanna-Stieltjesa dla całki
+    $\int_{a}^{b}gdf$, której istnienie zakładamy. Odpowiada ona podziałowi $\tilde{P} = \{a, \xi_1, \ldots, \xi_n, b\}$
+    przedziału $[a,b]$. Ponadto $\delta(\tilde{P}) \leqslant 2\delta(P)$. Jeśli $\delta(P) \to 0$ to $\delta(\tilde{P}) \to 0$, a zatem
+    istnieje również granica dla sum $S$, to jest $\int_{a}^{b}fdg$ i całka ta dana jest wzorem (\ref{eq:62}).
+\end{proof}
+
+\begin{defn}
+    Jednostkową funkcją schodkową naywamy funkcję
+    \[
+        f(x) = 
+        \begin{cases}
+            0 \text{ dla} \quad x \leqslant 0, \\
+            1 \text{ dla} \quad x > 0.
+        \end{cases}
+    \]
+\end{defn}
+
+\begin{theorem}
+{
+    Jeśli $a \leqslant x \leqslant b$, $f$ jest funkcją ograniczoną na $[a,b]$ oraz ciągłą w punkcie $s$, a $g(x) = I(x - s)$, to
+    \[
+        \int_{a}^{b}fdg = f(s).
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $P = \{x_0,\ldots, x_n \}$ będzie podziałem przedziału $[a,b]$. Niech $s$ należy na przykład do $k$-tego podprzedziału;
+    jest więc $x_{k-1} \leqslant s \leqslant x_k$. Wówczas $\Delta I_k = 1$, a przy $i \neq k$ mamy $\Delta I_i = 0$. Suma Riemanna-Stieltjesa $S$
+    sprowadza się więc do jednego składnika: $S = f(\xi_k)$. Niech teraz $\delta(P) \to 0$. Na mocy ciągłości funkcji $f$ 
+    w punkcie $s$, $f(\xi_k) \to f(s)$, czyli 
+    \[
+        \int_{a}^{b}fdg = f(s).
+    \]
+\end{proof}
+
+\begin{ex}
+    \[
+        \int_{1}^{\pi}\ln x d[x] = (\ln 2) \cdot 1 + (\ln 3) \cdot 1 = \ln 6.
+    \]
+\end{ex}
+
+\begin{theorem}
+{
+    Jeśli $f : [a.b] \mapsto \mathbb{R}$ jest funkcja R-całkowalną oraz pochodna funkcji $g : [a,b] \mapsto \mathbb{R}$ jest całkowalna w sensie Riemanna, to
+    \begin{equation}\label{eq:63}
+        \int_{a}^{b}fdg = \int_{a}^{b}fg'dx.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Na mocy twierdzeń \ref{theorem:82} i \ref{theorem:108} obydwie całki występujące we wzorze (\ref{eq:63}) istnieją.
+    Niech teraz $ P = \{x_0, \ldots, x_n\}$ będzie podziałem przedziału $[a,b]$. Na mocy Twierdzenia
+    Lagrange'a o Wartośći Średniej sumę Riemanna-Stieltjesa odpowiadającą podziałowi $P$ możemy zapisać w postaci
+    \[
+        S = \sum_{i=1}^{n}f(\xi_i)(g(x_i) - g(x_{i-1})) = \sum_{i=1}^{n}f(\xi_i)g'(\mu_i)(x_i - x_{i-1}),
+    \]
+    gdzie $x_{i-1} < \mu_i < x_i$, $i = 1, \ldots, n$. Podstawiając w powyższej równości $\xi_i = \mu_i$ oraz
+    zakładając, że $\delta(P) \to 0$ otrzymujemy wzór (\ref{eq:63}).
+\end{proof}
+
+\begin{wniosek}
+{
+    Niech $g(x) = x$ dla $x \in [a,b]$ i niech $\phi$ będzie ściśle rosnącą funkcją odwzorowującą przedział
+    $[\alpha, \beta]$ na przedział $[a,b]$ i taką, że funkcja $\phi'$ jest funkcją R-całkowalną na $[\alpha, \beta]$.
+    Wobec twierdzeń \ref{theorem:112} i \ref{theorem:115} otrzymujemy 
+    \[
+        \int_{a}^{b}f(x)dx = \int_{\alpha}^{\beta}f(\phi(y))\phi'(y)dy;
+    \]
+    powyższy wzór jest treścią twierdzenia \ref{theorem:91}, jeśli $\phi$ jest funkcją rosnącą. Dobierając $\phi(y) = \phi(-y + \alpha + \beta)$
+    możemy uzyskać tezę twierdzenia dla funkcji malejącej.
+}
+\end{wniosek}
+
+Podamy jeszcze trzy twierdzenia dotyczące całek Riemanna-Stieltjesa. Dowody tych twierdzeń można znaleźć w [2], t. III, s. 79---82.
+
+\begin{theorem}
+{
+    Jeśli $f : [a,b] \mapsto \mathbb{R}$ jest R-całkowalna, a funkcję $g : [a,b] \mapsto \mathbb{R}$ można przedstawić w postaci 
+    \[
+        g(x) = c + \int_{a}^{x}\phi(t)dt, \quad c=const, \quad x \in [a,b],
+    \]
+    TODO
+}
+\end{theorem}
+
+\begin{theorem}
+{
+    Jeśli $f : [a,b] \mapsto \mathbb{R}$ jest R-całkowalna, a funkcja $g : [a,b] \mapsto \mathbb{R}$ jest ciągła w całym przedziale
+    $[a,b]$ i ma w nim, poza conajmniej skończoną liczbą punktów pochodną $g'$ bewględnie całkowalną w $[a,b]$, to
+    \[
+        \int_{a}^{b}fdg = \int_{a}^{b}fg'dx.
+    \]
+}
+\end{theorem}
+
+\begin{theorem}
+{
+    Niech $f : [a,b] \mapsto \mathbb{R}$ będzie funkcją ciągła,a funkcja $g : [a,b] \mapsto \mathbb{R}$
+    niech ma w przedziale $[a,b]$ z pominięciem co najwyżej skończonej liczby punktów pochodną $g'$, bezwzględnie całkowalną w tym przedziale.
+    Niech ponadto funkcja $g$ ma w skończonej liczbie punktów
+    \[
+        a = c_0 < c_1 < \cdots < c_n = b
+    \]
+    nieciągłość pierwszego rodzaju. Wówczas istnieje całka Riemanna-Stieltjesa funkcji $f$ względem funkcji $g$ i wyraża się wzorem
+    \begin{align*}
+        \int_{a}^{b}fdg &= \int_{a}^{b}fg'dx + f(a)[g(a + 0) -g(a)] \\
+                        &+ \sum_{k=1}^{n-1}f(c_k)(g(c_k + 0) - g(c_k - 0)) + f(b)[g(b) - g(b - 0)].
+    \end{align*}   
+}
+\end{theorem}
 
 \end{justify}
 \end{document}
