@@ -2280,5 +2280,38 @@ Podamy jeszcze trzy twierdzenia dotyczące całek Riemanna-Stieltjesa. Dowody ty
 }
 \end{theorem}
 
+\subsection{Całka krzywoliniowa skierowana}
+
+\begin{defn}
+    Niech będzie dana krzywa $\gamma : [a,b] \mapsto \mathbb{C}$ ($\gamma(t) = (\phi(t), \psi(t)))$, $t \in [a,b]$ i niech
+    będą dane wzdłuż obrazu tej krzywej pewne funkcje $f(x,y)$, $g(x,y)$ ($f, g : \gamma([a,b]) \mapsto \mathbb{R}$). Niech
+    $P = \{t_0, \ldots, t_n\}$ będzie podziałem przedziału $[a,b]$. Tworzymy sumy
+    \[
+        \sigma = \sum_{i=1}^{n}[f(\phi(\xi_i),\psi(\xi_i))(\phi(t_i) - \phi(t_{i-1})) + g(\phi(\xi_i), \psi(\xi_i))(\psi(t_i) - \psi(t_{i-1}))],
+    \]
+    gdzie $\xi_i \in [t_{i-1}, t_i]$, $i = 1, \ldots, n$. \\
+    Jeśli dla dowolnego ciągu normalnego podziałów $(P_k)$ i dla dowolnych sum $\sigma_k$ odpowiadających podziałowi $P_k$ istnieje 
+    skończona granica $I = \lim\limits_{k \to \infty}\sigma_k$, to tę granicę nazywam całką krzywoliniową skierowaną $fdx + gdy$ po drodze 
+    $\gamma$ i oznaczamy ją symbolem
+    \[
+        \int_{\gamma}fdx + gdy.
+    \]
+\end{defn}
+
+Bezpośrednio z definicji wynika następujące
+
+\begin{theorem}
+{
+    \begin{itemize}
+        \item [(a)]
+            Niech $-\sigma(t) = (\phi(-t), \psi(-t))$, $t \in [-b,-a]$. Wówczas, jeśli istnieje całka krzywoliniowa skierowana dla 
+            $fdx + gdy$ po krzywej $\gamma$, to istnieje też całka po krzywej $-\gamma$ i oraz
+            \[
+                \int_{-\gamma}fdx + gdy = -\int_{\gamma}fdx + gdy.
+            \]
+    \end{itemize}
+}
+\end{theorem}
+
 \end{justify}
 \end{document}
