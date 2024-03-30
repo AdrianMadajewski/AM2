@@ -2056,47 +2056,6 @@ Można również udowodnić (zob. [2], t. III, s. 74---75) następujące
     zatem $\int_{-1}^{1}fdg$ nie istnieje.
 \end{ex}
 
-\noindent
-\textbf{Dodatek (sem I) Twierdzenie 131.}\label{theorem:131}
-\textit
-{
-    (Całkowe Kryterium Zbieżności Szeregów). Jeśli $f$ jest funkcją dodatnią i nierosnącą na przedziale $[1, +\infty)$ oraz
-    $f(n) = a_n$ dla $n \in \mathbb{N}$, to:
-    \begin{itemize}
-        \item [(a)]
-            szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny wtedy i tylko wtedy, gdy zbieżna jest całka niewłaściwa $I = \int_{1}^{+\infty}f(x)dx$;
-        \item [(b)]
-            ciąg $(s_n - I_n)$, gdzie $s_n = \sum_{k=1}^{n}a_k$ i $I_n = \int_{1}^{n}f(x)dx$ jest zbieżny i jego granica należy
-            do przedziału $[0, a_1]$. 
-    \end{itemize}
-}
-
-\begin{proof}
-    Dla $k \leqslant x \leqslant k + 1$ mamy $a_{k+1} \leqslant f(x) \leqslant a_k$, a więc $a_{k+1} \leqslant \int_{k}^{k+1}f(x)dx \leqslant a_k$, skąd 
-    \[
-        a_2 + \cdots + a_n \leqslant \int_{1}^{n}f(x)dx \leqslant a_1 + \cdots + a_{n-1},
-    \]
-    czyli 
-    \[
-        s_n - a_1 \leqslant I_n \leqslant s_{n-1}.
-    \]
-    Jeśli całka $I$ istnieje, to ciąg $(I_n)$ jest zbieżny, więc i ograniczony. Z powyższej nierówności wynika, że ograniczony jest również
-    ciąg $(s_n)$. Stąd na mocy Twierdzenia 127 wnioskujemy, że szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny. \\
-    Załóżmy teraz, że całka $I$ jest rozbieżna. Ponieważ ciąg $(I_n)$ jest niemalejący, więc
-    $\lim\limits_{n \to \infty}I_n = +\infty$. Wówczas również $\lim\limits_{n \to \infty}s_n = +\infty$, czyli 
-    $\sum_{n=1}^{\infty}a_n$ jest rozbieżny. \\ 
-    Ciąg $(s_n - I_n)$ jest nierosnący, bowiem
-    \[
-        (s_{n-1} - I_{n-1}) - (s_n - I_n) = (I_n - I_{n-1}) - (s_n - s_{n-1}) = \int_{n-1}^{n}f(x)dx - a_n \geqslant 0.
-    \]
-    Ponadto jest on ograniczony, bowiem
-    \[
-        0 < a_n \leqslant s_n - I_n \leqslant a_1.
-    \]
-    Wobec tego jest on ciągiem zbieżnym $\lim\limits_{n \to \infty}(s_n - I_n) \in [0, a_1]$. 
-
-\end{proof}
-
 \begin{theorem}
 {
     Niech $g : [a,b] \mapsto \mathbb{R}$ będzie funkcją rosnącą. Wówczas
@@ -2250,7 +2209,10 @@ Podamy jeszcze trzy twierdzenia dotyczące całek Riemanna-Stieltjesa. Dowody ty
     \[
         g(x) = c + \int_{a}^{x}\phi(t)dt, \quad c=const, \quad x \in [a,b],
     \]
-    TODO
+    gdzie funkcja $\phi$ jest bezwględnie całkowalna w $[a,b]$, to 
+    \[
+        \int_{a}^{b}fdg = \int_{a}^{b}f\phi dx
+    \]
 }
 \end{theorem}
 
@@ -2276,7 +2238,7 @@ Podamy jeszcze trzy twierdzenia dotyczące całek Riemanna-Stieltjesa. Dowody ty
     \begin{align*}
         \int_{a}^{b}fdg &= \int_{a}^{b}fg'dx + f(a)[g(a + 0) -g(a)] \\
                         &+ \sum_{k=1}^{n-1}f(c_k)(g(c_k + 0) - g(c_k - 0)) + f(b)[g(b) - g(b - 0)].
-    \end{align*}   
+    \end{align*}
 }
 \end{theorem}
 
@@ -2312,6 +2274,49 @@ Bezpośrednio z definicji wynika następujące
     \end{itemize}
 }
 \end{theorem}
+
+% END HERE 
+
+\noindent
+\textbf{Twierdzenie 131.}\label{theorem:131}
+\textit
+{
+    (Całkowe Kryterium Zbieżności Szeregów). Jeśli $f$ jest funkcją dodatnią i nierosnącą na przedziale $[1, +\infty)$ oraz
+    $f(n) = a_n$ dla $n \in \mathbb{N}$, to:
+    \begin{itemize}
+        \item [(a)]
+            szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny wtedy i tylko wtedy, gdy zbieżna jest całka niewłaściwa $I = \int_{1}^{+\infty}f(x)dx$;
+        \item [(b)]
+            ciąg $(s_n - I_n)$, gdzie $s_n = \sum_{k=1}^{n}a_k$ i $I_n = \int_{1}^{n}f(x)dx$ jest zbieżny i jego granica należy
+            do przedziału $[0, a_1]$. 
+    \end{itemize}
+}
+
+\begin{proof}
+    Dla $k \leqslant x \leqslant k + 1$ mamy $a_{k+1} \leqslant f(x) \leqslant a_k$, a więc $a_{k+1} \leqslant \int_{k}^{k+1}f(x)dx \leqslant a_k$, skąd 
+    \[
+        a_2 + \cdots + a_n \leqslant \int_{1}^{n}f(x)dx \leqslant a_1 + \cdots + a_{n-1},
+    \]
+    czyli 
+    \[
+        s_n - a_1 \leqslant I_n \leqslant s_{n-1}.
+    \]
+    Jeśli całka $I$ istnieje, to ciąg $(I_n)$ jest zbieżny, więc i ograniczony. Z powyższej nierówności wynika, że ograniczony jest również
+    ciąg $(s_n)$. Stąd na mocy Twierdzenia 127 wnioskujemy, że szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny. \\
+    Załóżmy teraz, że całka $I$ jest rozbieżna. Ponieważ ciąg $(I_n)$ jest niemalejący, więc
+    $\lim\limits_{n \to \infty}I_n = +\infty$. Wówczas również $\lim\limits_{n \to \infty}s_n = +\infty$, czyli 
+    $\sum_{n=1}^{\infty}a_n$ jest rozbieżny. \\ 
+    Ciąg $(s_n - I_n)$ jest nierosnący, bowiem
+    \[
+        (s_{n-1} - I_{n-1}) - (s_n - I_n) = (I_n - I_{n-1}) - (s_n - s_{n-1}) = \int_{n-1}^{n}f(x)dx - a_n \geqslant 0.
+    \]
+    Ponadto jest on ograniczony, bowiem
+    \[
+        0 < a_n \leqslant s_n - I_n \leqslant a_1.
+    \]
+    Wobec tego jest on ciągiem zbieżnym $\lim\limits_{n \to \infty}(s_n - I_n) \in [0, a_1]$. 
+
+\end{proof}
 
 \end{justify}
 \end{document}
