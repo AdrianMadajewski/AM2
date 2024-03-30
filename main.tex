@@ -1956,5 +1956,146 @@ jest ona (R-S)-całkowalna względem funkcji $g$ na $[a,b]$.
 
 Powtarzając rozumowanie z dowodu Twierdzenia \ref{theorem:81} otrzymujemy następujące.
 
+\begin{theorem}
+{
+    Niech $f$ będzie funkcją (R-S)-całkowalną względem funkcji rosnącej $g$ na przedziale $[a,b]$, $m \leqslant f(x) \leqslant M$ i niech funkcja
+    $\phi$ będzie ciągła na przedziale $[m, M]$. Wówczas funkcja $h(x) : [a,b] \mapsto \mathbb{R}$ określona wzorem $h(x) = \phi(f(x))$ dla $x \in [a,b]$
+    jest funkcją (R-S)-całkowalną względem funkcji $g$.
+}
+\end{theorem}
+
+\begin{theorem}
+    Jeśli funkcja $f : [a,b] \mapsto \mathbb{R}$ jest R-całkowalna, a funkcja $g : [a,b] \mapsto \mathbb{R}$ spełnia
+    warunek Lipschitza ze stałą $L > 0$, to funkcja $f$ jest (R-S)-całkowalna względem funkcji $g$.
+\end{theorem}
+
+\newpage
+\begin{proof}
+    Załóżmy wpierw dodatkowo, że funkcja $g$ jest rosnąca. Wówczas $\Delta g_i \leqslant \Delta x_i$, skąd
+    \[
+        U(f, g, P) - L(f, g, P) \leqslant L(U(f, P) - L(f, P)).
+    \]
+    Ponieważ funkcja $f$ jest R-całkowalna, zatem wobec Twierdzenia \ref{theorem:105} (a) funkcja $f$ jest (R-S)-całkowalna względem funkcji $g$. \\
+    Niech teraz $g$ będzie dowolną funkcją spełniającą warunek Lipschitza ze stałą $L > 0$. Przedstawmy funkcję $g$ w postaci
+    \[
+        g(x) = Lx - (Lx - g(x)) = g_1(x) - g_2(x).
+    \]
+    Funkcja $g_1(x) = Lx$, $x \in [a,b]$ spełnia oczywiście Warunek Lipschitza, a jednocześnie jest rosnąca. Te same własności ma funkcja $g_2(x) = Lx - g(x)$, $x \in [a,b]$,
+    bowiem dla $a \leqslant x < x' \leqslant b$ mamy
+    \[
+        |g_2(x')-g_2(x)| = L(x'-x) + |g(x') - g(x)| \leqslant 2L(x'-x).
+    \]
+    Stąd 
+    \[
+        U(f, g_2, P) - L(f, g_2, P) \leqslant 2L(U(f, P) - L(f, P))
+    \]
+    i dalej rozumujemy jak wyżej.
+\end{proof}
+
+Można również udowodnić (zob. [2], t. III, s. 74---75) następujące
+
+\begin{theorem}
+{
+    Jeśli funkcja $f : [a,b] \mapsto \mathbb{R}$ jest R-całkowalna, a funkcję $g : [a,b] \mapsto \mathbb{R}$ można przedstawić w następującej postaci:
+    \[
+        g(x) = c + \int_{a}^{x}\phi(t)dt,
+    \]
+    gdzie $c$ jest stałą, a $\phi$ --- funkcją bezwględnie całkowalną (w sensie Riemanna lub w sensie niewłaściwym) w przedziale $[a,b]$ (lub $[a,b)$),
+    to funkcja $f$ jest (R-S)-całkowalna względem funkcji $g$.
+}
+\end{theorem}
+
+\begin{theorem}
+{
+    Niech $f,g,g_1,g_2,f_1,f_2 : [a,b] \mapsto \mathbb{R}$ będą funkcjami ograniczonymi. Wówczas
+    \begin{itemize}
+        \item [(a)]
+            $\int_{a}^{b}dg = g(b) - g(a)$;
+        \item [(b)]
+            $\int_{a}^{b}[f_1 \pm f_2]dg = \int_{a}^{b}f_1dg \pm \int_{a}^{b}f_2dg$;
+        \item [(c)]
+            $\int_{a}^{b}fd[g_1 \pm g_2] = \int_{a}^{b}fdg_1 \pm \int_{a}^{b}fdg_2$;
+        \item [(d)]
+            $\int_{a}^{b}kfd[lg] = kl\int_{a}^{b}fdg$ ($k,l = const.)$;
+    \end{itemize}
+    (w punktach (b), (c), (d) zakładamy istnienie całek Riemanna-Stieltjesa po prawych stronach nierówności)
+    \begin{itemize}
+        \item [(e)]
+            $\int_{a}^{b}fdg = \int_{a}^{c}fdg + \int_{c}^{b}fdg$, przy założenium że $a < c < b$ oraz, że istnieje całka po lewej stronie
+            nierówności (zob. [2], t. III, s.75---76).
+    \end{itemize}
+}
+\end{theorem}
+
+\begin{ex}
+    Z istnienia całek $\int_{a}^{c}fdg$ i $\int_{c}^{b}fdg$ nie wynika na ogół istnienie całki $\int_{a}^{b}fdg$.
+    Niech w przedziale $[-1, 1]$ funkcje $g$ i $g$ będą określone następująco:
+    \[ 
+        f(x) = 
+        \begin{cases}
+            0 \text{ dla} \quad -1 \leqslant x \leqslant, 0 \\
+            1 \text{ dla} \quad 0 < x \leqslant 1,
+        \end{cases}
+    \quad 
+        g(x) = 
+        \begin{cases}
+            0 \text{ dla} \quad -1 \leqslant x < 0, \\
+            1 \text{ dla} \quad 0 \leqslant x \leqslant 1,
+        \end{cases}
+    \]
+    Można łatwo sprawdzić, że obie całki $\int_{-1}^{0}fdg$, $\int_{0}^{1}fdg$ istnieją i są równe zeru, bowiem
+    odpowiadające im sumy Riemanna-Stieltjesa są równe zeru, bowiem $f(x) = 0$ dla $x \in [-1, 0]$; druga, bowiem dla $x \in [0,1]$ funkcja
+    $g$ jest stała, czyli $\Delta g_i = 0$. Natomiast $\int_{-1}^{1}fdg$ nie istnieje. Istotnie, dokonajmy podziału przedziału
+    $[-1, 1]$ na podprzedziały tak, żeby punkt $0$ nie był punktem podziału i utwórzmy sumę
+    \[
+        S = \sum_{i=1}^{n}f(\xi_i)\Delta g_i.
+    \]
+    Jeśli punkt $0$ należy do przedziału $[x_{k-1}, x_k]$, to przy $x_{k-1} < 0 < x_k$ w sumie $S$ jest
+    różny tylko $k$-ty składnik bowiem $\Delta g_i = 0$ dla $i \neq k$. W takim razie $S = f(\xi_k)(g(x_k) - g(x_{k-1})) = f(\xi_k)$.
+    W zależności od tego czy $\xi_k \leqslant 0$ czy $\xi_k > 0$ mamy $S = 0$ lub $S = 1$, 
+    zatem $\int_{-1}^{1}fdg$ nie istnieje.
+\end{ex}
+
+\noindent
+\textbf{Dodatek (sem I) Twierdzenie 131.}\label{theorem:131}
+\textit
+{
+    (Całkowe Kryterium Zbieżności Szeregów). Jeśli $f$ jest funkcją dodatnią i nierosnącą na przedziale $[1, +\infty)$ oraz
+    $f(n) = a_n$ dla $n \in \mathbb{N}$, to:
+    \begin{itemize}
+        \item [(a)]
+            szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny wtedy i tylko wtedy, gdy zbieżna jest całka niewłaściwa $I = \int_{1}^{+\infty}f(x)dx$;
+        \item [(b)]
+            ciąg $(s_n - I_n)$, gdzie $s_n = \sum_{k=1}^{n}a_k$ i $I_n = \int_{1}^{n}f(x)dx$ jest zbieżny i jego granica należy
+            do przedziału $[0, a_1]$. 
+    \end{itemize}
+}
+
+\begin{proof}
+    Dla $k \leqslant x \leqslant k + 1$ mamy $a_{k+1} \leqslant f(x) \leqslant a_k$, a więc $a_{k+1} \leqslant \int_{k}^{k+1}f(x)dx \leqslant a_k$, skąd 
+    \[
+        a_2 + \cdots + a_n \leqslant \int_{1}^{n}f(x)dx \leqslant a_1 + \cdots + a_{n-1},
+    \]
+    czyli 
+    \[
+        s_n - a_1 \leqslant I_n \leqslant s_{n-1}.
+    \]
+    Jeśli całka $I$ istnieje, to ciąg $(I_n)$ jest zbieżny, więc i ograniczony. Z powyższej nierówności wynika, że ograniczony jest również
+    ciąg $(s_n)$. Stąd na mocy Twierdzenia 127 wnioskujemy, że szereg $\sum_{n=1}^{\infty}a_n$ jest zbieżny. \\
+    Załóżmy teraz, że całka $I$ jest rozbieżna. Ponieważ ciąg $(I_n)$ jest niemalejący, więc
+    $\lim\limits_{n \to \infty}I_n = +\infty$. Wówczas również $\lim\limits_{n \to \infty}s_n = +\infty$, czyli 
+    $\sum_{n=1}^{\infty}a_n$ jest rozbieżny. \\ 
+    Ciąg $(s_n - I_n)$ jest nierosnący, bowiem
+    \[
+        (s_{n-1} - I_{n-1}) - (s_n - I_n) = (I_n - I_{n-1}) - (s_n - s_{n-1}) = \int_{n-1}^{n}f(x)dx - a_n \geqslant 0.
+    \]
+    Ponadto jest on ograniczony, bowiem
+    \[
+        0 < a_n \leqslant s_n - I_n \leqslant a_1.
+    \]
+    Wobec tego jest on ciągiem zbieżnym $\lim\limits_{n \to \infty}(s_n - I_n) \in [0, a_1]$. 
+
+\end{proof}
+
 \end{justify}
 \end{document}
