@@ -2271,11 +2271,57 @@ Bezpośrednio z definicji wynika następujące
             \[
                 \int_{-\gamma}fdx + gdy = -\int_{\gamma}fdx + gdy.
             \]
+        \item [(b)]
+            Niech $\gamma = \gamma_1 + \gamma_2$ (to znaczy istnieje punkt $c \in [a,b]$ taki, że $\gamma(t)=\gamma_1(t)$ dla $t \in [a,c]$ oraz $\gamma_2(t)=\gamma(t)$ dla $t \in [c,b]$). Wówczas całka dla $fdx + gdy$ po krzywej $\gamma$ istnieje wtedy i tylko wtedy, gdy istnieją całki dla $fdx + gdy$ po krzywych $\gamma_1$, $\gamma_2$ przy czym
+            \[
+                \int_{\gamma}fdx + gdy = \int_{\gamma_1}fdx+gdy + \int_{\gamma_2}fdx+gdy
+            \]
     \end{itemize}
 }
 \end{theorem}
 
+Udowodnimy teraz twierdzenie o zamianie całki krzywoliniowej skierowanej na całkę Riemanna.
+
+\begin{theorem}
+{
+    Jeżeli funkcje $f, g$ są ciągłe na obrazie krzywej gładkiej $\gamma : [a,b] \mapsto \mathbb{C}$ to $\int_{\gamma}fdx + gdy$ istnieje oraz zachodzi wzór
+    \begin{equation}\label{eq:64}
+        \int_{\gamma}fdx + gdy = \int_{a}^{b}[f(\phi(t), \psi(t))\phi'(t) + g(\phi(t), \psi(t))\psi'(t)]dt.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Sumę $\sigma$ występującą w Definicji \ref{def:89} możemy zapisać w postaci
+    \[
+        \sigma = \sum_{i=1}^{n}[f(\phi(\xi_i), \psi(\xi_i))\phi'(\nu_i) + g(\phi(\xi_i), \psi(\xi_i))\psi'(\mu_i)](t_i - t_{i-1}),
+    \]
+    gdzie $\nu_i, \mu_i \in [t_{i-1}, t_i]$, bowiem do różnic $\phi(t_i) - \phi(t_{i-1})$ oraz  $\psi(t_i) - \psi(t_{i-1})$ można zastosować Twierdzenie Lagrange'a o Wartości Średniej. Całka po prawej stronie równości (\ref{eq:64}) istnieje, bowiem funkcja podcałkowa jest ciągła oraz jest granicą ciagu sum postaci
+    \[
+        \tilde{\sigma} = \sum_{i=1}^{n}[f(\phi(\xi_i), \psi(\xi_i))\phi'(\xi_i) + g(\phi(\xi_i), \psi(\xi_i))\psi'(\xi_i)](t_i - t_{i-1})
+    \]
+    (dla dowolnego ciągu normalnego podziałów ($P_k)$). Wystarczy zatem wykazać, że sumy $\sigma$ i $\tilde{\sigma}$ różnią się o dowolnie mało, jeśli średnica podziału jest dostatecznie mała, lub, że różnice $|\phi'(\nu_i) - \phi'(\xi_i)|$, $|\psi'(\mu_i) - \psi'(\xi_i)|$ są dowolne małe. To zaś wynika z jednostajnej ciągłości pochodnych $\phi'$, $\psi'$ w przedziale $[a,b]$. 
+\end{proof}
+
+\begin{ex}
+    Korzystając ze wzoru \ref{eq:64} obliczmy wartość całki krzywoliniowej $H = \int_{L}2xydx + x^2dy$ wziętej po drodze $L$ łączącej punkty $O(0,0)$ i $A(1,1)$ jeśli droga $L$ jest: 
+    \begin{itemize}
+        \item [(a)]
+            prostą $y = x$ ($\gamma(x) = (x,x)$, $x \in [0,1]$)
+            \[
+                \int_{L}2xydx + x^2dy = \int_{0}^{1}3x^2dx = 1,
+            \]
+        \item [(b)]
+            parabolą $y = x^2$ ($\sigma(x)=(x, x^2)$, $x \in [0,1]$)
+            \[
+                \int_{L}2xydx + x^2dy = \int_{0}^{1}4x^3dx = 1.
+            \]
+    \end{itemize}
+\end{ex}
+
 % END HERE 
+
+\newpage
 
 \noindent
 \textbf{Twierdzenie 131.}\label{theorem:131}
@@ -2317,6 +2363,86 @@ Bezpośrednio z definicji wynika następujące
     Wobec tego jest on ciągiem zbieżnym $\lim\limits_{n \to \infty}(s_n - I_n) \in [0, a_1]$. 
 
 \end{proof}
+
+\newpage
+
+\setcounter{section}{9}
+\setcounter{defcounter}{97}
+\setcounter{equation}{72}
+\setcounter{uwagacounter}{56}
+\setcounter{excounter}{40}
+
+% Ciągi i szeregi funkcyjne
+
+\section{Ciągi i szeregi funkcyjne}
+\subsection{Zbieżność punktowa i jednostajna}
+
+\begin{defn}
+    Niech $(f_n)$, $n \in \mathbb{N}$, będzie ciągiem funkcji o wartościach rzeczywistych
+    lub zespolonych, określonych na zbiorze $E \subset \mathbb{R}$ (lub $E \subset \mathbb
+    {C}$). Jeśli ciąg liczb $(f_n(x))$ jest zbieżny dla każdego $x \in E$, to mówimy że
+    ciąg $(f_n)$ jest zbieżny lub zbieżny punktowo na zbiorze $E$ do funkcji $f$, gdzie
+    \[
+        f(x) = \lim\limits_{n \to \infty}f_n(x) \quad (x \in E).
+    \]
+
+    Analogicznie, jeśli ciąg $(s_n)$ sum częsciowych szeregu 
+    $\sum\limits_{n=1}^{\infty}f_n$ ($s_n = \sum\limits_{k=1}^{n}f_k$, $k \in \mathbb{N}$)
+    jest punktowo zbieżny na zbiorze $E$ do funkcji 
+    $s$ ($s(x) = \lim\limits_{n \to \infty} s_n(x)$, $x \in E$), to mówimy, że szereg
+    $\sum\limits_{n=1}^{\infty}f_n$ jest punktowo zbieżny na zbiorze $E$ do funkcji $s$.
+    Funkcję $s$ nazywamy wówczas sumą szeregu $\sum\limits_{n=1}^{\infty}f_n$ i piszemy
+    \[
+        s(x) = \sum\limits_{n=1}^{\infty}f_n(x) \quad (x \in E).
+    \]
+\end{defn}
+
+\begin{defn}
+    Mówimy, że ciąg funkcji $(f_n)$, $n \in \mathbb{N}$, jest zbieżny jednostajnie na
+    zbiorze $E$ do funkcji $f$, jeżeli dla dowolnego $\varepsilon > 0$ istnieje takie $N
+    \in \mathbb{N}$, że dla $n \geqslant N$ zachodzi
+    \begin{equation}\label{eq:73}
+        |f_n(x) - f(x)| < \varepsilon, \quad \text{dla każdego } x \in E.
+    \end{equation}
+
+    Analogicznie, jeśli ciąg $(s_n)$ sum częsciowych szeregu $\sum\limits_{n=1}^{\infty}$
+    jest zbieżny jednostajnie na zbiorze $E$ do funkcji $s$ to mówimy, że szereg
+    $\sum\limits_{n=1}^{\infty}$ jest zbieżny jednostajnie na zbiorze $E$ do funkcji $s$. 
+\end{defn}
+
+\begin{uwaga}
+    Jest oczywiste, że każdy ciąg zbieżny jednostajnie jest także zbieżny punktowo;
+    odwortnie zachodzic nie musi (zob. Przykład \ref{ex:45} (b)). \\
+    Róznica między zbieżnością punktową, a jednostajną polega na tym, że w pierwszym
+    przypadku dla dowolnego $\varepsilon > 0$ i dowolnego ustalonego $x \in E$ można dobrać
+    takie $N$ (które zależy i od $\varepsilon$ i od $x$), że dla $n \geqslant N$ będzie
+    spełniona nierówność (\ref{eq:73}); jeżeli ciąg $(f_n)$ jest zbieżny jednostajnie, to
+    przy każdym $\varepsilon > 0$ można dobrać jedną wspólną dla wszystkich punktów $x \in
+    E$ liczbę $N$.
+\end{uwaga}
+
+\newpage 
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)] 
+            Niech $f_n(x) = \frac{x}{1+n^2x^2}$, $x \in \mathbb{R}$. \\
+            Wówczas $\lim\limits_{n \to \infty}f_n(x) = 0$ dla każdego $x \in \mathbb{R}$. \\
+            Dalej, ponieważ
+            \[
+                {(1-nx)}^2 \geqslant 0 \quad \text{oraz} \quad {(1 + nx)}^2 \geqslant 0
+            \]
+            zatem
+            \[
+                \frac{2nx}{1+n^2x^2 \leqslant 1 }\quad \text{oraz} \frac{2nx}{1+n^2x^2} \geqslant -1.
+            \]
+            Stąd
+            \[
+                -\frac{1}{2n} \leqslant f_n(x) = \frac{1}{2n}\frac{2nx}{1+n^2x^2} \leqslant \frac{1}{2n},
+            \]
+            zatem, aby nierówność $|f_n(x)| \leqslant \varepsilon$ była spełniona dla wszystkich $x$ wystarczy przyjąć $n > \frac{1}{2\varepsilon}$. Tak, więc liczba $N = [\frac{1}{2\varepsilon}] + 1$ nadaje się dla wszystkich $x$ jednocześnie.
+    \end{itemize}
+\end{ex}
 
 \end{justify}
 \end{document}
