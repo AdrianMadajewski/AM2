@@ -2371,6 +2371,8 @@ Udowodnimy teraz twierdzenie o zamianie całki krzywoliniowej skierowanej na ca�
 \setcounter{equation}{72}
 \setcounter{uwagacounter}{56}
 \setcounter{excounter}{40}
+\setcounter{thcounter}{143}
+\setcounter{wniosekcounter}{29}
 
 % Ciągi i szeregi funkcyjne
 
@@ -2443,8 +2445,348 @@ Udowodnimy teraz twierdzenie o zamianie całki krzywoliniowej skierowanej na ca�
             zatem, aby nierówność $|f_n(x)| \leqslant \varepsilon$ była spełniona dla
             wszystkich $x$ wystarczy przyjąć $n > \frac{1}{2\varepsilon}$. Tak, więc liczba
             $N = [\frac{1}{2\varepsilon}] + 1$ nadaje się dla wszystkich $x$ jednocześnie.
-    \end{itemize}
+        \item [(b)]
+            Niech $f_n(x) = n^2{(1-x^2)}^n$, $x \in [0,1]$, $n \in \mathbb{N}$. \\
+            Jeśli $0 < x \leqslant 1$, to $\lim\limits_{n \to \infty} f_n(x) = 0$, na mocy Twierdzenia 34 (c). \\
+            Ponieważ $f_n(0) = 0$ dla dowolnego $n \in \mathbb{N}$, zatem $\lim\limits_{n \to \infty}f_n(x) = 0$ dla $x \in [0,1]$. \\
+            Ponieważ $f_n(\frac{1}{n})=n^2\frac{1}{n}{(1-(\frac{1}{n})^2)}^n = n\frac{{(n+1)}^n}{n^n}\frac{{(n-1)}^n}{n^n}$, a więc nie możemy osiągnąc tego, by
+            $|f_n(x)| < 1$ dla każdego $x \in [0,1]$ i prawie wszystkich $n$. 
+        \end{itemize}
 \end{ex}
+
+Następujące twierdzenie jest przeniesiem kryterium Cauchy'ego na przypadek zbieżnośći jednostajnej.
+
+\begin{theorem}
+{
+    Ciąg funkcji $(f_n)$ określonych na zbiorze $E$, jest na tym zbiorze jednostajnie zbieżny wtedy i tylko wtedy, gdy
+    dla dowolnego $\varepsilon > 0$ istnieje liczba naturalna $N$ taka, że przy $m, n \geqslant N$, $x \in E$ mamy
+    \begin{equation}\label{eq:74}
+        |f_n(x) - f_m(x)| < \varepsilon.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Niech ciąg $(f_n)$ będzie zbieżny jednostajnie na zbiorze $E$ do funkcji $f$. Istnieje wtedy liczba
+    naturalna $N$, taka, że jeżeli $n \geqslant N$ i $x \in E$, to zachodzi nierówność
+    \[
+        |f_n(x) - f(x)| < \frac{\varepsilon}{2}.
+    \]
+    Wtedy
+    \[
+        |f_n(x) - f_m(x)| \leqslant |f_n(x) - f(x)| + |f(x) - f_m(x)| < \varepsilon
+    \]
+    jeżeli $n,m \geqslant N$, $x \in E$. \\
+    Na odwrót, niech będzie spełniony warunek Cauchy'ego. Na mocy Twierdzenia 33 ciąg $(f_n(x))$ jest przy
+    każdym $x$ zbieżny do granicy, którą oznaczmy przez $f(x)$. Pokażemy, że w tym przypadku zbieżność jest jednostajna. \\
+    Niech będzie dana liczba $\varepsilon > 0$. Niech $N \in \mathbb{N}$ będzie takie, aby spełniona
+    była nierówność (\ref{eq:74}). Ustalmy $n$ i przejdźmy w nierówności (\ref{eq:74}) z $m$ do granicy ($m \to \infty)$.
+    Ponieważ $f_m(x) \to f(x)$ przy $m \to \infty$, zatem
+    \[
+        |f_n(x) - f(x)| < \varepsilon
+    \]
+    dla dowolnego $n > N$ i dowolnego $x \in E$. Dowód jest zakończony.
+\end{proof}
+
+Następujące kryterium jest bezpośrednią konsekwencją Definicji \ref{def:99}.
+
+\begin{theorem}
+{
+    Niech $\lim\limits_{n \to \infty}f_n(x) = f(x)$ dla $x \in E$. Określmy $M_n = \sup\limits_{x \in E}|f_n(x) - f(x)|$.
+    Wówczas $f_n \to f(x)$ jednostajnie na $E$ wtedy i tylko wtedy, gdy $M_n \to 0$ przy $n \to \infty$.
+}
+\end{theorem}
+
+Podamy teraz wygodnie kryterium zbieżności jednostajnej szeregów funkcyjnych pochodzące od Weierstrassa.
+
+\begin{theorem}
+{
+    (Twierdzenie o Majorancie). Niech $(f_n)$ będzie ciągiem funkcyjnym określonym na zbiorze $E$ i niech
+    \[
+        |f_n(x)| \leqslant M \quad (x \in E, n \in \mathbb{N}).
+    \]
+    Wtedy szereg $\sum\limits_{n=1}^{\infty}f_n$ jest zbieżny jednostajnie na $E$, jeśli zbieżny jest 
+    szereg liczbowy $\sum\limits_{n=1}^{\infty}M_n$.
+}
+\end{theorem}
+
+\begin{proof}
+    Jeżeli $\sum\limits_{n=1}^{\infty}M_n$ jest zbieżny to przy dowolnym $\varepsilon > 0$
+    \[
+        \Bigg|\sum\limits_{i=n}^{m}f_i(x)\Bigg| \leqslant \sum\limits_{i=n}^{m}M_i < \varepsilon \quad (x \in E),
+    \]
+    jeżeli tylko $m$ i $n$ są dostatecznie duże (zob. Tw. 121). Wobec Twierdzenia \ref{theorem:144} wnosimy, 
+    więc, że szereg funkcyjny $\sum\limits_{n=1}^{\infty}f_n$ jest zbieżny jednostajnie.
+\end{proof}
+
+\begin{uwaga}
+    Jest jasne, że jeżeli do danego szeregu funkcyjnego można zastosować Kryterium Weierstrassa, to szereg ten
+    jest zbieżny bezwględnie. Możliwe są jednak przypadki gdy dany szereg jest zbieżny jednostajnie, nie będąc zbieżnym bezwględnie.
+    (np. $\sum\limits_{n=1}^{\infty}\frac{(-1)^{n-1}}{x^2+n}$ ([2], t. II, przykład 7/367)). Możliwe są również przypadki gdy szereg
+    funkcyjny $\sum\limits_{n=1}^{\infty}f_n$ jest zbieżny bezwględnie i jednostajnie, a szereg $\sum\limits_{n=1}^{\infty}|f_n|$ jest zbieżny
+    niejednostajnie (np. $\sum\limits_{n=1}^{\infty}\frac{x^2(-1)^{n-1}}{{(1+x^2)}^n}$ ([2], t. II. przykład. 8 s. 367)).
+\end{uwaga}
+
+Rozumiejąc analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące kryterium zbieżności jednostajnej szeregów funkcyjnych zwane
+\textbf{Kryterium Dirichleta}.
+
+\begin{theorem}
+{
+    Niech sumy częsciowe $s_n$ szeregu funkcyjnego $\sum\limits_{n=1}^{\infty}f_n$ będą wspólnie ograniczone dla dowolnych $x$ i $n$: 
+    $|s_n(x)| \leqslant M$, a funkcje $g_n(x)$ (dla każdego $x$) tworzą ciąg monotoniczny zbieżny do $0$ jednostajnie na zbiorze $E$.
+    Wówczas szereg funkcyjny $\sum\limits_{n=1}^{\infty}f_n g_n$ jest także zbieżny jednostajnie w tym zbiorze.
+}
+\end{theorem}
+
+\begin{theorem}
+{
+    (Kryterium Abela). Niech szereg funkcyjny $\sum\limits_{n=1}^{\infty}f_n$
+    będzie zbieżny jednostajnie na zbiorze $E$ i niech funkcje $g_n(x)$ tworzą (dla każdego $x$) ciąg monotoniczny
+    i są wspólnie ograniczone dla dowolnych $x$ i $n$: $|g_n(x)| \leqslant K$. Wówczas szereg
+    funkcyjny $\sum\limits_{n=1}^{\infty} f_n g_n$ jest zbieżny jednostajnie w zbiorze $E$.
+}
+\end{theorem}
+
+\begin{proof}
+    Z uwagi na jednostajną zbieżność szeregu funkcyjnego $\sum\limits_{n=1}^{\infty}f_n$ znajdziemy wskaźnik $N$, niezależny od $x$ taki, że dla $N \leqslant p \leqslant q$ mamy
+    \[
+        \Bigg|\sum_{n=p}^{q}f_n(x)\Bigg| < \frac{\varepsilon}{3^k}.
+    \]
+    Wówczas dla $N \leqslant p \leqslant q$, stosując przekstałcenie Abela (Lemat \ref{lemat:3}, w miejsce $A_n$ wstawiamy $s_{p,n} = f_p + f_{p+1} + \cdots + f_n$; $s_{p,{p-1}} = 0$) mamy
+    \begin{align*}
+        \Bigg|\sum_{n=p}^{\infty}f_n(x)g_n(x)\Bigg| &= \Bigg|\sum_{n=p}^{q-1}s_{p,n}(x)(g_n(x) - g_{n+1}(x)) + s_{p, q}(x)g_q(x) - s_{p, p-1}(x)g_p(x) \Bigg| \\
+                                                    &< |g_p(x)|\frac{\varepsilon}{3^k} + \frac{\varepsilon}{3^k}(|g_p(x) + g_q(x)|) \leqslant \varepsilon
+    \end{align*}
+    dla każdego $x \in E$. Wobec Twierdzenia \ref{theorem:144} dowód jest zakończony.
+\end{proof}
+
+\noindent
+\textbf{Lemat 3.}\label{lemat:3}
+Niech $a_m, a_{m+1}, \ldots, a_n$ i $b_m, b_{m+1}, \ldots, b_n$ będą liczbami rzeczywistymi, $m \leqslant n$. Oznaczmy
+\[
+    s_{m,k} = b_m + b_{m+1} + \cdots + b_k \quad \text{ dla } \quad k = m, m+1, \ldots, n, \quad s_{m,{m-1}} = 0. 
+\]
+Wówczas
+\[
+    \sum_{k=m}^{n}a_k b_k = a_n s_{m,n} + \sum_{k=m}^{n-1}(a_k - a_{k+1})s_{m, k}
+\]
+(zob. [6], s.65-66).
+
+\newpage
+\subsection{Zbieżność jednostajna a ciągłość, różniczkowalność i całkowalność}
+
+Powstaje naturalne pytanie, czy przy założeniu, że funkcje $f_n$ określone na zbiorze $E$ są
+ciągłe lub różniczkowalne, lub całkowalne w sensie Riemanna, to analogiczną własność będzie miała funkcja graniczna?.
+Jaki związek zachodzi na przykład pomiędzy $f_n' i f'$ lub pomiędzy całkami Riemanna z $f_n$ a całką Riemanna z $f$? \\
+Pytanie czy granica ciągu funkcyjnego jest funkcją ciągłą jest pytaniem czy zachodzi równość 
+\[
+    \lim\limits_{t \to x} \lim\limits_{n \to \infty}f_n(t) = \lim\limits_{n \to \infty}\lim\limits_{t \to x}f_n(t) = \lim\limits_{n \to \infty}f_n(x) 
+    \quad \text{(z ciągłośći } f_n; \quad (t, x \in E) \text{)},
+\] 
+tj. czy istotna jest kolejnośc, w jakiej dokunuje się przejść granicznych.
+
+\begin{ex}
+    Niech $f_n(x) = \frac{x^2}{{(1+x^2)}^n}$, $x \in \mathbb{R}$, $n \in \mathbb{N}$ i niech
+    $f(x) = \sum\limits_{n=0}^{\infty}f_n(x) = \sum\limits_{n=0}^{\infty}\frac{x^2}{{(1+x^2)}^n}$.
+    Ponieważ $f_n(0) = 0$, więc i $f(0) = 0$. Suma rozważanego szeregu jako szeregu geometrycznego jest równa $1 + x^2$ dla $x \neq 0$. \\
+    Zatem $f(x) = \begin{cases} 0 & \text{dla } x = 0 \\ 1 + x^2 & \text{dla } x \neq 0 \end{cases}$, a
+    więc szereg, którego wyrazami są funkcję ciągłe, może mieć sumę nieciągłą.
+\end{ex}
+
+\begin{theorem}
+{
+    Niech $f_n \to f$ jednostajnie na zbiorze $E$ (zawartym w $\mathbb{R}$ lub $\mathbb{C}$).
+    Niech $x$ będzie punktem skupienia zbioru $E$ i niech 
+    \[
+        \lim\limits_{t \to x}f_n(t) = A_n \quad (n \in \mathbb{N}).
+    \]
+    Wówczas ciąg $(A_n)$ jest zbieżny i $\lim\limits_{t \to x}f(t) = \lim\limits_{n \to \infty}A_n$ \\ 
+    (tj. $\lim\limits_{t \to x} \lim\limits_{n \to \infty}f_n(t) = \lim\limits_{n \to \infty}\lim\limits_{t \to x}f_n(t)$).
+}
+\end{theorem}
+
+\begin{proof}
+    Niech będzie dana liczba $\varepsilon > 0$. Ponieważ ciąg $(f_n)$ jest zbieżny jednostajnie, więc istnieje
+    takie $N$, że jeżeli $m,n \geqslant N$, $t \in E$ to zachodzi nierówność 
+    \[
+        |f_n(t) - f_m(t)| < \varepsilon.
+    \]
+    Przechodząc w ostatniej nierówności do granicy z $t$ ($t \to x$), otrzymujemy \\
+    $|A_n - A_m| \leqslant \varepsilon$ dla $m, n \geqslant N$. Stąd wynika, że ciąg $(A_n)$ jest ciągiem Cauchy'ego, a zatem ma granicę. 
+    Oznaczmy tę granicę przez $A$. Wówczas mamy
+    \begin{equation}\label{eq:75}
+        |f(t) - A| \leqslant |f(t) - f_n(t)| + |f_n(t) - A_n| + |A_n + A|.
+    \end{equation}
+    Wybierzmy $n$ tak duże, żeby nierówność 
+    \begin{equation}\label{eq:76}
+        |f(t) - f_n(t)| < \frac{\varepsilon}{3}
+    \end{equation}
+    była spełniona dla każdego $t \in E$ (jest to możliwe dzięki jednostajnej zbieżności ciągu $(f_n)$) i żeby
+    \begin{equation}\label{eq:77}
+        |A_n - A| < \frac{\varepsilon}{3}.
+    \end{equation}
+    Następnie dla tego $n$ weźmy takie otoczenie $V$ punktu $x$, aby dla $t \in V \cap E$, $t \neq x$ zachodziło
+    \begin{equation}\label{eq:78}
+        |f_n(t) - A_n| < \frac{\varepsilon}{3}.
+    \end{equation} 
+    Podstawijać zależności (\ref{eq:76}), (\ref{eq:77}), (\ref{eq:78}) do nierówności (\ref{eq:75}) otrzymujemy
+    \[
+        |f(t) - A| < \varepsilon \text{ dla } t \in V \cap E, \quad t \neq x.
+    \]
+    Stąd $\lim\limits_{t \to x}f(t) = \lim\limits_{n \to \infty}A_n$. 
+\end{proof}
+
+\begin{theorem}
+{
+    Jeżeli $(f_n)$ jest ciągiem funkcji ciągłych na zbiorze $E$ i jeżeli $f_n \to f$ jednostajnie na $E$, to funkcja $f$ jest ciągła na zbiorze $E$.
+}
+\end{theorem}
+
+\begin{proof}
+    Jest to bezpośrednia konsekwencja Twierdzenia \ref{theorem:149}.
+\end{proof}
+
+\begin{uwaga}
+    Twierdzenie odwrotne do Twierdzenia \ref{theorem:150} nie jest prawdziwe, to znaczy ciąg funkcji 
+    ciągłych może być niejednostajnie zbieżny do funkcji ciągłej (zob. Przykład \ref{eq:41} (b)). 
+\end{uwaga}
+
+\begin{wniosek}
+{
+    Jeżeli $(f_n)$ jest ciągiem funkcji ciągłych na zbiorze $E$ i jeżeli ciąg $(f_n)$ jest 
+    zbieżny jednostajnie na zbiorze $E$, to jego suma $s(x) = \sum\limits_{n=1}^{\infty}f_n(x)$, $x \in E$ jest funkcją
+    ciągłą na tym zbiorze. 
+}
+\end{wniosek}
+
+\begin{ex}
+    Roważmy ponownie funkcje z przykładu \ref{ex:41} (b). Mamy $\int\limits_{0}^{1}f_n(x)dx =
+    n^2 \int\limits_{0}^{1}x{(1-x^2)}^n dx = n^2 \int\limits_{0}^{1}\frac{t^n}{2}dt = \frac{n^2 t^{n+1}}{2(n+1)} \Big|_0^1 =
+    \frac{n^2}{2n+2}$ ($1 - x^2 = t$). Wobec tego $\lim\limits_{n \to \infty} \int\limits_{0}^{1}f_n(x)dx = 
+    \lim\limits_{n \to \infty}\frac{n^2}{2n+2} = + \infty$, natomiast $\int\limits_{0}^{1}\lim\limits_{n \to \infty}f_n(x)dx = 0$.
+\end{ex}
+
+\begin{theorem}
+{
+    Jeżeli $(f_n)$ jest ciągiem funkcji R-całkowalnych na przedziale $[a,b]$ oraz $f_n \to f$ jednostajnie na $[a,b]$, to $f$ jest funkcją
+    R-całkowalną na $[a,b]$ oraz
+    \[
+        \int\limits_{a}^{b}fdx = \lim_{n \to \infty}\int\limits_{a}^{b}f_n dx.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Wystarczy udowodnić twierdzenie dla funkcji $f_n$ o wartościach rzeczywistych (analogicznie dla zespolonych). \\
+    Niech 
+    \[
+        \varepsilon_n = \sup\limits_{x \in [a,b]}|f_n(x) - f(x)|.
+    \]
+    Wówczas $f_n(x) - \varepsilon_n \leqslant f(x) \leqslant f_n(x) + \varepsilon_n$ dla $x \in [a,b]$, zatem wobec
+    Definicji \ref{def:71} oraz Twierdzenia \ref{theorem:77} mamy
+    \begin{equation}\label{eq:79}
+        \int\limits_{a}^{b}(f_n - \varepsilon_n)dx \leqslant \underline{\int\limits_{a}^{b}fdx} \leqslant \overline{\int\limits_{a}^{b}fdx} \leqslant \int\limits_{a}^{b}(f_n + \varepsilon_n)dx/
+    \end{equation}
+    Stąd $0 \leqslant \overline{\int\limits_{a}^{b}fdx} - \underline{\int\limits_{a}^{b}fdx} \leqslant 2\varepsilon_n(b-a)$.
+    Ponieważ na mocy Twierdzenia \ref{theorem:145}, $\varepsilon_n \to 0$ przy $n \to \infty$, a więc całki górna i dolna funkcji $f$ są równe.
+    Wobec tego funkcja $f$ jest R-całkowalna na $[a,b]$. Przekształcając (\ref{eq:79}) inaczej otzymujemy
+    \[
+        \Bigg|\int\limits_{a}^{b}fdx -  \int\limits_{a}^{b}f_n dx \Bigg| \leqslant \varepsilon_n(b-a).
+    \]
+    więc $\lim\limits_{n \to \infty}\int\limits_{a}^{b}f_n dx = \int\limits_{a}^{b}fdx$.
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeżeli funkcje $f_n$ są R-całkowalne na przedziale $[a,b]$ i szereg $\sum\limits_{n=1}^{\infty}f_n$ jest jednostajnie zbieżny 
+    na $[a,b]$, to
+    \[
+        \int\limits_{a}^{b}sdx = \sum\limits_{n=1}^{\infty}\int\limits_{a}^{b}f_n dx, \text{ gdzie } s(x) = \sum\limits_{n=1}^{\infty}f_n(x) \text{ dla } x \in [a,b].
+    \]
+}
+\end{wniosek}
+
+Inaczej mówiąc jednostajnie zbieżny szereg funkcyjny można całkować wyraz po wyrazie. 
+
+\begin{ex}
+    Niech $f_n(x) = \frac{\sin(nx)}{\sqrt{n}}$ ($x \in \mathbb{R}, n \in \mathbb{N}$). Wówczas 
+    $f(x) = \lim\limits_{n \to \infty}f_n(x) = 0$, czyli $f'(x) = 0$ dla $x \in \mathbb{R}$. Z
+    drugiej strony $f'_n(x) = \sqrt{n}\cos(nx)$, więc $(f'_n)$ nie jest zbieżny do $f'$. Na przykład
+    $f'_n(0) = \sqrt{n} \to + \infty$ przy $n \to \infty$, podczas gdy $f'(0) = 0$. Zbieżność jednostajna ciągu $(f_n)$ nie pociąga
+    za soba zbieżności punktowej ciągu $(f'n)$.
+\end{ex}
+
+\begin{theorem}
+{
+    Niech $(f_n)$ będzie ciągiem funkcji różniczkowalnych na $[a,b]$ takim, że ciąg $f_n(x_0)$ jest zbieżny 
+    dla pewnego punktu $x_0 \in [a,b]$. Jeżeli ciąg $(f'_n)$ jest zbieżny jednostajnie na $[a,b]$, to także
+    ciąg $(f_n)$ jest zbieżny jednostajnie do pewnej funkcji $f$ i zachodzi równość 
+    \[
+        f'(x) = \lim\limits_{n \to \infty}f'_n(x). \quad x \in [a,b].
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Niech będzie dana liczba $\varepsilon > 0$. Niech $N \in \mathbb{N}$ bedzie takie, aby dla $n,m \in \mathbb{N}$ zachodziło
+    \begin{equation}\label{eq:80}
+        |f_n(x_0) - f_m(x_0)| < \frac{\varepsilon}{2}
+    \end{equation}
+    oraz 
+    \begin{equation}\label{eq:81}
+        |f'_n(t) - f'_m(t)| < \frac{\varepsilon}{2(b-a)} \quad (a \leqslant t \leqslant b).
+    \end{equation}
+    Jeżeli do funkcji $f_n - f_m$ zastosujemy Twierdzenie 73 o Wartości Średniej, to dzięki (\ref{eq:81}) mamy
+    \begin{equation}\label{eq:82}
+        |f_n(x) - f_m(x) - f_n(t) + f_m(t)| \leqslant \frac{|x-t|\varepsilon}{2(b-a)} \leqslant \frac{\varepsilon}{2}
+    \end{equation}
+    dla dowolnych wartośći $x$ i $t$ z przedziału $[a,b]$ oraz $n,m \geqslant N$. Z nierówności
+    \[
+        |f_n(x) - f_m(x)| \leqslant |f_n(x) - f_m(x) - f_n(x_0) + f_m(x_0)| + |f_n(x_0) - f_m(x_0)|
+    \]
+    wynika, na mocy (\ref{eq:80}) i (\ref{eq:82}), że 
+    \[
+        |f_n(x) - f_m(x)| < \varepsilon \quad (a \leqslant x \leqslant b, \quad n,m \geqslant N)
+    \]
+    i wobec tego ciąg $(f_n)$ jest zbieżny jednostajnie na $[a,b]$. Niech 
+    \[
+        f(x) = \lim\limits_{n \to \infty}f_n(x) \quad (a \leqslant x \leqslant b).
+    \]
+    Ustalmy punkt $x$ z przedziau $[a,b]$ i określmy 
+    \begin{equation}\label{eq:83}
+        \phi_n(t) = \frac{f_n(t) - f_n(x)}{t-x}, \quad \phi(t) = \frac{f(t) - f(x)}{t-x} \text{ dla } t \in [a,b], \quad t \neq x.
+    \end{equation}
+    Wtedy
+    \begin{equation}\label{eq:84}
+        \lim\limits_{t \to x}\phi_n(t) = f_n'(x) \quad (n \in \mathbb{N})
+    \end{equation}
+    Z pierwszej nierówności (\ref{eq:82}) wynika, że 
+    \begin{equation*}
+        |\phi_n(t) - \phi_m(t)| \leqslant \frac{\varepsilon}{2(b-a)} \quad (n,m \geqslant N)
+    \end{equation*}
+    i wobec tego ciąg $(\phi_n)$ jest jednostajnie zbieżny przy $t \neq x$. Ponieważ $(f_n)$ jest zbieżny do $f$, zachodzi 
+    \begin{equation}\label{eq:85}
+        \lim\limits_{n \to \infty}\phi_n(t) = \phi(t)
+    \end{equation}
+    jednostajnie na zbiorze tych $t$, że $a \leqslant t \leqslant b$, $t \leqslant x$. Stosując do ciągu $(\phi_n)$
+    Twierdzenie \ref{theorem:149} wnioskujemy, że na podstawie (\ref{eq:84}) i (\ref{eq:85}), że 
+    \[
+        \lim\limits_{t \to x} \lim\limits_{n \to \infty}\phi_n(t) = \lim\limits_{n \to \infty}\lim\limits_{t \to x}\phi_n(t) = \lim\limits_{n \to \infty}f'_n(x), 
+    \]
+    a zatem $f(x) = \lim\limits_{n \to \infty}f'_n(x)$.
+\end{proof}
+
+\begin{wniosek}
+{
+    Niech $(f_n)$ będzie ciągiem funkcji rózniczkowalnych na $[a,b]$ takim, że szereg 
+    $\sum\limits_{n=1}^{\infty}f_n(x_0)$ jest zbieżny dla pewnego punktu $x_0 \in [a,b]$. Jeżeli
+    szereg $\sum\limits_{n=1}^{\infty}f'_n$ jest zbieżny jednostajnie na $[a,b]$, to także szereg 
+    $\sum\limits_{n=1}^{\infty}f_n$ jest zbieżny jednostajnie na $[a,b]$ oraz
+    \[
+        \Bigg( \sum\limits_{n=1}^{\infty}f_n(x)\Bigg)' = \sum\limits_{n=1}^{\infty}f'_n(x), \quad x \in [a,b]. 
+    \]
+}
+\end{wniosek}
 
 \end{justify}
 \end{document}
