@@ -2552,7 +2552,7 @@ Rozumiejąc analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące
     \[
         \Bigg|\sum_{n=p}^{q}f_n(x)\Bigg| < \frac{\varepsilon}{3^k}.
     \]
-    Wówczas dla $N \leqslant p \leqslant q$, stosując przekstałcenie Abela (Lemat \ref{lemat:3}, w miejsce $A_n$ wstawiamy $s_{p,n} = f_p + f_{p+1} + \cdots + f_n$; $s_{p,{p-1}} = 0$) mamy
+    Wówczas dla $N \leqslant p \leqslant q$, stosując przekstałcenie Abela (Lemat 3, w miejsce $A_n$ wstawiamy $s_{p,n} = f_p + f_{p+1} + \cdots + f_n$; $s_{p,{p-1}} = 0$) mamy
     \begin{align*}
         \Bigg|\sum_{n=p}^{\infty}f_n(x)g_n(x)\Bigg| &= \Bigg|\sum_{n=p}^{q-1}s_{p,n}(x)(g_n(x) - g_{n+1}(x)) + s_{p, q}(x)g_q(x) - s_{p, p-1}(x)g_p(x) \Bigg| \\
                                                     &< |g_p(x)|\frac{\varepsilon}{3^k} + \frac{\varepsilon}{3^k}(|g_p(x) + g_q(x)|) \leqslant \varepsilon
@@ -2561,11 +2561,11 @@ Rozumiejąc analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące
 \end{proof}
 
 \noindent
-\textbf{Lemat 3.}\label{lemat:3}
+\textbf{Lemat 3.}
 Niech $a_m, a_{m+1}, \ldots, a_n$ i $b_m, b_{m+1}, \ldots, b_n$ będą liczbami rzeczywistymi, $m \leqslant n$. Oznaczmy
-\[
+\begin{equation*}
     s_{m,k} = b_m + b_{m+1} + \cdots + b_k \quad \text{ dla } \quad k = m, m+1, \ldots, n, \quad s_{m,{m-1}} = 0. 
-\]
+\end{equation*}
 Wówczas
 \[
     \sum_{k=m}^{n}a_k b_k = a_n s_{m,n} + \sum_{k=m}^{n-1}(a_k - a_{k+1})s_{m, k}
@@ -2787,6 +2787,144 @@ Inaczej mówiąc jednostajnie zbieżny szereg funkcyjny można całkować wyraz 
     \]
 }
 \end{wniosek}
+
+\begin{theorem}
+{
+    Istnieje funkcja rzeczywista określona na prostej rzeczywistej, która jest ciągła, lecz w żadnym punkcie nie posiada pochodnej.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $\phi(x) = |x|$ dla $-1 \leqslant x \leqslant 1$ i rozszerzmy $\phi$ na zbiór wszystkich liczb rzeczywistych
+    kładąc $\phi(x+2) = \phi(x)$. Wtedy dla dowolnych $s$ i $t$
+    \begin{equation}\label{eq:86}
+        |\phi(s) - \phi(t)| \leqslant |s - t|
+    \end{equation}
+    Ponieważ $\phi(\mathbb{R}) \subset [0,1]$ w uzasadnieniu (\ref{eq:86}) ze względu na okresowość funkcji $\phi$ wystarczy ograniczyć się do
+    przedziałów $[-1, 1]$ i $[0, 2]$. Jeżeli $s,t \in [-1,1]$, to $|\phi(s) - \phi(t)| = ||s| - |t|| \leqslant |s - t|$. 
+    Niech teraz $s \in [0,1]$, $t \in [1,2]$. Ponieważ 
+    \[
+        \phi(x) = 
+            \begin{cases}
+                x, &x \in [0,1], \\
+                -x +2, &x \in [1,2],
+        \end{cases}
+    \]
+    zatem $|\phi(s) - \phi(t)| = |s + t - 2| = (\text{dla } s + t < 2) = -s - t + 2 \leqslant t - s = |s - t|$ ---
+    w pozostałych przypadkach rozmieszczenia punktów $s, t \in [0,2]$ rozumowanie jest analogiczne. \\
+    W szczególnośći funkcja $\phi$ jest ciągła na $\mathbb{R}$. Określmy
+    \begin{equation}\label{eq:87}
+        f(x) = \sum\limits_{n=0}^{\infty}{\Big(\frac{3}{4}\Big)}^n \phi(4^n x).
+    \end{equation}
+    Ponieważ $0 \leqslant \phi \leqslant 1$, zatem na mocy Kryterium Weierstrassa (Twierdzenie \ref{theorem:146}) szereg 
+    (\ref{eq:87}) jest zbieżny jednostajnie na $\mathbb{R}$. Z twierdzenia \ref{theorem:150} wynika więc, że jego suma jest funkcją
+    ciągła na $\mathbb{R}$. \\
+    Ustalmy liczbę rzeczywistą $x$ i liczbę naturalną $m$. Niech $\delta_m = \pm \frac{1}{2}4^{-m}$, przy czym 
+    znak wybieramy tak, aby pomiędzy $4^m x$ i $4^m(x + \delta_m)$ nie znajdowała się żadna liczba całkowita. Można to zrobić,
+    bowiem $4^m | \delta_m | = \frac{1}{2}$. Określamy
+    \[
+        \gamma_n = \frac{\phi(4^n(x + \delta_m)) - \phi(4^n x)}{\delta_m}.
+    \]
+    Jeżeli $n > m$, to $4^n \delta_m$ jest liczbą parzystą i wobec tego $\gamma_n = 0$ (okresem funkcji $\phi$ jest liczba 2).
+    Jeżeli $0 \leqslant n \leqslant m$, to (\ref{eq:86}) implikuje, że $|\gamma_n| \leqslant 4^n$. Ponieważ $|\delta_m| = 
+    \frac{|\phi(4^m(x + \delta_m)) - \phi(4^m x)|}{|\delta_m|} = 4^m$ (między liczbami $4^m$ i $4^m(x + \delta_m))$ nie znajduję się 
+    żadna liczba całkowita, $4^m|\delta_m| = \frac{1}{2}$, zatem $|\phi(4^m(x + \delta_m)) - \phi(4^m x)| = \frac{1}{2}$, a zatem
+    \begin{align*}
+        \Bigg|\frac{f(x + \delta_m) - f(x)}{\delta_m}\Bigg| &= \Bigg| \frac{1}{\delta_m} \Bigg( \sum_{n=0}^{\infty} {\Big( \frac{3}{4}\Big)}^n \phi(4^n(x + \delta_m)) - \sum_{n=0}^{\infty}{\Big( \frac{3}{4}\Big)}^n \phi(4^n x) \Bigg)\Bigg| \\
+        &= \Bigg| \frac{1}{\delta_m} \sum_{n=0}^{\infty}{\Big(\frac{3}{4}\Big)}^n(\phi(4^n(x + \delta_m)) - \phi(4^n x))\Bigg| \\
+        &= \Bigg| \sum_{n=0}^{\infty}{\Big(\frac{3}{4}\Big)}^n \gamma_n \Bigg| \\ 
+        &= \Bigg| {\Big(\frac{3}{4}\Big)}^m \gamma_m + \sum_{n=0}^{m-1}{\Big(\frac{3}{4}\Big)}^n \gamma_n \Bigg| \\
+        & \geqslant 3^m - \sum_{n=0}^{m-1}3^n \\
+        &= 3^m - \frac{1-3^m}{1-3} \\
+        &= \frac{1}{2}(3^m + 1).
+    \end{align*}
+    Przy $m \to \infty$, $\delta_m \to 0$, natomiast $\frac{1}{2}(3^m + 1) \to +\infty$, Wynika stąd, że funkcja $f$
+    nie jest różniczkowalna w punkcie $x$. 
+\end{proof}
+
+\newpage
+\subsection{Szeregi potęgowe}
+
+\begin{defn}
+Niech będzie dany ciąg $(c_n)$ liczb zespolonych. Szereg
+\[
+    \sum_{n=0}^{\infty}c_n z^n \quad \text{lub ogólniej} \quad \sum_{n=0}^{\infty}c_n {(z - a)}^n, \quad z, a \in \mathbb{C}
+\]
+nazywamy szeregiem potęgowym. Liczby $c_n$ nazywamy współczynnikami tego szeregu. Funkcje, które można
+przedstawić w postaci sumy szeregu potęgowego nazywamy funkcjami analitycznymi.
+\end{defn}
+
+\begin{theorem}
+{
+    Dla każdego szeregu potęgowego $\sum\limits_{n=0}^{\infty}c_n z^n$ istnieje dokładnie jedna liczba $R \in \mathbb{R}_+ \cup \{0\}$ o tej właśności, że:
+    \begin{itemize}
+        \item [(i)] jeśli $|z| < R$, to szereg potęgowy jest zbieżny bezwględnie, 
+        \item [(ii)] jeśli $|z| > R$, to szereg potęgowy jest rozbieżny
+    \end{itemize}
+}
+\end{theorem}
+
+Liczbę $R$ nazywamy promieniem zbieżnośći szeregu potęgowego.
+
+\begin{proof}
+    Niech $A = \Big\{ |z| \in \mathbb{R}_+ \cup \{0\} : \lim\limits_{n \to \infty}c_n z^n = 0 \Big\}$. Zbiór $A$ jest niepusty, bowiem
+    $0 \in A$. Kładziemy $R = \sup A$ (jeśli zbiór A jest nieograniczony to przyjmujemy $R = + \infty$). 
+    Jeśli $|z| > R$, to $z \notin A$, czyli $\lim\limits_{n \to \infty}c_n z^n \neq 0$, a zatem szereg $\sum\limits_{n = 0}^{\infty} c_n z^n$ nie może być
+    zbieżny, co dowodzi (ii). Zauważmy, że jeśli $R = 0$, to z (ii) wynika, że jeśli $|z| > 0$, to szereg potęgowy $\sum\limits_{n = 0}^{\infty} c_n z^n$ 
+    będzie rozbieżny (w tym przypadku $\{z \in \mathbb{C} : |z| < 0\} = \emptyset $, ale każdy szereg potęgowy jest zbieżny dla $z = 0$.). \\
+    Załóżmy teraz, że $R > 0$. Wówczas jeśli $|z| < R$, to istnieje takie $z_0 \in A$, że $|z| < |z_0| < R$.
+    Ponieważ $\lim\limits_{n \to \infty}c_n z^n = 0$, zatem istnieje $M > 0$ takie, że $|c_n z_0^n| \leqslant M$ dla każdego $n \in \mathbb{N}$.
+    Mamy $|c_n z^n| = |c_n z_0^n| \cdot {\big|\frac{z}{z_0}\big|}^n \leqslant M q^n$, gdzie $q = \big|\frac{1}{z_0}\big| < 1$. 
+    Szereg $\sum\limits_{n = 0}^{\infty} c_n z^n$ jest więc zbieżny bezwględnie na mocy Kryterium Porównawczego. Jednoznaczność liczby $R$ jest oczywista.
+\end{proof}
+
+Następne dwa twierdzenia podają wzory na obliczanie promienia zbieżności szeregu potęgowego.
+
+\begin{theorem}
+{
+    (Cauchy-Hadamard) Promień zbieżnośći szeregu potęgowego $\sum\limits_{n=0}^{\infty}c_n z^n$ obliczamy według wzory $R = \frac{1}{\alpha}$, gdzie
+    $\alpha = \limsup\limits_{n \to \infty}\sqrt[n]{|c_n|}$ (jeśli $\alpha = 0$, to $R = +\infty$, jeśli $\alpha = +\infty$, to $R = 0$).
+}
+\end{theorem}
+
+\begin{proof}
+    Przyjmijmy $a_n = c_n z^n$, Mamy 
+    \[
+        \limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = |z| \limsup\limits_{n \to \infty}\sqrt[n]{|c_n|} = |z|\alpha.
+    \]
+    Niech $\alpha \in (0, +\infty)$. Wówczas na mocy Kryterium Pierwiastkowego (Tw. 132), jeśli $|z|\alpha < 1$ czyli $|z| < \frac{1}{\alpha}$, to szereg potęgowy
+    $\sum\limits_{n=0}^{\infty}c_n z^n$ jest zbieżny, natomiast jeśli $|z| > \frac{1}{\alpha}$, to szereg potęgowy jest rozbieżny. Stąd $R = \frac{1}{\alpha}$. \\
+    Dalej jeśli $\alpha = 0$, to $\limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = 0$, zatem szereg potęgowy jest zbieżny dla każdego $z \in \mathbb{C}$, czyli $R = +\infty$. \\
+    W końcu jeśli $\alpha = + \infty$, to $\limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = + \infty$, czyli szereg potęgowy jest rozbieżny dla 
+    każdego $z \neq 0$, a zatem $R = 0$.
+\end{proof}
+
+\begin{theorem}
+{
+    Jeżeli ciąg $\Big(\frac{c_{n+1}}{c_n}\Big)$ ma granicę $g$, to promień zbieżności szeregu potęgowego $\sum\limits_{n=0}^{\infty}c_n z^n$ jest równy
+    $\frac{1}{g}$ (jeśli $g = 0$, to $R = +\infty$; jeśli $g = +\infty$, to $R = 0$).
+}
+\end{theorem}
+
+\begin{proof}
+    Mamy $\lim\limits_{n \to \infty} \Big|\frac{c_{n+1}z^{n+1}}{c_n z^n}\Big| = |z| \lim\limits_{n \to \infty}\Big|\frac{c_{n+1}}{c_n}\Big| = |z|g$. 
+    Jeśli $g \in (0, +\infty)$, to dla $|z| < \frac{1}{g}$ rozważana granica jest mniejsza o $1$, a zatem na mocy Kryterium d'Alamberta szereg potęgowy $\sum\limits_{n=0}^{\infty}c_n z^n$
+    jest zbieżny. Stąd $R \geqslant \frac{1}{g}$. Gdyby jednak przypuścić, że $R > \frac{1}{g}$, to dla $z$ takich, że $\frac{1}{g} < |z| < R$ 
+    szereg potęgowy byłby bezwględnie zbieżny, co jest niemożliwe ze względu na to, że $|z|g > 1$, a więc $R = \frac{1}{g}$. Dalej rozumujemy analogicznie jak w dowodzie
+    Twierdzenia \ref{theorem:155}.
+\end{proof}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)] 
+            Dla szeregu $\sum\limits_{n=0}^{\infty}\frac{x^n}{n!}$ mamy $\lim\limits_{n \to \infty} \frac{\frac{1}{(n+1)!}}{\frac{1}{n!}} = \frac{1}{+\infty} = 0$, 
+            a zatem na mocy Twierdzenia \ref{theorem:156}, $R = + \infty$.
+        \item [(b)] 
+            Dla szeregu $\sum\limits_{n=0}^{\infty}z^n$ mamy, wobec Twierdzenia \ref{theorem:155}, $R = 1$. Jeśli $|z| = 1$, to szereg jest
+            rozbieżny ponieważ $z^n$ nie dązy do zera przy $n \to \infty$.
+        \item [(c)] \ldots
+    \end{itemize}
+\end{ex}
 
 \end{justify}
 \end{document}
