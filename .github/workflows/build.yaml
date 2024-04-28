@@ -19,7 +19,7 @@ jobs:
           root_file: main.tex
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@latest
+        uses: actions/upload-artifact@master
         with:
           name: am2
           path: main.pdf
