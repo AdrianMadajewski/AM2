@@ -25,6 +25,8 @@
 \DeclareMathOperator{\arctg}{\text{arctg}}
 \DeclareMathOperator{\arcctg}{\text{arcctg}}
 
+\newcommand{\hr}{\begin{center} \line(1,0){350} \end{center}}
+
 % Define a custom command for fraction without line
 \newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
 
@@ -2532,7 +2534,7 @@ Rozumiejąc analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące
 
 \begin{theorem}
 {
-    Niech sumy częsciowe $s_n$ szeregu funkcyjnego $\sum\limits_{n=1}^{\infty}f_n$ będą wspólnie ograniczone dla dowolnych $x$ i $n$: 
+    Niech sumy częściowe $s_n$ szeregu funkcyjnego $\sum\limits_{n=1}^{\infty}f_n$ będą wspólnie ograniczone dla dowolnych $x$ i $n$: 
     $|s_n(x)| \leqslant M$, a funkcje $g_n(x)$ (dla każdego $x$) tworzą ciąg monotoniczny zbieżny do $0$ jednostajnie na zbiorze $E$.
     Wówczas szereg funkcyjny $\sum\limits_{n=1}^{\infty}f_n g_n$ jest także zbieżny jednostajnie w tym zbiorze.
 }
@@ -2812,7 +2814,7 @@ Inaczej mówiąc jednostajnie zbieżny szereg funkcyjny można całkować wyraz 
     \]
     zatem $|\phi(s) - \phi(t)| = |s + t - 2| = (\text{dla } s + t < 2) = -s - t + 2 \leqslant t - s = |s - t|$ ---
     w pozostałych przypadkach rozmieszczenia punktów $s, t \in [0,2]$ rozumowanie jest analogiczne. \\
-    W szczególnośći funkcja $\phi$ jest ciągła na $\mathbb{R}$. Określmy
+    W szczególności funkcja $\phi$ jest ciągła na $\mathbb{R}$. Określmy
     \begin{equation}\label{eq:87}
         f(x) = \sum\limits_{n=0}^{\infty}{\Big(\frac{3}{4}\Big)}^n \phi(4^n x).
     \end{equation}
@@ -2883,19 +2885,19 @@ Następne dwa twierdzenia podają wzory na obliczanie promienia zbieżności sze
 \begin{theorem}
 {
     (Cauchy-Hadamard) Promień zbieżnośći szeregu potęgowego $\sum\limits_{n=0}^{\infty}c_n z^n$ obliczamy według wzory $R = \frac{1}{\alpha}$, gdzie
-    $\alpha = \limsup\limits_{n \to \infty}\sqrt[n]{|c_n|}$ (jeśli $\alpha = 0$, to $R = +\infty$, jeśli $\alpha = +\infty$, to $R = 0$).
+    $\alpha = \overline{\lim\limits_{n \to \infty}}\sqrt[n]{|c_n|}$ (jeśli $\alpha = 0$, to $R = +\infty$, jeśli $\alpha = +\infty$, to $R = 0$).
 }
 \end{theorem}
 
 \begin{proof}
     Przyjmijmy $a_n = c_n z^n$, Mamy 
     \[
-        \limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = |z| \limsup\limits_{n \to \infty}\sqrt[n]{|c_n|} = |z|\alpha.
+        \overline{\lim\limits_{n \to \infty}}\sqrt[n]{|a_n|} = |z| \overline{\lim\limits_{n \to \infty}}\sqrt[n]{|c_n|} = |z|\alpha.
     \]
     Niech $\alpha \in (0, +\infty)$. Wówczas na mocy Kryterium Pierwiastkowego (Tw. 132), jeśli $|z|\alpha < 1$ czyli $|z| < \frac{1}{\alpha}$, to szereg potęgowy
     $\sum\limits_{n=0}^{\infty}c_n z^n$ jest zbieżny, natomiast jeśli $|z| > \frac{1}{\alpha}$, to szereg potęgowy jest rozbieżny. Stąd $R = \frac{1}{\alpha}$. \\
-    Dalej jeśli $\alpha = 0$, to $\limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = 0$, zatem szereg potęgowy jest zbieżny dla każdego $z \in \mathbb{C}$, czyli $R = +\infty$. \\
-    W końcu jeśli $\alpha = + \infty$, to $\limsup\limits_{n \to \infty}\sqrt[n]{|a_n|} = + \infty$, czyli szereg potęgowy jest rozbieżny dla 
+    Dalej jeśli $\alpha = 0$, to $\overline{\lim\limits_{n \to \infty}}\sqrt[n]{|a_n|} = 0$, zatem szereg potęgowy jest zbieżny dla każdego $z \in \mathbb{C}$, czyli $R = +\infty$. \\
+    W końcu jeśli $\alpha = + \infty$, to $\overline{\lim\limits_{n \to \infty}}\sqrt[n]{|a_n|} = + \infty$, czyli szereg potęgowy jest rozbieżny dla 
     każdego $z \neq 0$, a zatem $R = 0$.
 \end{proof}
 
@@ -2922,9 +2924,399 @@ Następne dwa twierdzenia podają wzory na obliczanie promienia zbieżności sze
         \item [(b)] 
             Dla szeregu $\sum\limits_{n=0}^{\infty}z^n$ mamy, wobec Twierdzenia \ref{theorem:155}, $R = 1$. Jeśli $|z| = 1$, to szereg jest
             rozbieżny ponieważ $z^n$ nie dązy do zera przy $n \to \infty$.
-        \item [(c)] \ldots
+        \item [(c)] 
+            Dla szeregu $\sum\limits_{n=0}^{\infty}\frac{z^n}{n}$ mamy $R = 1$. Dla $z = 1$ dany szereg jest oczywiście rozbieżny.
+            Sprawdzimy, że dla wszystkich pozostałych punktów okręgu koła zbieżności (kołem zbieżności szeregu $\sum\limits_{n=0}^{\infty}c_n{(z-a)}^n$
+            nazywamy koło otwarte o środku w punkcie $a$ i promieniu $R$, gdzie $R$ jest promieniem zbieżności danego szeregu potęgowego) szereg ten jest zbieżny.
+            Ponieważ $a_n = \frac{1}{n}$ dąży monotonicznie do zera przy $n \to \infty$ oraz $\Bigg| \sum\limits_{m=0}^{n}z^m \Bigg| = \Big| \frac{{1-z}^{n+1}}{1-z}\Big|
+            \leqslant \frac{2}{|1-z|}$, jeśli $|z| = 1$, $z \neq 1$, zatem na mocy Kryterium Dirichleta (Tw. 134), dany szereg jest zbieżny w każdym punkcie
+            okręgu $|z| = 1$ z wyjątkiem punktu $z = 1$. \\
+            Ponadto $\sum\limits_{m=0}^{n}z^m \leqslant \frac{2}{\delta} = M$ dla $|z| \leqslant 1$ oraz $|1 - z| \geqslant \delta > 0$, zatem rozważany szereg
+            jest zbieżny w każdym zbiorze $A_\delta = \{z \in \mathbb{C} : |z| \leqslant 1 \land |1 - z| \geqslant \delta\}$.
+        \item [(d)]
+            Dla szeregu $\sum\limits_{n=0}^{\infty}\frac{z^n}{n^2}$ mamy $R = 1$. Szereg ten jest zbieżny we wszystkich punktach okręgu koła zbieżności, bowiem
+            $\Big|\frac{z^n}{n^2}\Big| = \frac{1}{n^2}$ jeśli $|z| = 1$.
     \end{itemize}
+    
+    Z przykładów (b), (c) oraz (d) wynika, że zachowanie sie szeregu na okręgu koła zbieżności jest róznorodne i wymaga specjalnego badania.
 \end{ex}
+
+
+\begin{theorem}
+{
+    Niech szereg $\sum\limits_{n=0}^{\infty}c_n z^n$ będzie zbieżny przy $|z| < R$ i niech
+    \begin{equation}\label{eq:88}
+        f(z) = \sum_{n=0}^{\infty}c_n z^n \quad (|z| < R).
+    \end{equation}
+    Wówczas szereg potęgowy jest zbieżny jednostajnie w każdym kole domkniętym zawartym w kole zbieżności. Ponadto 
+    funkcja $f$ jest ciągła i różniczkowalna w kole zbieżnośći oraz
+    \begin{equation}\label{eq:89}
+        f'(z) = \sum_{n=1}^{\infty}n c_n z^{n-1} \quad (|z| < R).
+    \end{equation}
+}
+
+Innymi słowy szereg potęgowy można różniczkować ``wyraz po wyrazie'' wewnątrz koła zbieżności. O szeregu potęgowym
+mówimy ponadto, że jest on \emph{niemial jednostajnie zbieżny} w kole zbieżności. 
+\end{theorem}
+
+\begin{proof}
+    Niech $0 < r < R$. Jeżeli $|z| \leqslant r$, $|c_n z^n| \leqslant |c_n r^n|$, a ponieważ $\sum\limits_{n=0}^{\infty}c_n r^n$ jest
+    bewzględnie zbieżny, więc z Kryterium Weierstrassa wynika jednostajna zbieżność szeregu potęgowego na kole $\overline{B}(0, r)$ 
+    (koło domknięte o środku $0$ i promieniu $r$). \\
+    Ponieważ $\sqrt[n]{n} \to 1$ przy $n \to \infty$, zatem $\overline{\lim\limits_{n \to \infty}} \sqrt[n]{n |c_n|} = \overline{\lim\limits_{n \to \infty}}\sqrt[n]{|c_n|}$,
+    a więc szeregi (\ref{eq:88}) i (\ref{eq:89}) mają ten sam promień zbieżności.  \\
+    Szereg (\ref{eq:89}) jako szereg potęgowy jest zbieżny jednostajnie na kole $\overline{B}(0, r)$ dla każdego $0 < r < R$ i wobec tego możemy stosować Wniosek \ref{wniosek:32}.
+    W takim razie (\ref{eq:89}) jest spełnione, jeśli tylko $|z| < r$. Jednakże dla każdego $z$ takiego, że $|z| < R$, istnieje $0 < r < R$ takie, że 
+    $|z| < r$. Stąd (\ref{eq:89}) jest spełnione jeśli tylko $|z| < R$. \\
+    Ciagłość funkcji $f$ wynika z istnienia pochodnej $f'$. 
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeżeli spełnione są założenia Twierdzenia \ref{theorem:157}, to funkcja $f$ ma pochodne wszystkich rzędów w kole zbieżności $\overline{B}(0, r)$, przy czym 
+    \begin{equation}\label{eq:90}
+        f^{(k)}(z) = \sum_{n=k}^{\infty}n(n-1)(n-2)\ldots(n-k + 1)c_n z^{n - k},
+    \end{equation}
+    a w szczególności
+    \begin{equation}\label{eq:91}
+        f^{(k)}(0) = k!c_k \quad (k = 0, 1, 2, \ldots)
+    \end{equation}
+    ($f^{(0)}$ oznacza tutaj funkcję, a $f^{(k)}$ - $k$-tą pochodną funkcji $f$ przy $k \in \mathbb{N}$).
+}
+\end{wniosek}
+
+\begin{proof}
+    Równość (\ref{eq:90}) otrzymamy stosując kolejno Twierdzenie \ref{theorem:157} do funkcji $f$, a następnie do $f'$, $f''$ itd.,
+    wykorzystując Twierdzenie 34 (b) ($\lim\limits_{n \to \infty}\sqrt[n]{n} = 1$). Następnie podstawiając w (\ref{eq:90}), $x = 0$ otrzymujemy (\ref{eq:91}).
+\end{proof}
+
+Rozważmy teraz szereg potęgowy $\sum\limits_{n=0}^{\infty}a_n x^n$, gdzie $x \in \mathbb{R}$, $a_n \in \mathbb{R}$ dla każdego $n \in \mathbb{N} \cup \{0\}$.
+Jeśli szereg ten jest zbieżny na końcu przedziału zbieżności, na przykład w punkcie $z = r$ ($r < +\infty$, oczywiście), to jego suma jest funkcją ciągłą nie tylko na przedziale 
+$(-R, R)$, lecz również prawostronnie w punkcie $x = R$. Wynika to następującego \textbf{Twierdzenia Abela}.
+
+\begin{theorem}
+{
+    (Abela). Niech szereg potęgowy $\sum\limits_{n=0}^{\infty}a_n x^n$ ma promień zbieżności $R > 0$. Jeżeli szereg ten jest
+    zbieżny na końcu przedziału zbieżności (to znaczy dla $x = R$ lub $x = -R$) to suma tego szeregu jest ciągła jednostajnie w tym końcu.
+}
+\end{theorem}
+
+\begin{proof}
+    Załóżmy, że szereg $\sum\limits_{n=0}^{\infty}a_n R^n$ jest zbieżny. Oznaczmy $n$-tą resztę tego szeregu przez $R_n$:
+    \[
+        R_n = a_{n+1}R^{n+1} + a_{n+2}R^{n+2} + \ldots
+    \]
+    Mamy więc $\lim\limits_{n \to \infty} R_n = 0$. Niech będzie dane $\varepsilon > 0$. Istnieje zatem takie $k \in \mathbb{N}$, że dla
+    $i > n > k$ mamy 
+    \[
+        \big| a_{n+1}R^{n+1} + \cdots + a_{i}R^{i} \big| < \varepsilon.
+    \]
+    Oznaczmy ogólnie $n$-tą resztę szeregu $\sum\limits_{n=0}^{\infty}a_n x^n$ przez $R_n(x)$:
+    \[
+        R_n(x) = a_{n+1}x^{n+1} + a_{n+2}x^{n+2} + \ldots
+    \]
+    W szczególności $R_n(R) = R_n$. Zauważmy, że 
+    \[
+        R_n(x) = a_{n+1}R^{n+1}\Big(\frac{x}{R}\Big)^{n+1} + a_{n+2}R^{n+2}\Big(\frac{x}{R}\Big)^{n+2}+ \ldots
+    \]
+    i zastosujmy Kryterium Dirichleta (Tw. 134), przyjmując $a_n = (\frac{x}{R})^{n+1}$, $n \in \mathbb{N}$ oraz
+    $b_n = a_{n+1}R^{n+1}$, $n \in \mathbb{N}$. Sumy częściowe szeregu $\sum\limits_{k=n+1}^{\infty}a_k R^k$
+    tworzą ciąg ograniczony (poprzez liczbę $\varepsilon$) oraz
+    \[
+        1 > \Big(\frac{x}{R}\Big)^{n+1} > \Big(\frac{x}{R}\Big)^{n+2} > \ldots \quad \text{i} \quad 
+        \lim_{n \to \infty}\Big(\frac{x}{R}\Big)^n = 0 \quad \text{dla} \quad 0 \leqslant x < R.
+    \]
+    Ponadto z dowodu Kryterium Dirichleta wynika, że $|R_n(x)| < 2 \varepsilon$, $0 \leqslant x < R$.
+    Nierówność ta jest również spełniona dla $x = R$. Doszliśmy więc do wniosku, że jeśli $n > k$, to nierówność
+    \[
+        \Bigg|\sum_{m=0}^{\infty}a_m x^m - \sum_{m=0}^{n}a_m x^m \Bigg|< 2 \varepsilon
+    \]
+    jest spełniona przez każde $x$ takie, że $0 \leqslant x < R$. Oznacza to, że szereg
+    $\sum\limits_{n=0}^{\infty}a_n x^n$ jest w tym przedziale jednostajnie zbieżny. Wobec Twierdzenia \ref{theorem:150}, jego suma jest ciągła lewstronnie
+    dla $x = R$. \\
+    W przypadku, gdy szereg $\sum\limits_{n=0}^{\infty}a_n (-R)^n$ jest zbieżny, rozumowanie jest analogiczne.
+\end{proof}
+
+Dowód Twierdzenia Abela dla zespolonych szeregów potęgowych można znaleźć w książce F. Leji, Funkcje Zespolone, PMN, Warszawa. 1973, s. 51 - 52.
+
+\begin{wniosek}
+{
+    Jeżeli szeregi liczbowe rzeczywiste $\sum\limits_{n=0}^{\infty}a_n$, $\sum\limits_{n=0}^{\infty}b_n$,$\sum\limits_{n=0}^{\infty}c_n$
+    są zbieżne odpowiednio do $A$, $B$ i $C$ i jeżeli $c_n = a_0b_n + \cdots + a_n b_0$, to $C = AB$.
+}
+\end{wniosek}
+
+\begin{proof}
+    Określmy $f(x) = \sum\limits_{n=0}^{\infty}a_n$, $g(x) = \sum\limits_{n=0}^{\infty}b_n$, $h(x) = \sum\limits_{n=0}^{\infty}c_n$ dla $0 \leqslant x < \leqslant 1$.
+    Z Twierdzenia \ref{theorem:154} wynika, że $R$ dla tych szeregów nie może być mniejsze od $1$. Gdyby $R < 1$, to na przykład 
+    $\sum\limits_{n=0}^{\infty}a_n$ byłby rozbieżny. Jeżeli $x < 1$, to szeregi te są zbieżne bewzględnie, to można je mnożyć według Definicji 95. \\
+    Po wymnożeniu otrzymujemy
+    \begin{equation}\label{eq:92}
+        f(x)g(x) = h(x) \quad (0 \leqslant x < 1).
+    \end{equation}
+    Z Twierdzenia \ref{theorem:154} wynika, że $f(x) \to A$, $g(x) \to B$, $h(x) \to C$, przy $x \to 1$. 
+    Wobec równości (\ref{eq:92}) mamy $AB = C$.
+\end{proof}
+
+Zajmiemy sie teraz zagadnieniem rozwijania funkcji w szereg potęgowy.
+
+\begin{defn}
+    Załóżmy, że funkcja $f$ jest klasy $C^{(\infty)}$ w pewnym otoczeniu punktu $z_0$. Szereg 
+    $\sum\limits_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!}{(z - z_0)}^n$ dla $z$ należacych do tego otoczenia, nazywamy szeregiem Taylora funkcji $f$.
+    Dla $z = 0$ szereg Taylora nazywa się szeregiem Maclaurina funkcji $f$.
+
+    Dla funkcji $f$ o wartościach zespolonych dowodzi się, że jeśli jest ona różcznikowalna w pewnym otoczeniu punktu $z_0$, to jest ona klasy 
+    $C^{(\infty)}$ w tym otoczeniu.
+\end{defn}
+
+\begin{theorem}
+{
+    Jeżeli funkcja $f$ posiada rozwinięcie w szereg potęgowy w otoczeniu punktu $z_0$, to jest to jedyne rozwinięcie i to w szereg Taylora.
+}
+\end{theorem}
+
+\begin{proof}
+    Załóżmy, że $f(z) = \sum\limits_{n=0}^{\infty}c_n {(z-z_0)}^n$ dla $x \in B(0, R)$, $R > 0$. Wobec 
+    Twierdzenia \ref{theorem:157}, $n!c_n = f^{(n)}(z_0)$ dla każdego $n \in \mathbb{N} \cup \{0\}$. Stąd
+    $c_n = \frac{f^{(n)}(z_0)}{n!}$, co kończy dowód.
+\end{proof}
+
+Zajmiejmy się teraz funkcjami o argumentach i wartościach rzeczywistych. Powstaje pytanie, jakie funkcję są sumami szeregów potęgowych.
+Z Twierdzenia \ref{theorem:158} wynika, że funkcje takie muszą mieć pochodnie wszystkich rzędów. Następujący przykład pokazuje, że nie jest to 
+warunek wystarczający rozwijalności funkcji w szereg potęgowy (dla funkcji rzeczywistych).
+
+\begin{ex}
+    Niech $f(x) = 
+    \begin{cases}
+        e^{\frac{-1}{x^2}} & \text{jeśli } x \neq 0 \\
+        0& \text{jeśli } x = 0
+    \end{cases}$. W oparciu o Regułe de l'Hospitala można łatwo sprawdzić, że $\frac{1}{x^n}e^{\frac{-1}{x^2}} \to 0$, gdy $x \to 0$ ($n \in \mathbb{N}$ jest ustalone). 
+    W tym celu wystarczy wyliczyć granicę $\lim\limits_{y \to +\infty}\frac{y^{\frac{n}{2}}}{e^y}$. Oznaczmy $f(y) = y^{\frac{n}{2}}$ i $g(y) = e^y$. Wówczas
+    $g^{(m)}(y) = e^y \neq 0$ ($y \in \mathbb{R}$, $m = 1,2,\ldots)$. Biorąc $m > \frac{n}{2}$ i różniczkując $n$-razy otrzymujemy
+    \[
+        \frac{f^{(m)}(y)}{g^{(m)}(y)} = \frac{\frac{n}{2}(\frac{n}{2}-1)\cdots(\frac{n}{2}-m + 1)y^{\frac{n}{2}-m}}{e^y} =
+        \frac{m! \binom{\frac{n}{2}}{m}}{y^{m - \frac{n}{2}}e^y} \to 0 \text{ jeśli } y \to +\infty.
+    \]
+    Stąd 
+    \[
+        0 = \lim_{y \to +\infty}\frac{f^{(m)}(y)}{g^{(m)}(y)} = \cdots = \lim_{y \to +\infty}\frac{f'(y)}{g'(y)} = \lim_{y \to +\infty}\frac{y^{\frac{n}{2}}}{e^y}.
+    \]
+    Pokażemy, że funkcja $f$ posiada pochodnie wszystkich rzędów w punkcie $x = 0$ i, że $f^{(n)}(0) = 0$. Dokładniej udowodnimy, że 
+    \[
+        f^{(n)}(x) = P_{3n}\Big(\frac{1}{x}\Big)e^{\frac{-1}{x^2}}  \quad x \neq 0
+    \]
+    \[
+        f^{(n)}(0) = 0,
+    \]
+    gdzie $P_{3n}(x)$ jest wielomianem stopnia $3n$. \\
+    Dla $n = 1$ mamy $f'(x) = \frac{2}{x^3}e^{\frac{-1}{x^2}}$, gdy $x \neq 0$. 
+    Natomiast dla $x \neq 0$ mamy $\frac{f(x) - f(0)}{x} = \frac{e^{\frac{-1}{x^2}}}{x} \to 0$, gdy $x \to 0$. Stąd otrzymujemy, że
+    $f'(0) = 0$. \\
+    Przypuścmy teraz, że teza jest prawdziwa dla liczby $n$. Wówczas
+    \begin{align*}
+        f^{(n+1)}(x) =& (f^{(n)})'(x) \\
+        =& -\frac{1}{x^2}P'_{3n}\Big(\frac{1}{x}\Big)e^{-\frac{1}{x^2}} + P_{3n}\Big(\frac{1}{x}\Big)\frac{2}{x^3}e^{-\frac{1}{x^2}} \\
+        =& \Bigg[ \frac{2}{x^3}P_{3n}\Big(\frac{1}{x}\Big) - \frac{1}{x^2}P'_{3n}\Big(\frac{1}{x}\Big)\Bigg]e^{-\frac{1}{x^2}} \\
+        =& P_{3(n+1)}\Big(\frac{1}{x}\Big)e^{-\frac{1}{x^2}}
+    \end{align*}
+    oraz 
+    \[
+        \frac{f^{(n)}(x) - f^{(n)}(0)}{x} = \frac{P_{3n}(\frac{1}{x})e^{-\frac{1}{x^2}}}{x} = Q_{3n+1}\Big(\frac{1}{x}\Big)e^{-\frac{1}{x^2}} \to 0, \text{ gdy } x \to 0.
+    \]
+    gdzie $Q_{3n+1}$ jest wielomianem stopnia $3n + 1$. \\
+    Na mocy Zasady Indukcji Matematycznej teza jest prawdziwa dla dowolnej liczby naturalnej $n$. W szczególności więc funkcja $f$ ma w zerze 
+    wszystkie pochodnie równe zeru. Stąd $\sum\limits_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n = 0$ podczas gdy $f(x) = e^{-\frac{1}{x^2}} \neq 0$.
+\end{ex}
+
+Następujące twierdzenie wynikające natychmiast z Twierdzenia 65 podaje warunek rozwijalności w szereg potęgowy.
+\hr
+    \textbf{Twierdzenie 65.}\label{theorem:65}
+    \emph{
+        (Taylor). Jeśli na przedziale domkniętym o końcach $x_0$, $x$ funkcja $f$ jest ciągła razem ze swoimi pochodnymi do rzędu $n$ włącznie, 
+        a w wewnętrznych punktach przedziału posiada ona pochodną rzędu $n + 1$, to dla dowolnej funkcji $\phi$ ciągłej
+        na tym przedziale i mającej róźną od zera pochodną w jego wewnętrznych punktach, można znaleźć taki punkt $\xi \in (x_0, x)$, że
+        \[
+            r_n(x_0, x) = \frac{\phi(x) - \phi(x_0)}{\phi'(\xi)n!}f^{(n+1)}(\xi){(x-\xi)}^n
+        \]
+    }
+\hr
+
+\begin{theorem}
+{
+    Jeśli na przedziale domkniętym o końcach $x_0$, $x$ funkcja $f$ ma pochodne wszystkich rzędów oraz reszta $r_n(x_0, x)$ we Wzorze Taylora dąży do $0$ 
+    przy $k \to \infty$, to
+    \[
+        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}{(x - x_0)}^n
+    \]
+}
+\end{theorem}
+
+\begin{wniosek}
+{
+    Jeżeli na przedziale domkniętym o końcach $x_0$, $x$ funkcja $f$ ma pochodne wszystkich rzędów oraz istnieje
+    stała $K > 0$ taka, że $|f^{(n)}(t)| \leqslant K$ dla wszystkich $t$ nalężących do tego przedziału i $n = 0,1,2,\ldots$, to
+    \[
+        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}{(x - x_0)}^n
+    \]
+}
+\end{wniosek}
+
+\hr
+    \textbf{Wniosek 14.}\label{wniosek:14}
+    \emph{
+        Kładąc do wzoru z Twierdzenia 65 $\phi(t) = {(x-t)}^{n+1}$ otrzymujemy 
+        \[
+            r_n(x_0, x) = \frac{1}{(n+1)!}f^{(n+1)}(\xi){(x-x_0)}^{n+1}
+        \]
+    }
+\hr
+
+\begin{proof}
+    Ponieważ dla Reszty Lagrange'a (Wn. 14) mamy
+    \[
+        |r_n(x_0, x)| = \Big| \frac{1}{(n+1)!}f^{(n+1)}(\xi){(x-x_0)}^{n+1}\Big| \leqslant K \frac{{|x-x_0|}^{n+1}}{(n+1)!} \to 0 \text{ przy } n \to \infty
+    \]
+\end{proof}
+
+Podamy jeszcze jedno twierdzenie dotyczące rozwijalności funkcji w szereg Taylora.
+
+\begin{theorem}
+{
+    Niech szereg $\sum\limits_{n=0}^{\infty}c_n x^n$ będzie zbieżny dla $|x| < R$ i niech $f(x)$ oznacza sumę tego szeregu na przedziale
+    $(-R, R)$. Jeżeli $-R < a < R$, to funkcje $f$ można rozwinąc w punkcie $a$ w szereg potęgowy, który jest zbieżny dla $|x - a| < R - |a|$:
+    \[
+        f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{(x-a)}^n \quad (|x-a| < R - |a|).
+    \]
+}
+\end{theorem}
+
+\begin{ex}
+    Powrócmy do Przykładu 22. Otrzymane w nim wyniki możemy zapisać następująco:
+    \[
+        e^x = \sum_{n=0}^{\infty}\frac{x^n}{n!}, \quad
+        \sin(x) = \sum_{n=0}^{\infty} {(-1)}^n \frac{x^{2n+1}}{(2n+1)!}, \quad
+        \cos(x) = \sum_{n=0}^{\infty} {(-1)}^n \frac{x^{2n}}{(2n)!} \quad \text{dla } x \in \mathbb{R}
+    \]
+    oraz
+    \[
+        {(1 + x)}^\alpha = \sum_{n=0}^{\infty}\binom{\alpha}{n} x^n, 
+    \]
+    gdzie 
+    \[
+        \alpha \in \mathbb{R}, |x| < 1,
+        \binom{\alpha}{n} = \frac{\alpha(\alpha - 1)\ldots(\alpha - n + 1)}{n!}, \binom{\alpha}{0} = 1.
+    \]
+    Otrzymaliśmy zatem rozwinięcie funkcji wykładniczej, sinusa, cosinusa w szereg Maclaurina...
+\end{ex}
+
+Niniejszy paragraf zakończymy krótką informacją o funkcjach $e^z$, $\cos z$, $\sin z$ w dziedzinie zespolonej.
+Dla $z \in \mathbb{C}$ definiujemy 
+\[
+    e^z = \sum_{n=0}^{\infty}\frac{z^n}{n!}, \quad
+    \sin(z) = \sum_{n=0}^{\infty} {(-1)}^n \frac{z^{2n+1}}{(2n+1)!}, \quad
+    \cos(z) = \sum_{n=0}^{\infty} {(-1)}^n \frac{z^{2n}}{(2n)!}.
+\]
+
+\begin{theorem}
+{
+    \begin{itemize}
+        \item [(a)]
+            $e^a e^b = e^{a+b}$ dla dowolnych $a, b \in \mathbb{C}$.
+        \item [(b)]
+            Funkcja $e^z$ nie przyjmuje nigdzie wartości $0$.
+        \item [(c)]
+            Między funkcjami $e^z$, $\cos z$, $\sin z$ zachodzą następujące związki:
+            \begin{equation}\label{eq:93}
+                e^{iz} = \cos z + i \sin z, \quad e^{-iz} = \cos z - i \sin z.
+            \end{equation}
+        \item [(d)]
+            $(e^z)' = e^z$, $(\cos z)' = -\sin z$, $(\sin z)' = \cos z$.
+        \item [(e)]
+            $e^z = 1$ wtedy i tylko wtedy, gdy $z = 2k\pi i$, $k = 0, \pm 1, \pm 2, \ldots$.
+    \end{itemize}
+}
+\end{theorem}
+
+\begin{proof}
+    \begin{itemize}
+        \item [(a)]
+            Szeregi $\sum\limits_{n=0}^{\infty}\frac{a^n}{n!}$ i $\sum\limits_{n=0}^{\infty}\frac{b^n}{n!}$
+            są bezwględnie zbieżnie dla dowolnych wartości $a, b \in \mathbb{C}$. Wobec Twierdzenia Mertensa mamy
+            \[
+                \Bigg(\sum_{n=0}^{\infty}\frac{a^n}{n!}\Bigg)\Bigg(\sum_{n=0}^{\infty}\frac{b^n}{n!}\Bigg) = 
+                \sum_{n=0}^{\infty}\frac{{(a+b)}^n}{n!},
+            \]
+            bowiem
+            \[
+                \frac{a^n}{n!} + \frac{a^{n-1}}{(n-1)!}\frac{b}{1!} + \cdots + \frac{b^n}{n!} = \frac{1}{n!}\Bigg[
+                    a^n + \binom{n}{1}a^{n-1}b + \cdots + \binom{n}{n}b^n    
+                \Bigg] = \frac{{(a+b)}^n}{n!}
+            \]
+            stąd $e^a e^b = e^{a+b}$.
+        \item [(b)]
+            Gdyby bowiem dla pewnej wartości $z = a$ było $e^a = 0$, to ponieważ liczba $e^{-a}$ jest skończona, zatem iloczyn
+            $e^a e^{-a}$ miałby wartość $0$. Na mocy (a) mamy $e^a e^{-a} = e^0 = 1$, co daje sprzeczność, zatem $e^a \neq 0$.
+        \item [(c)]
+            Mamy 
+            \[
+                e^{iz} = \sum_{n=0}^{\infty}i^n \frac{z^n}{n!} = \sum_{k=0}^{\infty} i^{2k}\frac{z^{2k}}{(2k!)} + i\sum_{k=0}^{\infty}\frac{z^{2k+1}}{(2k+1)!} = \cos z + i \sin z,
+            \]
+            bowiem $i^{2k} = {(-1)}^k$. \\
+            Drugi z wzorów (\ref{eq:93}) otrzymamy zastępując w pierwszym $z$ przez $-z$, bowiem z określenia funkcji $\sin z$, $\cos z$ wynika, że
+            $\cos(-z) = \cos z$, $\sin(-z) = - \sin z$.
+        \item [(d)]
+            Na mocy Twierdzenia \ref{theorem:157} mamy
+            \[
+                (e^z)' = \Bigg(\sum_{n=0}^{\infty}\frac{z^n}{n!}\Bigg)
+                = \sum_{n=1}^{\infty}n\frac{z^{n-1}}{n!}
+                = \sum_{n=1}^{\infty}\frac{z^{n-1}}{(n-1)!} = \sum_{n=0}^{\infty}\frac{z^n}{n!} = e^z.
+            \]
+            Pozostałe dwa wzory uzasadniamy analogicznie.
+        \item [(e)]
+            Istotnie stosując (a) i (c) otrzymujemy $e^z = e^x e^{iy} = e^x(\cos y + i\sin y)$, a więc
+            równość $e^z = 1$ zachodzi wtedy i tylko wtedy, gdy $e^x \cos y = 1$ oraz $e^x \sin y = 0$.
+            Stąd wynika, że $\sin y = 0$, bowiem $e^x > 0$, a zatem $y = n\pi$, gdzie $n = 0, \pm 1, \pm 2, \ldots$.
+            Gdy $n$ jest liczbą nieparzystą, wówczas $\cos y = \cos (n\pi)$ jest liczbą ujemną; aby więc zachodziło $e^x \cos y = 1$, $n$ musi
+            być liczbą parzystą, stąd $y = 2k\pi$ oraz $e^x = 1$, gdzie $k = 0, \pm 1, \pm 2, \ldots$. Funkcja $e^x$
+            zmiennej rzeczywistej przyjmuje wartość $1$ tylko dla $x = 0$, zatem $e^z = 1$, gdy $z = x + iy = 2k\pi i$, co należało dowieść.
+    \end{itemize}
+\end{proof}
+
+\begin{wniosek}
+{
+    \begin{itemize}
+        \item [(a)]
+            Mamy 
+            \[
+                \cos z = \frac{e^{iz} + e^{-iz}}{2}, \quad \sin z = \frac{e^{iz} - e^{-iz}}{2i}
+            \]
+            Wzory te nazywamy wzorami Eulera. Wzory te otrzymujemy natychmiast dodając i odejmując równania (\ref{eq:93}).
+        \item [(b)]
+            Z wzorów Eulera wynika następujący związek 
+            \[
+                \sin^2 z + \cos^2 z = 1 \quad z \in \mathbb{C}.
+            \]
+            Mamy bowiem
+            \[
+                \sin^2 z + \cos^2 z = \frac{e^{2iz} + 2e^{iz}e^{-iz} + e^{-2iz}}{4} - \frac{e^{2iz} - 2e^{iz}e^{-iz} + e^{-2iz}}{4} = 1.
+            \]
+        \item [(c)]
+            Nierówność $|\cos x| \leqslant 1$ i $|\sin x| \leqslant 1$ prawdziwe dla rzeczywistych $x$, 
+            przestają na ogół być prawdziwe dla wartości zespolonych. Na przykład dla $z = i$ mamy
+            \[
+                \cos i = \frac{e^{-1} + e}{2} = 1,532\ldots, \quad \sin i = \frac{e^{-1} - e}{2i} = i \cdot 1,175\ldots.
+            \]
+            Mimo, to $\sin^2 i + \cos^2 i = 1$.
+        \item [(d)]
+            Funkcja $e^z$ jest okresowa. Okresem tej funkjci jest każda wielokrotność liczby $2\pi i$. 
+            Istotnie z Twierdzenia \ref{theorem:162} (c) wynika, że jeżeli $z' = z + 2k\pi i$, $k \in \mathbb{Z}$, to
+            \[
+                e^{z'} = e^z e^{2k\pi i} = e^z
+            \]
+            odwrotnie, jeżeli $e^{z'} = e^z$ wtedy i tylko wtedy, gdy $z' = z + 2k\pi i$, $k \in \mathbb{Z}$.
+    \end{itemize}
+}
+\end{wniosek}
 
 \end{justify}
 \end{document}
