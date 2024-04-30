@@ -3061,6 +3061,11 @@ Dowód Twierdzenia Abela dla zespolonych szeregów potęgowych można znaleźć 
 Zajmiemy sie teraz zagadnieniem rozwijania funkcji w szereg potęgowy.
 
 \begin{defn}
+    Jeżeli szereg $\sum\limits_{n=0}^{\infty}c_n z^n$ jest zbieżny dla każdego $z \in B(0, R)$ przy pewnym $R > 0$, to powiemy, że funkcja $f(z) = \sum\limits_{n=0}^{\infty}c_n z^n$, $z \in B(0, R)$ pozwala rozwinąc się w szereg potęgowy w otoczeniu punktu $z = 0$. Analogicznie jeżeli szereg $\sum\limits_{n=0}^{\infty}c_n {(z-a)}^n$ jest zbieżny dla $z$ spełniających nierówność
+    $|z-a| < R$, to powiemy, że szereg potęgowy jest zbieżny w otoczeniu punktu $z = a$. 
+\end{defn}
+
+\begin{defn}
     Załóżmy, że funkcja $f$ jest klasy $C^{(\infty)}$ w pewnym otoczeniu punktu $z_0$. Szereg 
     $\sum\limits_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!}{(z - z_0)}^n$ dla $z$ należacych do tego otoczenia, nazywamy szeregiem Taylora funkcji $f$.
     Dla $z = 0$ szereg Taylora nazywa się szeregiem Maclaurina funkcji $f$.
@@ -3317,6 +3322,194 @@ Dla $z \in \mathbb{C}$ definiujemy
     \end{itemize}
 }
 \end{wniosek}
+
+\newpage
+\subsection{Szeregi Fouriera}
+\begin{defn}
+    Szeregiem trygonometrycznym nazywamy szereg funkcyjny w postaci
+    \begin{equation}\label{eq:94}
+        \frac{1}{2}a_0 + \sum_{n=1}^{\infty}(a_n \cos nx + b_n \sin nx) \quad (x \in \mathbb{R})
+    \end{equation}
+    gdzie $a_n$, $b_n$ są stałymi ($a_n, b_n \in \mathbb{C}$).
+\end{defn}
+
+Aby ustalić możliwość rozwinięcia w szereg trygonometryczny (\ref{eq:94}) dla danej funkcji $f$ o okresie $2\pi$ należy rozpocząć od ustalenia
+ciągu współczynników $a_0, a_1, b_1, a_2, b_2, \ldots$. Pokażemy teraz metodę wyznaczania tych współczynników pochodzącą od Eulera i Fouriera.
+Załóżmy, że funkcja $f$ (o wartościach rzeczywistych lub zespolonych) jest R-całkowalna na przedziale $[-\pi, \pi]$. Ponadto załóżmy, że funkcja $f$
+ma rozwinięcie w szereg trygonometryczny (\ref{eq:94}) jednostajnie zbieżny. Możemy go zatem całkować wyraz po wyrazie na tym przedziale. Mamy
+\[
+    \int_{-\pi}^{\pi}f(x)dx = \pi a_0 + \sum_{n=1}^{\infty}(a_n \int_{-\pi}^{\pi} \cos nx dx + b_n \int_{-\pi}^{\pi} \sin nx dx).
+\]
+Ponadto
+\[
+    \int_{-\pi}^{\pi} \cos nx dx = \frac{\sin nx}{n}\Big|_{\pi}^{\pi} = 0,
+\]
+\[
+    \quad \int_{-\pi}^{\pi} \sin nx dx = -\frac{\cos nx}{n}\Big|_{\pi}^{\pi} = 0,
+\]
+dlatego wszystkie wyrazy pod znakiem sumy są równe zero, czyli
+\[
+    a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)dx.
+\]
+Aby ustalić wartość współczynników $a_m$ ($m \in \mathbb{N}$ --- ustalone) pomnóźmy obie strony równości (\ref{eq:94}) przez $\cos mx$. 
+Wówczas szereg ten pozostaje w dalszym ciągu jednostajnie zbieżny (jest to bezpośrednia konsekwencja Definicji \ref{def:99}) i możemy go całkować wyraz
+po wyrazie na tym samym przedziale:
+
+\begin{align*}
+    \int_{-\pi}^{\pi}f(x)\cos mx dx =& \frac{a_0}{2}\int_{-\pi}^{\pi}\cos mx dx \\
+    +& \sum_{n=1}^{\infty}(a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + b_n \int_{-\pi}^{\pi} \sin nx \cos mx dx).
+\end{align*}
+Ponieważ 
+\[
+    \int_{-\pi}^{\pi} \sin nx \cos mx dx = \frac{1}{2} \int_{-\pi}^{\pi} \sin(n + m)x + \sin(n - m)x dx = 0,
+\]
+\[
+    \int_{-\pi}^{\pi} \cos nx \cos mx dx = \frac{1}{2}\int_{-\pi}^{\pi}\cos(n + m)x + \cos(n - m)x dx = 0, \text{ jeśli } n \neq m
+\]
+oraz (dla $n = m$)
+\[
+    \int_{-\pi}^{\pi} \cos^2 mx dx = \int_{-\pi}^{\pi} \frac{1 + \cos 2mx}{2}dx = \frac{1}{2}(x + \frac{1}{2m}\sin 2mx) \Big|_{-\pi}^{\pi} = \pi,
+\]
+zatem pod znakiem sumy pozostaje jedynie całka mnożona przez współczynnik $a_m$. Stąd 
+\[
+    a_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \cos mx dx, \quad m \in \mathbb{N}.
+\]
+Analogicznie mnożąc szereg (\ref{eq:94}) przez $\sin mx$ i całkując wyraz po wyrazie wyznaczamy współczynnik przy sinusie:
+\[
+    b_m = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin mx dx, \quad m \in \mathbb{N}.
+\]
+Tym razem wykorzystujemy równości:
+\[
+    \int_{-\pi}^{\pi} \sin nx \sin mx dx = 
+    \begin{cases}
+        0 & \text{ jeśli } n \neq m, \\
+        \pi & \text{ jeśli } n = m. 
+    \end{cases}
+\]
+
+\begin{defn}
+    Wzory na współczynniki $a_n$ i $b_n$ noszą nazwę wzorów Eulera-Fouriera, a same współczynniki nazywają się
+    współczynnikami Fouriera danej funkcji.
+\end{defn}
+
+\begin{defn}
+    Niech $f$ bedzię funkcją R-całkowalną na przedziale $[-\pi, \pi]$. Wówczas można obliczyć współczynniki Fouriera funkcji $f$ i zbadać szereg (\ref{eq:94}).
+    Szereg trygonometryczny o tak dobranych współczynnikach nazywamy szeregiem Fouriera funkcji $f$ i zapisujemy 
+    \[
+        f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos nx + b_n \sin nx).
+    \]
+    Pisząc powyżej znak ``$\sim$'' nie zakładamy niczego na temat zbieżności szeregu po jego prawej stronie. Szereg ten nie musi być zbieżny, a jeśli jest zbieżny to nie znaczy to, 
+    by jego suma była równa $f(x)$.
+\end{defn}
+
+
+Wyprowadzając wzory Eulera-Fouriera w istocie udowodniliśmy następujące
+
+\begin{theorem}
+{
+    Jeśli funkcja $f$ R-całkowalna na przedziale $[-\pi, \pi]$ i okresowa o okresie $2\pi$ daje się rozwinąć w szereg trygonometryczny jednostajnie zbieżny,
+    to ten szereg jest jej szeregiem Fouriera.
+}
+\end{theorem}
+
+\begin{uwaga}
+    Wzory Eulera-Fouriera przybierają prostszą postać, gdy rozważana funkcja $f$ jest albo parzysta, albo nieparzysta.
+    Jeśli $f$ jest parzysta to wówczas funkcje $f(x)\cos nx$ są również parzystę, podczas gdy $f(x) \sin nx$ są nieparzyste.
+    Wynika stąd, że wzory na współczynniki szeregu Fouriera tej funkcji przybierają następującą postać:
+    \[
+        a_0 = \frac{2}{\pi}\int_{0}^{\pi}f(x)dx, \quad
+        a_n = \frac{2}{\pi}\int_{0}^{\pi}f(x) \cos nx dx, \quad
+        b_n = 0, \quad n \in \mathbb{N}.
+    \]
+    Natomiast w przypadku gdy, $f$ jest funkcją nieparzystą, nieparzyste są również funkcje $f(x) \cos nx$. Z kolei $f(x) \sin nx$ jest funkcją parzystą. 
+    Tym razem mamy więc
+    \[
+        a_0 = 0, \quad a_n = 0, \quad b_n = \frac{2}{\pi}\int_{0}^{\pi}f(x) \sin nx dx, \quad n \in \mathbb{N}.
+    \]
+\end{uwaga}
+
+Pokażemy teraz, że szereg trygonometryczny (\ref{eq:94}) można przedstawić w innej postaci, która jest w wielu sytuacjach dogodniejsza.
+
+\noindent
+Niech $f$ będzie funkcją $2\pi$-okresową, R-całkowalną na przedziale $[-\pi, \pi]$. Niech
+\[
+    \frac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos nx + b_n \sin nx)
+\]
+będzie jej szeregiem Fouriera. Przekształcimy wyraz ogólny tego szeregu za pomocą wzorów Eulera (Wn. \ref{wniosek:36} (a)). Mamy
+\begin{align*}
+   a_n \cos nx + b_n \sin nx &= a_n \frac{e^{inx} + e^{-inx}}{2} + b_n \frac{e^{inx} - e^{-inx}}{2i} \\
+                            &= \frac{a_n - ib_n}{2}e^{inx} + \frac{a_n + i b_n}{2}e^{-inx} \\
+                            &= c_n e^{inx} + c_{-n}e^{-inx} \\
+\end{align*}
+gdzie
+\[
+    c_n = \frac{a_n - ib_n}{2}, \quad c_{-n} = \frac{a_n + i b_n}{2}.
+\]
+Oznaczając $c_0 = \frac{a_0}{2}$ otrzymamy dla sum częsciowych szeregu Fouriera następujące wyrażenie
+\[
+    \frac{a_0}{2} + \sum_{n=1}^{N}(a_n \cos nx + b_n \sin nx) = c_0 + \sum_{n=1}^{N}(c_n e^{inx} + c_{-n}e^{-inx}) = \sum_{n=-N}^{N}c_n e^{inx}.
+\]
+Dla nowych współczynników Fouriera $c_n$ otrzymamy wzór
+\begin{align*}
+    c_n = \frac{a_n - i b_n}{2} &= \frac{1}{2}\Big(\frac{1}{\pi}\int_{-\pi}^{\pi}f(x) \cos nx dx - i \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \sin nx dx \Big) \\
+                               &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)(\cos nx - i \sin nx) dx \\ 
+                               &= \frac{1}{2\pi} \int_{-\pi}^{\pi}f(x)e^{-inx}dx.
+\end{align*}
+Powyższy wzór wyprowadziliśmy dla $n > 0$. Bezpośrednio widać, że jest on prawdziwy dla $n = 0$. Można bez trudny sprawdzić, że jest on również prawdziwy dla $n < 0$.
+Widzimy więc, że zbieżność szeregu Fouriera funkcji $f$ oznacza, że istnieje granica (95)
+\[
+    \lim_{N \to \infty} \Big( \frac{a_0}{2} + \sum_{n=1}^{N}(a_n \cos nx + b_n \sin nx)\Big) 
+                                = \lim_{N \to \infty} \sum_{n=-N}^{N}c_n e^{inx}
+                                = \sum_{n=-\infty}^{\infty}c_n e^{inx}.
+\]
+
+\begin{defn}
+    Szereg (95) nazywamy szeregiem Fouriera w postaci zespolonej. Współczynniki tego szeregu wyrażają się wzorami:
+    \[
+        c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{inx}dx \quad (n = 0, \pm 1, \pm 2, \ldots).
+    \]
+\end{defn}
+
+Zajmiemy się teraz badaniem zbieżności szeregu Fouriera. Udowodnimy wpierw
+
+\setcounter{lematcounter}{3}
+\begin{lemat}
+{
+    (Riemann-Lebesgue) Jeśli funkcja $g$ jest R-całkowalna na przedziale $[a,b]$, to 
+    \[
+        \lim_{p \to \infty}\int_{a}^{b}g(t) \sin pt dt = 0 \quad \text{ oraz } \quad \lim_{p \to \infty}\int_{a}^{b}g(t) \cos pt dt = 0.
+    \]
+}
+\end{lemat}
+
+\begin{proof}
+    Wystarczy przeprowadzić dowód dla pierwszej z tych granic i dla funkcji rzeczywistych. Zauważmy wpierw, że na dowolnym przedziale ograniczonym $[\alpha, \beta]$ prawdziwe jest oszacowanie
+    \[
+        \Bigg| \int_{\alpha}^{\beta} \sin pt dt \Bigg| = \Bigg| \frac{\cos p\alpha - \cos p \beta}{p} \Bigg| \leqslant \frac{2}{p}.
+    \]
+    Wybierzmy dowolne $\varepsilon > 0$. Istnieje wówczas taki podział $P = \{t_0, t_1, \ldots, t_n\}$ przedziału $[a,b]$, że 
+    $U(f, P) - L(f, P) < \frac{\varepsilon}{2}$. Oznaczmy $M_j = \sup\{g(t) : t_{j-1} \leqslant t \leqslant t_j\}$ i $m_j = \inf\{g(t) : t_{j-1} \leqslant t \leqslant t_j\}$
+    dla $j = 1, 2, \ldots, n$. Niech $p > \frac{4}{\varepsilon}\sum\limits_{j=1}^{m}|m_j|$. Wówczas mamy
+    \begin{align*}
+        \int_{a}^{b}g(t)\sin pt dt &= \sum_{j=1}^{n}\int_{t_{j-1}}^{t_j} g(t) \sin pt dt \\
+                                    &= \sum_{j=1}^{n} \int_{t_{j-1}}^{t_j}(g(t) - m_j)\sin pt dt + \sum_{j=1}^{n}m_j \int_{t_{j-1}}^{t_j} \sin pt dt.
+    \end{align*}
+    Ponieważ $0 \leqslant g(t) - m_j \leqslant M_j - m_j$ dla $t_{j-1} \leqslant t \leqslant t_j$, więc 
+    \begin{align*}
+        \Bigg| \int_{a}^{b}g(t)\sin pt dt \Bigg| &\leqslant \sum_{j=1}^{n}\int_{t_{j-1}}^{t_j} (g(t) - m_j) |\sin pt| dt + \sum_{j=1}^{n}|m_j| \Bigg| \int_{t_{j-1}}^{t_j} \sin pt dt\Bigg| \\
+        &\leqslant \sum_{j=1}^{n}\int_{t_{j-1}}^{t_j}(M_j - m_j)dt + \frac{2}{p}\sum_{j=1}^{n}|m_j| \\ 
+        &= U(f, P) - L(f, P) + \frac{2}{p}\sum_{j=1}^{n}|m_j| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+    \end{align*}
+    a to oznacza, że zachodzi pierwsza nierówność z tezy.
+\end{proof} 
+
+\begin{wniosek}
+{
+    Współczynniki Fouriera $a_n$ i $b_n$ funkcji całkowalnej dążą do zera przy $n \to \infty$. 
+}
+\end{wniosek}
+
+% Aby zbadać zbieżność szeregu (\ref{eq:94}) w punkcie $x$ musimy zbadać, jak zachowują się sumy częsciowe tego szeregu w tym punkcie. Mamy
 
 \end{justify}
 \end{document}
