@@ -3509,7 +3509,147 @@ Zajmiemy się teraz badaniem zbieżności szeregu Fouriera. Udowodnimy wpierw
 }
 \end{wniosek}
 
-% Aby zbadać zbieżność szeregu (\ref{eq:94}) w punkcie $x$ musimy zbadać, jak zachowują się sumy częsciowe tego szeregu w tym punkcie. Mamy
+Aby zbadać zbieżność szeregu (\ref{eq:94}) w punkcie $x$ musimy zbadać, jak zachowują się sumy częsciowe tego szeregu w tym punkcie. Mamy
+\begin{align*}
+    s_n(x) &= \frac{a_0}{2} + \sum_{m=1}^{n}(a_m \cos mx + b_m \sin mx) \\ 
+           &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(u)du + \sum_{m=1}^{n}\frac{1}{\pi}\int_{-\pi}^{\pi}f(u)(\cos mu \cos mx + \sin mu \sin mx)du \\
+           &= \frac{1}{\pi}\int_{-\pi}^{\pi}f(u)\Bigg(\frac{1}{2} + \sum_{m=1}^{n} \cos m(u - x)\Bigg) du.
+\end{align*}
+Ponieważ
+\begin{align*}
+    \frac{1}{2} + \sum_{m=1}^{n} \cos m \alpha &= \frac{1}{2\sin \frac{\alpha}{2}} \Bigg( \sin \frac{\alpha}{2} + \sum_{m=1}^{n}(\sin (m+\frac{1}{2}\alpha) - \sin (m - \frac{1}{2}) \alpha) \Bigg) \\
+    &= \frac{\sin (2n + 1)\frac{\alpha}{2}}{2 \sin \frac{\alpha}{2}},
+\end{align*}
+dla $\alpha = u - x \neq 2k \pi, k \in \mathbb{Z}$, więc otrzymujemy
+\begin{equation}\label{eq:96}
+    s_n(x) = \frac{1}{\pi}\int_{-\pi}^{\pi}f(u) \frac{\sin (2n + 1)\frac{u-x}{2}}{2 \sin \frac{u-x}{2}}du
+\end{equation}
+(oczywiście $\frac{1}{2} + \sum\limits_{m=1}^{n}\cos m 2k\pi = \frac{1}{2} + n$ oraz $\lim\limits_{\alpha \to 2k \pi} \frac{\sin (2n + 1)\frac{\alpha}{2}}{2 \sin \frac{\alpha}{2}} = n + \frac{1}{2}$ dla $k \in \mathbb{Z}$).
+
+\begin{defn}
+    Całkę (\ref{eq:96}) nazywamy całką Dirichleta, a funkcję 
+    \[
+        D_n(u - x) = \frac{\sin (2n + 1) \frac{u-x}{2}}{2 \sin \frac{u-x}{2}} \quad \text{dla} \quad u-x \neq 2k\pi
+    \]
+    oraz
+    \[
+        \quad D_n(2k\pi) = \frac{1}{2} + n, \quad k \in \mathbb{Z},
+    \]
+    jadręm Dirichleta.
+\end{defn}
+
+\begin{lemat}
+{
+    Jeśli $f$ jest funkcją $2\pi$-okresową i R-całkowalną na przedziale $[-\pi, \pi]$, to
+    \[
+        \int_{\alpha}^{\alpha + 2\pi} f(u) du = \int_{-\pi}^{\pi}f(u) du,
+    \]
+    dla dowolnego $\alpha \in \mathbb{R}$.
+}
+\end{lemat}
+
+\begin{proof}
+    Z okresowości funkcji $f$ wynika, że jest ona R-całkowalna na dowolnym przedziale i ponadto mamy 
+    \[
+        \int_{\alpha}^{\alpha + 2\pi} f(u) du = \int_{\alpha}^{-\pi}f(u)du + \int_{-\pi}^{\pi}f(u)du + \int_{\pi}^{\alpha + 2\pi} f(u)du.
+    \]
+    Jeśli w ostatniej całce zamienimy zmienną podstawiając $u = t + 2\pi$, to otrzymamy 
+    \begin{align*}
+        \int_{\alpha}^{\alpha + 2\pi} f(u) du &= \int_{\alpha}^{-\pi}f(u)du + \int_{-\pi}^{\pi}f(u)du + \int_{-\pi}^{\alpha} f(t + 2\pi)dt \\
+        &= \int_{\alpha}^{-\pi}f(u)du + \int_{-\pi}^{\pi}f(u)du - \int_{\alpha}^{-\pi}f(t)dt \\
+        &= \int_{-\pi}^{\pi}f(u)du. 
+    \end{align*}
+   
+\end{proof}
+
+Stosując Lemat 5 możemy zapisać 
+\[
+    s_n(x) = \frac{1}{\pi}\int_{x-\pi}^{x+\pi} f(u) \frac{\sin (2n + 1) \frac{u-x}{2}}{2 \sin \frac{u-x}{2}}du \quad (\alpha = x - \pi).
+\]
+Zamieniając w całce zmienną przy pomocy wzoru $t = u - x$, otrzymujemy 
+\[
+    s_n(x) = \frac{1}{\pi}\int_{\pi}^{\pi}f(x + t) \frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t}dt.
+\]
+Następnie rozbijając te całkę na dwie $(\int_{-\pi}^{0} + \int_{0}^{\pi})$ i sprowadzając pierwszą z nich do całki po przedziale $[0, \pi]$ otrzymujemy następujący wzór na sumę częsciową szeregu Fouriera:
+\begin{equation}\label{eq:97}
+    s_n(x) = \frac{1}{\pi}\int_{0}^{\pi}(f(x + t) + f(x - t))\frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t}dt
+\end{equation}
+Badanie zbieżności szeregu Fouriera funkcji $f$ w punkcie $x$ sprowadza się więc do zbadania całki (\ref{eq:97}). Zauważmy, że funkcja podcałkowała w tej całce w ogóle nie ma granicy, gdy $n \to \infty$.
+    
+\begin{theorem}
+{
+    (Zasada Lokalizacji) Jeśli $f$ jest $2\pi$-okresową funkcją $R-całkowalną$ na przedziale $[-\pi, \pi]$ oraz $0 < \delta < \pi$, to 
+    \[
+        \lim_{n \to \infty} \Bigg( \int_{-\pi}^{\delta}+ \int_{\delta}^{\pi}\Bigg)\Bigg( f(x + t) \frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t}\Bigg)dt = 0.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Ustalmy punkt $x$ i niech $\delta < |t| < \pi$, $g(t) = \frac{f(x+t)}{2 \sin \frac{1}{2}t}$. Jest to funkcja $4\pi$-okresowa i R-całkowalna, gdyż funkcja $\sin \frac{1}{2}t$
+    nie zeruje się na tych przedziałach. Na mocy Lematu Riemanna-Lebesgue'a całki:
+    \[
+        \int_{-\pi}^{-\delta} g(t) \sin (n + \frac{1}{2})t dt, \quad \int_{\delta}^{\pi}g(t) \sin (n + \frac{1}{2})t dt
+    \]
+    dązą do zera przy $n \to \infty$.
+\end{proof}
+
+\begin{uwaga}
+    Z powyższego twierdzenia wynika, że zachowanie się ciągu $(s_n(x))$ jeśli chodzi o zbieżność, zależy tylko od wartości funkcji $f$ w jakimś dowolnie małym otoczeniu punktu $x$. \\
+    Ponadto badanie ciągu $(s_n(x))$ sprowadza się do zbadania całki 
+    \[
+        \frac{1}{\pi} \int_{-\delta}^{\delta}f(x + t) \frac{ \sin (n + \frac{1}{2}t)}{2 \sin \frac{1}{2}t}dt,
+    \]
+    przy dowolnie małej liczbie $\delta > 0$. 
+\end{uwaga}
+
+Udowodnimy teraz twierdzenie, które podaje warunki dostateczne zbieżności szeregu Fouriera. Inne tego typu twierdzenia można znaleźć w ksiażce [2], t. 3. Podamy wpierw następującą definicję.
+
+\begin{defn}
+    Funkcja $f$ nazywamy się przedziałami lub kawałkami rózniczkowalna na przedziale $[a,b]$, jeśli przedział ten można podzielić na skończoną liczbę przedziałów domkniętych,
+    wewnątrz których jest ona różniczkowalna, a na końcach ma granice i ,,pochodne jednostronne'', to znaczy granice jednostronne ilorazów różnicowych, w których zastępujemy wartości funkcji odpowiednimi granicami jednostronnymi. 
+\end{defn}
+
+\begin{theorem}
+{
+    Jeśli funkcja $f$ jest kawałkami rózniczkowalna na przedziale $[-\pi, \pi]$, to jej szereg Fouriera jest zbieżny w każdym punkcie $x$ i jego suma wynosi $s = \frac{f(x+0) + f(x - 0)}{2}$.
+    (Ta suma jest oczywiście równa $f(x)$, jeśli w tym punkcie funkcja $f$ jest ciągła).
+}
+\end{theorem}
+
+\begin{proof}
+    Podstawiając w równości (\ref{eq:97}) $f = 1$ i uwzględniając, że dla tej funkcji $s_n(x) = 1$ w każdym punkcie $x$ (bowiem $a_0 = 2$ oraz $a_n = b_n = 0$ dla $n \neq 1$), otrzymujemy 
+    \[
+        1 = \frac{2}{\pi}\int_{0}^{\pi}\frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t}dt, \quad \text{czyli} \quad s = \frac{2s}{\pi}\int_{0}^{\pi}\frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t}dt.
+    \]
+    Stąd
+    \begin{align*}
+        s_n(x) - s &= \frac{1}{\pi} \int_{0}^{\pi}\Bigg ( f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \frac{\sin (n + \frac{1}{2})t}{2 \sin \frac{1}{2}t} \Bigg)dt \\ 
+                    &= \frac{1}{\pi} \int_{0}^{\pi}g(t) \sin (n + \frac{1}{2})t dt.
+    \end{align*}
+    gdzie $g(t) = \begin{cases} 
+       \Big( \frac{f(x + t) - f(x + 0)}{t} - \frac{f(x - t) - f(x - 0)}{-t}\Big) \frac{\frac{1}{2}t}{\sin \frac{1}{2}t} & \text{dla } 0 < t \leqslant \pi, \\    
+       0 & \text{dla } t = 0. 
+    \end{cases}$ \\
+    Na mocy Lematu Riemanna-Lebesgue'a, aby zakończyć dowód wystarczy stwierdzić, że $g$ jest funkcją R-całkowalną. Na przedziale $(0, \pi]$ funkcja $g$ jest ciagła wszędzie z wyjątkiem
+    tylko skończonej liczby punktów, w których funkcje $f(x + t)$ i $f(x - t)$ nie są ciagłe. Wystarczy zatem zbadać zachowanie się funkcji $g$ przy $t \to 0^+$. 
+    Wykażemy, że istnieje skończona granica $\lim\limits_{t \to 0^+}g(t) = K$. To będzie oznaczało, że funkcja $g$ jest R-całkowalna na przedziale $[0, \pi]$ jako funkcja ograniczona i 
+    ciągła, która posiada skończoną liczbę punktów nieciągłości (Tw. \ref{theorem:79}). \\
+    Niech wpierw $x$ leży wewnątrz przedziału, na którym funkcja $f$ jest różniczkowalna. Wówczas $f(x^+) = f(x^-) = f(x)$ oraz 
+    \[
+        \lim_{t \to 0^+}\frac{f(x + t) - f(x)}{t}=f'_+(x) = f'(x), \quad \lim_{t \to 0^+}\frac{f(x - t) - f(x)}{t} = f'_-(x) = f'(x),
+    \]
+    a zatem w tym przypadku $\lim\limits_{t \to 0^+}g(t) = 0$. \\
+    Jeśli $x$ jest punktem ciągłości funkcji $f$, w którym nie ma pochodnej (ale istnieją pochodne jednostronne), to 
+    \[
+        \lim_{t \to 0^+}g(t) = f'_+(x) - f'_-(x).
+    \]
+    Jeśli w końcu $x$ jest punktem nieciągłości funkcji $f$, to wiemy, że istnieją skończone granice
+    \[
+        \lim_{t \to 0^+}\frac{f(x + t) - f(x^+)}{t}, \quad \lim_{t \to 0^+}\frac{f(x - t) - f(x^-)}{t},
+    \]
+    zatem również w tym przypadku granica  $\lim\limits_{t \to 0^+}g(t)$ istnieje i jest skończona. 
+\end{proof}
 
 \end{justify}
 \end{document}
