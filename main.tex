@@ -2505,7 +2505,7 @@ Podamy teraz wygodnie kryterium zbieżności jednostajnej szeregów funkcyjnych 
 {
     (Twierdzenie o Majorancie). Niech $(f_n)$ będzie ciągiem funkcyjnym określonym na zbiorze $E$ i niech
     \[
-        |f_n(x)| \leqslant M \quad (x \in E, n \in \mathbb{N}).
+        |f_n(x)| \leqslant M_n \quad (x \in E, n \in \mathbb{N}).
     \]
     Wtedy szereg $\sum\limits_{n=1}^{\infty}f_n$ jest zbieżny jednostajnie na $E$, jeśli zbieżny jest 
     szereg liczbowy $\sum\limits_{n=1}^{\infty}M_n$.
@@ -3456,12 +3456,14 @@ Dla nowych współczynników Fouriera $c_n$ otrzymamy wzór
                                &= \frac{1}{2\pi} \int_{-\pi}^{\pi}f(x)e^{-inx}dx.
 \end{align*}
 Powyższy wzór wyprowadziliśmy dla $n > 0$. Bezpośrednio widać, że jest on prawdziwy dla $n = 0$. Można bez trudny sprawdzić, że jest on również prawdziwy dla $n < 0$.
-Widzimy więc, że zbieżność szeregu Fouriera funkcji $f$ oznacza, że istnieje granica (95)
-\[
+Widzimy więc, że zbieżność szeregu Fouriera funkcji $f$ oznacza, że istnieje granica
+\begin{align}\label{eq:95}
+\begin{split}
     \lim_{N \to \infty} \Big( \frac{a_0}{2} + \sum_{n=1}^{N}(a_n \cos nx + b_n \sin nx)\Big) 
-                                = \lim_{N \to \infty} \sum_{n=-N}^{N}c_n e^{inx}
-                                = \sum_{n=-\infty}^{\infty}c_n e^{inx}.
-\]
+    &= \lim_{N \to \infty} \sum_{n=-N}^{N}c_n e^{inx} \\
+    &= \sum_{n=-\infty}^{\infty}c_n e^{inx}.
+\end{split}
+\end{align}
 
 \begin{defn}
     Szereg (95) nazywamy szeregiem Fouriera w postaci zespolonej. Współczynniki tego szeregu wyrażają się wzorami:
@@ -3649,6 +3651,188 @@ Udowodnimy teraz twierdzenie, które podaje warunki dostateczne zbieżności sze
         \lim_{t \to 0^+}\frac{f(x + t) - f(x^+)}{t}, \quad \lim_{t \to 0^+}\frac{f(x - t) - f(x^-)}{t},
     \]
     zatem również w tym przypadku granica  $\lim\limits_{t \to 0^+}g(t)$ istnieje i jest skończona. 
+\end{proof}
+
+W 1876 roku Du Bois-Reymond podał przykład funkcji ciągłej, o szeregu Fouriera rozbieżnym w pewnych punktach. Lebesgue w 1906 roku
+podał przykład funkcji ciągłej, do której szereg Fouriera jest zbieżny wszędzie, ale nie jest zbieżny jednostajnie (zob. [2], t. 3, s. 419-422).
+W roku 1966 matematyk szwedzki L. Carlson udowodnił, że jeśli $f$ jest funkcją ciągłą i $2\pi$-okresową, to jej szereg Fouriera jest do niej
+prawie wszędzie zbieżny, to znaczy wszędzie z wyjątkiem punktów, których miara Lebesgue'a jest równa zero. \\
+Sytuacja ta ulega jednak zmianie, gdy zamiast sum częsciowych szeregu Fouriera rozważymy ciąg ich średnich arytmetycznych:
+\[
+    \sigma_n(x) = \frac{s_0(x) + s_1(x) + \cdots + s_n(x)}{n + 1}, \quad n = 0,1,2,\ldots
+\]
+(średnie Cesáro). Znajdziemy teraz reprezentację całkową średniej $\sigma_n$. Mamy
+\[
+    \sigma_n(x) = \frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}f(x+t)\Bigg(\sum_{k=0}^{n}\frac{\sin (k+\frac{1}{2}t)}{\sin \frac{1}{2}t}\Bigg)dt.
+\]
+Ponieważ
+\begin{align*}
+    \sum_{k=0}^{n}2\sin(k+\frac{1}{2})t\sin\frac{1}{2}t &= -\sum_{k=0}^{n}\Big(\cos(k+1)t - \cos kt \Big) \\
+        &= 1 - \cos(n+1)t = 2 \sin^2 \frac{n+1}{2}t,
+\end{align*}
+więc 
+\begin{equation}\label{eq:98}
+    \sigma_n(x) = \frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}f(x+t)\frac{\sin^2\frac{1}{2}(n+1)t}{\sin^2\frac{1}{2}t}dt.
+\end{equation}
+
+\begin{defn}
+    Całkę (\ref{eq:98}) nazywamy całką Fejéra. Ponadto oznaczamy
+\end{defn}
+\begin{align*}
+    \kappa_n(t) &= \frac{\sin^2\frac{1}{2}(n+1)t}{2(n+1)\sin^2\frac{1}{2}t} \\
+    \kappa_n(2l\pi) &= \frac{1}{n+1}\sum_{k=0}^{n}\kappa_n(2l\pi) = \frac{1}{n+1}\sum_{k=0}^{n}\Big(\frac{1}{2} + k\Big) = \frac{1}{2}(n+1),
+\end{align*}
+$n = 0,1,2, \ldots, l \in \mathbb{N}$, nazywamy jądrem Fejéra. Mamy więc
+\begin{equation}\label{eq:99}
+    \sigma_n(x) = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x+t)\kappa_n(t)dt.
+\end{equation}
+
+Zauważmy, ponadto że $\kappa_n(t) \geqslant 0$ dla wszystkich $t$. 
+
+\begin{theorem}
+{
+    (Fejéra) Jeśli funkcja $f$ jest ciągła i okresowa o okresie $2\pi$ i jeśli $(\sigma_n$) jest ciągiem średnich arytmetycznych sum częściowych jej
+    szeregu Fouriera, to $\lim\limits_{n \to \infty}\sigma_n(x) = f(x)$ jednostajnie na $\mathbb{R}$. 
+}
+\end{theorem}
+
+\begin{proof}
+    Zauważmy wpierw, że jeśli $f$ jest funkcją tożsamościowo równa $1$, to dla niej $\sigma_n(x) = 1$ dla wszystkich $x$, zatem na mocy wzoru (\ref{eq:99}) otrzymujemy
+    \[
+        1 = \frac{1}{\pi}\int_{-\pi}^{\pi}k_n(t)dt.
+    \]
+    Stąd
+    \begin{equation}\label{eq:100}
+        f(x) - \sigma_n(x) = \frac{1}{\pi}\int_{-\pi}^{\pi}(f(x) - f(x + t)\kappa_n(t))dt.
+    \end{equation}
+    Ponieważ funkcja $f$ jest ciągła na przedziale $[-\pi, \pi]$, zatem jest na nim 
+    jednostajnie ciągła. Również jest ona jednostajnie ciągła
+    na przedziale $[0, 2\pi]$ (możemy przy tym założyć, że stała $\delta > 0$ występująca w 
+    warunku jednostajnej ciągłości, jest w obydwu przypadkach mniejsza od $\pi$).
+    Stąd, wobec okresowości funkcji $f$ wnioskujemy, że jest ona jednostajnie ciągła na 
+    $\mathbb{R}$. \\ 
+    Niech będzie dane $\varepsilon > 0$. Wybierzmy $\delta > 0$ tak, aby $|f(x) - f(x+t)| < 
+    \frac{\varepsilon}{3}$ dla wszystkich $x$ i
+    wszystkich $t$ spełniających nierówność $|t| < \delta$. Możemy przy tym założyć, że 
+    $\delta < \pi$.
+    Istnieje również $M > 0$ takie, że $|f(x)|\leqslant M$ dla wszystkich $x$, czyli $|f(x) - f
+    (x + t)| \leqslant 2M$ dla dowolnych $x$ i $t$.
+    Całkę (\ref{eq:100}) rozdzielamy na trzy całki w następujący sposób:
+    \begin{align*}
+        &\frac{1}{\pi}\int_{-\pi}^{\pi}((f(x) - f(x+t))\kappa_n(t))dt = \\
+        &= \frac{1}{\pi}\Big(\int_{-\pi}^{-\delta} + \int_{-\delta}^{\delta} + \int_{\delta}^
+        {\pi}\Big)(f(x) - f(x+t))\kappa_n(t)dt \\
+        &= I_1 + I_2 + I_3.
+    \end{align*}
+    Szacujemy kolejno wartości powyżej otrzymanych całek. Mamy
+    \[
+        |I_1| = \frac{1}{\pi}\Bigg|\int_{-\pi}^{-\delta}(f(x)-f(x+t))\kappa_n(t)dt \Bigg| 
+        \leqslant \frac{2m}{\pi}\int_{-\pi}^{-\delta}\kappa_n(t)dt.
+    \]
+    Ponieważ dla $t \in [-\pi, -\delta]$ prawdziwa jest nierówność
+    \[
+        \kappa_n(t) = \frac{\sin^2 \frac{1}{2}(n+1)t}{2(n+1)\sin^2\frac{1}{2}t} \leqslant \frac
+        {1}{2(n+1)\sin^2\frac{1}{2}\delta},
+    \]
+    więc
+    \[
+        |I_1| \leqslant \frac{M}{(n+1)\pi\sin^2\frac{1}{2}\delta}\int_{-\pi}^{0}dt = \frac{M}
+        {(n+1)\sin^2\frac{1}{2}\delta}
+    \]
+    Analogicznie otrzemujemy
+    \[
+        |I_3| \leqslant \frac{M}{(n+1)\pi\sin^2\frac{1}{2}\delta}\int_{-\pi}^{0}dt = \frac{M}
+        {(n+1)\sin^2\frac{1}{2}\delta}
+    \]
+    Natomiast
+    \[
+        |I_2| = \frac{1}{\pi}\Bigg| \int_{-\delta}^{\delta}(f(x) - f(x+t)\kappa_n(t))dt \Bigg| 
+        \leqslant \frac{\varepsilon}{3\pi}\int_{-\pi}^{\pi}\kappa_n(t)dt = \frac{\varepsilon}
+        {3}.
+    \]
+    Otrzymujemy więc
+    \[
+        |f(x) - \sigma_n(x)| < \frac{\varepsilon}{3} + \frac{2M}{(n+1)\sin^2\frac{1}{2}t}.
+    \]
+    Biorąc $n_0$ tak duże, aby
+    \[
+        \frac{2M}{(n+1)\sin^2\frac{1}{2}t} < \frac{2\varepsilon}{3} \quad \text{dla} \quad n 
+        \geqslant n_0
+    \]
+    otrzymujemy nierówność $|f(x) - \sigma_n(x)| < \varepsilon$ prawdziwą dla każdego $n 
+    \geqslant n_0$ i wszystkich $x \in \mathbb{R}$, co kończy dowód.
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeśli dwie funkcje $f$ i $g$ ciagłe i okresowe o okresie $2\pi$ mają ten sam szereg 
+    Fouriera, to $f(x) = g(x)$ dla dowolnego $x$.
+}
+\end{wniosek}
+
+\begin{wniosek}
+{
+    Jeśli funkcja $f$ jest ciągła i $2\pi$ okresowa oraz
+    \[
+        \int_{-\pi}^{\pi}f(x)dx = 0, \quad \int_{-\pi}^{\pi}f(x)\cos nx dx = \int_{-\pi}^{\pi}f(x)\sin nx dx = 0 \quad \text{dla} \quad n \in \mathbb{N},
+    \]
+    to $f(x) = 0$ dla każdego $x \in \mathbb{R}$.
+}
+\end{wniosek}
+
+\begin{defn}
+    Funkcja postaci
+    \[
+        \frac{A_0}{2} + \sum_{k=1}^{n}(A_K \cos kx + B_k \sin kx), \quad {A_n}^2 + {B_n}^2 > 0
+    \]
+    nazywa się wielomianem trygonometrycznym stopnia $n$ ($n = 0, 1, 2, \ldots)$.
+\end{defn}
+
+\begin{wniosek}
+{
+    (II Twierdzenie Aproksymacyjne Weierstrassa) Dla każdej funkcji ciągłej i $2\pi$-okresowej 
+    istnieje ciąg wielomianów algebraicznych zbieżny do niej jednostajnie na $\mathbb{R}$.
+}
+\end{wniosek}
+
+\begin{wniosek}
+{
+    (I Twierdzenie Aprosymacyjne Weierstrassa) Dla każdej funkcji ciągłej na przedziale $[a,b]
+    $ istnieje ciąg wielomianów algebraicznych zbieżny do niej jednostajnie na tym przedziale.
+}
+\end{wniosek}
+
+\begin{proof}
+    Wystarczy pokazać, że dla każdego $\varepsilon > 0$ istnieje wielomian $P$ taki, że $|f(x) 
+    - P(x)| < \varepsilon$ dla $x \in [a,b]$. Odwzorujemy przedział $[0, \pi]$ na przedział $
+    [a,b]$ poprzez przekształcenie
+    \[
+        x = a + \frac{b-a}{\pi}t, \quad t \in [0, \pi]
+    \]
+    i defniujemy $f^*(t) = f(a + \frac{b-a}{\pi}t)$. Funkcja $f^*$ jest określona na 
+    przedziale $[0, \pi]$. Przedłużamy ją do funkcji parzystej na przedzial $[-\pi, 0]$ to 
+    znaczy określamy $f^*(t) = f^*(-t)$ jeśli $t \in [-\pi, 0]$. Otrzymana w ten sposób funkcja $f^*$ jest ciągła na przedziale $[-\pi, \pi]$ oraz $f^*(\pi) = f^*(-\pi)$. Posiada ona więc ciagłe i $2\pi$-okresowe rozszerzenia na całą prostą $\mathbb{R}$. 
+    Na mocy Twierdzenia Fejéra (\ref{theorem:166}) dla dowolnego $\varepsilon > 0$ istnieje wielomian trygonometryczny $T$ taki, że 
+    \[
+        |f^*(t) - T(t)| < \frac{\varepsilon}{2} \quad \text{dla wszystkich} \quad t.
+    \]
+    Ponieważ $\cos kt$ i $\sin kt$, $k \in \mathbb{N}$ rozwijają się w szeregi potęgowe zbieżne, a więc i wielomian trygonometryczny $T$ rozwija się w szeregi potęgowe zbieżne na całej prostej, a zatem jednostajnie zbieżne na każdym przedziale domkniętym. Niech więc
+    \[
+        T(t) = \sum_{n=0}^{\infty}c_k t^k.
+    \]
+    Jeśli $P_n(t)$ są sumami częsciowymi tego szeregu, to na mocy jego jednostajnej zbieżności na przedziale $[-\pi, \pi]$ istnieje wkaźnik $n_0$, że dla $n \geqslant n_0$ i $t \in [-\pi, \pi]$ mamy
+    \[
+        |T(t) - P_n(t)| < \frac{\varepsilon}{2}.
+    \]
+    Biorąc $n = n_0$ i $P(t) = P_{n_0}(t)$ otrzymujemy
+    \[
+        |f^*(t) - P(t)| \leqslant |f^*(t) - T(t)| + |T(t) - P(t)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+    \]
+    dla wszystkich $t \in [-\pi, \pi]$ (a w szczególności $t \in [0, \pi]$). Powracając do zmiennej $x$ to znaczy podstawiając, otrzymujemy 
+    \[
+        |f(x) - P(\pi\frac{x-a}{b-a})| < \varepsilon \quad \text{dla} \quad x \in [a,b],
+    \]
+    gdzie $P(\pi\frac{x-a}{b-a})$ jest oczywiście wielomianem zmiennej $x$. 
 \end{proof}
 
 \end{justify}
