@@ -38,7 +38,7 @@
 % Lemat
 \newcounter{lematcounter}
 \setcounter{lematcounter}{1}
-\newcommand{\lemat}[1]{\noindent\refstepcounter{lematcounter}\textbf{Lemat \thelematcounter. }\textit{#1}\label{theorem:\thelematcounter}}
+\newcommand{\lemat}[1]{\noindent\refstepcounter{lematcounter}\textbf{Lemat \thelematcounter. }\textit{#1}\label{lemat:\thelematcounter}}
 
 % Wniosek
 \newcounter{wniosekcounter}
@@ -2529,7 +2529,7 @@ Podamy teraz wygodnie kryterium zbieżności jednostajnej szeregów funkcyjnych 
     niejednostajnie (np. $\sum\limits_{n=1}^{\infty}\frac{x^2(-1)^{n-1}}{{(1+x^2)}^n}$ ([2], t. II. przykład. 8 s. 367)).
 \end{uwaga}
 
-Rozumiejąc analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące kryterium zbieżności jednostajnej szeregów funkcyjnych zwane
+Rozumując analogicznie jak w dowodzie Twierdzenia 134 otrzymujemy nastepujące kryterium zbieżności jednostajnej szeregów funkcyjnych zwane
 \textbf{Kryterium Dirichleta}.
 
 \begin{theorem}
@@ -3834,6 +3834,1383 @@ Zauważmy, ponadto że $\kappa_n(t) \geqslant 0$ dla wszystkich $t$.
     \]
     gdzie $P(\pi\frac{x-a}{b-a})$ jest oczywiście wielomianem zmiennej $x$. 
 \end{proof}
+
+\begin{theorem}
+{
+    (Własność Minimum Współczynników Fouriera) Jeśli $s_n(x) = \frac{a_0}{2} + \sum_{k=1}^{n}(a_k \cos(kx) + b_k \sin (kx))$ jest $n$-tą sumą
+    częsciową szeregu Fouriera funkcji $f$ R-całkowalnej na przedziale $[-\pi, \pi]$ i 
+    $T_n(x) = \frac{A_0}{2} + \sum_{k=1}^{n}(A_k \cos(kx) + B_k \sin(kx))$ jest wielomianem stopnia nie większego niż $n$, to
+    \[
+        \int_{-\pi}^{\pi}{|f(x) - s_n(x)|}^2 dx \leqslant \int_{-\pi}^{\pi}{|f(x) - T_n(x)|}^2dx
+    \]
+    i równośc ma miejsce wtedy i tylko wtedy, gdy
+    \[
+        a_0 = A_0, \quad a_k = A_k, \quad b_k = B_k \quad \text{dla} \quad k \in \mathbb{N}.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+...
+\end{proof}
+
+\begin{theorem}
+{
+    (Tożsamość Parsevala)
+    Jeśli $f$ jest funkcją ciągła i $2\pi$-okresową a $(s_n)$ jest ciągiem sum częsciowych jej szeregu Fouriera, to 
+    \[
+        \lim_{n \to \infty}\int_{-\pi}^{\pi}{|f(x) - s_n(x)|}^2dx = 0
+    \]
+    oraz zachodzi równość (zwana Tożsamościa Parsevala)
+    \[
+        \frac{|a_0|^2}{2} + \sum_{n=1}^{\infty}(|a_n|^2 + |b_n|^2) = \frac{1}{\pi}\int_{-\pi}^{\pi}{|f(x)|}^2dx.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Niech będzie dana liczba $\varepsilon > 0$. Z Twierdzenia Fejéra wynika, że istnieje wskaźnik $n_0$ taki, 
+    że dla $n \geqslant n_0$ i wszystkich $x$ (rzeczywistych lub zespolonych) mamy 
+    \[
+        |f(x) - \sigma_n(x)| < \frac{\sqrt{\varepsilon}}{\sqrt{2\pi}}.  
+    \]
+    Z właśności Minimum Współczynników Fouriera wynika, że 
+    \[
+        \int_{-\pi}^{\pi}{|f(x) - s_n(x)|}^2dx \leqslant \int_{-\pi}^{\pi}{|f(x) - \sigma_n(x)|}^2dx \leqslant \varepsilon
+    \]
+    dla $n > n_0$, a zatem 
+    \[
+        \lim_{n \to \infty} \int_{-\pi}^{\pi}{|f(x) - s_n(x)|}^2dx = 0
+    \]
+    Ponieważ 
+    \[
+        \int_{-\pi}^{\pi}|f(x)|^2 dx - \pi\Big(\frac{|a_0|^2}{2} + \sum_{n=1}^{\infty}(|a_n|^2 + |b_n|^2)\Big) = \int_{-\pi}^{\pi}{|f(x) - s_m(x)|}^2dx,
+    \]
+    więc przechodząc do granicy przy $m \to \infty$ otrzymujemy drugą część tezy.
+\end{proof}
+
+\newpage
+\section{Przestrzenie metryczne}
+\subsection{Pojęcie przestrzeni metrycznej. Zbiory w przestrzeniach metrycznych}
+
+\setcounter{defcounter}{110}
+\begin{defn}
+Niepusty zbiór $X$ nazywamy przestrzenią metryczną, jeśli określona jest w nim funkcja $d : X \times X \mapsto \mathbb{R}_+ \cup \{0\}$ spełniająca
+następujące warunki:
+\begin{itemize}
+    \item [(a)] $d(x, y) = 0$ wtedy i tylko wtedy, gdy $x = y$;
+    \item [(b)] $d(x, y) = d(y, x)$ --- symetria;
+    \item [(c)] $d(x, y) \leqslant d(x, z) + d(z, y)$ --- Nierówność Trójkąta.
+\end{itemize}
+Warunki (b) i (c) muszą być spełnione dla dowolnych $x, y, z \in X$. \\
+Elementy przestrzeni metrycznej nazywać będziemy punktami,funkcję $d$ --- metryką lub odległością. \\
+Przestrzeń metryczna $X$ z metryką $d$ oznaczamy symbolem $(X, d)$.
+\end{defn}
+
+\setcounter{excounter}{47}
+\begin{ex}
+    \begin{itemize}
+        \item [(a)] Zbiór $\mathbb{R}$ oraz zbiór $\mathbb{C}$ są przestrzeniami metrycznymi z metryką określoną następująco:
+        $d(x, y) = |x - y|$ dla $x, y \in \mathbb{R}$ (lub $\mathbb{C})$. Nierówność Trójkąta w tym przypadku wynika z Tw. 12 lub z Tw. 17 (f).
+        \item [(b)] Przy dowolniej liczbie naturalnej $k$ niech $\mathbb{R}^k$ będzie zbiorem uporządkowanych $k$-wyrazowych ciągów
+        \[
+            x = (x_1, x_2, \ldots, x_k),
+        \]
+        gdzie $x_1, x_2, \ldots, x_k$ są liczbami rzeczywistymim zwanymi współrzędnymi elementu $x$.
+        Elementy $\mathbb{R}^k$ nazywamy często wektorami, szczególnie w przypadku $k > 1$. \\
+        Jeżeli $y = (y_1, y_2, \ldots, y_k)$ i $\alpha \in \mathbb{R}$, to definiujemy
+        \[
+            x + y = (x_1 + y_1, \ldots, x_k + y_k) \quad \alpha x = (\alpha x_1, \ldots, \alpha x_k).
+        \]
+        Oczywiście $x + y \in \mathbb{R}^k$ oraz $\alpha x \in \mathbb{R}^k$. Powyższe wzory definiują dodawanie wektorów oraz mnożenie
+        wektora przez liczbe rzeczywistą (skalar). Obie te operacje spełniają prawa przemienności i łączności oraz rozdzielność mnożenia względem dodawania. 
+        Ponadto istnieje elementy neutralny dodawania $0 = (0, 0, \ldots, 0)$. zwany wektorem zerowym. Każdy wektor $x \in \mathbb{R}^k$ posiada element przeciwny oraz $1x = x$
+        dla każdego $x \in \mathbb{R}^k$. Zbiór $\mathbb{R}^k$ z tak określonymi działaniami jest więc przestrzenią liniową nad ciałem liczb rzeczywistych. \\
+        W zbiorze $\mathbb{R}^k$ definiujemy 
+        \[
+            d_{\mathbb{R}^k}(x, y) = {\Bigg( \sum_{j=1}^{k}{(x_j - y_j)}^2\Bigg)}^{1/2},
+        \]
+        gdzie $x = (x_1, \ldots, x_k)$, $y = (y_1, \ldots, y_k) \in \mathbb{R}^k$. \\
+        Wobec nierówności Schwarza dla $x, y, z \in \mathbb{R}^k$ otrzymujemy
+        \begin{align*}
+            \sum_{j=1}^{k}{(x_j + y_j)}^2 &= \sum_{j=1}^{k}x_j^2 + 2 \sum_{j=1}^{k}x_j y_j \sum_{j=1}^{k}y_j^2 \\
+            &\leqslant \sum_{j=1}^{k}x_j^2 + 2\Bigg( \sum_{j=1}^{k}x_j^2\Bigg)^{\frac{1}{2}}\Bigg( \sum_{j=1}^{k}y_j^2\Bigg)^{\frac{1}{2}} + \sum_{j=1}^{k}y_j^2 \\
+            &= {\Bigg(\Big(\sum_{j=1}^{k}x_j^2\Big)^{\frac{1}{2}} + \Big(\sum_{j=1}^{k}y_j^2\Big)^{\frac{1}{2}}\Bigg)}^2
+        \end{align*}
+        Powyższa nierównośc nazywa się Nierównościa Minkowskiego. Wobec nierówności Minkowskiego jest jasne, że powyżej określona funkcja $d$ spełnia nierówność Trójkata. Oczywiście spełnia ona również warunki (a) i (b) Definicji \ref{def:111}, a zatem
+        $(\mathbb{R}^k, d)$ jest przestrzenią metryczną.
+        \item [(c)] Niepusty podzbiór $Y$ przestrzeni metrycznej $X$ jest również przestrzenią metryczną z tą samą metryką.
+        \item [(d)] Dowolny niepusty zbiór $X$ wraz z funkcją $d : X \times X \mapsto \mathbb{R}_+ \cup \{0\}$ określonej następująco:
+            $d(x, y) = 0$, gdy $x = y$, $d(x, y) = 1$, gdy $x \neq y$ jest przestrzenią metryczną.
+    \end{itemize}
+\end{ex}
+
+\begin{defn}
+    Niech $X$ będzie przestrzenią metryczną z metryką $d$. Wszystkie występujące poniżej punkty i zbiory są elementami i podzbiorami $X$.
+    \begin{itemize}
+        \item [(a)] Kulą otwartą o środku w punkcie $x$ i promieniu $r > 0$ nazywamy zbiór wszystkich punktów $y$ takich, że $d(x, y) < r$ (oznaczamy ją symbolem $B(x, r)$).
+        \item [(b)] Otoczeniem punktu $x$ nazywamy każdy zbiór $U$, który zawiera pewną kulę o środku w punkcie $x$ i promieniu $\varepsilon > 0$. 
+        \item [(c)] Punkt $x$ nazywamy punktem wewnętrznym zbioru $E$, jeśli istnieje otoczenie $U$ punktu $x$ takie, że $U \subset E$.
+        \item [(d)] Zbiór $E$ nazywamy otwartym, jeśli każdy punkt zbioru $E$ jest jego punktem wewnętrznym lub jeśli $E$ jest zbiorem pustym.
+        \item [(e)] Dopełnienie zbioru $E$ nazywamy zbiór wszystkich punktów $x \in X$ takich, że $x \notin E$ (oznaczamy je symbolem $E^c$).
+        \item [(f)] Zbiór $E$ nazywamy domkniętym, jeśli jego dopełnienie jest zbiorem otwartym.
+        \item [(g)] Punkt $x$ nazywamy punktem skupienia zbioru $E$, jeśli każde otoczenie punktu $x$ zawiera punkt $y \neq x$ taki, że $y \in E$. 
+        \item [(h)] Jeśli $x \in E$ i $x$ nie jest punktem skupienia zbioru $E$, to $x$ nazywamy punktem izolowanym zbioru $E$.
+        \item [(i)] Zbiór $E$ nazywamy doskonałym, jeśli jest domknięty i każdy punkt zbioru $E$ jest jego punktem skupienia.
+        \item [(j)] Zbiór $E$ jest ograniczony, jeśli zawiera się on w pewnej kuli (inaczej mówiąc gdy istnieje liczba $M > 0$ i punkt $y \in X$ takie, że $d(x, y) \leqslant M$ dla wszystkich $x \in E$).
+        \item [(k)] Zbiór $E$ nazywamy gęstym w $X$, jeśli każdy punkt zbioru $X$ jest punktem skupienia zbioru $E$ lub należy do $E$.
+    \end{itemize}
+\end{defn}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)] Kula otwarta w przestrzeni metrycznej $X$ jest zbiorem otwartym. Weźmy kulę $B(x_0, r) \subset X$ i niech $x \in B(x_0, r)$. Niech $\varepsilon = \frac{1}{2}(r - d(x, x_0))$. 
+        Wówczas z Nierówności Trójkąta wynika, że $B(x, \varepsilon) \subset B(x_0, r)$.
+        \item [(b)] W przestrzeni $\mathbb{R}$ przedział otwarty jest zbiorem otwartym. Ten sam przedział otwarty rozważany jako podzbiór przestrzeni $\mathbb{R}^2$ nie
+        jest zbiorem otwartym, bowiem nie zawiera żadnej kuli otwartej w $\mathbb{R}^2$.
+        \item [(c)] Cała przestrzeń metryczna $X$ jest jednocześnie zbiorem otwartym i domkniętym ($X^c = \emptyset$). Zbiór pusty jest również zbiorem domkniętym ($\emptyset^c = X$).
+        \item [(d)] Przedział domknięty $[a,b]$ w przestrzeni $\mathbb{R}$ jest zbiorem domkniętym, bowiem jego dopełnienie jest zbiorem otwartym. Ten sam przedział
+        domknięty rozważany jako podzbiór przestrzeni $\mathbb{R}^2$ jest również zbiorem domkniętym. Przedział otwarty $(a,b)$ rozważany jako podzbiór przestrzeni $\mathbb{R}^2$ nie jest zbiorem domkniętym. 
+    \end{itemize}
+\end{ex}
+
+\setcounter{thcounter}{168}
+\begin{theorem}
+{
+    Niech $X$ będzie przestrzenią metryczną z metryką $d$. Wszystkie występujące poniżej zbiory są podzbiorami przestrzeni $X$.
+    \begin{itemize}
+        \item [(a)] Dla rodziny $\{G_\alpha\}$ zbiorów otwartych, zbiór $\bigcup\limits_{\alpha}G_\alpha$ jest również otwarty.
+        \item [(b)] Jeśli zbiory $G_1, \ldots, G_n$ są otwarte, to zbiór $\bigcap\limits_{j=1}^{n}G_j$ jest otwarty.
+        \item [(c)] Jeśli $\{F_\alpha\}$ jest rodziną zbiorów domniętych, to $\bigcap\limits_\alpha F_\alpha$ jest także domknięty.
+        \item [(d)] Jeśli zbiory $F_1, \ldots, F_n$ są domkniętę, to ich suma  $\bigcup\limits_{j=1}^{n}F_j$ jest także zbiorem domkniętym.
+    \end{itemize}
+}
+\end{theorem}
+
+\begin{proof}
+    \begin{itemize}
+        \item [(a)] Niech $G = \bigcup\limits_\alpha G_\alpha$. Jeśli $x \in G$, to $x \in G_\alpha$ przy pewnym $\alpha$. Ponieważ
+        $x$ jest punktem wewnętrznym zbioru $G_\alpha$, wieć jest on również punktem wewnętrznym zbioru $G$, bowiem $G_\alpha \subset G$, czyli zbiór $G$ jest otwarty.
+        \item [(b)] 
+            Niech $H = \bigcap_{j=1}^{n}G_j$ i niech $x \in H$. Istnieją wówczas kule $B_j$ o środku w punkcie $x$ takie, że $B_j \subset G_j$ dla $j = 1, \ldots, n$.
+            Niech $r_j$ oznacza promień kuli $B_j$. Oznaczmy $r = \min{r_1, \ldots, r_j}$ i niech $B$ będzie kulą domkniętą o środku w punkcie $x$ i promieniu $r$.
+            Wówczas $B \subset B_j \subset G_j$ dla $1 \leqslant j \leqslant n$. Stąd $B \subset H$, co oznacza, że zbiór $H$ jest otwarty.
+        \item [(c)]
+            Mamy ${\Big(\bigcap\limits_{\alpha}F_{\alpha}\Big)}^c = \bigcup\limits_\alpha F_\alpha^c$. Ponieważ zbiory $F_\alpha^c$ są otwarte, zatem na podstawie punktu (a) otwarty jest
+            również zbiór $\bigcap\limits_\alpha F_\alpha^c$, a więc $\bigcap\limits_\alpha F_\alpha$ jest domknięty.
+        \item [(d)]
+            Wystarczy ponownie przejść do dopełnień i zastosować punkt (b).
+    \end{itemize}
+\end{proof}
+
+\begin{ex}
+    W częsciach (b) i (d) powyższego twierdzenia założenie o skończoności rodzin $G_j$ i $F_j$ jest koniecznie.
+    Istotnie niech $G_n = (-\frac{1}{n}, \frac{1}{n})$. Wówczas $G_n$ jest otwartym podzbiorem przestrzeni $\mathbb{R}$, ale
+    $G = \bigcap\limits_{n=1}^{\infty}G_n = \{0\}$. Przekrój nieskończonej rodziny zbiorów otwartych nie musi być otwarty. 
+    Analogicznie niech $F_n = [\frac{1}{n}, 1 - \frac{1}{n})$ dla $n = 2,3,\ldots$. Wówczas zbiór $F_n$ jest domknięty, ale
+    $F = \bigcup\limits_{n=2}^{\infty}F_n = (0, 1)$ nie jest zbiorem domkniętym. 
+\end{ex}
+
+\begin{theorem}
+{
+    Podzbiór $E$ przestrzeni metrycznej $(X, d)$ jest domknięty wtedy i tylko wtedy, gdy $E$ zawiera wszystkie swoje punkty skupienia.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech zbiór $E$ będzie domknięty i niech $x$ będzie punktem skupienia zbioru $E$. Punkt $x \in E$, bowiem w przeciwnym razie istniałoby takie otoczenie $U$ tego punktu, że
+    $E \cap U = \emptyset$, co jest niemożliwe, bowiem $x$ jest punktem skupienia zbioru $E$.
+    Na odwrót, załóżmy, że zbiór $E$ zawiera wszystkie swoje punkty skupienia. Wówczas jeśli $x \in E^c$, to $x \notin E$, czyli 
+    $x$ nie jest punktem skupienia zbioru $E$. Istnieje więc otoczenie $V$ punktu $x$ takie, że $V \cap E = \emptyset$. Stąd wynika, że $V \subset E^c$. 
+    Wobec tego punkt $x$ jest punktem wewnętrznym zbioru $E^c$, co oznacza, że jest on otwarty, a więc zbiór $E$ jest domknięty.
+\end{proof}
+
+\setcounter{lematcounter}{5}
+
+\begin{lemat}
+    Jeśli $E$ jest niepustym, domkniętym podzbiorem zbioru $\mathbb{R}$, ograniczonym z góry, to $y = \sup E \in E$ (analogicznie dla niepustych zbiorów domkniętych, ograniczonych z dołu oraz ich infimów). 
+\end{lemat}
+
+\begin{proof}
+    Przypuścmy, że $y \notin E$. Dla każdego $h > 0$ istnieje punkt $x \in E$ taki, że $y -h \leqslant x \leqslant y$, gdyż w przeciwnym
+    razie liczba $y-h$ byłaby kresem górnym zbioru $E$.
+    Każde otoczenie punktu $y$ zawiera więc pewien punkt $x$ ze zbioru $E$, przy czym $x \neq y$, ponieważ $y \notin E$.
+    To oznacza, że $y$ jest punktem skupienia zbioru $E$ nienależącym do $E$, czyli wobec Twierdzenia \ref{theorem:170} zbiór $E$ nie jest domnięty.
+    Sprzeczność.
+\end{proof}
+
+\begin{defn}
+    Pokryciem otwartym zbioru $E$ przestrzeni metrycznej $X$ nazywamy rodzinę $\{G_\alpha\}$ podzbiorów otwartych przestrzeni $X$,
+    dla której
+    \[
+        E \subset \bigcup_\alpha G_\alpha
+    \]
+\end{defn}
+
+\begin{defn}
+    Podzbiór $K$ przestrzeni metrycznej $X$ nazywamy zwartym, jeśli każde pokrycie otwarte zbioru $K$ zawiera podpokrycie skończone,
+    to znaczy, jeśli $\{G_\alpha\}$ jest pokryciem otwartym zbioru $K$, to istnieje skończona liczba wskaźników $\alpha_1, \ldots, \alpha_n$ takich, że
+    \[
+        K \subset G_{\alpha_1} \cup \ldots G_{\alpha_n}.
+    \]
+    Jest oczywiste, że każdy zbiór skończony jest zwarty.
+\end{defn}
+
+\begin{theorem}
+    Zwarty podzbiór przestrzeni metrycznej jest ograniczony i domknięty.
+\end{theorem}
+
+\begin{proof}
+    Niech $K$ będzie zbiorem zwartym. Rozważmy rodzinę kul otwartych $\{B(x, 1)\}_{x \in K}$.
+    Ponieważ jest ona pokryciem otwartym zbioru $K$, więc istnieją punkty $x_1, \ldots, x_k \in K$ takie, że
+    $K \subset B(x_1, 1) \cup \ldots \cup B(x_n, 1)$. Niech $r = \max\{1 + d(x_1, x_2), \ldots, 1 + d(x_1, x_n))\}$.
+    Zauważmy, że $K \in B(x_1, r)$. Istotnie, jeśli $y \in K$, to $d(x_j, y) < 1$ dla pewnego $j \in \{1, \ldots, n\}$. Stąd 
+    \[
+        d(x_1, y) \leqslant d(x_1, x_j) + d(x_j, y) < 1 + d(x_1, x_j) \leqslant r,
+    \]
+    zatem zbiór $K$ jest ograniczony. \\
+    Pokażemy teraz, że dopełnienie zbioru $K$ jest otwartym podzbiorem przestrzeni $X$.
+    Niech $x \in K^c$. Dla dowolnego punktu $y \in K$ niech $V_x^y$ i $W_y$ będą kulami otwarymi odpowiednio o środkach w punktach 
+    $x$ i $y$ i o promieniach mniejszych niż $\frac{1}{2}d(x, y)$. Ponieważ $K$ jest zbiorem zwartym, więc istnieje skończona liczba punktów
+    $y_1, \ldots, y_n$ należacych do $K$ i takich, że $K \subset W_{y_1} \cup \ldots \cup W_{y_n} = W$.
+    Jeśli $V = V_{y_1}^x \cap \ldots \cap V_{y_n}^x$, to $V$ jest otoczeniem punktu $x$ nie przecinającym się ze zbiorem $W$.
+    Stąd $V \subset K^c$, czyli $x$ jest punktem wewnętrznym zbioru $K^c$.
+\end{proof}
+
+\begin{theorem}
+{
+    Domknięty podzbiór zbioru zwartego jest zbiorem zwartym. 
+}
+\end{theorem}
+
+\begin{proof}
+    Załóżmy, że $F \subset K$ i niech $F$ będzie zbiorem domkniętym, a $K$ - zwartym.
+    Niech $V_\alpha$ będzie otwartym pokryciem zbioru $F$. Jeśli do rodziny $\{V_\alpha\}$ dodamy zbiór
+    $F^c$, to otrzymamy otwarte pokrycie zbioru $K$. Ponieważ zbiór $K$ jest zwarty, więc istnieje skończona podrodzina 
+    $\{V_{\alpha_1}, \ldots, V_{\alpha_n}, F^c\}$, stanowiąca jego pokrycie. Odrzucając $F^c$, otrzymujemy otwarte i skończone pokrycie zbioru $F$.
+\end{proof}
+
+\setcounter{wniosekcounter}{42}
+\begin{wniosek}
+{
+    Jeśli zbiór $F$ jest domknięty, a $K$ --- zwarty, to zwarty jest również zbiór $F \cap K$.
+}
+\end{wniosek}
+
+\begin{theorem}
+{
+    Niech $K$ będzie zbiorem zwartym. Wówczas każdy jego nieskończony podzbiór ma punkt skupienia należacy do $K$.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $K$ będzie zbiorem zwartym i niech $E$ będzie nieskończonym podzbiorem zbioru $K$.
+    Gdyby żaden punkt zbioru $K$ nie był punktem skupienia zbioru $E$, to każdy punkt $y \in K$ miałby otoczenie $V_y$, zawierające nie więcej niż jeden punkt zbioru $E$
+    (właśnie punkt $y$, jeśli $y \in E$). Oczywiście żadna skończona podrodzina rodziny $\{V_y\}$
+    nie może pokryć zbioru $E$. Jest to także prawdziwe dla $K$, ponieważ $E \subset K$.
+    Przeczy to jednak zwartości zbioru $K$.
+\end{proof}
+
+Można również udowodnić twierdzenie odwrotne do powyższego (dla przestrzeni metrycznych!), mianowicie
+
+\begin{theorem}
+{
+    Jeśli każdy nieskończony i przeliczalny podzbiór zbioru $K$ zawartego w przestrzeni metrycznej $(X, d)$ ma punkt skupienia należacy do $K$, to $K$ jest zbiorem zwartym.
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia można znaleźć w książce K. Kuratowskiego, Wstęp do teorii mnogości i topologii. PWN, W-wa, 1980, s. 182--184.
+
+\begin{defn}
+    Jeśli $a_i, b_i \in \mathbb{R}$, $a_i < b_i$, $i = 1, \ldots, k$, to zbiór wszystkich punktów $x = (x_1, \ldots, x_k) \in \mathbb{R}^k$
+    takich, że $a_i \leqslant x_i \leqslant b_i$, $i = 1, \ldots, k$, nazywamy kostką $k$-wymiarową (por. Def. 38).
+\end{defn}
+
+\begin{theorem}
+{
+    Kostka $k$-wymiarowa jest zwartym podzbiorem przestrzeni $\mathbb{R}^k$.
+}
+\end{theorem}
+
+\begin{proof}
+    Porównaj z Uw. 11.
+\end{proof}
+
+\begin{theorem}
+{
+    (Heine-Borel) Podzbiór $E$ przestrzeni $\mathbb{R}^k$ jest zwarty wtedy i tylko wtedy, gdy jest on domknięty i ograniczony.
+}
+\end{theorem}
+
+\begin{proof}
+    Jeśli zbiór $E$ jest zwarty, to na mocy Twierdzenia \ref{theorem:171} jest on domknięty i ograniczony.
+    Na odwrót, jeśli $E$ jest domknięty i ograniczony, to zawiera się on w pewnej kostce, a zatem na mocy Twierdzenia \ref{theorem:175} jest on zwarty,
+    jako domknięty podzbiór zbioru zwartego.
+\end{proof}
+
+\begin{theorem}
+{
+    (Bolzano - Weierstrass) Nieskończony i ograniczony podzbiór przestrzeni $R^k$ posiada punkt skupienia w $R^k$.
+}
+\end{theorem}
+
+\begin{proof}
+    Ponieważ zbiór $E$ jest ograniczony, więc jest on podzbiorem pewnej kostki $k$-wymiarowej.
+    Z Twierdzenia \ref{theorem:173} wynika, że ma on punkt skupienia należacy do tej kostki.
+\end{proof}
+
+\begin{lemat}
+{
+    Każda przestrzeń metryczna zwarta jest ośrodkowa, to znaczy zawiera przeliczalny zbiór gęsty.
+}
+\end{lemat}
+
+Dowód powyższego lematu mozna znaleźć w książce K. Kuratowskiego, Wstęp do teorii mnogości i topologii, PWN W-wa, 1980, s. 183.
+
+\begin{defn}
+    Podzbiór $E$ przestrzeni metrycznej $X$ nazywamy spójnym, jeśli nie istnieją dwa otwarte podzbiory $A$ i $B$ przestrzeni $X$
+    takie, że przekrój $A \cap B$ jest pusty, iloczyn $A \cap E$ i $B \cap E$ są niepuste oraz $E \subset A \cup B$.
+\end{defn}
+
+\begin{theorem}
+    Podzbiór $E$ prostej rzeczywistej $\mathbb{R}$ jest spójny wtedy i tylko wtedy, gdy posiada on następującą 
+    właśność: jeśli $x \in E$, $y \in E$ i $x < z < y$, to $z \in E$.
+\end{theorem}
+
+\begin{proof}
+    Przypuścmy, że ten warunek nie jest spełniony. Wówczas dla pewnych punktów
+    $x, y, z$ mamy $x \in E$, $y \in E$, $x < z < y$ i $z \notin E$.
+    Jeśli oznaczymy $A = \{\alpha : \alpha < z\}$ i $B = \{\beta : \beta > z\}$, to zbiory $A$ i $B$ są otwarte
+    oraz $A \cap E \neq \emptyset$, $B \cup E \neq \emptyset$, $E \subset A \cup B$, $A \cap B = \emptyset$, a więc zbiór $E$ nie jest spójny. \\
+    Załóżmy teraz, że zbiór $E$ nie jet spójny. Istnieją wówczas punkty $x \in E$, $y \in E$, $x < y$ i rozłączne zbiory otwarte $A$ i $B$ takie, że
+    $x \in A$, $y \in B$, i $E \subset A \cup B$. Niech $S = A \cap [x, y]$ i $z = \sup S$.
+    Ponieważ $y \in B$ i zbiór $B$ jest otwaty, więc $z < y$. Gdyby więc $z \in A$, to z tego, że $A$ jest zbiorem otwartym
+    wynika, że $z$ nie jest kresem górnym zbioru $S$. Stąd $z \notin A$. Ponieważ $x \in A$, więc $x < z$.
+    Następnie, gdyby $z \in B$, to z otwartości zbioru $B$ wynikałoby, że $z$ nie byłby kresem górnym zbioru $S$, a więc $z \notin B$.
+    Ponieważ jednak $E \subset A \cup B$, zatem $z \notin E$, a więc warunek występujący w tezie twierdzenia nie jest spełniony.
+\end{proof}
+
+Poniższe twierdzenie charakteryzuje zbiory spójne w $\mathbb{R}^k$. Jego dowód można znaleźć na przykład w książce [6], cz. I, s. 114-115.
+
+\begin{theorem}
+{
+    Niepusty zbiór otwarty $A \subset \mathbb{R}^k$ jest spójny wtedy i tylko wtedy, gdy dowolne dwa jego punkty można połączyć linią łamaną zawartą całkowicie w $\mathbb{R}^k$.
+}
+\end{theorem}
+
+Powyższe twierdzenie dla zbiorów domniętych nie jest prawdziwe. Wystarczy rozważyć dowolny okrąg zawarty w $\mathbb{R}^2$.
+
+\subsection{Pojęcie granicy i funkcji ciągłej w przestrzeni metrycznej}
+
+\begin{defn}
+    Ciąg $(p_n)$ w przestrzeni metrycznej $X$ z metryką $d$ nazywamy zbieżnym do punktu $p \in X$, jeśli posiada on następującą własność: \\
+    Dla każdego $\varepsilon > 0$ istnieje taka liczba naturalna $n_0$, że dla wszystkich $n \geqslant n_0$ spełniona jest nierówność $d(p_n, p) < \varepsilon$.
+    W tym przypadku będziemy mówili, że $p$ jest granicą ciągu $(p_n)$ i będziemy pisali $p_n \to p$ lub 
+    $\lim\limits_{n \to \infty} p_n = p$. Mówimy, że ciąg $(p_n)$ jest zbieżny, jeśli jest zbieżny do jakiegoś punktu przestrzeni $X$.
+    Jeśli ciąg $(p_n)$ nie jest zbieżny, to mówimy, że jest on rozbieżny. 
+\end{defn}
+
+W przypadku przestrzeni metrycznych można również udowodnić (rozumowanie jest analogiczne) odpowiednik Twierdzenia 23, opisujący właności ciągów zbieżnych (z wyjątkiem punktu (e)). \\
+Dla ciągów przestrzeni $\mathbb{R}^k$ możemy zbadać związki pomiędzy zbieżnościa, a operacjami algebraicznymi.
+Również w tym przypadku prawdziwy jest odpowiednik Twierdzenia 24 (a), (b), (c). Udowodnia się go w oparciu o Twierdzenie 24 
+i następujący odpowiednik Twierdzenia 25 charakteryzujący zbieżność ciągów w $\mathbb{R}^k$.
+
+\begin{theorem}
+{
+    Załóżmy, że $x_n \in \mathbb{R}^k$, $x_n = (\xi_1^n, \ldots, x_k^n)$, $n \in \mathbb{N}$.
+    Ciąg $(x_n)$ jest zbieżny do punktu $x = (\xi^1, \ldots, \xi^k)$ wtedy i tylko wtedy, gdy
+    $\lim\limits_{n \to \infty} \xi_n^j = \xi^j$ dla $j = 1, \ldots, k$.
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia jest analogiczny do dowodu Twierdzenia 25.
+
+W oparciu o twierdzenia \ref{theorem:173} i \ref{theorem:174} można podać następującą definicję zbioru zwartego w
+przestrzeni metrycznej.
+
+\begin{defn}
+    Podzbiór $K$ przestrzeni metrycznej $X$ nazywamy zwartym, jeśli z każdego ciągu $(p_n)$ elementów tego zbioru
+    można wyrwać podciąg $(p_{n_k})$ zbieżny do pewnego elementu $p \in K$.
+\end{defn}
+
+Ponadto powtarzając dowód Twierdzenia 30 i wykorzystując Twierdzenie \ref{theorem:171} otrzymujemy
+następujący odpowiednik Twierdzenia Bolzano-Weierstrassa dla $\mathbb{R}^k$.
+
+\begin{theorem}
+{
+    Każdy ograniczony ciąg w przestrzeni $\mathbb{R}^k$ zawiera podciąg zbieżny. 
+}
+\end{theorem}
+
+Wprowadzimy teraz ogólną definicję granicy odwzorowania między dwiema przestrzeniami metrycznymi.
+
+\begin{defn}
+    Niech $(X, d_X)$, $(Y, d_Y)$ będą przestrzeniami metrycznymi, $E \subset X$, $f : E \mapsto Y$, $x_0$ niech będzie punktem skupienia zbioru $E$
+    oraz niech $y_0 \in Y$. Mówimy, że odwzorowanie $f$ ma w punkcie $x_0$ granicę $y_0$, jeśli dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$ takie, że
+    \[
+        d_Y(f(x), y_0) < \varepsilon
+    \]
+    dla wszystkich punktów $x \in E$, dla których
+    \[
+        0 < d_X(x, x_0) < \delta.
+    \]
+    Będziemy wówczas pisali $f(x) \to y_0$ przy $x \to x_0$ lub $\lim\limits_{x \to x_0} = y_0$.
+\end{defn}
+
+Powyższa definicja nosi nazwę definicji granicy funkcji w sensie Cauchy'ego.
+Również w tym przypadku (to znaczy jeśli $X$ i $Y$ są przestrzeniami metrycznymi)
+prawdziwy jest odpowiednik Twierdzenia 35, który orzeka równoważnośc definicji Cauchy'ego oraz definicji Heinego granicy funkcji w punkcie, która jest sformułowana w języku ciągów.
+Ponadto granica odwzorowania w punkcie jest wyznaczona jednoznacznie (por. Wn. 6). 
+Prawdziwy jest również odpowiednik Twierdzenia 37 dotyczący właśności arytmetycznych granicy w przypadku gdy $X$ jest przestrzenią metryczną. natomiast $Y = \mathbb{C}$ (punkt (a) tego twierdzenia jest oczywiście prawdziwy dla $Y = \mathbb{R}^k$).
+
+\begin{defn}
+    Niech $(X, d_X)$, $(Y, d_Y)$ będą przestrzeniami metrycznymi $E \subset X$, $x_0 \in E$ i $f : E \mapsto Y$. Mówimy, że odwzorowanie $f$ jest ciągłe w punkcie $x_0$ jeśli dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$ takie, że
+    \[
+        d_Y(f(x), f(x_0)) < \varepsilon
+    \]
+    dla wszystkich punktów $x \in E$, dla których
+    \[
+        d_X(x, x_0) < \delta.
+    \]
+    Jeśli funkcja $f$ jest ciągła w każdym punkcie zbioru $E$, to $f$ nazywamy ciągłą na $E$.
+\end{defn}
+
+Zauważmy, że aby funkcja $f$ była ciągła w punkcie $x_0$, to musi być określona w tym punkcie (por. Def. 119). \\
+Można w szczególności udowodnić, że metryka $d : (X, d) \times (X, d) \mapsto \mathbb{R}$ jest funkcją ciągłą, to znaczy jeżeli $\lim\limits_{n \to \infty}x_n = x$, $\lim\limits_{n \to \infty}y_n = y$ ($x_n, y_n, x, y \in X$ dla $n \in \mathbb{N}$), to $\lim\limits_{n \to \infty}d(x_n, y_n) = d(x, y)$ (zob. [3], s. 65). \\
+W sytuacji opisanej w Definicji \ref{def:120} prawdziwe pozostają odpowiedniki Uwagi 24 (ciągłości funkcji w punkcie izolowanym), Twierdzenia 41 (warunek równoważny ciągłości odwzorowania $f$ w punkcie $x_0$ będacym punktem skupienia zbioru $E$) oraz Twierdzenia 42 dla przypadku, gdy $X$ jest przestrzenią metryczną natomiast $Y = \mathbb{C}$ (przypadek sumy dwóch odwzorowań jest oczywiście prawdziwy dla $Y = \mathbb{R}^k$). \\
+Twierdzenie 43 dla odwzorowań o wartościach w $\mathbb{R}^k$ przybiera następującą postać.
+
+\begin{theorem}
+{
+    Dla funkcji rzeczywistych $f^1, \ldots, f^k$ określonych na przestrzeni metrycznej $X$ zdefiniujemy odwzorowanie $f : X \mapsto \mathbb{R}^k$ wzorem 
+    \[
+        f(x) = (f^1(x), \ldots, f^k(x)), quad x \in X.
+    \]
+    Wówczas odwzorowanie $f$ jest ciągłe wtedy i tylko wtedy, gdy każda z funkcji $f^1, \ldots, f^k$ jest ciągła.
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia jest analogiczny do dowodu Twierdzenia 43. \\
+Przejdżmy teraz do funkjci złożonych. Sformułujemy odpowiednik Twierdzenia 44 (tylko punkt (c) o złożeniu funkcji ciągłych).
+
+\begin{theorem}
+{
+    Niech ($X, d_x$), $(Y, d_Y)$ będą przestrzeniami metrycznymi, $f : X \mapsto Y$, $g : Y \mapsto Z$ i $h : X \mapsto Z$ będzie funkcją złożoną $h = g \circ f$. Jeśli funkcja $f$ jest ciągła w punkcie $x_0 \in X$, a $g$ jest ciągła w punkcie $f(x_0)$, to funckja $h$ jest również ciągła w punkcie $x_0$.
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia jest analogiczny do dowodu Twierdzenia 44.
+
+\begin{theorem}
+{
+    Odwzorowanie $f$ przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$ jest ciągłe na $X$ wtedy i tylko wtedy gdy zbiór $f^{-1}(V)$ jest otwarty w $X$ dla dowolnego zbioru otwartego $V$ w $Y$.
+}
+\end{theorem}
+
+\begin{proof}
+    Przypuścmy, że $f$ jest ciągłe na $X$. Niech $V$ będzie zbiorem otwartym w $Y$. Musimy udowodnić, że każdy punkt zbioru $f^{-1}(V)$ jest jego punktem wewnętrznym.
+    Załóżmy więc, że $p \in X$, $f(p) \in V$. Ponieważ $V$ jest otwarty, więc istnieje takie $\varepsilon > 0$, 
+    że $y \in V$, jeśli $d_Y(f(p),y) < \varepsilon$, a ponieważ $f$ jest ciagłe w punkcie $p$, zatem istnieje $\delta > 0$
+    takie, że $d_Y(f(x), f(p)) < \varepsilon$, jeśli $d_X(x, p) < \delta$. W ten sposób $x \in f^{-1}(V)$ jeśli tylko
+    $d_X(x, p) < \delta$. \\
+    Odwrotnie przypuścmy, że zbiór $f^{-1}(V)$ będzie otwarty w $X$ dla dowolnego zbioru otwartego $V$ w $Y$.
+    Ustalmy $p \in X$ i $\varepsilon > 0$, i niech $V$ będzie zbiorem wszystkich $y \in Y$ takich, że
+    $d_Y(y, f(p)) < \varepsilon$. Wówczas $V$ jest otwarty i dlatego $f^{-1}(V)$ jest otwarty.
+    Istnieje więc takie $\delta > 0$, że $x \in f^{-1}(V)$, jeśli tylko $d_X(p, x) < \delta$. 
+    Warunek $x \in f^{-1}(V)$ oznacza, że $f(x) \in V$, czyli $d_Y(f(x), f(p)) < \varepsilon$, co kończy dowód.
+\end{proof}
+
+\begin{wniosek}
+{
+    Odwzorowanie $f$ przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$ jest ciągłe wtedy i tylko wtedy, gdy
+    $f^{-1}(C)$ jest dommnitym podzbiorem $X$ dla dowolnego domkniętego zbioru $C$ w $Y$.
+}
+\end{wniosek}
+
+\begin{proof}
+    Wystarczy zauważyć, że $f^{-1}(E^c) = {[f^{-1}(E)]}^c$.
+\end{proof}
+
+Niech $X_1, \ldots, X_n, Y$ bedą zbiorami.
+
+\begin{defn}
+    Załóżmy, że każdej uporządkowanej $n$-ce ($x_1, \ldots, x_n)$ przyporządkowany jest 
+    dokładnie jeden element $y \in Y$. Oznaczamy $y = f(x_1, \ldots, x_n)$. Wtedy $f$ nazywa się funkcją
+    $n$-zmiennych z $X_1 \times \cdots \times X_n$ do $Y$.
+    Elementy $x_1, \ldots, x_n$ nazywamy wówczas zmiennymi niezależnymi, natomiast $y$ --- zmienną zależną.
+\end{defn}
+
+\begin{defn}
+    Punkt $y_0 \in \mathbb{R}^n$ nazywa się granicą funkcji $f : E \mapsto \mathbb{R}^n$, $E \subset \mathbb{R}^m$,
+    w punkcie $x_0$ bedącym punktem skupienia zbioru $E$, jeśli dla dowolnego $\varepsilon > 0$ istnieje takie $\delta > 0$, że 
+    \[
+        d_{\mathbb{R}^n}(f(x), y_0) < \varepsilon
+    \]
+    dla wszystkich punktów $x \in E$, dla których
+    \[
+        0 < d_{\mathbb{R}^m}(x, x_0) < \delta
+    \]
+\end{defn}
+
+Powyższa definicja jest oczywiście szczególnym przypadkiem definicji \ref{def:119}. Dla funkcji $n$-zmiennych można
+oczywiście wprowadzić pojęcie granicy iterowanej.
+Dla prostoty ograniczym się do funkcji dwóch zmiennych.
+
+\begin{defn}
+    Niech $f : E \mapsto \mathbb{R}^n$, $E \subset \mathbb{R}^2$. Dla ustalonego punktu $x_0$ i dowolnego punktu $y$ z pewnego zbioru
+    $E$ niech istnieje granica $\phi(y) = \lim\limits_{x \to x_0}f(x, y)$, $(x, y) \in E$.
+    Wówczas, jeśli istnieje
+    \[
+        \lim_{y \to y_0}\phi(y) = \lim_{y \to y_0}\Big(\lim_{x \to x_0}f(x,y)\Big),
+    \]
+    to element ten nazywamy granicą iterowaną funkcji $f(x, y)$ gdy najpierw $x \to x_0$, a następnie $y \to y_0$.
+    W analogiczny sposób określamy
+    \[
+        \lim_{x \to x_0}\Big(\lim_{y \to y_0}f(x,y)\Big).
+    \]
+\end{defn}
+
+Następujący przykład pokazuje, że istnienie granicy w punkcie $(x_0, y_0)$ jest niezależne od istnienia granic iterowanych.
+
+\begin{ex}
+\begin{itemize}
+    \item [(a)]
+        Niech funkcja $f : \mathbb{R}^2 \mapsto \mathbb{R}^2$ będzie określona wzorem
+        \[
+            f(x, y) = \begin{cases}
+                \frac{xy}{x^2+y^2} & \text{jeśli } x^2 + y^2 \neq 0, \\
+                0 & \text{jeśli } x^2 + y^2 = 0.
+                \end{cases}
+        \]
+        Wówczas $f(0, y) = f(x, 0) = 0$ oraz $f(x, x) = \frac{1}{2}$ dla $x \neq 0$.
+        W ten sposób funkcja $f$ nie posiada granicy przy $(x, y) \to (0, 0)$.
+        Ponadto, mamy $\lim\limits_{y \to 0}\Big(\lim\limits_{x \to 0}f(x, y)\Big) = \lim\limits_{y \to 0}0 = 0$
+        oraz $\lim\limits_{x \to 0}\Big(\lim\limits_{y \to 0}f(x, y)\Big) = \lim\limits_{x \to 0}0 = 0$.
+    \item [(b)]
+        Niech funkcja $f : \mathbb{R}^2 \mapsto \mathbb{R}^2$ będzie określona wzorem 
+        \[
+            f(x, y) = \begin{cases}
+                x + y \sin \frac{1}{x} & \text{dla } x \neq 0, \\
+                0                      & \text{dla } x = 0.
+            \end{cases}
+        \]
+        Mamy $\lim\limits_{(x, y) \to (0,0)}f(x, y) = 0$ oraz $\lim\limits_{x \to 0}\Big(\lim\limits_{y \to 0}f(x, y)\Big) = 0$.
+        Zauważmy, że granica iterowana $\lim\limits_{y \to 0}\Big(\lim\limits_{x \to 0}f(x, y)\Big)$ w ogóle nie istnieje.
+\end{itemize}
+\end{ex}
+
+\begin{defn}
+    Mówimy, że funkcja $f : E \mapsto \mathbb{R}^n$, $E \subset \mathbb{R}^m$ jest ciągła w punkcie $x_0 \in E$, 
+    jeśli dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$, takie, że 
+    \[
+        d_{\mathbb{R}^n}(f(x), f(x_0)) < \varepsilon
+    \]
+    dla wszystkich $x \in E$, dla których
+    \[
+        d_{\mathbb{R}^m}(x, x_0) < \delta
+    \]
+\end{defn}
+
+Powyższa definicja jest oczywiście szczególnym przypadkiem Definicji \ref{def:120}.
+
+\begin{defn}
+    W sytuacji opisanej powyżej w Definicji \ref{def:124} niech \\ $x_0 = (x_0^1, \ldots, x_0^n)$.
+    Mówimy, że funkcja $f$ jest ciągła w punkcie $x_0$ ze względu na zmienną $x_j$ ($1 \leqslant j \leqslant m)$,
+    jeśli spełniony jest warunek występujący w Definicji \ref{def:124} dla $x = (x_0^1, \ldots, x_0^{j-1}, x_j, x_0^{j+1}, \ldots, x_0^m)$.
+\end{defn}
+
+Jest jasne, że w powyżej opisanej sytuacji, jeśli funkcja $f$ jest ciągła w punkcie $x_0$ to $f$ jest ciągła w $x_0$ ze względu na każdą zmienną z osobna.
+Odwrotnie zachodzić nie musi. Rozważmy ponownie funkcje $f$ z Przykładu \ref{ex:51}. Niech $x_0 = (0, 0)$.
+Mamy $\lim\limits_{x_1 \to 0}f(x_1, 0) = 0 = f(x_0)$, $\lim\limits_{x_2 \to 0}f(0, x_2) = 0 = f(x_0)$. Funkcja $f$ nie jest jednak ciągła w punkcie $x_0$, 
+bowiem nie ma granicy w tym punkcie.
+
+\subsection{Własności funkcji ciągłych}
+
+\begin{theorem}
+{
+    Niech $f$ będzie odwzorowaniem ciągłym zwartej przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$.
+    Wówczas zbiór $f(X)$ jest zwarty. 
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $\{V_\alpha\}$ będzie pokryciem otwartym zbioru $f(X)$. Ponieważ $f$ jest ciągłe, więc z Twierdzenia \ref{theorem:181} wynika, że wszystkie 
+    zbiory $f^{-1}(V_\alpha)$ są otwarte. Poniewaz przestrzeń $X$ jest zwarta, wieć istnieje skończona liczba wskaźników $\alpha_1, \ldots, \alpha_n$ takich, że 
+    \[
+        X \subset f^{-1}(V_{\alpha_1}) \cup \ldots \cup f^{-1}(V_{\alpha_n})
+    \]
+    Ponieważ $f(f^{-1}(E)) = E$ dla każdego $E \subset Y$, zatem wobec powyższego 
+    \begin{align*}
+        f(X) &\subset f(f^{-1}(V_{\alpha_1} \cup \ldots \cup f^{-1}(V_{\alpha_n}))) = \\
+        & = f(f^{-1}(V_{\alpha_1})) \cup \ldots \cup f(f^{-1}(V_{\alpha_n})) = V_{\alpha_1} \cup \ldots \cup V_{\alpha_n}.
+    \end{align*}
+\end{proof}
+
+\begin{defn}
+    Odwzorowanie $f$ zbioru $E$ w przestrzeń metryczną $Y$ nazywamy ograniczonym, jeśli zbiór $f(E)$ jest ograniczony.
+\end{defn}
+
+\begin{theorem}
+{
+    Jeśli $f$ jest odwzorowaniem ciągłym zwartej przestrzeni metrycznej $X$ w przestrzeń $\mathbb{R}^k$, to zbiór $f(X)$ jest domknięty
+    i ograniczony (odwzorowanie $f$ jest więc ograniczone).
+}
+\end{theorem}
+
+\begin{proof}
+    Teza twierdzenia wynika z charakteryzacji zbiorów zwartych w $\mathbb{R}^k$ (Tw. \ref{theorem:186}) i z Twierdzenia \ref{theorem:185}
+\end{proof}
+
+\begin{theorem}
+{
+    Niech $f$ będzie pewną funkcją rzeczywistą określoną na zwartej przestrzeni metrycznej $X$ i niech
+    \[
+        M = \sup_{p \in X}f(p), \quad m = \inf_{p \in X}f(p).
+    \]
+    Wówczas istnieją punkty $p, q \in X$ takie, że $f(p) = M$ i $f(q) = m$.
+}
+\end{theorem}
+
+\begin{proof}
+    Z Twierdzenia \ref{theorem:186} wynika, że $f(X)$ jest ograniczonym i domkniętym podzbiorem zbioru $\mathbb{R}$, 
+    a więc wobec Lematu \ref{lemat:6}, $f$ osiąga swój kres górny i dolny.
+\end{proof}
+
+Twierdzenie \ref{theorem:187} uogólnia znane Twierdzenie Weierstrassa (Tw. 50).
+Udowodnimy teraz następujące twierdzenie o ciągłości funkcji odrwotnej (por. Tw. 49).
+
+\begin{theorem}
+{
+    Niech $f$ będzie ciągłym i różnowartościowym odwzorowaniem zwartej przestrzeni metrycznej $X$ na przestrzeń metryczną $Y$.
+    Wówczas odwzorowanie $f^{-1}$ jest ciągłym odwzorowaniem $Y$ na $X$.
+}
+\end{theorem}
+
+\begin{proof}
+    Stosując Twierdzenie \ref{theorem:184} dla $f^{-1}$ zamiast $f$ widzimy, że wystarczy wykazać, że $f(V)$ jest zbiorem otwartym w $Y$ dla każdego zbioru otwartego $V$ w $X$.
+    Ustalmy taki zbiór $V$. Dopełnienie $V^c$ zbioru $V$ jest domknięte w $X$ i stąd zwarte (Tw. \ref{theorem:171}). Stąd $f(V^c)$ 
+    jest zwartym podzbiorem przestrzeni $Y$ (Tw. \ref{theorem:185}), a więc domnięty w $Y$. (Tw. \ref{theorem:172}).
+    Ponieważ $f$ jest wzajemnie jednoznacznym odwzorowaniem $X$ na $Y$, więc zbiór $f(V)$ pokrywa sie z dopełnieniem zbioru $f(V^c)$. Stąd $f(V)$ jest otwarty.
+\end{proof}
+
+W książce [6] podany jest przykład świadczący o tym, że założenie zwartości w Twierdzeniu \ref{theorem:188} jest konieczne.
+
+\begin{defn}
+    Niech $f$ będzie odwzorowaniem przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$.
+    Mówimy, że funkcja $f$ jest jednostajnie ciągła na $X$, jeśli spełniony jest następujący warunek: \\
+    Dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$ takie, że 
+    \[
+        d_Y(f(x_1), f(x_2)) < \varepsilon
+    \]
+    dla wszystkich punktów $x_1, x_2 \in X$, dla których
+    \[
+        d_X(x_1, x_2) < \delta.
+    \]
+\end{defn}
+
+Następujący wynik jest uogólnieniem Twierdzenia Cantora  (Tw. 51). Jego dowód jest analogiczny.
+
+\begin{theorem}
+{
+    Niech $f$ będzie ciagłym przekształceniem zwartej przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$.
+    Wówczas odwzorowanie $f$ jest jednostajnie ciągłe na $X$.
+}
+\end{theorem}
+
+\begin{theorem}
+{
+    Jeśli $f$ jest ciagłym przekształceniem spójnej przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$, to zbiór $f(X)$ jest spójny.
+}
+\end{theorem}
+
+\begin{proof}
+    Jeśli $f(X)$ nie jest spójny, to istnieją otwarte i rozłączne podzbiory $V, W$ przestrzeni $Y$, obydwa przecinające się z $f(X)$ i takie, że $f(x) \subset V \cup W$.
+    Ponieważ $f$ jest ciągłe, więc zbiory $f^{-1}(V)$ i $f^{-1}(W)$ są otwarte.
+    Ponadto są one niepuste i nierozłączne, a ich suma jest równa $X$. Oznacza to, że zbiór $X$ nie jest spójny, wbrew założeniu.
+\end{proof}
+
+Twierdzenie Darboux (Tw. 48) jest szczególnym przypadkiem powyższego twierdzenia. Istotnie, na mocy Twierdzenia \ref{theorem:178} przedział
+$P \subset \mathbb{R}$ jest zbiorem spójnym. Wobec Twierdzenia \ref{theorem:190}, $f(P)$ jest spójnym podzbiorem przesztrzeni $\mathbb{R}$ i wystarczy jeszcze raz powołać się na Twierdzenie \ref{theorem:178}. \\
+Zajmiemy się teraz badaniem rodziny funkcji jednakowo ciągłych. Najważniejszym wynikiem jest tutaj Twierdzenie Arzéli,
+posiadające istotne zastosowania na przykład w teorii równań różniczkowych.
+
+\begin{uwaga}
+    Zauważmy, że definicje i twierdzenia z Paragrafu 10.1 oraz twierdzenia \ref{theorem:149} i \ref{theorem:150}
+    pozostają oczywiście niezmienione, jesli $E$ ędzie podzbiorem dowolnej przestrzeni metrycznej (faktycznie przestrzeń metryczna jest potrzebna w Tw. \ref{theorem:149} oraz Tw. \ref{theorem:150}).
+\end{uwaga}
+
+\begin{defn}
+    Niech $(f_n)$ będzie ciągiem funkcji określonych na zbiorze $E$. Mówimy, że ciąg $(f_n)$ jest punktowo ograniczony na $E$, jeśli dla dowolnego $x \in E$, ciąg $(f_n(x))$ jest 
+    ograniczony, to znaczy jeśli istnieje funkcja $\phi$ przyjmująca wartości rzeczywiste i taka, że 
+    \[
+        |f_n(x)| \leqslant \phi(x) \quad (x \in E, n \in \mathbb{N}).
+    \]
+    Mówimy, że ciąg $(f_n)$ jest wspólnie ograniczony na $E$, jeśli istnieje liczba $M > 0$ taka, że
+    \[
+        |f_n(x)| \leqslant M \quad (x \in E, n \in \mathbb{N}).
+    \]
+\end{defn}
+
+\begin{defn}
+    Rodzinę $\mathcal{F}$ funkcji o wartościach zespolonych określonych na podzbiorze $E$ przestrzeni metrycznej $X$ nazywamy jednakowo ciągła na $E$,
+    jeżeli dla dowolnej liczby $\varepsilon > 0$ istnieje $\delta > 0$ takie, że 
+    \[
+        |f(x) - f(y)| < \varepsilon
+    \]
+    dla $x, y \in E$, $d(x, y) < \delta$ oraz $f \in \mathcal{F}$.
+\end{defn}
+
+Zbadamy teraz związek między pojeciami jednakowej ciągłośći, a zbieznością jednostajną ciagu funkcji ciągłych. 
+
+\begin{theorem}
+{
+    Jeśli $(f_n)$ jest ciągiem funkcji zespolonych określonych na przeliczalnym zbiorze $E$ i mającym własność, że zbiór wartości przyjmowanych w dowolnym ustalonym punkcie zbioru $E$ przez
+    funkcje $f_n$ jest ciągiem ograniczonym, to istnieje podciąg $(f_{n_k})$ taki, że dla każdego $x \in E$, ciąg $(f_{n_k}(x))$ jest zbieżny.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $(x_i)$, $i = 1, 2, \ldots$ będzie ciągiem zawierającym wszystkie punkty zbioru $E$.
+    Ponieważ ciąg $(f_n(x_1))$ jest ograniczony, więc istnieje podciąg, który oznaczymy przez $(f_{1_k})$, taki, że
+    $(f_{1_k}(x_1))$ jest zbieżny przy $k \to \infty$. Rozważmy teraz ciągi $s_1, s_2, s_3, \ldots$,k
+    które zapiszemy w postaci macierzy nieskończonej:
+
+    \[
+        \begin{array}{cccccc}
+        s_1 : &f_{11} & f_{12} & f_{13} & f_{14} & \cdots \\
+        s_2 : &f_{21} & f_{22} & f_{23} & f_{24} & \cdots \\
+        s_3 : &f_{31} & f_{32} & f_{33} & f_{34} & \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \\
+        \end{array}
+    \]
+    Ciągi te mają następujące właśności:
+    \begin{itemize}
+        \item [(a)]
+            ciąg $(s_n)$ jest podciągiem ciągu $(s_{n-1})$, przy $n = 2, 3, \ldots$.
+        \item [(b)]
+            $(f_{n_k}(x))$ jest przy $k \to \infty$ ciągiem zbieżnym (ograniczoność punktowa ciągu $(f_i(x))$ umożliwia wybrane podciągu o tej własności)
+        \item [(c)]
+            zachowana jest kolejność funkcji, w której występują w następujących po sobie podciągach, to znaczy jeśli jakaś funkcja występuje wcześniej niż inna w ciągu $s_1$
+            to podobnie będzie we wszystkich ciągach $s_n$ aż do miejsca, gdy któraś z funkcji zostanie przy wybieraniu podciągu pominięta.
+    \end{itemize}
+    Rozpatrzmy teraz ciąg 
+    \[
+        \begin{array}{cccccc}
+        s : &f_{11} &f_{22} &f_{33} &f_{44} &\ldots
+        \end{array}
+    \]
+    Zgodnie z (c) ciąg $S$ jest (z wyjątkiem być może $n-1$ pierwszych wyrazów) podciągiem ciągu $s_n$. 
+    Z (b) wynika zatem, że ciąg $f_{nn}(x_i)$ jest przy $n \to \infty$ zbieżny dla każdego $x_i \in E$.
+\end{proof}
+
+\begin{theorem}
+{
+    (Arzéla) Niech $K$ będzie zwartym podzbiorem przestrzeni metrycznej, $f_n : K \mapsto \mathbb{C}$ będą funkcjami 
+    ciągłymi dla $n \in \mathbb{N}$, ciąg $(f_n)$ będzie ograniczony w każdym punkcie zbioru $K$ i niech tworzy rodzinę jednakowo ciągłą na $K$. Wówczas
+    \begin{itemize}
+        \item [(a)]
+            $(f_n)$ jest wspólnie ograniczony na $K$,
+        \item [(b)]
+            $(f_n)$ zawiera podciąg jednostajnie zbieżny na $K$.
+    \end{itemize}
+}
+\end{theorem}
+
+\begin{proof}
+    Niech będzie dana liczba $\varepsilon > 0$. Na mocy Definicji \ref{def:129} istnieje $\delta > 0$ takie, że 
+    warunek $d(x,y) < \delta$, $x, y \in K$ pociąga
+    \begin{equation}\label{eq:101}
+        |f_n(x) - f_n(y)| < \varepsilon \quad \text{dla każdego} \quad n \in \mathbb{N}.
+    \end{equation}
+    Ponieważ $K$ jest zbiorem zwartym, więc istnieje skończony zbiór $p_1, \ldots, p_n$ w $K$ taki, że 
+    dla dowolnego $x \in K$ istnieje co najniej jeden punkt $p_i$, dla którego $d(x, p_i) < \delta$.
+    Ponieważ ciąg $(p_n)$ jest ograniczony punktowo, więc istnieje takie $M_i < +\infty$, że $|f_n(p_i)| < M_i$ dla 
+    wszystkich $n$. Jeżeli $M = \max\{M_1, \ldots, M_n\}$, to z (\ref{eq:101}) wynika, że $|f_n(x)|< M + \varepsilon$, dla
+    dowolnego $x \in E$. To dowodzi części (a) tezy. \\
+    Udowodnimy teraz część (b). Na mocy Lematu \ref{lemat:7} istnieje przeliczalny zbiór gęsty $E$ w $K$. Z Twierdzenia 
+    \ref{theorem:191} wynika, że istnieje podciąg $(f_{n_i})$ ciągu $(f_n)$ zbieżny dla każdego $x \in E$. Niech $f_{n_i} = g_i$ dla uproszczenia zapisu.
+    Wykażemy, że ciąg $(g_i)$ jest zbieżny jednostajnie na $K$. \\
+    Niech będzie dana liczba $\varepsilon > 0$ i obierzmy $\delta > 0$ analogicznie jak na początku tego dowodu. Niech $V(x, \delta)$ będzie zbiorem wszystkich $y \in K$, 
+    dla których $d(x, y) < \varepsilon$. Ponieważ $E$ jest gęsty w $K$, a $K$ jest zwarty, więc istnieje skończony zbiór punktów $x_1, \ldots, x_m$ zbioru $E$ taki, że 
+    \begin{equation}\label{eq:102}
+        K \subset V(x_1, \delta) \cup \ldots \cup V(x_m, \delta).
+    \end{equation}
+    Ponieważ $(g_i(x))$ jest zbieżny dla dowolnego $x \in E$, więc istnieje liczba naturalna $N$ taka, że jeśli tylko $i \geqslant N$, $j \geqslant N$ oraz $1 \leqslant s \leqslant m$, to
+    \begin{equation}\label{eq:103}
+        |g_i(x_s) - g_j(x_s)| < \varepsilon.
+    \end{equation}
+    Jeśli $x \in K$, to z (\ref{eq:102}) pokazuje, że $x \in V(x_s, \delta)$ dla pewnego $s$ i wobec tego dla dowolnego $i$ mamy
+    \[
+        |g_i(x) - g_i(x_s)| < \varepsilon.
+    \]
+    Jeśli ponadto $i \geqslant N$ oraz $j \geqslant N$, to z (\ref{eq:103}) wynika, że 
+    \[
+        |g_i(x) - g_j(x)| \leqslant |g_i(x) - g_i(x_s)| + |g_i(x_s) - g_j(x_s)| + |g_j(x_s) - g_j(x)| < 3\varepsilon.
+    \]
+    Wobec Twierdzenia \ref{theorem:144} dowód jest zakończony.
+\end{proof}
+
+Następujące ciągi funkcjujne $f_n(x) = n$, $f_n(x) = \frac{x^2}{x^2 + {(1-nx)}^2}$, $x \in [0, 1]$, $n \in \mathbb{N}$ pokazują
+(por. [7], s. 133), że w Twerdzeniu Arzéli założenie o punktowej ograniczoności oraz o jednakowej ciągłości nie mogą być pominięte.
+
+\begin{theorem}
+{
+    Niech $K$ będzie zwartą przestrzenią metryczną i niech $f_n : K \mapsto \mathbb{C}$ będą
+    funkcjami ciągłymi, $n \in \mathbb{N}$. Jeżeli ciąg $(f_n)$ jest zbieżny jednostajnie na $K$,
+    to $(f_n)$ jest rodziną jednakowo ciągłą na $K$.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $\varepsilon > 0$. Istnieje więc liczba naturalna $N$ taka, że
+    \[
+        \sup_{x \in K}|f_n(x) - f_N(x)| < \varepsilon \quad \text{dla} \quad n > N.
+    \]
+    Ponieważ na zbiorach zwartych funkcje ciągłe są jednostajnie ciągłe, więc istnieje $\delta > 0$ takie, że 
+    \begin{equation}\label{eq:104}
+        |f_i(x) - f_i(y)| < \varepsilon \quad (1 \leqslant i \leqslant N, \quad d(x, y) < \delta).
+    \end{equation}
+    Jeśli $n > N$ oraz $d(x, y) < \delta$, to 
+    \begin{equation}\label{eq:105}
+        |f_n(x) - f_n(y)| \leqslant |f_n(x) - f_N(x)| + |f_N(x) - f_N(y)| + |f_N(y) - f_n(y)| < 3\varepsilon.
+    \end{equation}
+    Wobec (\ref{eq:104}) i (\ref{eq:105} dowód jest zakończony)
+\end{proof}
+
+\subsection{Przestrzenie metryczne zupełne}
+
+\begin{defn}
+    Mówimy, że ciąg $(p_n)$ elementów przestrzeni $(X, d)$ jest ciągiem fundamentalnym (lub ciągiem Cauchy'ego),
+    jeśli dla dowolnego $\varepsilon > 0$ istnieje liczba naturalna $N$ taka, że $d(p_m, p_n) < \varepsilon$ dla $n \geqslant N$ i $m \geqslant N$.
+\end{defn}
+
+Rozumując analogicznie jak w dowodzie Twierdzenia 32 otrzymujemy następujące.
+
+\begin{theorem}
+{
+    Każdy ciąg zbieżny (w dowolnej przestrzeni metrycznej) jest ciągiem Cauchy'ego.
+}
+\end{theorem}
+
+\begin{defn}
+    Przestrzeń metryczna $(X, d)$ jest przestrzenią zupełną, jeżeli każdy ciąg Cauchy'ego $(p_n)$ elementów
+    tej przestrzeni, jest zbieżny do pewnego elementu należącego do $X$.
+\end{defn}
+
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)]
+            Przypomnijmy, że zbiory $\mathbb{R}$ i $\mathbb{C}$ są przestrzeniami metrycznymi zupełnymi
+            (zob. Tw. 33 i Uw. 17 (b)). Ponadto rozumując analogicznie jak w Uwadze 17 (c) i uwzględniając Twierdzenie \ref{theorem:180}
+            wnioskujemy, że przestrzeń $\mathbb{R}^k$ z metryką zdefiniowaną w Przykładzie \ref{ex:48} (c) 
+            jest przestrzenią metryczną zupełną.
+        \item [(b)]
+            Dowolny podzbiór domknięty przestrzeni metrycznej zupełnej $(X, d)$ (traktowany jako przestrzeń metryczna)
+            jest przestrzenią metryczną zupełną. Istotnie, niech zbiór $E \subset X$ będzie domknięty i niech $(p_n)$ będzie dowolnym
+            ciągiem Cauchy'ego elementów zbioru $E$. Wobec zupełności przestrzeni $(X, d)$
+            wnosimy, że istnieje element $p \in X$ taki, że $\lim\limits_{n \to \infty}p_n = p$.
+            Wobec Twierdzenia \ref{theorem:170}, $p \in E$, co kończy uzasadnienie.
+    \end{itemize}
+\end{uwaga}
+
+\begin{theorem}
+{
+    Każdy podzbiór zwarty przestrzeni metrycznej $(X, d)$ (traktowany jako przestrzeń metryczna)
+    jest przestrzenią zupełną.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $A$ będzie zwartym podzbiorem przestrzeni metrycznej $(X, d)$ i niech $(p_n)$ będzie ciągiem
+    elementów zbioru $A$. Wobec Definicji \ref{def:119} istnieje podciąg $(p_{n_k})$ 
+    ciągu $(p_n)$ taki, że $\lim\limits_{k \to \infty}p_{n_k} = p$ i $p \in A$.
+    Z powyższego wnioskujemy, że dla dowolnego $\varepsilon > 0$ istnieją $N_1(\varepsilon), N_2(\varepsilon) \in \mathbb{N}$
+    takie, że $d(p_m, d_n) < \frac{\varepsilon}{2}$ dla $n \geqslant N_1(\varepsilon)$ i $m \geqslant N_1(\varepsilon)$ 
+    oraz $d(p_{n_k}, p) < \frac{\varepsilon}{2}$ dla $k \geqslant N_2(\varepsilon)$. 
+    Niech $N = \max\{N_1(\varepsilon), N_2(\varepsilon)\}$. Ponieważ $n_k \geqslant k$ dla $k \in \mathbb{N}$ (zob. Def. 42), zatem
+    dla $k \geqslant N$ otrzymujemy 
+    \[
+        d(p_k, p) \leqslant d(p_{n_k}, p) + d(p_{n_k}, p_k) < \varepsilon,
+    \]
+    czyli $\lim\limits_{k \to \infty}p_k = p$ ($p \in A)$, a więc ciąg $(p_n)$ jest zbieżny do pewnego
+    elementu zbioru $A$.
+\end{proof}
+
+Rozumując analogicznie jak w dowodzie Twierdzenia 36 otrzymujemy następujący warunek konieczny i wystarczający istnienia granicy w punkcie.
+
+\begin{theorem}
+{
+    Niech $(X, d)$ będzie przestrzenią metryczną, $(Y, \rho)$ przestrzenią metryczną zupełną, $E \subset X$.
+    Ponadto niech $f$ będzie odwzorowaniem $E$ w $Y$, a $p$ --- punktem skupienia zbioru $E$.
+    Na to, by istniała granica $\lim\limits_{x \to p}f(x)$ potrzeba i wystarcza, by spełniony
+    był następujący warunek Cauchy'ego: \\
+    dla dowolnego $\varepsilon > 0$ istnieje $\delta > 0$ takie, że 
+    dla dowolnych $x', x'' \in E$, jeśli $0 < d(x', p) < \delta$ oraz $0 < d(x'', p) < \delta$, to $\rho(f(x'), f(x'')) < \varepsilon$
+}
+\end{theorem}
+
+\begin{ex}
+    Niech $X$ będzie przestrzenią metryczną i niech $K = \mathbb{R}$ lub $\mathbb{C}$.
+    Oznaczmy przez $C(X, K)$ zbiór wszystkich ciągłych i ograniczonych funkcji określonych na $X$, o wartościach w $K$, z metryką określoną następująco:
+    \[
+        d(f, g) = \sup_{x \in X}|f(x) - g(x)|, \quad f, g \in C(X, K).
+    \]
+    Wobec założenia, że funkcje $f, g : X \mapsto K$ są ograniczonem, liczba $d(f, g)$ jest skończona.
+    Jest jasne, że warunki (a), (b) Definicji \ref{def:111} są spełnione.
+    Niech teraz $f, g, h \in C(X, K)$.
+    Ponieważ dla dowolnego $x \in X$ mamy 
+    \[
+        |f(x) - g(x)| \leqslant |f(x) - h(x)| + |h(x) - g(x)|,
+    \]
+    zatem
+    \begin{align*}
+        d(f, g) &= \sup_{x \in X}|f(x) - g(x)| \\
+                &\leqslant \sup_{x \in X}|f(x) - h(x)| + \sup_{x \in X}|h(x) - g(x)| \\
+                &= d(f, h) + d(h, g),
+    \end{align*}
+    a więc warunek (c) Definicji \ref{def:111} jest również spełniony. \\
+    Wobec Twierdzenia \ref{theorem:145} możemy powiedzieć, że ciąg $(f_n)$ jest zbieżny do $f$ w sensie metryki w $C(X, K)$
+    wtedy i tylko wtedy, gdy $f_n \to f$ jednostajnie na $X$.
+    Sprawdzimy teraz, że $C(X, K)$ jest przestrzenią metryczną zupełną. Niech $(f_n)$ będzie ciągiem Cauchy'ego w $C(X, K)$.
+    Oznacza to, że każdej liczbie $\varepsilon > 0$ odpowiada liczba naturalna $N$ taka, że $d(f_n, f_m) < \varepsilon$ dla $n \geqslant N$ i $m \geqslant N$.
+    Wobec tego na mocy Twierdzenia \ref{theorem:144} istnieje funkcja $f$ określona na $X$, do której ciąg $(f_n)$ jest jednostajnie zbieżny. 
+    Na mocy Twierdzenia \ref{theorem:150}, funkcja $f$ jest ciągła. Ponadto $f$ jest ograniczona, bowiem istnieje
+    $n \in \mathbb{N}$ takie, że 
+    \[
+        |f(x) - f_n(x)| < \varepsilon \quad \text{dla dowolnego} \quad x \in X,
+    \] 
+    a funkcja $f_n$ jest ograniczona. Stąd $f \in C(X, K)$, a ponieważ $f_n \to f$ jednostajnie na $X$,
+    zatem $d(f_n, f) \to 0$ przy $n \to \infty$, co dowodzi zupełności przestrzeni $C(X, K)$.
+    Zauważmy ponadto, że jeśli $X$ jest przestrzenią metryczną zwartą, to wobec Twierdzenia \ref{theorem:186}
+    nie musimy zakładać dodatkowo ograniczoności funkcji określonych na $X$. 
+\end{ex}
+
+Udowodnimy teraz pewne twierdzenie z teorii punktów stałych odwzorowań między przestrzeniami metrycznymi. Posiada ono ogromną ilość zastosowań 
+zwłaszcza w teorii równań różniczkowych i całkowych. Wpierw jednak podamy kilka definicji. 
+
+\begin{defn}
+    Niech $A$ będzie dowolnym zbiorem. Punktem stałym odwzorowania $f : A \mapsto A$ nazywamy dowolny punkt $a \in A$ taki, że $f(a) = a$.
+\end{defn}
+
+\begin{defn}
+    Odwzorowanie $f : (X, d) \mapsto (Y, \rho)$ między przestrzeniami metrycznymi spełniające warunek 
+    $\rho(f(x), f(z)) < Md(x, z)$ dla dowolnych $x, z \in X$ gdzie $M$ jest pewną stałą nieujemną, nazywamy lipschitzowskim;
+    najmniejszą taką stałą $M$ nazywamy stałą Lipschitza odwzorowania $f$ i oznaczamy $L(f)$ (zob. Przykład 11).
+    Jeżeli $L(f) < 1$, to odwzorowanie $f$  nazywamy kontrakcją o stałej $L(f)$. Jeżeli $L(f) = 1$, to odwzrowanie nazywamy nierozszerzającym. 
+\end{defn}
+
+Zauważmy, że każde odwzorowanie lipschitzowskie jest oczywiście ciągłe. 
+
+\begin{defn}
+    Niech $A$ będzie dowolnym zbiorem i niech $f : A \mapsto A$ będzie odwzorowaniem zbioru $A$ w siebie.
+    Dla danego elementu $a \in A$ definiujemy $f^0(a) = a$ oraz $f^{n+1}(a) = f(f^n(a))$ dla $n \in \mathbb{N} \cup \{0\}$.
+    Element $f^n(a)$ nazywamy $n$-tą iteracją elementu $a$ odwzorowania $f$, natomiast zbiór $\{f^n(a) : n = 0,1,2,\ldots\} \subset A$
+    nazywamy orbitą elementu $a$ wyznaczoną przez odwzorowanie $f$. 
+\end{defn}
+
+\begin{theorem}
+{
+    (Zasada Kontrakcji Banacha) Niech $(X, d)$ będzie przestrzenią metryczną zupełną i niech $f : X \mapsto X$ będzie kontrakcją.
+    Wówczas odwzorowanie $f$ posiada dokładnie jeden punkt stały $u$ oraz $f^n(x) \to u$ dla każdego $x \in X$. 
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $k < 1$ będzie stałą kontrakcji odwzorowania $f$ (to znaczy $k = L(f)$).
+    Odwzorowanie $f$ posiada co najwyżej jeden punkt stały, bowiem jeśli $f(x_0) = x_0$ oraz
+    $f(y_0) = y_0$, $x_0 \neq y_0$, to 
+    \[
+        d(x_0, y_0) = d(f(x_0), f(y_0)) \leqslant kd(x_0, y_0) < d(x_0, y_0),
+    \]
+    co daje sprzeczność. \\
+    Aby udowodnić istnienie punktu stałego pokażemy, że dla danego $x \in X$ ciąg iteracji $(f^n(x))$ jest do niego zbieżny. Zauważmy wpierw, że 
+    \[
+        d(f(x), f^2(x)) \leqslant k(x, f(x)) \quad \text{oraz} \quad d(f^n(x), f^{n+1}(x)) \leqslant k^{n}d(x, f(x)),
+    \]
+    co wynika z Zasady Indukcji Matematycznej. Dlatego dla dowolnych $n, p \in \mathbb{N}$ mamy 
+    \begin{align*}
+        d(f^n(x), f^{n+p}(x)) &\leqslant \sum_{i=n}^{n+p-1}d(f^i(x), f^{i+1}(x)) \\
+                              &\leqslant (k^n + \cdots + k^{n+p-1})d(x, f(x)) \\
+                              &=k^n(1 + \cdots + k^{p-1})d(x, f(x)) \\
+                              &\leqslant \frac{k^n}{1-k}d(x, f(x)),
+    \end{align*}
+    bowiem $0 < k < 1$. Ponieważ $k^n \to 0$, zatem z powyższych nierówności wynika, że ciąg
+    $(f_n(x))$ jest ciągiem Cauchy'ego. Ponieważ przestrzeń $X$ jest zupełna, zatem istnieje pewien element $u \in X$ taki, że 
+    $f^n(x) \to u$. Na mocy ciągłości odwzorowania $f$ otrzymujemy $f(f^n(x)) \to f(u)$. Ponieważ jednak
+    $(f^{n+1}(x))$ jest podciągiem ciągu $(f_n(x))$, zatem $f(u) = u$, czyli $u$ jest punktem stałym odwzorowania $f$.
+    Wykazaliśmy więc, że dla każdego $x \in X$ granica ciągu $(f_n(x))$ istnieje i jest punktem stałym odwzorowania $f$.
+    Ponieważ $f$ posiada co najwyżej jeden punkt stały, zatem każdy ciąg $(f_n(x))$ jest zbieżny do tego samego punktu.
+\end{proof}
+
+\subsection{Przestrzenie unormowane, przestrzenie Banacha i Hilberta}
+
+\begin{defn}
+    Przestzeń wektorową (liniową) $X$ nad ciałem $K$ ($K = \mathbb{R}$ lub $K = \mathbb{C}$)
+    nazywamy przestrzenią unormowaną (odpowiednio rzeczywistą lub zespoloną), jeśli 
+    każdemu wektorowi $x \in X$ przyporządkowana jest dokładnie jedna liczba nieujemna $||x||$ w taki sposób, że spełnione są następujące warunki:
+    \begin{itemize}
+        \item [(a)]
+            $||x + y|| \leqslant ||x|| + ||y||$ dla dowolnych $x, y \in X$ (Nierówność Trójkąta, subaddytywność),
+        \item [(b)]
+            $||\alpha x|| = |\alpha| ||x||$ dla dowolnego $x \in X$ i $\alpha \in K$ (jednorodność),
+        \item [(c)]
+            jeśli $||x|| = 0$, to $x = 0$.
+    \end{itemize}
+
+    Zauważmy, że z warunku (b) wynika, iż $||0|| = 0$.
+\end{defn}
+
+\begin{uwaga}
+    Norma przestrzeni unormowanej wyznacza w naturalny sposób pewną metrykę tej przestrzeni. Przyjmuje się mianowicie:
+    \begin{equation}\label{eq:106}
+        d(x, y) = ||x - y|| \quad \text{dla dowolnych} \quad x, y \in X
+    \end{equation}
+    Z warunku (c) oraz następującej po nim obserwacji wynika, że $d(x, y) = 0$ wtedy i tylko wtedy gdy $x = y$. 
+    Z (b) i z równości $x - y = (-1)(y-x)$ wnosimy, że $d(x, y) = d(y, x)$. Konsekwencją warunku (a) i równości 
+    $x - y = (x - z) + (z - y)$ jest Nierówność Trójkąta: $d(x, y) \leqslant d(x, z) + d(z, y)$.
+    Stwierdzamy więc, że funkcja $d$ spełnia aksjomaty metryki.
+\end{uwaga}
+
+\begin{defn}
+    Metrykę (\ref{eq:106}) nazywamy metryką wyznaczoną przez normę. Zbieżność określona tutaj przez nią:
+    \[
+        \lim_{n \to \infty}x_n = x \iff \lim_{n \to \infty}||x_n - x|| 0
+    \]
+    nosi nazwę zbieżności według normy.
+\end{defn}
+
+\begin{uwaga}
+    Na ogół nie każda metryka jest wyznaczona przez pewną normę (zob. K. Sieklucki, Geometria i topologia, cz. 1, PWN, 
+    Warszawa, 1979, s. 265).
+\end{uwaga}
+
+\begin{defn}
+    Przestrzeń unormowana, zupełna ze względu na metrykę wyznaczoną przez normę nazywamy przestrzenią Banacha.
+\end{defn}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)]
+            W przestrzeni liniowej $\mathbb{R}^k$ określamy normę wzorem
+            \[
+                ||x|| = {\Big({\sum_{i=1}^{k}x_i^2}\Big)}^{\frac{1}{2}}, \quad x = (x_1, \ldots, x_k) \in \mathbb{R}^k,
+            \]
+            Warunku (b) i (c) w definicji normy są spełnione w sposób oczywisty.
+            Wobec Nierówności Minkowskiego (zob. Przykład \ref{ex:48} (b)) nierówność trójkata jest spełniona.
+            Tak zdefiniowana norma wyznacza metrykę rozważaną w Przykładzie \ref{ex:48} (b). 
+            Ponieważ przestrzeń $\mathbb{R}^k$ jest przestrzenią zupełną ze względu na te metrykę 
+            (Uwaga \ref{uwaga:63} (a)), zatem $\mathbb{R}^k$ z powyżej zdefiniowaną normą jest przestrzenią Banacha.
+        \item [(b)]
+            W przestrzeni $\mathbb{R}^k$ można wprowadzić normę na wiele różnych sposobów, na przykład
+            \[
+                ||x|| = \max_{1 \leqslant i \leqslant k}|x_i|, x = (x_1, \ldots, x_k) \in \mathbb{R}^k
+            \]
+        \item [(c)]
+            Rozważmy zbiór $C(X, K)$ (zob. Przykład \ref{ex:52}). Zbiór $C(X, K)$ jest oczywiście przestrzenią liniową 
+            ze względu na działania dodawania i mnożenia przez skalar określone w Definicji 28. Określamy 
+            \[
+                ||f|| = \sup_{x \in X}|f(x)|, \quad \text{dla} \quad f \in C(X, K).
+            \]
+            Ponieważ $f$ jest z założenia ograniczona, więc $||g|| < +\infty$.
+            Jest jasne, że $||g|| = 0$ tylko wtedy gdy $f = 0$. Jeżeli $h_{\alpha} = \alpha f$, to
+            $|h_\alpha(x)| = |\alpha||f(x)|$ dla każdego $x \in X$, 
+            zatem $||h_\alpha|| = |\alpha|||f||$. Jeśli natomiast $h = f + g$, to 
+            \[
+                |h(x)| \leqslant |f(x) + g(x)| \leqslant ||f|| + ||g|| \quad \text{dla dowolnego} \quad x \in X,
+            \]
+            zatem
+            \[
+                ||f + g|| \leqslant ||f|| + ||g||.
+            \]
+            Tak zdefiniowana norma wyznacza metrykę rozważaną w Przykładzie \ref{ex:52}, zatem 
+            $C(X, K)$ z powyżej zdefiniowaną normą jest przestrzenią Banacha.
+        \item [(d)]
+            Można udowodnić, że jeśli rozważyc zbiór $C(X, K)$ z normą 
+            \[
+                ||f||_1 = \int_{a}^{b}|f(t)|dt, \quad f \in C([a,b], K),
+            \]
+            to otrzymamy przestrzeń unormowaną, która nie jest przestrzenią Banacha
+            (zob. Trenogin, V. A., Funtksjonal'nyj analiz, Moskwa, 1980, s. 49-50).
+    \end{itemize}
+\end{ex}
+
+\begin{uwaga}
+    Analogicznie jak w Twierdzeniu 12 (7) można sprawdzić, że norma posiada następującą własność 
+    \begin{equation}\label{eq:107}
+        ||x|| - ||y|| \leqslant ||x - y||
+    \end{equation}
+    dla dowolnych $x, y$ należacych do przestrzeni wektorowej $X$. Z (\ref{eq:107}) wynika od razu, że norma 
+    jest funkcją ciągłą. Innymi słowy 
+    \[
+        \lim_{n \to \infty}x_n = x \implies \lim_{n \to \infty}||x_n|| = ||x||.
+    \]
+\end{uwaga}
+
+\begin{theorem}
+{
+    W przestrzeni unormowanej działania algebraiczne są funkcjami ciągłymi, to znaczy
+    \[
+        \lim_{n\to\infty}x_n=x \text{ i } \lim_{n\to\infty}y_n=y \implies \lim_{n\to\infty}(x_n+y_n)=x+y
+    \]
+    \[
+        \lim_{n\to\infty}\lambda_n =\lambda \text{ i } \lim_{n\to\infty}x_n =x \implies \lim_{n\to\infty}\lambda_n x_n=\lambda x 
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Ponieważ $(x_n+y_n)-(x+y)=(x_n-x)+(y_n-y)$, więc
+    \[
+        0\leq ||(x_n + y_n)-(x + y)|| \leq ||x_n - x||+||y_n - y||
+    \]
+    dla $n\in\mathbb{N}$.
+    Z założenia $\lim\limits_{n \to \infty}||x_n - x|| = 0$ i $\lim\limits_{n \to \infty}||y_n - y|| = 0$, 
+    zatem wobec powyższej nierówności otrzymujemy $\lim\limits_{n \to \infty} ||(x_n - y_n)-(x + y)|| = 0$ 
+    czyli $\lim\limits_{n \to \infty}(x_n - y_n)= x + y$. Podobnie, z równości $\lambda_n x_n-\lambda x = (\lambda_n - \lambda)x_n+\lambda(x_n-x)$ otrzymujemy
+    \[
+        0\leq ||\lambda_n x_n-\lambda x||\leq |\lambda_n - \lambda| ||x_n||+|\lambda| ||x_n-x||
+    \]
+    dla $n \in \mathbb{N}$. Z założenia $\lim\limits_{n \to \infty}\lambda_n = \lambda \text{ i } \lim\limits_{n\to\infty}x_n = x$, 
+    a zatem wobec powyższej nierówności i Uwagi \ref{uwaga:66} $\lim\limits_{n\to\infty}\lambda_n x_n=\lambda x$.
+\end{proof}
+
+\begin{defn}
+    Niech \(X\) będzie przestrzenią liniową nad ciałem skalarów \(K\) (\(K=\mathbb{R}\) lub \(K=\mathbb{C}\)). Iloczynem skalarnym w przestrzeni \(X\) nazywamy każdą funkcję 
+    \[(x,y)\to (x|y)\]
+    spełniającą następujące warunki:
+    \begin{enumerate}
+        \item[(a)] \(\forall_{x,y\in X} (x|y)=\overline{(x|y)}\) (sprzężenie)
+        \item[(b)] \(\forall_{x,y,z\in X} (x+y|z)=(x|z)+(y|z)\)
+        \item[(c)] \(\forall_{\alpha\in K} \forall_{x,y\in X} (\alpha x|y)=\alpha(x|y)\)
+        \item[(d)] \(\forall_{x\in X} (x|x)\geq 0\)
+        \item[(e)] \(\forall_{x\in X} (x|x)=0 \implies x=0 \)
+    \end{enumerate}
+    Liczbę \((x|y)\) nazywamy iloczynem skalarnym wektorów \(x, y\).
+\end{defn}
+
+\begin{uwaga}
+    Z warunków (a)-(e) Definicji \ref{def:138} wynika od razu, że
+    \[
+        \forall_{x \in X} (x|x) \in \mathbb{R}, \quad \forall_{x,y,z\in X} (z|x+y)= (z|x)+(z|y)
+    \]
+    oraz
+    \[
+        \forall_{\alpha \in K} \forall_{x,y \in X} (x|\alpha y)=\overline{\alpha}(x|y).
+    \]
+\end{uwaga}
+\begin{theorem}
+{
+    (Nierówność Schwarza)
+    Dla dowolnych \(x,y\in X\) mamy
+        \begin{equation}\label{eq:108}
+            |(x|y)|\leq \sqrt{(x|x)}\sqrt{(y|y)}.
+        \end{equation}
+}
+\end{theorem}
+\begin{proof}
+    Istotnie, niech \(y\neq 0\) i niech \(\alpha = (x|y)/(y|y)\). Wtedy
+    \begin{align*}
+        0\leq(x-\alpha y| x-\alpha y) &= (x|x)-\overline{\alpha}(x|y)-\alpha\overline{(x|y)}+\alpha^2(y|y) \\
+        &=(x|x)-\frac{|(x|y)|^2}{(y|y)}.
+    \end{align*}
+    Stąd (\ref{eq:108}) (także dla \(y=0\), bowiem \((x|0)=(x|0x)=0(x|x)=0\)).
+\end{proof}
+
+\begin{uwaga}
+    Mając dany iloczyn skalarny w przestrzeni \(X\) możemy określić w niej normę za pomocą wzoru
+    \[
+        ||x||=\sqrt{(x|x)}\text{ dla dowolnego } x\in X.
+    \]
+    Z warunków (d) i (e) Defincji \ref{def:138} wynika, że \(x\to ||x||\) 
+    jest dobrze określoną funkcją nieujemną i że spełnia ona warunek (c) w definicji normy. 
+    Jej jednorodność wynika z następujących równości:
+    \begin{align*}
+        ||\alpha x|| &=\sqrt{(\alpha x|\alpha x)}
+                     =\sqrt{\alpha( x|\alpha x)} 
+                     =\sqrt{\alpha\overline{\alpha} (x|x)} \\
+                     &=\sqrt{|\alpha|^2(x|x)}
+                     =|\alpha|\sqrt{(x|x)}
+                     =|\alpha|||x||.
+    \end{align*}
+    Na mocy Nierówności Schwarza otrzymujemy
+    \[
+        \|x+y\|^2=\|x\|^2+(x|y)+\overline{(x|y)}+\|y\|^2\leq \|x\|^2+2\|x\|\|y\|+\|y\|^2=(\|x\|+\|y\|)^2,
+    \]
+    a stąd \(\|x+y\|\leq\|x\|+\|y\|\), to jest subaddytywność normy.
+\end{uwaga}
+
+\begin{defn}
+    Przestrzeń unormowaną o normie wyznaczonej przez iloczyn skalarny 
+    nazywamy przestrzenią unitarną. 
+    Przestrzeń unitarną zupełną nazywamy przestrzenią Hilberta.
+\end{defn}
+
+\begin{ex}
+    \begin{enumerate}
+        \item[(a)] W przestrzeni \(\mathbb{R}^k\) możemy określić iloczyn skalarny następująco:
+        \[(x|y)=\sum_{i=1}^k x_i y_i\text{, gdzie } x=(x_1,\dots,x_k), y=(y_1,\dots,y_k)\in\mathbb{R}^k\]
+        Powyższy iloczyn skalarny oznacza normę rozważaną w Przykładzie \ref{ex:53} (a). Przestrzeń \(\mathbb{R}^k\) jest przestrzenia Hilberta.
+        \item[(b)] Przy dowolnej liczbie naturalnej \(k\) niech \(\mathbb{C}^k\) będzie zbiorem uporządkowanych \(k\)-wyrazowych ciągów \(x=(x_1,\dots,x_k)\), gdzie \(x_1,\dots,x_k\) są liczbami zespolonymi zwanymi współrzędnymi elementu \(x\). Działania dodawania i mnożenia przez skalar określamy w zwykły sposób ("po współczynnikach"). Zbiór \(\mathbb{C}^k\) z tak określonymi działaniami jest przestrzenią liniową nad ciałem \(\mathbb{R}\) lub \(\mathbb{C}\) (sprawdzenie elementarne). Przestrzeń \(\mathbb{C}^k\) z iloczynem skalarnym określonym wzorem
+        \[(x|y)=\sum_{i=1}^k x_i \overline{y_i}\text{, gdzie } x=(x_1,\dots,x_k), y=(y_1,\dots,y_k)\in\mathbb{C}^k\]
+        jest przestrzenią Hilbreta. \\
+        Nierówność Schwarza podana w Twierdzeniu 18 jest szczególnym przypadkiem nierówności (\ref{eq:108}) dla powyżej zdefiniowanego iloczynu skalarnego.
+        \item[(c)] Przestrzeń wektorowa \(C([a,b],\mathbb{C})\) z iloczynem skalarnym określonym wzorem
+        \[(f|g)=\int_a^b f(t)\overline{g(t)}dt\text{, gdzie }f,g\in C([a,b],\mathbb{C})\]
+        jest przestrzenią unitarną, ale nie jest przestrzenią Hilberta (por. Przykład \ref{ex:53} (d)).
+        \item[(d)] Przestrzeń \(C([a,b],\mathbb{R})\) z normą określoną w Przykładzie \ref{ex:53} (c) jest przykładem przestrzeni Banacha, która nie jest przestrzenia Hilberta. Przestrzeń \(C([a,b],\mathbb{R})\) nie jest refleksywna, a taką jest każda przestrzeń Hilberta (zob. A. Alexiewicz, Analiza funkcjonalna, PWN, Warszawa, 1969, s189, 423).
+    \end{enumerate}
+\end{ex}
+
+\begin{theorem}
+{
+    Iloczyn skalarny w przestrzeni unitarnej jest funkcją ciągłą, to znaczy
+    \[
+        \lim_{n\to\infty}x_n=x \text{ i } \lim_{n\to\infty}y_n=y \implies \lim_{n\to\infty}(x_n|y_n)=(x|y).
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Z założenia \(\lim\limits_{n\to\infty}\|x_n-x\|=0\) i \(\lim\limits_{n\to\infty}\|y_n-y\|=0\). 
+    Ponieważ 
+    \[
+        (x_n|y_n)-(x|y)= (x_n-x|y_n)+ (x|y_n-y),
+    \]
+    więc na mocy Nierówności Schwarza mamy
+    \[
+        |(x_n|y_n)-(x|y)|\leq\|x_n-x\|\|y_n\|+\|x\|\|y_n-y\|\quad \text{dla} \quad n\in\mathbb{N}.
+    \]
+    Stąd uwzględniając ciągłość normy wnosimy, że
+    \[
+        \lim_{n\to\infty}|(x_n|y_n)-(x|y)|=0
+    \] 
+\end{proof}
+
+\subsection{Operatory liniowe}
+\begin{defn}
+    Odzworowanie liniowe \(A\) przestrzeni wektorowej \(X\) w przestrzeń wektorową \(Y\) nazywamy przekształceniem linowym, jeżeli:
+    \begin{enumerate}
+        \item [(a)] \(A(x_1+x_2)=Ax_1+Ax_2\) dla dowolnych \(x_1,x_2\in X\) (addytywność)
+        \item [(b)] \(A(\alpha x)=\alpha A(x)\) dla dowolnych \(x\in X, \alpha \in K\) (\(K=\mathbb{C}\text{ lub }\mathbb{R}\); jednorodność)
+    \end{enumerate}
+    Zauważmy, że jeśli \(A\) jest liniowe, to często piszemy \(Ax\) zamiast \(A(x)\). Ponadto zauważmy, że jeśli \(A\) jest linowe to \(A0=0\).
+\end{defn}
+
+\begin{defn}
+    Przekształcenie liniowe przestrzeni wektorowej \(X\) w \(X\) nazywamy operatorem liniowym \(X\). 
+    Operator liniowy \(A\) na \(X\), który jest wzajemnie jednoznaczny oraz odwzorowuje \(X\) na \(X\) nazywa się odwracalny. 
+    W tym przypadku można określić na \(X\) operator \(A^{-1}\) przyjmując \(A^{-1}(Ax)=x\).
+\end{defn}
+
+Następujące twierdzenie podaje ważną własność operatorów liniowych na przestrzeniach skończenie wymiarowych
+
+\begin{theorem}
+{
+    Operator liniowy na skończenie wymiarowej przestrzeni \(X\) jest wzajemnie jednoznaczny 
+    wtedy i tylko wtedy, gdy zbiorem jego wartości jest cała przestrzeń \(X\).
+}
+\end{theorem}
+
+Dowód powyższego twierdzenia można znaleźć na przykład w książce [6] s. 174.
+
+\begin{defn}
+    Rozważmy przekształcenie liniowe \(A\) przestrzeni unormowanej \(X\) na przestrzeń unormowaną \(Y\). Określamy
+    \begin{equation}\label{eq:109}
+        \|A\|=\sup\left\{\frac{\|Ax\|}{\|x\|}:x\in X,x\neq0\right\}.
+    \end{equation}
+    Jeżeli \(\|A\|<+\infty\), to mówimy, że \(A\) jest ograniczonym przekształceniem liniowym. W przypadku, gdy \(Y=\mathbb{R}\) lub \(\mathbb{C}\) to mówimy wtedy o ograniczonym funkcjonale liniowym (rzeczywistym lub zespolonym). \\
+W równości \ref{eq:109} symbol \(\|x\|\) oznacza normę wektora \(x\) w przestrzeni \(X\), natomiast \(\|Ax\|\) - normę wektora \(Ax\) w przestrzeni \(Y\).
+\end{defn}
+
+\begin{uwaga}
+    Zauważmy, że w \ref{eq:109} możemy ograniczyć się do wektorów jednostkowych, to jest do takich wektorów \(x\), dla których \(\|x\|=1\). Nie zmienia się przy tym kres górny, ponieważ
+    \[
+        \|A(\alpha x)\|=\|\alpha Ax\|=|\alpha|\|Ax\|.
+    \]
+    Zauważmy też, że \(\|A\|\) jest najmniejszą liczbą taką, że dla każdego \(x\in X\) zachodzi
+    \[
+        \|Ax\| \leqslant \|A\|\|x\|.
+    \]
+\end{uwaga}
+
+\begin{theorem}
+{
+    Dla dowolnego przekształcenia liniowego \(A\) przestrzeni unormowanej \(X\) w przestrzeń unormowaną \(Y\) następujące warunki są równoważne:
+    \begin{enumerate}
+        \item[(a)] przekształcenie \(A\) jest ograniczone
+        \item[(b)] przekształcenie \(A\) jest ciągłe
+        \item[(c)] przekształcenie \(A\) jest ciągłe tylko w jednym punkcie przestrzeni \(X\)
+    \end{enumerate}
+}
+\end{theorem}
+
+\begin{proof}
+    Ponieważ $||A(x_1 - x_2)|| \leqslant ||A||||x_1 - x_2||$, zatem jest jasne, że warunek (a) implikuje (b).
+    Warunek (c) wynika z (b) w sposób oczywisty. \\
+    Przypuścmy teraz, że przekształcenie $A$ jest ciągłe w punkcie $x_0 \in X$. Wówczas
+    dla każdej liczby $\varepsilon > 0$ istnieje liczba $\delta > 0$ taka, że $||x - x_0|| < \delta$ implikuje 
+    $||Ax - Ax_0|| < \varepsilon$. Innymi słowy nierówność $||x|| < \delta$ implikuje nierówność 
+    \[
+        ||A(x_0 + x) - Ax_0|| < \varepsilon.
+    \]
+    Z liniowości przekształcenia $A$ mamy wówczas $||Ax|| < \varepsilon$. Stąd dla dowolnego $a \in (0, \delta)$ otrzumujemy 
+    \begin{align*}
+        \sup\{||Ax|| : x \in X, ||x|| = 1\} &= \sup\{||A(\frac{1}{\alpha}\alpha x)|| : x \in X, ||x|| = 1\} \\ 
+                                            &= \frac{1}{\alpha}\sup\{||A(\alpha x)|| : x \in X, ||x|| = 1\} \\
+                                            &< \frac{\varepsilon}{\alpha}, 
+    \end{align*}
+    zatem $||A|| \leqslant \frac{\varepsilon}{\delta}$, a więc warunek (a) wynika z (c).
+\end{proof}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)]
+            Dla $f \in C([a,b], \mathbb{C})$ określamy 
+            \[
+                A(f) = \int_{a}^{b}f(t)dt.
+            \]
+            Jest jasne, że $A : C([a,b], \mathbb{C}) \mapsto \mathbb{C}$ jest zespolonym funkcjonałem liniowym. Mamy 
+            \[
+                ||A|| = \sup_{||f||=1}\Big|\int_{a}^{b}f(t)dt\Big| \leqslant \sup_{||f||=1}\int_{a}^{b}|f(t)|dt \leqslant \int_{a}^{b}1 dt = b - a,
+            \]
+            a zatem funkcjonał $A$ jest ograniczony (a więc ciągły na mocy powyższego twierdzenia).
+        \item [(b)]
+            Rozpatrzymy nieco ogólniejszą sytuację. Niech $K : [a,b] \mapsto \mathbb{C}$ będzie pewną funkcją ciągłą.
+            Dla $f \in C([a,b], \mathbb{C})$ określamy 
+            \[
+                A(f) = \int_{a}^{b}K(t)f(t)dt.
+            \] 
+            Można łatwo sprawdzić, że $A : C([a,b], \mathbb{C}) \mapsto \mathbb{C}$ jest zespolonym funkcjonałem liniowym ponieważ 
+            \begin{align*}
+                ||A|| &= \sup_{||f||=1}\Big|\int_{a}^{b}K(t)f(t)dt\Big| \\
+                        &\leqslant \sup_{||f||=1}\int_{a}^{b}|K(t)f(t)|dt \\ 
+                        &\leqslant \int_{a}^{b}|K(t)| \cdot 1dt \\
+                        &< +\infty,
+            \end{align*}
+            zatem funkcjonał $A$ jest ograniczony.
+        \item [(c)]
+            Oznaczmy przez $E$ podprzestrzeń przestrzeni unormowanej $C([a,b], \mathbb{R})$, której
+            elementami są funkcje różcznikowalne w sposób ciągły. Określamy przekształcenie liniowe 
+            $A : E \mapsto C([a,b], \mathbb{R})$ wzorem 
+            \[
+                Af(t) = f'(t), \quad f \in E, t \in [a,b]
+            \]
+            Przekształcenie $A$ nie jest jednak ciągłe. To wynika na przykład z faktu, że ciąg funkcji $\phi_n(t) = \frac{\sin nt}{n}$, $n \in \mathbb{N}$,
+            $t \in [a,b]$ jest zbieżny według normy przestrzeni $C([a,b], \mathbb{R})$ do funkcji tożsamościowo równej $0$ na $[a,b]$,
+            natomiast ciąg $A\phi_n(t) = \cos nt$, $n \in \mathbb{N}$, $t \in [a,b]$ nie jest zbieżny dla p.w. $t$ (zob. [1], Zad. 5, s. 42).
+        \item [(d)]
+            Przekształcenie liniowe $A$ zdefiniowane w punkcie (c) można rozpatrywać jako przekształcenie działające 
+            z przestrzeni $C^1([a,b], \mathbb{R})$ funkcji różniczkowalnych na $[a,b]$ z normą 
+            \[
+                ||f||_1 = \max_{t \in [a,b]}|f(t)| + \max_{t \in [a,b]}|f'(t)|, \quad f \in C^1([a,b], \mathbb{R})
+            \]
+            w przestrzeń $C([a,b], \mathbb{R})$. W tym przypadku przekształcenie $A$ jest ,,na'' (każda funkcja ciągła
+            posiada funkcję pierwotną) oraz jest ciągłe, bowiem 
+            \[
+                ||A|| = \sup_{||f||_1 = 1}||Af|| = \sup_{||f||_1 = 1}(\sup_{t \in [a,b]}|f'(t)|) \leqslant 1.
+            \]
+    \end{itemize}
+\end{ex}
 
 \end{justify}
 \end{document}
