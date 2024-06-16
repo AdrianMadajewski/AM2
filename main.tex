@@ -323,7 +323,7 @@ Udowodnimy teraz następujące uogólnienie powyższego twierdzenia.
 \begin{uwaga}
     Twierdzenie $\ref{theorem:78}$ można istotnie uogólnić. Mianowicie dowodzi się, że jeśli $f$ jest ograniczoną funkcją
     na przedziale $[a,b]$, to jest ona całkowalna w sensie Riemanna na tym przedziale wtedy i tylko wtedy, gdy
-    jest ona ciągła prawie wszędzie ma $[a,b]$, to znaczy zbiór punktów nieciągłości funkcji $f$ ma miarę Lebesgue'a równą zeru.
+    jest ona ciągła prawie wszędzie na $[a,b]$, to znaczy zbiór punktów nieciągłości funkcji $f$ ma miarę Lebesgue'a równą zeru.
     (por. [7], s. 270).
     Przykładów takich funkcji dostarcza następujące
 \end{uwaga}
@@ -3491,7 +3491,7 @@ Zajmiemy się teraz badaniem zbieżności szeregu Fouriera. Udowodnimy wpierw
     \]
     Wybierzmy dowolne $\varepsilon > 0$. Istnieje wówczas taki podział $P = \{t_0, t_1, \ldots, t_n\}$ przedziału $[a,b]$, że 
     $U(f, P) - L(f, P) < \frac{\varepsilon}{2}$. Oznaczmy $M_j = \sup\{g(t) : t_{j-1} \leqslant t \leqslant t_j\}$ i $m_j = \inf\{g(t) : t_{j-1} \leqslant t \leqslant t_j\}$
-    dla $j = 1, 2, \ldots, n$. Niech $p > \frac{4}{\varepsilon}\sum\limits_{j=1}^{m}|m_j|$. Wówczas mamy
+    dla $j = 1, 2, \ldots, n$. Niech $p > \frac{4}{\varepsilon}\sum\limits_{j=1}^{n}|m_j|$. Wówczas mamy
     \begin{align*}
         \int_{a}^{b}g(t)\sin pt dt &= \sum_{j=1}^{n}\int_{t_{j-1}}^{t_j} g(t) \sin pt dt \\
                                     &= \sum_{j=1}^{n} \int_{t_{j-1}}^{t_j}(g(t) - m_j)\sin pt dt + \sum_{j=1}^{n}m_j \int_{t_{j-1}}^{t_j} \sin pt dt.
@@ -3852,6 +3852,28 @@ Zauważmy, ponadto że $\kappa_n(t) \geqslant 0$ dla wszystkich $t$.
 
 \begin{proof}
 ...
+\end{proof}
+
+\begin{wniosek}
+{
+    (Nierówność Bessela) Jeśli $a_0$, $a_n$ i $b_n$ ($n \in \mathbb{N}$) są współczynnikami Fouriera
+    funkcji R-całkowalnej na przedziale $[-\pi, \pi]$, to prawdziwa jest nierówność 
+    \[
+        \frac{|a_0|}{2} + \sum_{n=1}^{\infty}(|a_n|^2 + |b_n|^2) \leqslant \frac{1}{\pi}\int_{-\pi}^{\pi}|f(x)|^2dx.
+    \]
+}
+\end{wniosek}
+
+\begin{proof}
+    Wiemy, że 
+    \[
+        0 \leqslant \int_{-\pi}^{\pi}|f(x) - s_m(x)|^2dx = \int_{-\pi}^{\pi}|f(x)|^2 dx - \pi \Big\{ \frac{|a_0|}{2} + \sum_{n=1}^{\infty}(|a_n|^2 + |b_n|^2)\Big\}
+    \]
+    dla $m \in \mathbb{N}$. Stąd otrzymujemy
+    \[
+        \frac{|a_0|}{2} + \sum_{n=1}^{m}(|a_n|^2 + |b_n|^2) \leqslant \frac{1}{\pi}\int_{-\pi}^{\pi}|f(x)|^2dx.
+    \]
+    a następnie przechodzimy do granicy przy $m \to \infty$. 
 \end{proof}
 
 \begin{theorem}
