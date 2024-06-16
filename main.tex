@@ -3955,7 +3955,7 @@ Przestrzeń metryczna $X$ z metryką $d$ oznaczamy symbolem $(X, d)$.
         gdzie $x = (x_1, \ldots, x_k)$, $y = (y_1, \ldots, y_k) \in \mathbb{R}^k$. \\
         Wobec nierówności Schwarza dla $x, y, z \in \mathbb{R}^k$ otrzymujemy
         \begin{align*}
-            \sum_{j=1}^{k}{(x_j + y_j)}^2 &= \sum_{j=1}^{k}x_j^2 + 2 \sum_{j=1}^{k}x_j y_j \sum_{j=1}^{k}y_j^2 \\
+            \sum_{j=1}^{k}{(x_j + y_j)}^2 &= \sum_{j=1}^{k}x_j^2 + 2 \sum_{j=1}^{k}x_j y_j + \sum_{j=1}^{k}y_j^2 \\
             &\leqslant \sum_{j=1}^{k}x_j^2 + 2\Bigg( \sum_{j=1}^{k}x_j^2\Bigg)^{\frac{1}{2}}\Bigg( \sum_{j=1}^{k}y_j^2\Bigg)^{\frac{1}{2}} + \sum_{j=1}^{k}y_j^2 \\
             &= {\Bigg(\Big(\sum_{j=1}^{k}x_j^2\Big)^{\frac{1}{2}} + \Big(\sum_{j=1}^{k}y_j^2\Big)^{\frac{1}{2}}\Bigg)}^2
         \end{align*}
@@ -4306,7 +4306,7 @@ Twierdzenie 43 dla odwzorowań o wartościach w $\mathbb{R}^k$ przybiera następ
 {
     Dla funkcji rzeczywistych $f^1, \ldots, f^k$ określonych na przestrzeni metrycznej $X$ zdefiniujemy odwzorowanie $f : X \mapsto \mathbb{R}^k$ wzorem 
     \[
-        f(x) = (f^1(x), \ldots, f^k(x)), quad x \in X.
+        f(x) = (f^1(x), \ldots, f^k(x)), \quad x \in X.
     \]
     Wówczas odwzorowanie $f$ jest ciągłe wtedy i tylko wtedy, gdy każda z funkcji $f^1, \ldots, f^k$ jest ciągła.
 }
@@ -4534,7 +4534,7 @@ Następujący wynik jest uogólnieniem Twierdzenia Cantora  (Tw. 51). Jego dowó
 
 \begin{theorem}
 {
-    Niech $f$ będzie ciagłym przekształceniem zwartej przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$.
+    Niech $f$ będzie ciągłym przekształceniem zwartej przestrzeni metrycznej $X$ w przestrzeń metryczną $Y$.
     Wówczas odwzorowanie $f$ jest jednostajnie ciągłe na $X$.
 }
 \end{theorem}
@@ -4896,7 +4896,7 @@ Zauważmy, że każde odwzorowanie lipschitzowskie jest oczywiście ciągłe.
 \begin{defn}
     Metrykę (\ref{eq:106}) nazywamy metryką wyznaczoną przez normę. Zbieżność określona tutaj przez nią:
     \[
-        \lim_{n \to \infty}x_n = x \iff \lim_{n \to \infty}||x_n - x|| 0
+        \lim_{n \to \infty}x_n = x \iff \lim_{n \to \infty}||x_n - x|| = 0
     \]
     nosi nazwę zbieżności według normy.
 \end{defn}
