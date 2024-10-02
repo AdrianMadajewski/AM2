@@ -21,11 +21,11 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@master
         with:
-          name: am2
+          name: am
           path: main.pdf
 
       - name: Rename PDF
-        run: mv ${{ github.workspace }}/main.pdf ${{ github.workspace }}/am2.pdf
+        run: mv ${{ github.workspace }}/main.pdf ${{ github.workspace }}/am.pdf
       
       - name: Configure Git
         run: |
@@ -34,7 +34,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add -f am2.pdf
+          git add -f am.pdf
           git commit -m "Update PDF artifact"
 
       - name: Fetch latest changes from master
@@ -48,5 +48,4 @@ jobs:
         with:
           branch: master
           force: true
-          force_with_lease: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
