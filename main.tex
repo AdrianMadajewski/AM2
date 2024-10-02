@@ -5242,6 +5242,175 @@ Pragnę serdecznie podziękować wszystkim, którzy dołożyli coś od siebie do
     \item Lidia Kopczyńska (dysk ze zdjęciami z wykładów)
 \end{itemize}
 
+\begin{ex}
+    Oznaczmy przez $L(X,Y)$ przestrzeń wektorową wszystkich przekształceń liniowych i ciągłych przestrzeni unormowanej $X$ w przestrzeń
+    unormowaną $Y$ ze zwykłymi działanami dodawania przekształceń i mnożenia przekształceń przez skalar z ciała $K$ ($K=\mathbb{R}$ lub $K = \mathbb{C}$).
+    Wobec Twierdzenia \ref{theorem:202} dla dowolnego $A \in L(X, Y)$ mamy $||A|| < +\infty$. Dalej jeżeli $||A|| = 0$, to wobec Uwagi \ref{uwaga:69} mamy
+    $Ax = 0$ dla każdego $x \in X$, to jest $A = 0$. Z kolei, ponieważ dla każdego $x \in X$ i $\alpha \in K$:
+    \[
+        ||(\alpha A)(x)|| = ||\alpha A(x)|| = |\alpha|||Ax|| \leqslant |\alpha|||A||||x||,
+    \]
+    zatem $||\alpha A|| \leqslant |\alpha||A||$. Niech teraz $\alpha \neq 0$. Mamy $A = \frac{1}{\alpha}\alpha A$, a wobec tego
+    $||A|| \leqslant \frac{1}{\alpha}||\alpha A||$, to jest $||\alpha A|| \leqslant ||\alpha A||$, co łącznie z poprzednio uzyskaną nierównością daje
+    równość $|\alpha|||A|| = ||\alpha A||$. \\
+    W końcu dla każdego $x \in X$ mamy 
+    \[
+        ||(A+B)x|| \leqslant ||Ax|| + ||Bx|| \leqslant (||A|| + ||B||)||x||,
+    \]
+    a więc $||A+B|| \leqslant ||A|| + ||B||$. W ten sposób wyrażenie zdefiniowane równością (\ref{eq:109}) dla elementów przestrzeni wektorowej
+    $L(X, Y)$ staje się normą. 
+\end{ex}
+
+\begin{theorem}
+{
+    Jeżeli $Y$ jest przestrzenią Banacha, to przestrzeń $L(X, Y)$ z normą określoną równością (\ref{eq:109}) jest też przestrzenią Banacha.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $(A_n)$ będzie ciągiem elementów przestrzeni $L(X, Y)$ spełniającym warunek Cauchy'ego. 
+    Dla $\varepsilon > 0$ istnieje więc taka liczba $n \in \mathbb{N}$, że $||A_n - A_m|| < \varepsilon$ dla $n,m \geqslant N$.
+    Wobec Uwagi \ref{uwaga:69} jest jasne, że 
+    \begin{equation}\label{eq:110}
+        ||A_nx - A_m x|| \leqslant \varepsilon||x|| \quad \text{dla} \quad m,m \geqslant N, x \in X.
+    \end{equation}
+    Z (\ref{eq:110}) wnosimy, że dla każdego $x \in X$ ciąg $(A_n x)$ elementów przestrzeni $Y$ spełnia warunek
+    Cauchy'ego, a zatem jest on zbieżny. Niech $A(x) = \lim\limits_{n \to \infty} A_n(x)$ dla
+    wszystkich $x \in X$. Ponieważ każde przekształcenie $A_n$ jest liniowe, więc z ciąłośći działań algebraicznych 
+    w przestrzeni $Y$ (Tw. \ref{theorem:198}) wynika, że 
+    \[
+        A(x + y) = \lim\limits_{n \to \infty} A_n(x + y) = \lim\limits_{n \to \infty}A_n(x) + \lim\limits_{n \to \infty}A_n(y) = A(x) + A(y)
+    \]
+    oraz
+    \[
+        A(\alpha x) = \lim\limits_{n \to \infty} A_n(\alpha x) = \alpha \lim\limits_{n \to \infty}A_n(x) = \alpha A x
+    \]
+    dla dowolnych $x, y \in X, \alpha \in K$. Zatem przekształcenie $A : X \to Y$ jest liniowe.
+    Przechodząc w nierówności (\ref{eq:110}) do granicy przy $m \to \infty$ dostajemy 
+    \begin{equation}\label{eq:111}
+        ||A_n x - A x || \leqslant \varepsilon ||x|| \quad \text{dla} \quad n \geqslant N, x \in X.
+    \end{equation}
+    Wobec (\ref{eq:111}) dla każdego $x \in X$ otrzymujemy 
+    \[
+        ||A x|| \leqslant ||A_N x|| + \varepsilon ||x|| \leqslant (||A_N|| + \varepsilon)||x||.
+    \]
+    Na mocy Twierdzenia \ref{theorem:202} przekształcenie $A$ jest ciągłe czyli $A \in L(X, Y)$.
+    Ponadto (\ref{eq:111}) implikuje, że $||A_n - A|| \leqslant \varepsilon$ dla $n \geqslant N$.
+    Stąd ciąg $(A_n)$ jest zbieżny według normy w przestrzeni $L(X, Y)$ do przekształcenia $A$, co kończy dowód.
+\end{proof}
+
+\begin{theorem}
+{
+    Jeżeli $A \in L(X, Y), B \in L(Y, Z)$, to $(B \circ A) \in L(X, Z)$ oraz 
+    \begin{equation}\label{eq:112}
+        ||B \circ A|| \leqslant ||B||||A||.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Dla każdego $x \in X$ mamy 
+    \[
+        ||(B \circ A)x|| = ||B(Ax)|| \leqslant ||B|| ||A|| ||x||,
+    \]
+    a stąd otrzymujemy (\ref{eq:112}).
+\end{proof}
+
+Następne twierdzenie orzeka, że każde przekształcenie liniowe między przestrzeniami skończenie wymiarowymi jest ciągłe (faktycznie jest ono jednostajnie ciągłe).
+
+\begin{theorem}
+{
+    Jeżeli $A : \mathbb{R}^m \to \mathbb{R}^n$ jest przekształceniem liniowym, to $||A|| < +\infty$.
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $\{e_1, \ldots, e_m \}$ będzie bazą standardową w $\mathbb{R}^m$ i załóżmy, że
+    $x = \sum_{i=1}^{m}c_i e_i$, $||x|| \leqslant 1$, co oznacza, że $|c_i| \leqslant 1$ dla $i = 1, \ldots, m$.
+    Wtedy 
+    \[
+        ||A x || = \left \Vert \sum\limits_{i=1}^{m}c_i A e_i \right \Vert \leqslant \sum\limits_{i=1}^{m}|c_i| ||A e_i|| \leqslant \sum\limits_{i=1}^{m} || A e_i ||,
+    \]    
+    zatem 
+    \[
+        ||A|| \leqslant \sum\limits_{i=1}^{m}||A e_i|| < +\infty
+    \]
+    (jednostajna ciągłość przekształcenia $A$ wynika z nierównośći $||Ax - Ay|| \leqslant \Vert A \Vert \Vert x - y \Vert$ 
+    dla $x, y \in \mathbb{R}^m$).
+\end{proof}
+
+\begin{theorem}
+{
+    Niech $\Omega$ będzie zbiorem wszystkich odwracalnych operatorów liniowych na $\mathbb{R}^k$.
+    \begin{itemize}
+        \item [(a)] Jeżeli $A \in \Omega, B \in L(\mathbb{R}^k, \mathbb{R}^k)$ i $ \Vert B - A \Vert \Vert A^{-1} \Vert < 1$ (kula o środku w punkcie A), to $B \in \Omega$.
+        \item [(b)] $\Omega$ jest otwartym podzbiorem przestrzeni $L(\mathbb{R}^k, \mathbb{R}^k)$ i odwzorowanie $A \mapsto A^{-1}$ jest ciągłe na $\Omega$. 
+    \end{itemize}
+    (Odwzorowanie z punktu (b) odwzorowuje wzajemnie jednoznacznie zbiór $\Omega$ na siebie i samo jest odwracalne)
+}
+\end{theorem}
+
+\begin{proof}
+    Niech $||A|| = \frac{1}{\alpha}, ||B - A|| = \beta$. Wobec założenia mamy $\beta < \alpha$.
+    Dla dowolnego $x \in \mathbb{R}^k$ otrzymujemy 
+    \begin{align*}
+        \alpha ||x|| &= \alpha || A A^{-1} x || \\ 
+                     &\leqslant \alpha \Vert A^{-1} \Vert \Vert A x \Vert \\
+                     &= ||A x || \\
+                     &\leqslant ||(A - B)x|| + ||B x|| \\
+                     &\leqslant \beta ||x|| + ||B x||,
+    \end{align*}
+    a więc 
+    \begin{equation}\label{eq:113}
+        (\alpha - \beta)||x|| \leqslant ||\beta x || \quad (x \in \mathbb{R}^k).
+    \end{equation}
+    Ponieważ $\alpha - \beta > 0$, (\ref{eq:113}) pokazuje, że $Bx \neq 0$, jeśli $x \neq 0$, a więc, że 
+    $B$ jest $1 : 1$ (bowiem jeśli $x \neq y$, to $Bx - By = B(x - y) \neq 0$, czyli $Bx \neq By$). 
+    Na mocy Twierdzenia \ref{theorem:201}, $B \in \Omega$. 
+    Zachodzi to dla każdego $B$, przy którym $||B - A|| < \alpha$. Wnioskujemy więc, że $\Omega$ jest zbiorem otwartym. \\
+    Zastepując w nierównośći (\ref{eq:113}) $x$ przez $B^{-1}y$, otrzymujemy 
+    \[
+        (\alpha - \beta)||B^{-1} y|| \leqslant ||B B^{-1} y|| = ||y||,
+    \]
+    a więc $||B^{-1}|| \leqslant {(\alpha - \beta)}^{-1}$. 
+    Równość $B^{-1} - A^{-1} = B^{-1}(A - B)A^{-1}$ i Twierdzenie \ref{theorem:204} pociągają za sobą 
+    \[
+        ||B^{-1} - A^{-1}|| \leqslant \Vert B^{-1} \Vert \Vert A - B \Vert \Vert A^{-1} \Vert \leqslant \frac{\beta}{\alpha(\alpha - \beta)},
+    \]
+    i tym samym twierdzenie o ciągłości ponieważ $\beta \to 0$, jeśli $B \to A$.
+\end{proof}
+
+\begin{ex}
+    \begin{itemize}
+        \item [(a)] 
+            Niech $Y$ będzie przestrzenią unormowaną. Można łatwo sprawdzić, że $A \in L(K, Y)$ ($K = \mathbb{R}$ lub $\mathbb{C}$) wtedy i tylko wtedy,
+            istnieje element $a \in Y$ taki, że dla każego $x \in K$ 
+            \begin{equation}\label{eq:114}
+                Ax = a x
+            \end{equation}
+            Element $a$ jest przy tym wyznaczony jednoznacznie przez przekształcenie $A$ oraz 
+            \[
+                ||A|| = ||a||
+            \]
+            (zob. [3], s. 113) Dla każdego $a \in Y$ oznaczmy przez $A_a$ przekształcenie określone wzorem (\ref{eq:114}) Wtedy 
+            \[
+                A_{a+b} = A_a + A_b, \quad A_{\alpha a} = \alpha A_a \quad (\alpha \in K),
+            \]
+            co oznacza, że $a \mapsto A_a$ jest przekształceniem liniowym. Ponadto $||A_a|| = ||a||$.
+            Zauważmy jeszcze, że jeśli $\alpha \in K$, $b \in Y$, to 
+            \[
+                A_{\alpha} \in L(K, K), \quad A_b \in L(K, Y) \quad \text{i} \quad A_{b \alpha} = A_b \circ A_{\alpha}.
+            \]
+        \item [(b)]
+            Można udowodnić, że odwzorowanie $A : K^m \to Y$ jest liniowe wtedy i tylko wtedy, gdy 
+            dla każdego $x = (x_1, \ldots, x_m) \in K^m$
+            \[
+                Ax = \sum\limits_{i=1}^{m}a_i x_i,
+            \]
+            gdzie $a_1, \ldots, a_m$ są elementami przestrzeni $Y$ wyznaczonymi jednoznacznie przez 
+            przekształcenie $A$ ([3], s. 113).
+    \end{itemize}
+\end{ex}
 
 \end{justify}
 \end{document}
