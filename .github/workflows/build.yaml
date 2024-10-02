@@ -5,6 +5,7 @@ on:
     paths:
       - '**.tex'
       - '.github/workflows/build.yaml'
+      - '**.md'
 
 jobs:
   Build:
