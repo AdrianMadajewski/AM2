@@ -27,18 +27,26 @@ jobs:
       - name: Rename PDF
         run: mv ${{ github.workspace }}/main.pdf ${{ github.workspace }}/am2.pdf
       
-      - name: Configure Git
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-
       - name: Commit changes
         run: |
           git add -f am2.pdf
           git commit -m "Update PDF artifact"
 
+      - name: Fetch latest changes from master
+        run: |
+          git fetch origin master
+          git checkout master
+          git merge origin/master
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
+          branch: master
+          force: true
           force_with_lease: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
