@@ -16,9 +16,9 @@
 
 \setcounter{equation}{35}
 
-\title{\Huge{Analiza Matematyczna 2}}
+\title{\Huge{Analiza Matematyczna}}
 \author{Adrian Madajewski}
-\date{Semestr II}
+\date{}
 
 \DeclareMathOperator{\tg}{\text{tg}}
 \DeclareMathOperator{\ctg}{\text{ctg}}
@@ -81,7 +81,7 @@
     \vspace{10pt}
     z przedmiotu \\
     \vspace{10pt}
-    Analiza Matematyczna 2 \\
+    Analiza Matematyczna\\
     \vspace{10pt}
     na Uniwersytecie im. Adama Mickiewicza w Poznaniu
     \includegraphics[width=0.8\textwidth]{uam_logo.pdf}
@@ -5409,8 +5409,366 @@ Następne twierdzenie orzeka, że każde przekształcenie liniowe między przest
             \]
             gdzie $a_1, \ldots, a_m$ są elementami przestrzeni $Y$ wyznaczonymi jednoznacznie przez 
             przekształcenie $A$ ([3], s. 113).
+        \item [(c)]
+            Z poprzedniego przykładu wynika, że każde odwzorowanie $A : K^m \to K^n$, $A = (A_1, 
+            \ldots, A_m)$ jest liniowe wtedy i tylko wtedy, gdy istnieją liczby $a_{ij} \in K$, $(i = 1, \ldots, n; j= 1,
+            \ldots,m)$ - wyznaczone jednoznacznie przez odwzorowanie $A$ - takie, że dla każdego $x = (x_1, \ldots, x_m) \in K^m$
+            \begin{equation}\label{eq:115}
+                A_i x = \sum_{j=1}^{m}a_{ij}x_j, \quad i = 1, \ldots, n.
+            \end{equation}
+            Układ (\ref{eq:115}) zapisuje się także, przy użyciu macierzy w postaci 
+            \[
+                \left[
+                \begin{array}{c}
+                A_1 x \\
+                A_2 x \\
+                \vdots \\
+                A_n x
+                \end{array}
+                \right]
+                =
+                \left[
+                \begin{array}{cccc}
+                a_{11} & a_{12} & \cdots & a_{1m} \\
+                a_{21} & a_{22} & \cdots & a_{2m} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{n1} & a_{n2} & \cdots & a_{nm}
+                \end{array}
+                \right]
+                \left[
+                \begin{array}{c}
+                x_1 \\
+                x_2 \\
+                \vdots \\
+                x_m
+                \end{array}
+                \right]
+            \]
+            Ponieważ macierz jednokolumnową utożsamia się zwykle z wektorem stanowiącym jej kolumnę, zatem 
+            \[
+                Ax = [A]x, \quad x \in K^m,
+            \]
+            gdzie $[A] = [a_{ij}] \quad (i = 1, \ldots, n; j=1,\ldots, m)$. \\
+            Weźmy teraz jakąkolwiek macierz liczbową $[A] = [a_{ij}] \quad (i = 1, \ldots, n; j=1,\ldots, m)$. 
+            Wyznacza ona pewne przekształcenie $A_[A] \in L(K^m, K^n)$ wyznaczone wzorem (\ref{eq:115}).
+            Z definicji sumy $[A] + [B]$ macierzy $[A]$ i $[B]$ oraz iloczynu $\alpha [A]$ macierzy $[A]$ przez pewną liczbe $\alpha \in K$ wynika od razu, że 
+            \[
+                A_{[A] + [B]} = A_{[A]} + A_{[B]}, \quad A_{\alpha [A]} = \alpha A_{[A]},
+            \]
+            a zatem określona w ten sposób bijekcja
+            \[
+                [A] \to A_{[A]}
+            \]
+            zbioru wszystkich maceirzy rozważanego typu na $L(K^m, K^n)$ jest przekształceniem liniowym.
+            Można łatwo sprawdzić, że 
+            \[
+                ||A|| = \Bigg( \sum_{i=1}^{n} \Big( \sum_{j=1}^{m} a_{ij}^2 \Big)\Bigg)^{\frac{1}{2}}.
+            \]
+            Zauważmy jeszcze, że jeśli $[A] = [a_{ij}]$ $(i = 1, \ldots, n; j=1,\ldots, k)$ i $[B] = [b_{ij}]$
+            $(i = 1, \ldots, k; j=1,\ldots, m)$, to odwzorowanie $A_{[A][B]} \in L(K^m, K^n)$ jest złożeniem
+            odwzorowań $A_{[B]} \in L(K^m, K^k)$ i $A_{[A]} \in L(K^k, K^n)$:
+            \[
+                A_{[A][B]} = A_{[A]} A_{[B]}.
+            \]
     \end{itemize}
 \end{ex}
 
+\newpage
+\section{Rachunek różniczkowy funkcji wielu zmiennych}
+\subsection{Różniczkowanie}
+Określenie pochodnej funkcji rzeczywistej zmiennej rzeczywitej zostało poane w Definicji 54 (sem. I).
+Punktem wyjścia do następującego uogólnienia tej definicji na przypadek wielu zmiennych o wartościach w przestrzeni $\mathbb{R}^m$ jest Twierdzenie 53 i
+Wniosek 8 (b) (patrz sem. I)
+
+\begin{defn}
+Niech $E$ będzie zbiorem otwartym w $\mathbb{R}^n$, $f$ - odwzorowanie $E$ w $\mathbb{R}^m$ i niech $x \in E$.
+Jeśli istnieje przekształcenie liniowe przestrzeni $\mathbb{R}^n$ w $\mathbb{R}^m$ takie, że 
+\begin{equation}\label{eq:116}
+    \lim\limits_{h \to 0}\frac{||f(x + h) - f(x) - Ah||}{||h||} = 0,
+\end{equation}
+to mówimy, że przekształcenie $f$ jest różniczkowalne w punkcie $x$ i piszemy
+\[
+    f'(x) = A.
+\]
+Przekształcenie liniowe $A$ nazywamy wówczas pochodną odwzorowania $f$ w punkcie $x$.
+Jeżeli odwzorowanie $f$ jest różcznikowalne dla każdego $x \in E$, to mówimy, że $f$ jest różniczkowalna w $E$.
+\end{defn}
+
+\begin{uwaga}
+\begin{itemize}
+    \item [(a)]
+        Jeśli we wzorze (\ref{eq:116}) $h \in \mathbb{R}^n$ jest dostatecznie małe, to punkt $x + h \in E$, bowiem $E$ jest zbiorem otwartym.
+        Wobec tego $f(x+h)$ ma sens i $f(x+h) \in \mathbb{R}^m$.
+        Ponadto $Ah \in \mathbb{R}^m$, a więc $f(x+h) - f(x) - Ah \in \mathbb{R}^m$ i norma w liczniku ułamka (\ref{eq:116})
+        jest normą w przestrzeni $\mathbb{R}^m$. W mianowniku natomiast wystepuje norma wektora $h \in \mathbb{R}^n$.
+    \item [(b)]
+        Zauważmy, że wobec Przykładu \ref{ex:57} (a), jeśli $n = m = 1$, to powyższa definicja jest zgodna z Definicją 54.
+\end{itemize}
+\end{uwaga}
+
+Następujące twierdzenie pokazuje, że pochodna odwzorowania jest wyznaczona jednoznacznie.
+
+\begin{theorem}
+{
+    Niech $E, x, f$ będą takie jak w Definicji \ref{def:143}.
+    Jeśli odwzorowanie $f$ jest różcznikowalne w puncie $x$, to istnieje dokładnie jedno przekształcenie liniowe 
+    $A : \mathbb{R}^n \to \mathbb{R}^m$, dla którego zachodzi równość (\ref{eq:116}).
+}
+\end{theorem}
+
+\begin{proof}
+    Załóżmy, że równość (\ref{eq:116}) zachodzi dla $A = A_1$ i $A = A_2$. Jeśli $B = A_1 - A_2$,
+    to z równości 
+    \begin{align*}
+        ||Bh|| &= ||-f(x + h) + f(x) + A_1 h + f(x + h) - f(x) - A_2 h || \\
+               &\leqslant || f(x + h) - f(x) - A_1 h || + ||f(x+h) - f(x) - A_2 h ||
+    \end{align*}
+    dla dostatecznie małych $h$ wynika, że $\frac{||Bh||}{||h||} \to 0$, gdy $h \to 0$.
+    Wynika stąd, że dla ustalonego $h \neq 0$
+    \begin{equation}\label{eq:117}
+        \frac{||Bh||}{||h||} \to 0, \quad \text{gdy} \quad t \to 0.
+    \end{equation}
+    Ponieważ przekształcenie $B$ jest liniowe, zatem lewa strona wzoru (\ref{eq:117}) nie zależy od $t$.
+    Stąd $Bh = 0$ dla wszystkich $h \in \mathbb{R}^n$, a więc $B \equiv 0$.
+\end{proof}
+
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)]
+            Równość (\ref{eq:116}) można zapisać w postaci 
+            \begin{equation}\label{eq:118}
+                f(x + h) - f(x) = Ah + r(h),
+            \end{equation}
+            gdzie 
+            \[
+                \lim\limits_{h \to 0} \frac{||r(h)||}{||h||} = 0.
+            \]
+            Oczywiście (\ref{eq:118}) implikuje (\ref{eq:116}). Jeśli natomiast spełnione jest (\ref{eq:116}), to wystarczy
+            przyjąc $r(h) = f(x + h) - f(x) - Ah$, by zachodziło (\ref{eq:118}).
+        \item [(b)]
+            Niech $f$ i $E$ będa takie same jak w Definicji \ref{def:143} i niech $f$ będzie różcznikowalna na $E$.
+            Dla każdego $x \in E$, $f'(x)$ jest funkcją, mianowicie przekształceniem liniowym $\mathbb{R}^n$ w $\mathbb{R}^m$.
+            Natomiast $f'$ jest funkcją, która odwzorowuje $E$ w przestrzeń wektorową przekształceń liniowych $\mathbb{R}^n \to \mathbb{R}^m$.
+        \item [(c)]
+            Pochodna zdefiniowana przez (\ref{eq:116}) lub (\ref{eq:118}) jest często nazywana różniczką $f$ w $x$ lub pochodną zupełną $f$ w $x$.
+    \end{itemize}
+\end{uwaga}
+
+\begin{wniosek}
+{
+    Niech $E$ będzie otwartym podzbiorem przestrzeni $\mathbb{R}^n$. Jeśli odwzorowanie $f : E \to \mathbb{R}^m$ jest 
+    różcznikowalne w punkcie $x$, to jest ono ciągłe w tym punkcie.
+}
+\end{wniosek}
+
+\begin{proof}
+    Ponieważ odwzorowanie $f'(x)$ jest ciągłe (zob. Tw. \ref{theorem:205}), zatem wobec (\ref{eq:118})
+    mamy 
+    \[
+        \lim\limits_{h \to 0}f(x+h) = \lim\limits_{h \to 0}(f(x) + f'(x)h + r(h)) = f(x),
+    \]
+    bowiem z równości 
+    \[
+        \lim\limits_{h \to 0} \frac{||r(h)||}{||h||} = 0
+    \]
+    wynika, że $\lim\limits_{h \to 0}r(h) = 0$. \\
+    (Dla $||h|| < 1$ mamy $||r(h)|| \leqslant \frac{||r(h)||}{||h||}$, a więc $\lim\limits_{h \to 0}r(h) = 0$,
+    czyli wobec ciągłości normy $r(h) \to 0$ przy $h \to 0$).
+\end{proof}
+
+Zajmiemy się teraz podstawowymi właśnościami pochodnych funkcji wielu zmiennych. Następujące
+twierdzenie orzeka liniowość różniczkowania.
+
+\begin{theorem}
+{
+    Niech $E$ będzie otwartym podzbiorem przestrzeni $\mathbb{R}^n$ i niech odwzorowania $f_1 : E \to \mathbb{R}^m$, $f_2 : E \to \mathbb{R}^m$
+    będą różniczkowalne w punkcie $x \in E$.
+    Wówczas liniowa kombinacja $(\alpha_1 f_1 + \alpha_2 f_2) : E \to \mathbb{R}^m$ $(\alpha_1, \alpha_2 \in \mathbb{R})$ jest
+    również odwzorowaniem różniczkowalnym w tym punkcie oraz zachodzi równość 
+    \[
+        {(\alpha_1 f_1 + \alpha_2 f_2)}'(x) = (\alpha_1 f_1' + \alpha_2 f_2')(x).
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Dla dostatecznie małych $h \in \mathbb{R}^n$ mamy 
+    \begin{align*}
+        tucos
+    \end{align*}
+    Ponieważ
+    \[
+        \lim\limits_{h \to 0} \frac{||r_1(h)||}{||h||} =  \lim\limits_{h \to 0} \frac{||r_2(h)||}{||h||}= 0,
+    \]
+    zatem 
+    \[
+        \lim\limits_{h \to 0} \frac{||\alpha_1 r_1(h) + \alpha_2 r_2(h)||}{||h||} = 0.
+    \]
+    Wobec liniowości przekształcenia $\alpha_1 f'_1(x) + \alpha_2 f'_2(x)$ oraz Uwagi \ref{uwaga:71}
+    (a) dowód jest zakończony.
+\end{proof}
+
+Dla funkcji rzeczywistych zachodzi następujące.
+
+\begin{theorem}
+{
+    Jeśli funkcje $ f : E \to \mathbb{R}, g : E \to \mathbb{R}$ określone na zbiorze otwartym $E \subset \mathbb{R}^n$ są 
+    różniczkowalne w punkcie $x \in E$, to funkcje $fg, \frac{f}{g}$ (przy założeniu $g(x) \neq 0$) są 
+    różniczkowalne w punkcie $x$ oraz 
+    \begin{itemize}
+        \item [(a)] ${(fg)}'(x) = g(x)f'(x) + f(x)g'(x)$,
+        \item [(b)] $\Big(\frac{f}{g}\Big)'(x) = \frac{1}{g^2(x)}(g(x)f'(x) - f(x)g'(x))$.
+    \end{itemize}
+}
+\end{theorem}
+
+\begin{proof}
+    Tego ma nie być na egzaminie i brakuje mi zdjęcia. Pozdrawiam.
+\end{proof}
+
+Następujące twierdzenie rozszerza na przypadek wielu zmiennych regułę różniczkowania funkcji złożonej (zob. Tw. 55).
+
+\begin{theorem}
+{
+    Niech $E$ będzie niepustym podzbiorem otwartym przestrzeni $\mathbb{R}^n$ i niech $f : E \to \mathbb{R}^m$ będzie różniczkowalna w punkcie $x_0 \in E$.
+    Ponadto załóżmy, że funkcja $g$ odwzorowuje pewien zbiór otwarty zawierający $f(E)$ w przestrzeń $\mathbb{R}^k$ i jest różniczkowalna 
+    w punkcie $f(x_0)$. Wówczas funkcja złożona $g \circ f : E \to \mathbb{R}^k$ jest różniczkowalna w punkcie $x_0$ i zachodzi równość 
+    \[
+        (g \circ f)'(x_0) = g'(f(x_0)) \circ f'(x_0).
+    \]
+}
+\end{theorem}
+\begin{proof}
+    Niech $y_0 = f(x_0)$ i $A = f'(x_0)$ oraz $B = g'(y_0)$. Oznaczmy
+    \[
+        u(h) = f(x_0 + h) - f(x_0) - Ah, \quad v(k) = g(y_0 + k) - g(y_0) - Bk
+    \]
+    dla dowolnych $h \in \mathbb{R}^n$ i $k \in \mathbb{R}^m$, przy których $f(x_0 + h)$ oraz $g(x_0 + k)$ są określone.
+    Wtedy na mocy (\ref{eq:118}) 
+    \begin{equation}\label{eq:119}
+        ||u(h)|| = ||\varepsilon(h)||||h||, \quad ||v(k)|| = ||\eta(k)||||k||,
+    \end{equation}
+    gdzie $||\varepsilon(h)|| \to 0$ przy $h \to 0$ oraz $||\eta(k)|| \to 0$ przy $k \to 0$.
+    Przy danym $h$, niech $k = f(x_0 + h) - f(x_0)$. Wtedy
+    \begin{equation}\label{eq:120}
+        ||k|| = ||Ah + u(h)|| \leqslant (||A|| + ||\varepsilon(h)||)||h||
+    \end{equation}
+    oraz
+    \begin{align*}
+        g(f(x_0 + h)) - g(f(x_0)) - B(Ah) &= g(y_0 + k) - g(y_0) - B(Ah) \\
+        &=B(k - Ah) + v(k) \\
+        &= Bu(h) + v(k).
+    \end{align*}
+    Wobec tego na mocy (\ref{eq:119}) i (\ref{eq:120}) dla $h \neq 0$ otrzymujemy 
+    \begin{align*}
+        \frac{||g(f(x_0 + h)) - g(f(x_0)) - B(Ah)}{||h||} &= \frac{||Bu(h) + v(k)||}{||h||} \\
+            &\leqslant ||B||||\varepsilon(h)|| + (||A|| + ||\varepsilon(h)||)||\eta(k)||.
+    \end{align*}
+    Jeżeli $h \to 0$, to $||\varepsilon(h)|| \to 0$, a także na mocy (\ref{eq:120}) $k \to 0$, więc też 
+    $||\eta(k)|| \to 0$. Wynika stąd, że $(g \circ f)'(x_0) = BA$, co należało dowieść.    
+\end{proof}
+\begin{theorem}
+{
+    Niech $E$ będzie podzbiorem otwartym przestrzeni $\mathbb{R}^n$ i niech odwzorowanie $f : E \to \mathbb{R}^m$ ma składowe $f_1, \ldots, f_m$ ($f = (f_1, \ldots, f_m))$.
+    Wówczas $f$ jest różniczkowalne w punkcie $x_0 \in E$ wtedy i tylko wtedy, gdy każda z funkcji $f_i$ jest różniczkowalna w tym punkcie. Ponadto prawdzimy jest wzór
+    \begin{equation}\label{eq:121}
+        f'(x_0) = (f_1'(x_0), \ldots, f_m'(x_0)).
+    \end{equation}
+}
+\end{theorem}
+\begin{proof}
+    Równość (\ref{eq:118}) dla $x = x_0$ jest równoważna następujacemu układowi równości 
+    \[
+        f_i(x_0 + h) - f_i(x_0) = A_i h + r_i(h), \quad i = 1, \ldots, m,
+    \]
+    gdzie $A = (A_1, \ldots, A_m), r = (r_1, \ldots, r_m)$ oraz $x + h \in E$. Jest jasne że przekształcenie $A$ jest liniowe 
+    wtedy i tylko wtedy, gdy każde przekształcenie $A_i$ jest liniowe. Ponadto z nierówności 
+    \[
+        |r_i(h)| \leqslant {\Big(\sum_{i=1}^{m}|r_i(h)|^2 \Big)}^{1/2} = ||r(h)||
+    \]
+    wynika, że 
+    \[
+        \lim\limits_{h \to 0}\frac{||r(h)||}{||h||} = 0 
+    \]
+    wtedy i tylko wtedy gdy 
+    \[
+        \lim\limits_{h \to 0}\frac{||r_i(h)||}{||h||} = 0 
+    \]
+    dla każdego $i = 1, \ldots, m$. Stąd przekształcenie $f$ jest różniczkowalne w punkcie $x_0$ wtedy i tylko wtedy, gdy
+    każda z funkcji $f_i$ jest różniczkowalna w tym punkcie. Ponadto, jeśli $A$ jest pochodną $f$ w punkcie $x_0$, to $A_i$ jest pochodną $f_i$ w tym punkcie.
+    Stąd (\ref{eq:121}), co kończy dowód.
+\end{proof}
+
+\begin{defn}
+    Niech $E$, $x$, i $f$ będą takie same jak w Definicji \ref{def:143}. Jeżeli $f$ jest różniczkowalna w punkcie $x$, to macierz odwzorowania $f'(x)$ względem baz standardowych 
+    w przesztrzeniach $\mathbb{R}^n$ i $\mathbb{R}^m$ nazywamy macierzą Jacobiego w punkcie $x$ i oznaczamy $[f'(x)]$.
+    Wyznacznik macierzy Jacobiego nazywamy jakobianem i oznaczamy symbolem $J_f(x)$ lub $\frac{\partial(y_1, \ldots, y_n)}{\partial(x_1, \ldots, x_n)}$,
+    gdzie $(y_1, \ldots, y_m) = f(x_1, \ldots, x_n)$.
+\end{defn}
+
+Przypomnijmy teraz definicje zbioru wypukłego. 
+
+\begin{defn}
+    Podzbiór $E$ przestrzeni liniowej $X$ nazywamy wypukłym, jeżeli 
+    \[
+        \alpha x + (1 - \alpha)y \in E
+    \]
+    dla każdego $x \in E$, $y \in E$ i $0 < \alpha < 1$.
+\end{defn}
+
+Jako wniosek z Twierdzenia \ref{theorem:210} otrzymujemy następujące twierdzenie o wartości średniej.
+
+\begin{theorem}
+{
+    Niech $E \subset \mathbb{R}^n$ będzie zbiorem otwartym i wypukłym. Jeśli funkcja $f : E \to \mathbb{R}$ jest różniczkowalna, to dla dowolnych $x \in E$, $x + h \in E$ 
+    istnieje $0 < \theta < 1$ takie, że 
+    \[
+        f(x + h) - f(x) = f'(x + \theta h)h.
+    \]
+}
+\end{theorem}
+\begin{proof}
+    Niech $F(t) = f(x + th)$ dla $t \in [0,1]$. Wówczas na mocy założenia oraz twierdzenia o różniczkowaniu funkcji złożonej stwierdzamy, że do funkcji $F$ możemy 
+    zastosować Twierdzenie Lagrange'a o wartości średniej (Tw. 62). Istnieje zatem $0 < \theta < 1$ takie, że 
+    \[
+        F(1) - F(0) = F'(\theta).
+    \]
+    Zauważmy, teraz że $F(1) = f(x + h)$, $F(0) = f(x)$ oraz $F'(\theta) = f'(x + \theta h)h$.
+    Dla funkcji o wartościach w $\mathbb{R}^m$ twierdzenie o wartości średniej przyjmuje nastepującą postać. 
+\end{proof}
+
+\begin{theorem}
+{
+    Niech $f$ będzie funkcją określoną i różniczkowalna na otwartym i wypukłym zbiorze $E \subset \mathbb{R}^n$ odwzorowującą $E$ w $\mathbb{R}^m$.
+    Jeśli istnieje liczba nieujemna $M$ taka, że $||f'(x)|| \leqslant M$ dla każdego $x \in E$, to dla dowolnych $a, b \in E$
+    \[
+        ||f(b) - f(a)|| \leqslant M||b - a||.
+    \]
+}
+\end{theorem}
+
+\begin{proof}
+    Ustalmy $a, b \in E$. Określmy $\gamma(t) = (1 - t)a + tb$ dla $t \in [0, 1]$. Ponieważ $E$ jest zbiorem wypukłym, więc $\gamma(t) \in E$ dla $0 \leqslant t \leqslant 1$.
+    Niech $F(t) = f(\gamma(t))$, $t \in [0,1]$. Wówczas 
+    \[
+        F'(t) = f'(\gamma(t))\gamma'(t) = f'(\gamma(t))(b - a)
+    \]
+    i wobec tego dla $t \in [0,1]$ mamy
+    \[
+        ||F'(t)|| = ||f'(\gamma(t))||||b-a|| \leqslant M ||b-a||.
+    \]
+    Na mocy Twierdzenia 73, $||F(1) - F(0)|| \leqslant M||b - a||$, ale $F(0) = f(a)$ oraz $F(1) = f(b)$, co kończy dowód.
+    (Twierdzenie 73 zostało udowodnione dla funkcji o wartościach w $\mathbb{C}$, ale analogiczne rozumowanie dowodzi jego prawdziwości dla funkcji o wartościach w $\mathbb{R}^n$).
+\end{proof}
+
+\begin{wniosek}
+{
+    Jeśli w założeniach poprzedniego twierdzenia dodamy warunek $f'(x) = 0$ dla dowolnego $x \in E$, to $f$ jest funkcją stałą. Wystarczy bowiem zauważyć, że 
+    założenia Twierdzenia \ref{theorem:213} są spełnione dla $M = 0$. \\
+    Można udowodnić, iż wniosek ten pozostaje prawdzimy jeśli założymy, że zbiór $E$ jest obszarem, to znaczy jest on otwarty i spójny (zob. ćw).
+    Wiadomo, że każdy zbiór wypukły jest spójny (zob. [3], Tw. 4, s. 93); odwrotne zachodzić nie musi.
+}    
+\end{wniosek}
+
 \end{justify}
-\end{document}
+\end{document} 
