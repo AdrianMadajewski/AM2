@@ -5667,6 +5667,7 @@ Następujące twierdzenie rozszerza na przypadek wielu zmiennych regułę różn
     Jeżeli $h \to 0$, to $||\varepsilon(h)|| \to 0$, a także na mocy (\ref{eq:120}) $k \to 0$, więc też 
     $||\eta(k)|| \to 0$. Wynika stąd, że $(g \circ f)'(x_0) = BA$, co należało dowieść.    
 \end{proof}
+
 \begin{theorem}
 {
     Niech $E$ będzie podzbiorem otwartym przestrzeni $\mathbb{R}^n$ i niech odwzorowanie $f : E \to \mathbb{R}^m$ ma składowe $f_1, \ldots, f_m$ ($f = (f_1, \ldots, f_m))$.
@@ -5769,6 +5770,137 @@ Jako wniosek z Twierdzenia \ref{theorem:210} otrzymujemy następujące twierdzen
     Wiadomo, że każdy zbiór wypukły jest spójny (zob. [3], Tw. 4, s. 93); odwrotne zachodzić nie musi.
 }    
 \end{wniosek}
+
+\subsection{Pochodne cząstkowe}
+
+Niech $\{e_1, \ldots, e_n\}$, $\{u_1, \ldots, u_m\}$ będą bazami standardowymi odpowiednio $\mathbb{R}^n$ i $\mathbb{R}^m$.
+
+\begin{defn}
+    Niech $E \subset \mathbb{R}^n$ będzie zbiorem otwartym $x_0 \in E$ i niech $f : E \to \mathbb{R}$.
+    Granicę
+    \[
+        \lim\limits_{t \to 0}\frac{f(x_0^1, \ldots, x_0^{j - 1}, x_0^j + t, x_0^{j+1}, \ldots, x_0^n) - f(x_0)}{t} = \lim\limits_{t \to 0}\frac{f(x_0 + te_j) - f(x_0)}{t}    
+    \]
+    o ile istnieje nazywamy pochodną cząstkową funkcji $f$ względem $j$-tej zmiennej w punkcie $x_0$ i oznaczamy symbolem $\frac{\partial f}{\partial x_j}(x_0)$ lub $D_j f(x_0)$.
+
+\end{defn}
+
+\begin{uwaga}
+    Zauważmy, że $D_j f(x_0)$ jest dobrze znaną pochodną pewnej funkcji rzeczywistej jednej zmiennej. Istotnie jeśli oznaczymy
+    \[
+        g(h) = f(x_0^1, \ldots, x_0^{j-1}, h, x_0^{j+1}, \ldots, x_0^n),
+    \]
+    to $D_j f(x_0) = g'(x_0^j)$. Oznacza to, że $D_j f(x_0)$ jest tangensem kąta nachylenia stycznej w punkcie $(x_0, f(x_0))$
+    do krzywej otrzymanej z przecięcia wykresu funkcji $f$ płaszczyzną przechodzącą przez ten punkt i równoległą do wektorów $e_j$ i $e_{n+1}$,
+    czyli płaszczyzną o równaniu $x_i = x_0^i$ dla $i \neq j$. Dokładniej płaszczyzną $P = \{x_0^1, \ldots, x_0^{j-1}, x_j, x_0^{j+1}, \ldots, x_0^n, y\}$,
+    $x_j \in \mathbb{R}, y \in \mathbb{R}$. (zob. K. Sieklucki, Geometria i topologia, PWN, Warszawa, s.43, 332).
+\end{uwaga}
+
+\begin{uwaga}
+    Istnienie pochodnych cząstkowych funkcji w danym punkcie nie musi implikować jej ciągłości w tym punkcie. Dla przykładu funkcja $f : \mathbb{R}^2 \to \mathbb{R}$
+    określona wzorami $f(0,0) = 0$, $f(x,y) = xy^2 / (x^2 + y^2)$ dla $(x, y) \neq (0, 0)$ nie jest ciągła w punkcie $(0, 0)$. Natomiast $(D_i)f(0, 0) = 0$ 
+    dla $i = 1,2$ (zob. ćwiczenia).
+\end{uwaga}
+
+Następujące twierdzenie podaje warunek konieczny różniczkowalności odwzorowania w jej punkcie. Dokładniej,
+jeżeli wiemy, że funkcja $f$ jest różniczkowalna w punkcie $x_0$, to jej pochodne cząstkowe w tym punkcie istnieją i wyznaczają całkowicie przekształcenie liniowe $f'(x_0)$.
+
+\begin{theorem}
+{
+    Niech $E$ będzie otwartym podzbiorem przestrzeni $\mathbb{R}^n$. Jeśli odwzorowanie $f = (f_1, \ldots, f_m) : E \to \mathbb{R}^m$ jest
+    różniczkowalne w punkcie $x_0$, to wtedy $(D_j f_i)(x_0)$ istnieją dla $i = 1, \ldots, m, j = 1, \ldots, n$ oraz 
+    \begin{equation}\label{eq:122}
+        f'(x_0)e_j = \sum_{i=1}^{m}(D_j f_i)(x_0)u_i.
+    \end{equation}
+}
+\end{theorem}
+
+\begin{proof}
+    Ustalmy $1 \leqslant j \leqslant n$. Ponieważ $f$ jest różniczkowalna w punkcie $x_0$,
+    \[
+        f(x_0 + te_j) - f(x_0) = f'(x_0)(te_j) + r(te_j),
+    \]
+    gdzie $||r(te_j)|| / |t| \to 0$, przy $t \to 0$. \\
+    Zauważmy, że jeśli $\lim\limits_{t \to 0}\frac{||r(te_j)||}{||t||} = 0$, to $\lim\limits_{t \to 0}\frac{||r(te_j)||}{t} = 0$
+    ($\lim\limits_{t \to 0^+}\frac{||r(te_j)||}{t} = \lim\limits_{t \to 0^-}\frac{||r(te_j)||}{t} = 0$. Stąd $\lim\limits_{t \to 0}\frac{||r(te_j)||}{t} = 0$). \\
+    Ponieważ $f'(x)$ jest funkcją liniową więc 
+    \begin{equation}\label{eq:123}
+        \lim\limits_{t \to 0}\frac{f(x_0 + t e_j) - f(x_0)}{t} = f'(x_0) e_j.
+    \end{equation}
+    Jesli teraz zapiszemy $f$ za pomocą $f_1, \ldots, f_m$ to (\ref{eq:123}) przyjmuje postać
+    \begin{equation}\label{eq:124}
+        \lim\limits_{t \to 0}\sum_{i=1}^{m}\frac{f_i(x_0 + te_j) - f_i(x_0)}{t}u_i = f'(x_0)e_j.
+    \end{equation}
+    Z postaci ostatniej równości wynika, że kazdy iloraz różnicowy wystepujący pod znakiem sumy posiada granicę. (zob. Tw. \ref{theorem:180}), a więc 
+    istnieją pochodne cząstkowe $(D_j f_i)(x_0)$. W konsekwencji (\ref{eq:122}) wynika z (\ref{eq:124}).
+\end{proof}
+
+\begin{wniosek}
+{
+    Niech $E,f,x_0$ oznaczają to samo co w Twierdzeniu \ref{theorem:214}.
+    Wówczas $f'(x_0)e_j$ jest $j$-tym wektorem kolumnowym macierzy Jacobiego $[f'(x_0)]$ i z (\ref{eq:122}) wynika, że
+    liczba $(D_j f_i)(x_0)$ jest wyrazem macierzy $[f'(x_0)]$ znajdującym się w $i$-tym wierszu i $j$-tej kolumnie. Stąd 
+    \[
+        [f'(x_0)] =
+            \left[
+            \begin{array}{ccc}
+                (D_1 f_1)(x_0)  & \cdots & (D_n f_1)(x_0) \\
+                \vdots  & \ddots & \vdots \\
+                (D_1 f_m)(x_0)  & \cdots & (D_n f_m)(x_0)
+            \end{array}
+            \right]
+            =
+            \left[
+            \begin{array}{ccc}
+                \frac{\partial f_1}{\partial x_1}(x_0)  & \cdots & \frac{\partial f_1}{\partial x_n}(x_0) \\
+                \vdots  & \ddots & \vdots \\
+                \frac{\partial f_m}{\partial x_1}(x_0)  & \cdots & \frac{\partial f_m}{\partial x_n}(x_0)
+            \end{array}
+            \right]
+    \]
+}
+\end{wniosek}
+
+\begin{uwaga}
+    \begin{itemize}
+        \item [(a)] Twierdzenie odwrotne do Twierdzenia \ref{theorem:214} nie jest prawdziwe. 
+            Dla przykładu niech $f : \mathbb{R}^2 \to \mathbb{R}$ będzie określone wzorem $f(x, y) = \sqrt[3]{x^3 + y^3}$.
+            Można łatwo sprawdzić, że $\frac{\partial f}{\partial x}(0, 0) = \frac{\partial f}{\partial y}(0,0) = 1$. Natomiast
+            pochodna $f'(0, 0)$ nie istnieje.
+        \item [(b)]
+            Jesli $h = \sum\limits_{j=1}^{n}h_j e_j$ jest jakimś wektorem z $\mathbb{R}^n$, to na mocy (\ref{eq:122}) otrzymujemy 
+            \begin{align*}
+                f'(x_0)h &= f'(x_0) \Big(\sum_{j=1}^{n}h_j e_j\Big) \\
+                        &= h_1 f'(x_0) e_j + \ldots + h_n f'(x_0) e_n \\
+                        &= h_1 \sum_{i=1}^{m}(D_1 f_i)(x_0)u_i + \ldots + h_n \sum_{i=1}^{m}(D_n f_i)(x_0)u_i \\
+                        &= \sum_{i=1}^{m}\Big(\sum_{j=1}^{n}(D_j f_i)(x_0)h_j\Big)u_i.
+            \end{align*}
+            W szczególności, jeśli $f : E \to \mathbb{R}$, to 
+            \[
+                f'(x_0)h = \frac{\partial f}{\partial x_1}(x_0) h _1 + \frac{\partial f}{\partial x_2}(x_0)h_2 + \ldots + \frac{\partial f}{\partial x_n}(x_0)h_n.
+            \]
+            Oznaczając $df(x_0)h = f'(x_0)h$ i $dx_j(h) = h_j$ dla $j = 1, \ldots n$, otrzymujemy 
+            \[
+                df(x_0)h = \frac{\partial f}{\partial x_1}(x_0) dx_1(h) + \frac{\partial f}{\partial x_2}(x_0) dx_2(h) + \ldots + \frac{\partial f}{\partial x_n}(x_0) dx_n(h),
+            \]
+            czyli 
+            \[
+                df(x_0) = \frac{\partial f}{\partial x_1}(x_0) dx_1 + \frac{\partial f}{\partial x_2}(x_0) dx_2 + \ldots + \frac{\partial f}{\partial x_n}(x_0) dx_n.
+            \]
+            W takiej postaci różniczka występuje na ogół w klasycznych podręcznikach analizy matematycznej.
+    \end{itemize}
+\end{uwaga}
+
+\begin{defn}
+    Mówimy, że odwzorowanie różniczkowalne $f$ zbioru otwartego $E \subset \mathbb{R}^n$ w przestrzeń $\mathbb{R}^m$ jest różniczkowalne w sposób ciągły w $E$ lub jest klasy $C^1$ w $E$, jeśli $f'$ jest odwzorowaniem ciąłym $E$ w $L(\mathbb{R}^n, \mathbb{R}^m)$. \\
+    Dokładniej żądamy, żeby dla każdego $x \in E$ i dla dowolnego $\varepsilon > 0$, istniała liczba $\delta > 0$ taka, że $||f'(x) - f'(y)|| < \varepsilon$
+    dla $y \in E$ i $||x - y|| < \delta$. Jeśli to zachodzi to piszemy $f \in C^1(E) = C^1(E, \mathbb{R}^m)$.
+\end{defn}
+
+\begin{theorem}
+    Załóżmy, że $f$ odwzorowuje zbiór otwarty $E \subset \mathbb{R}^n$ w $\mathbb{R}^m$. Odwzorowanie $f \in C^1(E)$ wtedy i tylko wtedy, gdy pochodne 
+    cząstkowe $D_j f_i$ istnieją i są ciągłe na $E$ dla $i = 1, \ldots, m$, $j = 1, \ldots, n$.
+\end{theorem}
 
 \end{justify}
 \end{document} 
